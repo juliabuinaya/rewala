@@ -1,9 +1,9 @@
 /* tslint:disable:member-ordering no-unused-variable */
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HttpModule } from '@angular/http';
-// import { Router } from '@angular/router';
 import { StoreModule, Store } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { Storage } from '@ionic/storage';
 
 import { AppReducer } from '../ngrx/state/app.state';
 
@@ -13,6 +13,14 @@ import { Ng2UiAuthModule } from 'ng2-ui-auth';
 
 // resolver
 import { APP_SERVICE_PROVIDERS, SpinnerService } from './services/index';
+
+
+export function provideStorage() {
+  return new Storage({});
+  // return new Storage(['sqlite', 'websql', 'indexeddb'], { name: '__mydb' } /* optional config */);
+}
+
+
 
 @NgModule({
   imports: [
@@ -30,6 +38,7 @@ import { APP_SERVICE_PROVIDERS, SpinnerService } from './services/index';
   ],
   declarations: [],
   providers: [
+    { provide: Storage, useFactory: provideStorage },
     // app config
     { provide: APP_CONFIG, useValue: APP_DI_CONFIG },
 
