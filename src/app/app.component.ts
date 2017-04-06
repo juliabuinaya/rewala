@@ -4,8 +4,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 
-import { HomePage } from './pages/home/home';
-import { ListPage } from './pages/list/list';
+// import { HomePage } from './pages/home/home';
+// import { ListPage } from './pages/list/list';
+import { DashboardPage } from './pages/dashboard/dashboard';
+import { SettingsPage } from './pages/settings/settings';
+import { GroupsPage } from './pages/groups/groups';
+import { QuestionSettingsPage } from './pages/create-question/question-settings/question-settings';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,7 +17,7 @@ import { ListPage } from './pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = DashboardPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -27,8 +31,12 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      // { title: 'Home', component: HomePage },
+      // { title: 'List', component: ListPage },
+      { title: 'Dashboard', component: DashboardPage },
+      { title: 'Add Question', component: QuestionSettingsPage },
+      { title: 'Groups', component: GroupsPage },
+      { title: 'Settings', component: SettingsPage }
     ];
 
   }
@@ -38,7 +46,7 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      this.splashScreen.show();
     });
   }
 
@@ -46,5 +54,9 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  logout() {
+
   }
 }

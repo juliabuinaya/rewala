@@ -4,7 +4,6 @@ import { FormsModule } from "@angular/forms";
 
 import { IterablePipe } from "./pipes/iterable/iterable.pipe";
 // import * as directives from "./index";
-// import { APP_DI_CONFIG } from "../app.config";
 
 let directivesArr = [
 ];
@@ -17,17 +16,13 @@ let pipesArr = [
 @NgModule({
   imports: [
     CommonModule,
-    // RouterModule,
-    FormsModule,
-
-    // MaterializeModule,
+    FormsModule
   ],
   declarations: [
     ...directivesArr,
     ...pipesArr
   ],
   exports: [
-    // RouterModule,
     FormsModule,
     CommonModule,
 
