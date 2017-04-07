@@ -8,6 +8,10 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Settings</h3>
-
+  <ion-list>
+    <ion-item *ngFor="let setting of settings">
+      <ion-label> {{setting.label}}</ion-label>
+      <ion-toggle ([ngModel])="setting.value" (change)="saveSettings($event)"></ion-toggle>
+    </ion-item>
+  </ion-list>
 </ion-content>
