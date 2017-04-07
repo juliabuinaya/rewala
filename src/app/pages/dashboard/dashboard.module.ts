@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IonicModule } from 'ionic-angular';
+import { IonicPageModule } from 'ionic-angular';
 
 import { AppSharedModule } from '../../shared/shared.module';
 import { DashboardPage } from './dashboard';
@@ -10,7 +10,7 @@ import { DashboardPage } from './dashboard';
   ],
   imports: [
     AppSharedModule,
-    IonicModule.forRoot(DashboardPage)
+    IonicPageModule.forChild(DashboardPage)
   ],
   entryComponents: [
     DashboardPage

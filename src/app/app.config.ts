@@ -4,6 +4,7 @@ import { InjectionToken } from '@angular/core';
 import { CustomConfig } from 'ng2-ui-auth';
 
 import { SpinnerService } from './core/services/index';
+import { ToastController } from 'ionic-angular';
 
 export let APP_CONFIG = new InjectionToken<string>('app.config');
 
@@ -53,20 +54,15 @@ export class SOCIAL_AUTH_CONFIG extends CustomConfig {
 
 export function RESTANGULAR_CONFIG (
     RestangularProvider,
-    spinnerService: SpinnerService
+    spinnerService: SpinnerService,
+    toastController: ToastController
 ) {
   RestangularProvider.setBaseUrl(APP_DI_CONFIG.apiEndpoint);
-  // RestangularProvider.setDefaultHeaders({'X_AUTH_TOKEN': sessionService.get('uptracker_token')});
 
   // RestangularProvider.addFullRequestInterceptor((element, operation, path, url, headers, params) => {
-  //   let newHeaders = headers;
-  //   // if (urlArr[urlArr.length - 1] != 'streetview')
-  //     newHeaders = {
-  //       'X_AUTH_TOKEN': sessionService.get('uptracker_token')
-  //     };
-  //
   //   return {
-  //     headers: newHeaders
+  //     //headers: Object.assign({'Authorization': 'Bearer ' + cookieService.get("accessToken")}),
+  //     params: Object.assign({}, params, {access_token: cookieService.get("accessToken")}),
   //   };
   // });
 
@@ -75,8 +71,19 @@ export function RESTANGULAR_CONFIG (
   //   return data;
   // });
 
-  // RestangularProvider.addErrorInterceptor((response, subject, responseHandler) => {
-  //
-  // });
+  RestangularProvider.addErrorInterceptor((response, subject, responseHandler) => {
+    let errorMsg = response.statusText;
+    if (response.data.error.message) {
+      errorMsg = response.data.error.message;
+    }
+
+    let toast = toastController.create({
+      message: errorMsg,
+      duration: 4000,
+      position: 'bottom',
+      cssClass: 'toast-error'
+    });
+    toast.present();
+  });
 
 }

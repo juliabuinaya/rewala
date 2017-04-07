@@ -4,15 +4,24 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Dashboard</ion-title>
+    <ion-avatar>
+      <img src="https://images.unsplash.com/profile-1443246909724-93144c1b8992?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=64&w=64&s=82560c5754301e8f799d3163c2aba06e" />
+    </ion-avatar>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <!--<h3>Dashboard</h3>-->
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <ion-list no-lines>
+    <button ion-item *ngFor="let page of listPages" [navPush]="questionListPage" [navParams]="page.type">
+      {{page.title}}
+    </button>
+  </ion-list>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <ion-fab right bottom>
+    <button ion-fab (click)="addQuestion()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { StoreModule, Store } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { Storage } from '@ionic/storage';
+import { ToastController } from 'ionic-angular';
 
 import { AppReducer } from '../ngrx/state/app.state';
 
@@ -30,7 +31,8 @@ export function provideStorage() {
     // EffectsModule.run(AuthEffects),
     RestangularModule.forRoot(
       [
-        SpinnerService
+        SpinnerService,
+        ToastController
       ],
       RESTANGULAR_CONFIG
     ),

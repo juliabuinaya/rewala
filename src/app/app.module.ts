@@ -11,6 +11,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { CoreModule } from './core/core.module';
 import { AppSharedModule } from './shared/shared.module';
+
+// pages
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { SettingsModule } from './pages/settings/settings.module';
 import { QuestionModule } from './pages/question/question.module';
@@ -26,7 +28,9 @@ import { QuestionSettingsModule } from './pages/create-question/question-setting
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      menuType: 'overlay'
+    }),
     CoreModule,
     AppSharedModule,
 

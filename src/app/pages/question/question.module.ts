@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IonicModule } from 'ionic-angular';
+import { IonicPageModule } from 'ionic-angular';
 
 import { AppSharedModule } from '../../shared/shared.module';
 import { QuestionPage } from './question';
@@ -10,7 +10,7 @@ import { QuestionPage } from './question';
   ],
   imports: [
     AppSharedModule,
-    IonicModule.forRoot(QuestionPage)
+    IonicPageModule.forChild(QuestionPage)
   ],
   entryComponents: [
     QuestionPage
