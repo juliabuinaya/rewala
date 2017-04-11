@@ -11,6 +11,8 @@ import { SettingsPage } from './pages/settings/settings';
 import { GroupsPage } from './pages/groups/groups';
 import { QuestionSettingsPage } from './pages/create-question/question-settings/question-settings';
 
+import { LoginPage } from './pages/auth/login/login';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -33,6 +35,8 @@ export class MyApp {
     this.pages = [
       // { title: 'Home', component: HomePage },
       // { title: 'List', component: ListPage },
+      { title: 'Login', component: LoginPage },
+
       { title: 'Dashboard', component: DashboardPage },
       { title: 'Add Question', component: QuestionSettingsPage },
       { title: 'Groups', component: GroupsPage },

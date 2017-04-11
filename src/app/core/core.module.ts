@@ -5,6 +5,7 @@ import { StoreModule, Store } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { Storage } from '@ionic/storage';
 import { ToastController } from 'ionic-angular';
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
 import { AppReducer } from '../ngrx/state/app.state';
 
@@ -22,6 +23,18 @@ export function provideStorage() {
 }
 
 
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': 'b0c8daf4'
+  },
+  'auth': {
+    'google': {
+      'webClientId': '1064527119572-evvvtkqe7q9u7sk8nod083bp3gnuvi7f.apps.googleusercontent.com',
+      'scope': []
+    }
+  }
+};
+
 
 @NgModule({
   imports: [
@@ -36,7 +49,8 @@ export function provideStorage() {
       ],
       RESTANGULAR_CONFIG
     ),
-    Ng2UiAuthModule.forRoot(SOCIAL_AUTH_CONFIG)
+    Ng2UiAuthModule.forRoot(SOCIAL_AUTH_CONFIG),
+    CloudModule.forRoot(cloudSettings)
   ],
   declarations: [],
   providers: [

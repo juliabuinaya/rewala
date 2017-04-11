@@ -13,6 +13,7 @@ import { CoreModule } from './core/core.module';
 import { AppSharedModule } from './shared/shared.module';
 
 // pages
+import { AuthModule } from './pages/auth/auth.module';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { SettingsModule } from './pages/settings/settings.module';
 import { QuestionModule } from './pages/question/question.module';
@@ -34,6 +35,7 @@ import { QuestionSettingsModule } from './pages/create-question/question-setting
     CoreModule,
     AppSharedModule,
 
+    AuthModule,
     DashboardModule,
     SettingsModule,
     QuestionModule,

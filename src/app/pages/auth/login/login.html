@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form name="loginForm" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input type="email" #email="ngModel" [(ngModel)]="user.email" name="email" required></ion-input>
+      </ion-item>
+      <div *ngIf="email.errors && (email.dirty || email.touched)"
+           class="error-box">Email is required
+      </div>
+      <ion-item>
+        <ion-label>Password</ion-label>
+        <ion-input type="password" #password="ngModel" [(ngModel)]="user.password" name="password" required></ion-input>
+      </ion-item>
+      <div *ngIf="password.errors && (password.dirty || password.touched)"
+           class="error-box">Password is required
+      </div>
+    </ion-list>
+    <div class="btn-wrapper" text-center>
+      <div>
+        <button ion-button type="submit">Login</button>
+      </div>
+      <div>
+        <button ion-button type="button" (click)="googleLogin()">Login With Google</button>
+      </div>
+      <div text-center margin-top>or</div>
+      <div>
+        <button ion-button clear type="button" (click)="toSignUpPage()">Create account</button>
+      </div>
+    </div>
+  </form>
+</ion-content>
