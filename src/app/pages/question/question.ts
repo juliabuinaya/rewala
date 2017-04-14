@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 
 @IonicPage({
@@ -10,9 +10,10 @@ import { NavController, IonicPage } from 'ionic-angular';
   templateUrl: 'question.html'
 })
 export class QuestionPage {
+  
+  @Input() pageType;
 
   constructor(public navCtrl: NavController) {
-
   }
 
 }

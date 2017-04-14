@@ -4,7 +4,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { HomePage } from './pages/home/home';
-import { ListPage } from './pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,13 +18,13 @@ import { SettingsModule } from './pages/settings/settings.module';
 import { QuestionModule } from './pages/question/question.module';
 import { GroupsModule } from './pages/groups/groups.module';
 import { QuestionSettingsModule } from './pages/create-question/question-settings/question-settings.module';
+import { ResultsModule } from './pages/results/results.module';
 
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    ListPage
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -40,6 +39,7 @@ import { QuestionSettingsModule } from './pages/create-question/question-setting
     SettingsModule,
     QuestionModule,
     GroupsModule,
+    ResultsModule,
 
     // create question pages
     QuestionSettingsModule
@@ -47,8 +47,7 @@ import { QuestionSettingsModule } from './pages/create-question/question-setting
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    ListPage
+    HomePage
   ],
   providers: [
     StatusBar,
