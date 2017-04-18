@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-// import { environment } from '../environments/environment';
+ //import { environment } from '../environments/environment';
 
 import { CustomConfig } from 'ng2-ui-auth';
 
@@ -13,8 +13,7 @@ export interface AppConfig {
 }
 
 export const APP_DI_CONFIG: AppConfig = {
-  // apiEndpoint: environment.api
-  apiEndpoint: "0.0.0.0:53001/api"
+  apiEndpoint: "http://api.rewala.2muchcoffee.com/api"
 };
 
 export const GOOGLE_CLIENT_ID = '945919728141-s8e4e961ie6jgi5hbuuvedv7vo1u40n5.apps.googleusercontent.com';

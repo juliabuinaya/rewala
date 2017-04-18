@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Sign in page header</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <h1>Sign In</h1>
+
+  <form class="saveForm" name="saveForm" #saveForm="ngForm" (ngSubmit)="onSubmit(saveForm)">
+    <ion-list>
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input type="email" #email="ngModel" [(ngModel)]="signInData.email" name="email" email required></ion-input>
+      </ion-item>
+      <div *ngIf="email.errors && (email.dirty || email.touched)"
+        class="error-box">Email is required
+      </div>
+      <ion-item>
+        <ion-label>Password</ion-label>
+        <ion-input type="password" #password="ngModel" [(ngModel)]="signInData.password" name="password" required></ion-input>
+      </ion-item>
+      <div *ngIf="password.errors && (password.dirty || password.touched)"
+        class="error-box">Password is required
+      </div>
+    </ion-list>
+    <div class="btn-wrapper">
+      <button ion-button color="secondary" type="submit" [disabled]="!saveForm.valid">Sign In</button>
+      <br>
+      or
+      <br>
+      <button ion-button color="light" type="button" (click)="toSignUpPage()">Register</button>
+    </div>
+  </form>
+
+</ion-content>

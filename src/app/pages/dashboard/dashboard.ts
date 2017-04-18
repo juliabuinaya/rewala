@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 
 import { QuestionSettingsPage } from '../create-question/question-settings/question-settings';
-import { QuestionPage } from '../question/question';
+import { ResultsPage } from '../results/results';
+
 
 @IonicPage({
   name: 'dashboard'
@@ -18,20 +19,19 @@ export class DashboardPage {
   constructor(public navCtrl: NavController) {
 
     this.resultsPages = [
-      { title: 'Awaiting your answer', type: 'awaiting-answer' },
+      { title: 'Awaiting your answer', type: 'awaiting-your-answer' },
       { title: 'Awaiting others', type: 'awaiting-others' },
-      { title: 'Public questions', type: 'public' },
-      { title: 'Past questions', type: 'past' }
+      { title: 'Public questions', type: 'public questions' },
+      { title: 'Past questions', type: 'past questions' }
     ];
   }
 
   toAddQuestion() {
     this.navCtrl.push(QuestionSettingsPage);
-    // this.navCtrl.push('add-question');
   }
   
-  toResults(pageType) {
-    console.log('Results page type', pageType);
+  toResults(resultsType) {
+    this.navCtrl.push(ResultsPage, {resultsType});
   }
   
 }

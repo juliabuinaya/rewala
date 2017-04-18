@@ -15,14 +15,16 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
+  <h4>Results type: {{ resultsType }}</h4>
+
+  <ion-card *ngFor="let question of questions">
     <ion-card-content>
-      Which dog should be the new office dog?
+      {{ question.text }}
+      <div class="buttons">
+        <button ion-button clear (click)="toQuestionPage(resultsType, question.id, actionType='details')">See details</button>
+        <button ion-button clear color="danger" (click)="toQuestionPage(resultsType, question.id, actionType='recast')">Recast</button>
+      </div>
     </ion-card-content>
   </ion-card>
-  <ion-card>
-    <ion-card-content>
-      Which dog should be the new office dog?
-    </ion-card-content>
-  </ion-card>
+
 </ion-content>

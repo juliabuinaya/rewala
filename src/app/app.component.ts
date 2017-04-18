@@ -4,12 +4,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 
-import { LoginPage } from './pages/auth/login/login';
 import { DashboardPage } from './pages/dashboard/dashboard';
 import { SettingsPage } from './pages/settings/settings';
 import { GroupsPage } from './pages/groups/groups';
 import { QuestionSettingsPage } from './pages/create-question/question-settings/question-settings';
 import { ResultsPage } from './pages/results/results';
+import { SignUpPage } from './pages/auth/sign-up/sign-up';
+import { SignInPage } from './pages/auth/sign-in/sign-in';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Login', component: LoginPage },
+      { title: 'Sign Up', component: SignUpPage },
+      { title: 'Sign In', component: SignInPage },
       { title: 'Dashboard', component: DashboardPage },
       { title: 'Add Question', component: QuestionSettingsPage },
       { title: 'Results', component: ResultsPage },

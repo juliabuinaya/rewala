@@ -37,18 +37,22 @@ import { combineReducers } from '@ngrx/store';
  * notation packages up all of the exports into a single object.
  */
 
-// import * as fromAuth from '../auth/index';
+ import * as fromAuth from '../auth/index';
 
-// import * as fromAuthRequest from '../auth-request/index';
+ //import * as fromAuthState from '../auth/states';
+ //import * as fromAuthReducers from '../auth/reducers';
+
+ import * as fromAuthRequestState from '../auth-request/states';
+ import * as fromAuthRequestReducers from '../auth-request/reducers';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
  * our top level state interface is just a map of keys to inner state types.
  */
-export interface IAppState {
-  // auth: fromAuth.IAuthState;
 
-  // authRequest: fromAuthRequest.IAuthRequestState;
+export interface IAppState {
+   auth: fromAuth.IAuthState;
+   authRequest: fromAuthRequestState.IAuthRequestState;
 }
 
 /**
@@ -58,10 +62,10 @@ export interface IAppState {
  * wrapping that in storeLogger. Remember that compose applies
  * the result from right to left.
  */
-const reducers = {
-  // auth: fromAuth.reducer,
 
-  // authRequest: fromAuthRequest.authRequestReducer,
+const reducers = {
+   auth: fromAuth.reducer,
+   authRequest: fromAuthRequestReducers.authRequestReducer,
 };
 
 const developmentReducer: ActionReducer<IAppState> = compose(storeFreeze, combineReducers)(reducers);

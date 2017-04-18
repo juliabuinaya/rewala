@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 
-import { LoginModule } from './login/login.module';
+import { SignInModule } from './sign-in/sign-in.module';
+import { SignUpModule } from './sign-up/sign-up.module';
 
 @NgModule({
   declarations: [
   ],
   imports: [
-    LoginModule,
+    SignInModule,
+    SignUpModule
   ],
   entryComponents: [
   ],

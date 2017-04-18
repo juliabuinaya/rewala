@@ -15,10 +15,9 @@
 </ion-header>
 
 <ion-content padding>
-  <!--<h3>Dashboard</h3>-->
 
   <ion-list no-lines>
-  <button ion-item *ngFor="let page of resultsPages" (click)="toQuestions(page.type)">
+  <button ion-item *ngFor="let page of resultsPages" (click)="toResults(page.type)">
     <ion-icon name="arrow-forward"></ion-icon>
     {{page.title}}
   </button>
@@ -29,4 +28,5 @@
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
+
 </ion-content>

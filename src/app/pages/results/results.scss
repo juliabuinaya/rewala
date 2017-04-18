@@ -1,3 +1,13 @@
 page-results {
 
+  ion-content {
+
+    ion-card-content {
+      padding-bottom: 0!important;
+
+      .buttons {
+        text-align: right;
+      }
+    }
+  }
 }
