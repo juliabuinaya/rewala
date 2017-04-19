@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { FeedPage } from '../feed-page/feed-page';
 import { RoutingService } from '../../services/routing.service';
@@ -15,7 +15,7 @@ import { AuthService } from '../../../core/services/auth.service';
 })
 export class SignUpPage {
   
-  private signUpData = {
+  public formData = {
     email: '',
     username: '',
     password: ''
@@ -29,7 +29,9 @@ export class SignUpPage {
   
   onSubmit(form) {
     if (form.valid) {
-      this.authService.signUpUser(this.signUpData);
+      console.log({...(this.formData)});
+      debugger;
+      this.authService.signUpUser({...(this.formData)});
     }
   }
   

@@ -39,9 +39,6 @@ import { combineReducers } from '@ngrx/store';
 
  import * as fromAuth from '../auth/index';
 
- //import * as fromAuthState from '../auth/states';
- //import * as fromAuthReducers from '../auth/reducers';
-
  import * as fromAuthRequestState from '../auth-request/states';
  import * as fromAuthRequestReducers from '../auth-request/reducers';
 

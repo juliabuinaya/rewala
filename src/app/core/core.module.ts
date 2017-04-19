@@ -16,6 +16,7 @@ import { Ng2UiAuthModule } from 'ng2-ui-auth';
 // resolver
 import { APP_SERVICE_PROVIDERS, SpinnerService } from './services/index';
 
+// effects
 import { RegistrationPostEffects } from '../ngrx/auth-request/effects';
 
 export function provideStorage() {
@@ -52,7 +53,7 @@ const cloudSettings: CloudSettings = {
       RESTANGULAR_CONFIG
     ),
     Ng2UiAuthModule.forRoot(SOCIAL_AUTH_CONFIG),
-    CloudModule.forRoot(cloudSettings)
+    CloudModule.forRoot(cloudSettings),
   ],
   declarations: [],
   providers: [

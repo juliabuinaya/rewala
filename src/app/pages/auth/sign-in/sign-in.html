@@ -15,14 +15,14 @@
     <ion-list>
       <ion-item>
         <ion-label>Email</ion-label>
-        <ion-input type="email" #email="ngModel" [(ngModel)]="signInData.email" name="email" email required></ion-input>
+        <ion-input type="email" #email="ngModel" [(ngModel)]="formData.email" name="email" email required></ion-input>
       </ion-item>
       <div *ngIf="email.errors && (email.dirty || email.touched)"
         class="error-box">Email is required
       </div>
       <ion-item>
         <ion-label>Password</ion-label>
-        <ion-input type="password" #password="ngModel" [(ngModel)]="signInData.password" name="password" required></ion-input>
+        <ion-input type="password" #password="ngModel" [(ngModel)]="formData.password" name="password" required></ion-input>
       </ion-item>
       <div *ngIf="password.errors && (password.dirty || password.touched)"
         class="error-box">Password is required

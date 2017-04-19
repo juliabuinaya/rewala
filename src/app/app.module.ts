@@ -21,6 +21,15 @@ import { QuestionSettingsModule } from './pages/create-question/question-setting
 import { ResultsModule } from './pages/results/results.module';
 
 
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
+
+export function instrumentOptions() {
+  return {
+    monitor: useLogMonitor({ visible: true, position: 'right' })
+  };
+}
+
 @NgModule({
   declarations: [
     MyApp,
@@ -42,7 +51,10 @@ import { ResultsModule } from './pages/results/results.module';
     ResultsModule,
 
     // create question pages
-    QuestionSettingsModule
+    QuestionSettingsModule,
+  
+    StoreDevtoolsModule.instrumentStore(instrumentOptions),
+    StoreLogMonitorModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

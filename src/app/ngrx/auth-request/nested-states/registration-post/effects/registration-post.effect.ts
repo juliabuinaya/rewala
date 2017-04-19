@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 // libs
 import { Store, Action } from '@ngrx/store';
-import { Effect, Actions } from '@ngrx/effects';
+import { Effect, Actions, toPayload } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 
 // module
@@ -18,16 +18,18 @@ import {
 
 @Injectable()
 export class RegistrationPostEffects {
+  
+  constructor(private actions$: Actions, public authService: AuthService) {
+  }
 
   @Effect()
   registrationPost$: Observable<Action> = this.actions$
   .ofType(registrationPost.ActionTypes.REQUEST)
-  .switchMap((action: any) => {
-    console.log(action);
-    return action;
-    //return this.authService.registrationRequest(action.payload)
-    //.map((res: any) => new RegistrationPostSuccessAction(res))
-    //.catch(error => Observable.of(new RegistrationPostFailAction(error)));
+  .map(toPayload)
+  .switchMap((payload: any) => {
+    return this.authService.signUpRequest(payload)
+    .map((res: any) => new RegistrationPostSuccessAction(res))
+    .catch(error => Observable.of(new RegistrationPostFailAction(error)));
   });
   
   //@Effect({dispatch: false})
@@ -39,6 +41,4 @@ export class RegistrationPostEffects {
   //  this.toastrService.showEffectsMsg(action.payload);
   //});
 
-  constructor(private actions$: Actions, public authService: AuthService) {
-  }
 }

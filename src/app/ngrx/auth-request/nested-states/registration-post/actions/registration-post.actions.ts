@@ -28,7 +28,6 @@ export class RegistrationPostFailAction implements Action {
   }
 }
 
-
 export type Actions = RegistrationPostAction |
   RegistrationPostSuccessAction |
   RegistrationPostFailAction;

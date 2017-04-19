@@ -13,7 +13,7 @@ import { SignUpPage } from '../sign-up/sign-up';
 })
 export class SignInPage {
   
-  private signInData = {
+  private formData = {
     email: '',
     password: ''
   };
@@ -21,7 +21,6 @@ export class SignInPage {
   constructor(
     public navCtrl: NavController
     //public userService: UserService,
-    //public socialAuthService: SocialAuthService,
     //public routingService: RoutingService,
     //public loadingService: LoadingService
   ) {

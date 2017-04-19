@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import * as appState from '../../ngrx/state/app.state';
 
 import * as authRequestActions from '../../ngrx/auth-request/actions/index';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -22,6 +23,7 @@ export class AuthService {
   }
   
   signUpRequest(payload: any) {
+    console.log('sending post req', payload);
     return this.restangular.all('clients').post(payload);
   }
 }
