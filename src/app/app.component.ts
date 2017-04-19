@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Storage } from '@ionic/storage';
 
+import { RootPage } from './pages/root/root';
 import { DashboardPage } from './pages/dashboard/dashboard';
 import { SettingsPage } from './pages/settings/settings';
 import { GroupsPage } from './pages/groups/groups';
@@ -12,23 +12,21 @@ import { ResultsPage } from './pages/results/results';
 import { SignUpPage } from './pages/auth/sign-up/sign-up';
 import { SignInPage } from './pages/auth/sign-in/sign-in';
 
-
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = DashboardPage;
+  rootPage: any = RootPage;
 
   pages: Array<{title: string, component: any}>;
 
   constructor(
       public platform: Platform,
       public statusBar: StatusBar,
-      public splashScreen: SplashScreen,
-      private storage: Storage
-  ) {
+      public splashScreen: SplashScreen) {
+    
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -43,7 +41,7 @@ export class MyApp {
     ];
 
   }
-
+  
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

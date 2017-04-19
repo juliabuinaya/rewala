@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { HomePage } from './pages/home/home';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -23,6 +21,7 @@ import { ResultsModule } from './pages/results/results.module';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
+import { RootModule } from './pages/root/root.module';
 
 export function instrumentOptions() {
   return {
@@ -32,8 +31,7 @@ export function instrumentOptions() {
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   imports: [
     BrowserModule,
@@ -42,7 +40,8 @@ export function instrumentOptions() {
     }),
     CoreModule,
     AppSharedModule,
-
+    
+    RootModule,
     AuthModule,
     DashboardModule,
     SettingsModule,
@@ -58,8 +57,7 @@ export function instrumentOptions() {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   providers: [
     StatusBar,

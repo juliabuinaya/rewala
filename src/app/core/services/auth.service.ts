@@ -5,9 +5,7 @@ import { Store } from '@ngrx/store';
 
 // app state
 import * as appState from '../../ngrx/state/app.state';
-
 import * as authRequestActions from '../../ngrx/auth-request/actions/index';
-import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -17,13 +15,26 @@ export class AuthService {
               public store: Store<appState.IAppState>) {
   }
   
-  signUpUser(data) {
-    console.log('service', data);
+  signUp(data) {
     this.store.dispatch(new authRequestActions.RegistrationPostAction(data));
   }
   
+  signIn(data) {
+    this.store.dispatch(new authRequestActions.SessionPostAction(data));
+  }
+  
   signUpRequest(payload: any) {
-    console.log('sending post req', payload);
+    console.log('sending post register req', payload);
     return this.restangular.all('clients').post(payload);
   }
+  
+  signInRequest(payload: any) {
+    console.log('sending post login req', payload);
+    return this.restangular.all('clients').customPOST(payload, 'login');
+  }
+  
+  getCurrentUser(token) {
+    return this.restangular.one('tokens', token).one('user').get();
+  }
+  
 }

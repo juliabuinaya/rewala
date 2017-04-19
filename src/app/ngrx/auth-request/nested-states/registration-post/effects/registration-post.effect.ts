@@ -1,19 +1,13 @@
-// angular
 import { Injectable } from '@angular/core';
 
-// libs
-import { Store, Action } from '@ngrx/store';
+import { Action } from '@ngrx/store';
 import { Effect, Actions, toPayload } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 
-// module
 import * as registrationPost from '../actions/registration-post.actions';
 import { RegistrationPostAction, RegistrationPostSuccessAction, RegistrationPostFailAction } from '../actions/index';
 
-//app
-import {
-  AuthService,
-} from '../../../../../core/services/index';
+import { AuthService } from '../../../../../core/services/index';
 
 
 @Injectable()
@@ -28,10 +22,10 @@ export class RegistrationPostEffects {
   .map(toPayload)
   .switchMap((payload: any) => {
     return this.authService.signUpRequest(payload)
-    .map((res: any) => new RegistrationPostSuccessAction(res))
+    .map((res: any) => new RegistrationPostSuccessAction(payload))
     .catch(error => Observable.of(new RegistrationPostFailAction(error)));
   });
-  
+
   //@Effect({dispatch: false})
   //showErrorToastr: Observable<Action> = this.actions$
   //.ofType(

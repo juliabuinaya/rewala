@@ -21,17 +21,12 @@ export class SignUpPage {
     password: ''
   };
 
-  constructor(public authService: AuthService,
-    //public routingService: RoutingService,
-    //public loadingService: LoadingService
-  ) {
+  constructor(public authService: AuthService) {
   }
   
   onSubmit(form) {
     if (form.valid) {
-      console.log({...(this.formData)});
-      debugger;
-      this.authService.signUpUser({...(this.formData)});
+      this.authService.signUp({...(this.formData)});
     }
   }
   

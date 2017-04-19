@@ -61,7 +61,7 @@ export interface IAppState {
  */
 
 const reducers = {
-   auth: fromAuth.reducer,
+   //auth: fromAuth.reducer,
    authRequest: fromAuthRequestReducers.authRequestReducer,
 };
 

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import { SignUpPage } from '../sign-up/sign-up';
-//import { UserService } from '../../services/user.service';
-//import { LoadingService } from '../../services/loading.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { RoutingService } from '../../../core/services/routing.service';
 
 @IonicPage({
   name: 'sign-in'
@@ -18,22 +18,18 @@ export class SignInPage {
     password: ''
   };
   
-  constructor(
-    public navCtrl: NavController
-    //public userService: UserService,
-    //public routingService: RoutingService,
-    //public loadingService: LoadingService
-  ) {
+  constructor(public authService: AuthService,
+              public routingService: RoutingService) {
   }
   
   onSubmit(form) {
     if (form.valid) {
-      console.log(form);
+      this.authService.signIn({...(this.formData)});
     }
   }
   
   toSignUpPage() {
-    this.navCtrl.push(SignUpPage);
+    this.routingService.pushPage(SignUpPage);
   }
 
   ngOnDestroy() {

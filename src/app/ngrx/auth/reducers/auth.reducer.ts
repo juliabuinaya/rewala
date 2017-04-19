@@ -9,18 +9,19 @@ export function reducer(
     
     case ActionTypes.SET_TOKEN:
       return Object.assign({}, state, {
-        token: action.payload,
+        token: action.payload
       });
     
-    //case ActionTypes.SET_GUEST_IS_TRUE:
-    //  return Object.assign({}, state, {
-    //    isGuest: true,
-    //  });
-    //
-    //case ActionTypes.SET_GUEST_IS_FALSE:
-    //  return Object.assign({}, state, {
-    //    isGuest: false,
-    //  });
+    case ActionTypes.GET_TOKEN_FROM_STORAGE:
+      return Object.assign({}, state, {
+        loading: true,
+      });
+  
+    case ActionTypes.GET_TOKEN_FROM_STORAGE_SUCCESS:
+    case ActionTypes.GET_TOKEN_FROM_STORAGE_FAIL:
+      return Object.assign({}, state, {
+        loading: false,
+      });
     
     default: {
       return state;

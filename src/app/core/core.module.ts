@@ -17,7 +17,9 @@ import { Ng2UiAuthModule } from 'ng2-ui-auth';
 import { APP_SERVICE_PROVIDERS, SpinnerService } from './services/index';
 
 // effects
+import { AuthEffects } from '../ngrx/auth/effects';
 import { RegistrationPostEffects } from '../ngrx/auth-request/effects';
+import { SessionPostEffects } from '../ngrx/auth-request/effects';
 
 export function provideStorage() {
   return new Storage({});
@@ -43,8 +45,9 @@ const cloudSettings: CloudSettings = {
     HttpModule,
 
     StoreModule.provideStore(AppReducer),
-    // EffectsModule.run(AuthEffects),
+     EffectsModule.run(AuthEffects),
      EffectsModule.run(RegistrationPostEffects),
+     EffectsModule.run(SessionPostEffects),
     RestangularModule.forRoot(
       [
         SpinnerService,
