@@ -13,13 +13,7 @@ export function reducer(
     }
   
     case ActionTypes.CLEAR_USER: {
-      return Object.assign({}, state, {
-        username: null,
-        email: null,
-        id: null,
-        createdAt: null,
-        updatedAt: null
-      });
+      return Object.assign({}, state, initialState);
     }
 
     case ActionTypes.UPDATE_USER: {

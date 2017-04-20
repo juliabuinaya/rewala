@@ -11,6 +11,7 @@ import { QuestionSettingsPage } from './pages/create-question/question-settings/
 import { ResultsPage } from './pages/results/results';
 import { SignUpPage } from './pages/auth/sign-up/sign-up';
 import { SignInPage } from './pages/auth/sign-in/sign-in';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,7 +26,8 @@ export class MyApp {
   constructor(
       public platform: Platform,
       public statusBar: StatusBar,
-      public splashScreen: SplashScreen) {
+      public splashScreen: SplashScreen,
+      public authService: AuthService) {
     
     this.initializeApp();
 
@@ -58,6 +60,6 @@ export class MyApp {
   }
 
   logout() {
-
+    this.authService.logout();
   }
 }

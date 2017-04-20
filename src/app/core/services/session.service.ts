@@ -5,15 +5,15 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class SessionService {
   
-  currentToken;
-  
   constructor(private storage: Storage) {
   }
   
   setAccessToken(token) {
-    Observable.fromPromise(this.storage.ready())
-    .subscribe(() => this.storage.set('rewAccessToken', token));
-    
+    let subscriber = Observable.fromPromise(this.storage.ready())
+    .subscribe(() => {
+      this.storage.set('rewAccessToken', token);
+      subscriber.unsubscribe();
+    });
   }
   
   getAccessToken() {
@@ -24,15 +24,11 @@ export class SessionService {
   }
   
   removeAccessToken() {
-    return Observable.fromPromise(this.storage.ready())
-    .switchMap(() => {
-      return this.storage.remove('rewAccessToken');
+    let subscriber = Observable.fromPromise(this.storage.ready())
+    .subscribe(() => {
+      this.storage.remove('rewAccessToken');
+      subscriber.unsubscribe();
     });
   }
-  
-  getCurrentTokenId() {
-    if(this.currentToken) {
-      return this.currentToken.id;
-    }
-  }
+
 }

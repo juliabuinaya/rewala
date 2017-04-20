@@ -5,7 +5,10 @@ import { Store } from '@ngrx/store';
 
 // app state
 import * as appState from '../../ngrx/state/app.state';
-import * as authRequestActions from '../../ngrx/auth-request/actions/index';
+
+// actions
+import * as authRequest from '../../ngrx/auth-request/actions/index';
+import * as user from '../../ngrx/user/actions/index';
 
 
 @Injectable()
@@ -16,11 +19,11 @@ export class AuthService {
   }
   
   signUp(data) {
-    this.store.dispatch(new authRequestActions.RegistrationPostAction(data));
+    this.store.dispatch(new authRequest.RegistrationPostAction(data));
   }
   
   signIn(data) {
-    this.store.dispatch(new authRequestActions.SessionPostAction(data));
+    this.store.dispatch(new authRequest.SessionPostAction(data));
   }
   
   signUpRequest(payload: any) {
@@ -29,5 +32,9 @@ export class AuthService {
   
   signInRequest(payload: any) {
     return this.restangular.all('clients').customPOST(payload, 'login');
+  }
+  
+  logout() {
+    this.store.dispatch(new user.ClearUserAction());
   }
 }

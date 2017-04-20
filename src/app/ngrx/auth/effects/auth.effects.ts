@@ -7,17 +7,17 @@ import { SessionService } from '../../../core/services/session.service';
 import { RoutingService } from '../../../core/services/routing.service';
 
 import * as auth from '../actions/auth.actions';
+import * as user from '../../user/actions/index';
+import * as userRequest from '../../user-request/actions/index';
 import * as sessionPost from '../../auth-request/nested-states/session-post/actions/session-post.actions';
 import { SetTokenAction,
   GetTokenFromStorageAction,
   GetTokenFromStorageSuccessAction,
-  GetTokenFromStorageFailAction } from '../actions/auth.actions';
-
+  GetTokenFromStorageFailAction,
+  DeleteTokenAction} from '../actions/auth.actions';
 import { UserGetAction } from '../../user-request/actions/index';
 
-
 import { SignInPage } from '../../../pages/auth/sign-in/sign-in';
-import { DashboardPage } from '../../../pages/dashboard/dashboard';
 
 @Injectable()
 export class AuthEffects {
@@ -59,4 +59,15 @@ export class AuthEffects {
   tokenFail$: Observable<Action> = this.actions$
   .ofType(auth.ActionTypes.GET_TOKEN_FROM_STORAGE_FAIL)
   .do((action: any) => this.routingService.pushRootPage(SignInPage));
+  
+  @Effect()
+  removeToken$: Observable<Action> = this.actions$
+  .ofType(user.ActionTypes.CLEAR_USER,
+          userRequest.ActionTypes.GET_REQUEST_FAIL)
+  .map(() => {
+    this.sessionService.removeAccessToken();
+    this.routingService.pushRootPage(SignInPage);
+    return new DeleteTokenAction();
+  });
+  
 }
