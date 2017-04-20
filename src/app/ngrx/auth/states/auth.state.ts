@@ -1,8 +1,8 @@
 export interface IAuthState {
-  isGuest: boolean;
+  loading: boolean;
   token?: string;
 }
 export const initialState: IAuthState = {
-  isGuest: true,
-  token: null,
+  loading: false,
+  token: null
 };

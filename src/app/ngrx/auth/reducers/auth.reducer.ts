@@ -11,7 +11,12 @@ export function reducer(
       return Object.assign({}, state, {
         token: action.payload
       });
-    
+  
+    case ActionTypes.DELETE_TOKEN:
+      return Object.assign({}, state, {
+        token: null
+      });
+      
     case ActionTypes.GET_TOKEN_FROM_STORAGE:
       return Object.assign({}, state, {
         loading: true,
@@ -20,6 +25,7 @@ export function reducer(
     case ActionTypes.GET_TOKEN_FROM_STORAGE_SUCCESS:
     case ActionTypes.GET_TOKEN_FROM_STORAGE_FAIL:
       return Object.assign({}, state, {
+        token: action.payload,
         loading: false,
       });
     

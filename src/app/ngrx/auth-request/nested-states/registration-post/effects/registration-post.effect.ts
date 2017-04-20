@@ -5,7 +5,8 @@ import { Effect, Actions, toPayload } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 
 import * as registrationPost from '../actions/registration-post.actions';
-import { RegistrationPostAction, RegistrationPostSuccessAction, RegistrationPostFailAction } from '../actions/index';
+import { RegistrationPostSuccessAction, RegistrationPostFailAction } from '../actions/index';
+import { SessionPostAction } from '../../session-post/actions/index';
 
 import { AuthService } from '../../../../../core/services/index';
 
@@ -13,7 +14,8 @@ import { AuthService } from '../../../../../core/services/index';
 @Injectable()
 export class RegistrationPostEffects {
   
-  constructor(private actions$: Actions, public authService: AuthService) {
+  constructor(private actions$: Actions,
+              public authService: AuthService) {
   }
 
   @Effect()
@@ -25,14 +27,11 @@ export class RegistrationPostEffects {
     .map((res: any) => new RegistrationPostSuccessAction(payload))
     .catch(error => Observable.of(new RegistrationPostFailAction(error)));
   });
-
-  //@Effect({dispatch: false})
-  //showErrorToastr: Observable<Action> = this.actions$
-  //.ofType(
-  //  registrationPost.ActionTypes.REQUEST_FAIL,
-  //)
-  //.do((action: any) => {
-  //  this.toastrService.showEffectsMsg(action.payload);
-  //});
+  
+  @Effect()
+  registrationPostSuccess$: Observable<Action> = this.actions$
+  .ofType(registrationPost.ActionTypes.REQUEST_SUCCESS)
+  .map(toPayload)
+  .map(payload => new SessionPostAction(payload));
 
 }

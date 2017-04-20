@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Observable } from 'rxjs';
-import { UserStreamsService } from './user-streams.service';
 
 @Injectable()
 export class SessionService {

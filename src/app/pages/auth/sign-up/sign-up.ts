@@ -1,8 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { UserService } from '../../services/user.service';
-import { FeedPage } from '../feed-page/feed-page';
-import { RoutingService } from '../../services/routing.service';
-import { LoadingService } from '../../services/loading.service';
+import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { AuthService } from '../../../core/services/auth.service';
 

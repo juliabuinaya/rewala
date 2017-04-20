@@ -9,11 +9,10 @@ import { Observable } from 'rxjs';
 
 //actions
 import * as sessionPost from '../actions/session-post.actions';
-import * as registrationPost from '../../registration-post/actions/registration-post.actions';
-import { SessionPostAction, SessionPostSuccessAction, SessionPostFailAction } from '../actions/index';
+import { SessionPostSuccessAction, SessionPostFailAction } from '../actions/index';
 
 //pages
-import { DashboardPage } from '../../../../../pages/dashboard/dashboard';
+import { SignInPage } from '../../../../../pages/auth/sign-in/sign-in';
 
 
 @Injectable()
@@ -26,8 +25,7 @@ export class SessionPostEffects {
 
   @Effect()
   sessionPost$: Observable<Action> = this.actions$
-  .ofType(sessionPost.ActionTypes.REQUEST,
-      registrationPost.ActionTypes.REQUEST_SUCCESS)
+  .ofType(sessionPost.ActionTypes.REQUEST)
   .map(toPayload)
   .switchMap((payload: any) => {
     return this.authService.signInRequest(payload)
@@ -36,20 +34,8 @@ export class SessionPostEffects {
   });
   
   @Effect({dispatch: false})
-  redirectToDashboardPage$: Observable<Action> = this.actions$
-  .ofType(sessionPost.ActionTypes.REQUEST_SUCCESS)
-  .do((action: any) => {
-    this.routingService.pushRootPage(DashboardPage);
-  });
-  
-  //
-  //@Effect({dispatch: false})
-  //showErrorToastr: Observable<Action> = this.actions$
-  //.ofType(
-  //  sessionPost.ActionTypes.REQUEST_FAIL,
-  //)
-  //.do((action: any) => {
-  //  this.toastrService.showEffectsMsg(action.payload);
-  //});
+  redirectToSignInPage$: Observable<Action> = this.actions$
+  .ofType(sessionPost.ActionTypes.REQUEST_FAIL)
+  .do((action: any) => this.routingService.pushRootPage(SignInPage));
 
 }

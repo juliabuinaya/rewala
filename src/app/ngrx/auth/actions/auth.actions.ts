@@ -8,10 +8,18 @@ export const ActionTypes = {
   GET_TOKEN_FROM_STORAGE: type(`[${AUTH}] Get Token From Storage`),
   GET_TOKEN_FROM_STORAGE_SUCCESS: type(`[${AUTH}] Get Token From Storage Success`),
   GET_TOKEN_FROM_STORAGE_FAIL: type(`[${AUTH}] Get Token From Storage Fail`),
+  DELETE_TOKEN: type(`[${AUTH}] Delete Token`),
 };
 
 export class SetTokenAction implements Action {
   type = ActionTypes.SET_TOKEN;
+  
+  constructor(public payload?: string) {
+  }
+}
+
+export class DeleteTokenAction implements Action {
+  type = ActionTypes.DELETE_TOKEN;
   
   constructor(public payload?: string) {
   }
@@ -38,23 +46,8 @@ export class GetTokenFromStorageFailAction implements Action {
   }
 }
 
-
-//export class SetGuestIsTrueAction implements Action {
-//  type = ActionTypes.SET_GUEST_IS_TRUE;
-//
-//  constructor(public payload?: string) {
-//  }
-//}
-//export class SetGuestIsFalseAction implements Action {
-//  type = ActionTypes.SET_GUEST_IS_FALSE;
-//
-//  constructor(public payload?: string) {
-//  }
-//}
-
-
-export type Actions = SetTokenAction;
-  //|
-  //SetGuestIsTrueAction |
-  //SetGuestIsFalseAction
-  //;
+export type Actions = SetTokenAction
+  | DeleteTokenAction
+  | GetTokenFromStorageAction
+  | GetTokenFromStorageSuccessAction
+  | GetTokenFromStorageFailAction;

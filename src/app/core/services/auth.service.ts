@@ -24,17 +24,10 @@ export class AuthService {
   }
   
   signUpRequest(payload: any) {
-    console.log('sending post register req', payload);
     return this.restangular.all('clients').post(payload);
   }
   
   signInRequest(payload: any) {
-    console.log('sending post login req', payload);
     return this.restangular.all('clients').customPOST(payload, 'login');
   }
-  
-  getCurrentUser(token) {
-    return this.restangular.one('tokens', token).one('user').get();
-  }
-  
 }

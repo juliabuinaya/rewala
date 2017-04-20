@@ -13,6 +13,8 @@ import { SetTokenAction,
   GetTokenFromStorageSuccessAction,
   GetTokenFromStorageFailAction } from '../actions/auth.actions';
 
+import { UserGetAction } from '../../user-request/actions/index';
+
 
 import { SignInPage } from '../../../pages/auth/sign-in/sign-in';
 import { DashboardPage } from '../../../pages/dashboard/dashboard';
@@ -25,20 +27,13 @@ export class AuthEffects {
               public routingService: RoutingService) {
   }
   
-  //@Effect() setJWTAfterInit$: Observable<Action> = this.actions$
-  //.ofType(myRequest.ProfileGetActionTypes.REQUEST)
-  //.map(payload => {
-  //  let jwt: string = this.authService.getJWT() || null;
-  //  return new auth.SetJWTAction(jwt);
-  //});
-  
   @Effect()
   getTokenAfterInit$: Observable<Action> = this.actions$
   .ofType(auth.ActionTypes.GET_TOKEN_FROM_STORAGE)
   .startWith(new GetTokenFromStorageAction())
   .switchMap(() => {
       return this.sessionService.getAccessToken()
-      .map(token => token ? new GetTokenFromStorageSuccessAction() : new GetTokenFromStorageFailAction())
+      .map(token => token ? new GetTokenFromStorageSuccessAction(token) : new GetTokenFromStorageFailAction())
       .catch(error => Observable.of(new GetTokenFromStorageFailAction(error)));
     }
   );
@@ -53,32 +48,15 @@ export class AuthEffects {
     return new SetTokenAction(token);
   });
   
+  @Effect()
+  tokenSuccess$: Observable<Action> = this.actions$
+  .ofType(auth.ActionTypes.SET_TOKEN,
+          auth.ActionTypes.GET_TOKEN_FROM_STORAGE_SUCCESS)
+  .map(toPayload)
+  .map((token: any) => new UserGetAction(token));
+  
   @Effect({dispatch: false})
   tokenFail$: Observable<Action> = this.actions$
   .ofType(auth.ActionTypes.GET_TOKEN_FROM_STORAGE_FAIL)
-  .do((action: any) => {
-    this.routingService.pushRootPage(SignInPage);
-  });
-  
-  @Effect({dispatch: false})
-  tokenSuccess$: Observable<Action> = this.actions$
-  .ofType(auth.ActionTypes.GET_TOKEN_FROM_STORAGE_SUCCESS)
-  .do((action: any) => {
-    
-    // here need to do req for user with token
-    this.routingService.pushRootPage(DashboardPage);
-  });
-  
-  //
-  //@Effect({dispatch: false})
-  //redirectToDashboard$: Observable<Action> = this.actions$
-  //.ofType(
-  //  authRequest.SessionPostActionTypes.REQUEST_SUCCESS,
-  //  authRequest.RegistrationPatchActionTypes.REQUEST_SUCCESS
-  //)
-  //.do((action: any) => {
-  //  this.routerext.navigate(['/dashboard']);
-  //});
-  
-  
+  .do((action: any) => this.routingService.pushRootPage(SignInPage));
 }

@@ -3,6 +3,10 @@ import { NavController, IonicPage } from 'ionic-angular';
 
 import { QuestionSettingsPage } from '../create-question/question-settings/question-settings';
 import { ResultsPage } from '../results/results';
+import { Store } from '@ngrx/store';
+import { IAppState } from '../../ngrx/state/app.state';
+
+import * as authStateGetter from '../../ngrx/auth/states/auth-getter.state';
 
 
 @IonicPage({
@@ -13,11 +17,20 @@ import { ResultsPage } from '../results/results';
   templateUrl: 'dashboard.html'
 })
 export class DashboardPage {
-  public resultsPages: any;
-  public questionListPage = ''; //QuestionListPage;
+  
+  resultsPages: any;
+  questionListPage = ''; //QuestionListPage;
+  token$;
+  
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController, public store: Store<IAppState>) {
+    this.token$ = this.store.select(authStateGetter.getTokenFromState);
+  }
+  
+  ngOnInit() {
+  
+    //this.token$.subscribe(token => console.log(token));
+    
     this.resultsPages = [
       { title: 'Awaiting your answer', type: 'awaiting-your-answer' },
       { title: 'Awaiting others', type: 'awaiting-others' },
