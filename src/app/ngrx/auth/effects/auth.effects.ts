@@ -43,7 +43,7 @@ export class AuthEffects {
   .ofType(sessionPost.ActionTypes.REQUEST_SUCCESS)
   .map(toPayload)
   .map((payload: any) => {
-    let token = payload.id;
+    let token = payload ? payload.id : null;
     this.sessionService.setAccessToken(token);
     return new SetTokenAction(token);
   });

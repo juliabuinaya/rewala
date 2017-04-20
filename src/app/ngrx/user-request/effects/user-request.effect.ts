@@ -5,8 +5,6 @@ import { Observable } from 'rxjs/Observable';
 
 import * as userRequest from '../actions/user-request.actions';
 import { UserGetSuccessAction, UserGetFailAction } from '../actions/index';
-import * as auth from '../../auth/actions/auth.actions';
-import * as sessionPost from '../../auth-request/nested-states/session-post/actions/session-post.actions';
 
 import { UserService } from '../../../core/services/user.service';
 import { DashboardPage } from '../../../pages/dashboard/dashboard';

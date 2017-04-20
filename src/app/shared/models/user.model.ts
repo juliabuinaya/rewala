@@ -2,8 +2,8 @@ export class UserModel {
   username: string = null;
   email: string = null;
   id: string = null;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: string = null;
+  updatedAt: string = null;
   
   constructor(obj?) {
     for (let field in obj) {

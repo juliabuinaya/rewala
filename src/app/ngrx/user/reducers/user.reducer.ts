@@ -1,8 +1,5 @@
 import { IUserState, initialState } from '../states/user.state';
 import { Actions, ActionTypes } from '../actions/user.actions';
-import * as _ from 'lodash';
-
-//import { setUuidToId, setEntities, getIdsArrEntities } from  '../../utils/util';
 
 
 export function reducer(
@@ -12,22 +9,27 @@ export function reducer(
   switch (action.type) {
   
     case ActionTypes.SET_USER: {
-      return Object.assign({}, state, {
-        currentUserId: null,
-      });
+      return Object.assign({}, state, action.payload);
     }
   
     case ActionTypes.CLEAR_USER: {
       return Object.assign({}, state, {
-        currentUserId: null,
+        username: null,
+        email: null,
+        id: null,
+        createdAt: null,
+        updatedAt: null
       });
     }
 
     case ActionTypes.UPDATE_USER: {
-      //let curState = _.cloneDeep(state);
-      //curState.entities[curState.currentUserId] = Object.assign(curState.entities[curState.currentUserId], action.payload);
-
-      //return Object.assign({}, state, curState);
+      return Object.assign({}, state, {
+        username: action.payload.username,
+        email: action.payload.email,
+        id: action.payload.id,
+        createdAt: action.payload.createdAt,
+        updatedAt: action.payload.updatedAt,
+      });
     }
     
     default: {

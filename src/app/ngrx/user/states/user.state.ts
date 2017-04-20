@@ -7,8 +7,8 @@ export interface IUserState {
 }
 export const initialState: IUserState = {
   username: null,
-  email: '',
-  id: '',
-  createdAt: '',
-  updatedAt: ''
+  email: null,
+  id: null,
+  createdAt: null,
+  updatedAt: null
 }

@@ -1,28 +1,26 @@
-// angular
 import { Injectable } from '@angular/core';
+import { Action } from '@ngrx/store';
+import { Effect, Actions, toPayload } from '@ngrx/effects';
+import { Observable } from 'rxjs/Observable';
 
-//// libs
-//import { Store, Action } from '@ngrx/store';
-//import { Effect, Actions } from '@ngrx/effects';
-//import { includes, map } from 'lodash';
-//import { Observable } from 'rxjs/Observable';
-//import 'rxjs/add/operator/map';
-//
-//// module
-//import * as user from '../actions/user.actions';
-//import * as auth from '../../auth/actions/auth.actions';
-//import * as authRequest from '../../auth-request/actions/index';
-//import * as myRequest from '../../my-request/actions/index';
-//
-////app
-//import { IAppState } from '../../state/app.state';
-//import { RouterExtensions } from '../../../core/services/router-extensions.service';
-//import { AuthService, UserService } from '../../../core/services/index';
-//import { ToastrService } from '../../../core/services/toastr.service';
+import { UserModel } from '../../../shared/models/user.model';
 
+//actions
+import { SetUserAction } from '../actions/index'
+import * as userRequest from '../../user-request/actions/index';
 
 @Injectable()
 export class UserEffects {
+  
+  constructor(private actions$: Actions) {
+  }
+  
+  @Effect()
+  userGetRequest$: Observable<Action> = this.actions$
+  .ofType(userRequest.ActionTypes.GET_REQUEST_SUCCESS)
+  .map(toPayload)
+  .map(payload => new SetUserAction(new UserModel(payload)));
+
 
   //@Effect()
   //populateUser$: Observable<Action> = this.actions$
