@@ -29,14 +29,14 @@ export class RootPage {
     
     /** Subscribing on routing service streams  */
     this.routingService.pushRootPage$
-    .subscribe((page: any) => {
-      this.navCtrl.setRoot(page)
+    .subscribe((data: any) => {
+      this.navCtrl.setRoot(data.page, data.params)
       .catch(() => console.log('should I stay or should I go now'));
     });
     
     this.routingService.pushPage$
-    .subscribe((page: any) => {
-      this.navCtrl.push(page);
+    .subscribe((data: any) => {
+      this.navCtrl.push(data.page, data.params);
     });
     
     this.routingService.popPage$

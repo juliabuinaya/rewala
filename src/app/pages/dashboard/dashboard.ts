@@ -4,6 +4,9 @@ import { NavController, IonicPage } from 'ionic-angular';
 import { QuestionSettingsPage } from '../create-question/question-settings/question-settings';
 import { ResultsPage } from '../results/results';
 import { Store } from '@ngrx/store';
+
+import { RoutingService } from '../../core/services/routing.service';
+
 import { IAppState } from '../../ngrx/state/app.state';
 
 import * as authStateGetter from '../../ngrx/auth/states/auth-getter.state';
@@ -23,7 +26,8 @@ export class DashboardPage {
   token$;
   
 
-  constructor(public navCtrl: NavController, public store: Store<IAppState>) {
+  constructor(public store: Store<IAppState>,
+              public routingService: RoutingService) {
     this.token$ = this.store.select(authStateGetter.getTokenFromState);
   }
   
@@ -40,11 +44,13 @@ export class DashboardPage {
   }
 
   toAddQuestion() {
-    this.navCtrl.push(QuestionSettingsPage);
+    //this.navCtrl.push(QuestionSettingsPage);
+    this.routingService.pushPage(QuestionSettingsPage);
   }
   
   toResults(resultsType) {
-    this.navCtrl.push(ResultsPage, {resultsType});
+    //this.navCtrl.push(ResultsPage, {resultsType});
+    this.routingService.pushPage(ResultsPage, {resultsType});
   }
   
 }

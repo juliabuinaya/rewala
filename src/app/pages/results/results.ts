@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavParams, IonicPage, NavController } from 'ionic-angular';
 import { QuestionPage } from '../question/question';
+import { RoutingService } from '../../core/services/routing.service';
 
 
 @IonicPage()
@@ -14,7 +15,7 @@ export class ResultsPage {
   questions;
 
   constructor(public navParams: NavParams,
-              public navCtrl: NavController) {
+              public routingService: RoutingService) {
     
     this.resultsType = navParams.get('resultsType');
     
@@ -29,6 +30,6 @@ export class ResultsPage {
   }
   
   toQuestionPage(resultsType, id, action) {
-    this.navCtrl.push(QuestionPage, {resultsType, id, action});
+    this.routingService.pushPage(QuestionPage, {resultsType, id, action});
   }
 }

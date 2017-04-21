@@ -15,12 +15,14 @@ export class RoutingService {
   public popToRootPage$ = new Subject();
   public popPage$ = new Subject();
   
-  pushRootPage(page: any) {
-    this.pushRootPage$.next(page);
+  pushRootPage(page: any, params = {}) {
+    let data = {page, params};
+    this.pushRootPage$.next(data);
   }
   
-  pushPage(page: any) {
-    this.pushPage$.next(page);
+  pushPage(page: any, params = {}) {
+    let data = {page, params};
+    this.pushPage$.next(data);
   }
   
   popToRootPage() {
