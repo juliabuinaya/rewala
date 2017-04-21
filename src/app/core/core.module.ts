@@ -22,6 +22,7 @@ import { RegistrationPostEffects } from '../ngrx/auth-request/effects';
 import { SessionPostEffects } from '../ngrx/auth-request/effects';
 import { UserRequestEffects } from '../ngrx/user-request/effects';
 import { UserEffects } from '../ngrx/user/effects';
+import { SpinnerEffects } from '../ngrx/spinner/effects';
 
 export function provideStorage() {
   return new Storage({});
@@ -52,6 +53,7 @@ const cloudSettings: CloudSettings = {
      EffectsModule.run(SessionPostEffects),
      EffectsModule.run(UserRequestEffects),
      EffectsModule.run(UserEffects),
+     EffectsModule.run(SpinnerEffects),
     
     RestangularModule.forRoot(
       [

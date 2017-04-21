@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Store } from '@ngrx/store';
 
 import { RoutingService } from '../../core/services/routing.service';
-import { LoadingService } from '../../core/services/loading.service';
-import { SessionService } from '../../core/services/session.service';
-import { AuthService } from '../../core/services/auth.service';
 
-import { DashboardPage } from '../dashboard/dashboard';
-import { SignInPage } from '../auth/sign-in/sign-in';
-import { Observable } from 'rxjs';
+// app state
+import * as appState from '../../ngrx/state/app.state';
+
+//actions
+import * as spinner from '../../ngrx/spinner/actions/index';
 
 @Component({
   selector: 'page-root',
@@ -18,19 +18,16 @@ export class RootPage {
   
   constructor(public navCtrl: NavController,
               public routingService: RoutingService,
-              public loadingService: LoadingService,
-              public sessionService: SessionService,
-              public authService: AuthService) {
+              public store: Store<appState.IAppState>) {
   }
   
   ngOnInit() {
     
     /** Show loading spinner */
+    this.store.dispatch(new spinner.SpinnerLoadingStartAction());
     
-    this.loadingService.presentLoader();
     
     /** Subscribing on routing service streams  */
-    
     this.routingService.pushRootPage$
     .subscribe((page: any) => {
       this.navCtrl.setRoot(page)
@@ -51,31 +48,11 @@ export class RootPage {
     .subscribe(() => {
       this.navCtrl.popToRoot();
     });
-    
-    
-    /** Need to check access token and then change page */
-
-    //this.routingService.pushRootPage(SignInPage);
-    
-    //this.sessionService.getAccessToken()
-    //.filter(token => !!token)
-    //.switchMap(token => {
-    //  return !token ? Observable.of(false) : this.authService.getCurrentUser(token);
-    //})
-    //.subscribe(res => {
-    //  if (res) {
-    //    this.routingService.pushRootPage(DashboardPage);
-    //    //this.userStreams.updateCurrentToken(this.currentToken);
-    //  }
-    //  else {
-    //    this.routingService.pushRootPage(SignInPage);
-    //  }
-    //});
   }
   
   ngOnDestroy() {
-    /** Hide loading spinner */
     
-    this.loadingService.dismissLoader();
+    /** Hide loading spinner */
+    this.store.dispatch(new spinner.SpinnerLoadingEndAction());
   }
 }

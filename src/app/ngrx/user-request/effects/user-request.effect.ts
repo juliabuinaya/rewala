@@ -3,13 +3,16 @@ import { Action } from '@ngrx/store';
 import { Effect, Actions, toPayload } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 
-import * as userRequest from '../actions/user-request.actions';
-import { UserGetSuccessAction, UserGetFailAction } from '../actions/index';
-
 import { UserService } from '../../../core/services/user.service';
 import { DashboardPage } from '../../../pages/dashboard/dashboard';
 import { RoutingService } from '../../../core/services/routing.service';
 import { SignInPage } from '../../../pages/auth/sign-in/sign-in';
+
+//actions
+import * as userRequest from '../actions/user-request.actions';
+import { UserGetSuccessAction, UserGetFailAction } from '../actions/index';
+import { SpinnerLoadingEndAction } from '../../spinner/actions/index';
+
 
 
 @Injectable()
@@ -30,13 +33,19 @@ export class UserRequestEffects {
     .catch(error => Observable.of(new UserGetFailAction(error)));
   });
   
-  @Effect({dispatch: false})
+  @Effect()
   redirectToDashboardPage$: Observable<Action> = this.actions$
   .ofType(userRequest.ActionTypes.GET_REQUEST_SUCCESS)
-  .do(() => this.routingService.pushRootPage(DashboardPage));
+  .map((action: any) => {
+    this.routingService.pushRootPage(DashboardPage);
+    return new SpinnerLoadingEndAction();
+  });
   
-  @Effect({dispatch: false})
+  @Effect()
   redirectToSignInPage$: Observable<Action> = this.actions$
   .ofType(userRequest.ActionTypes.GET_REQUEST_FAIL)
-  .do(() => this.routingService.pushRootPage(SignInPage));
+  .map((action: any) => {
+    this.routingService.pushRootPage(SignInPage);
+    return new SpinnerLoadingEndAction();
+  });
 }

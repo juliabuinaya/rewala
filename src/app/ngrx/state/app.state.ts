@@ -37,13 +37,13 @@ import { combineReducers } from '@ngrx/store';
  * notation packages up all of the exports into a single object.
  */
 
- import * as fromAuth from '../auth/index';
-
  import * as fromAuthRequestState from '../auth-request/states';
  import * as fromAuthRequestReducers from '../auth-request/reducers';
 
+ import * as fromAuth from '../auth/index';
  import * as fromUser from '../user/index';
  import * as fromUserRequest from '../user-request/index';
+ import * as fromSpinner from '../spinner/index';
  
  
 /**
@@ -56,6 +56,7 @@ export interface IAppState {
   authRequest: fromAuthRequestState.IAuthRequestState;
   user: fromUser.IUserState;
   userRequest: fromUserRequest.IUserRequestState;
+  spinner: fromSpinner.ISpinnerState;
 }
 
 /**
@@ -71,6 +72,7 @@ const reducers = {
   authRequest: fromAuthRequestReducers.authRequestReducer,
   user: fromUser.reducer,
   userRequest: fromUserRequest.reducer,
+  spinner: fromSpinner.reducer
 };
 
 const developmentReducer: ActionReducer<IAppState> = compose(storeFreeze, combineReducers)(reducers);

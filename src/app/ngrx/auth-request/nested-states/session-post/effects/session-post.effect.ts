@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 //actions
 import * as sessionPost from '../actions/session-post.actions';
 import { SessionPostSuccessAction, SessionPostFailAction } from '../actions/index';
+import { SpinnerLoadingStartAction, SpinnerLoadingEndAction } from '../../../../spinner/actions/index';
 
 @Injectable()
 export class SessionPostEffects {
@@ -27,9 +28,14 @@ export class SessionPostEffects {
     .catch(error => Observable.of(new SessionPostFailAction(error)));
   });
   
-  //@Effect({dispatch: false})
-  //redirectToSignInPage$: Observable<Action> = this.actions$
-  //.ofType(sessionPost.ActionTypes.REQUEST_FAIL)
-  //.do((action: any) => this.routingService.pushRootPage(SignInPage));
-
+  @Effect()
+  spinnerStart$: Observable<Action> = this.actions$
+  .ofType(sessionPost.ActionTypes.REQUEST)
+  .map((action: any) => new SpinnerLoadingStartAction('Logging in...'));
+  
+  @Effect()
+  spinnerEnd$: Observable<Action> = this.actions$
+  .ofType(sessionPost.ActionTypes.REQUEST_FAIL)
+  .map((action: any) => new SpinnerLoadingEndAction());
+  
 }
