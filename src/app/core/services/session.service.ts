@@ -9,7 +9,7 @@ import * as authStateGetter from '../../ngrx/auth/states/auth-getter.state';
 @Injectable()
 export class SessionService {
   
-  currentToken = null;
+  currentToken;
   
   constructor(private storage: Storage,
               public store: Store<IAppState>) {
@@ -43,7 +43,7 @@ export class SessionService {
   }
   
   getCurrentToken() {
-    return this.currentToken;
+    if(this.currentToken) return this.currentToken;
   }
 
 }
