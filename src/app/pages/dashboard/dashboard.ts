@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 
 import { QuestionSettingsPage } from '../create-question/question-settings/question-settings';
 import { ResultsPage } from '../results/results';
@@ -8,7 +8,6 @@ import { Store } from '@ngrx/store';
 import { RoutingService } from '../../core/services/routing.service';
 
 import { IAppState } from '../../ngrx/state/app.state';
-
 import * as authStateGetter from '../../ngrx/auth/states/auth-getter.state';
 
 
@@ -28,13 +27,12 @@ export class DashboardPage {
 
   constructor(public store: Store<IAppState>,
               public routingService: RoutingService) {
+    
     this.token$ = this.store.select(authStateGetter.getTokenFromState);
   }
   
   ngOnInit() {
   
-    //this.token$.subscribe(token => console.log(token));
-    
     this.resultsPages = [
       { title: 'Awaiting your answer', type: 'awaiting-your-answer' },
       { title: 'Awaiting others', type: 'awaiting-others' },

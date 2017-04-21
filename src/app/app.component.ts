@@ -12,6 +12,10 @@ import { ResultsPage } from './pages/results/results';
 import { SignUpPage } from './pages/auth/sign-up/sign-up';
 import { SignInPage } from './pages/auth/sign-in/sign-in';
 import { AuthService } from './core/services/auth.service';
+import { Store } from '@ngrx/store';
+
+import { IAppState } from './ngrx/state/app.state';
+import * as userStateGetter from './ngrx/user/states/user-getter.state';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,13 +24,15 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = RootPage;
-
   pages: Array<{title: string, component: any}>;
+  user$;
+  id;
 
   constructor(
       public platform: Platform,
       public statusBar: StatusBar,
       public splashScreen: SplashScreen,
+      public store: Store<IAppState>,
       public authService: AuthService) {
     
     this.initializeApp();
@@ -42,6 +48,13 @@ export class MyApp {
       { title: 'Settings', component: SettingsPage }
     ];
 
+    this.user$ = this.store.select(userStateGetter.getUserState);
+    
+  }
+  
+  ngOnInit() {
+    
+    this.user$.subscribe(data => this.id = data.id);
   }
   
   initializeApp() {

@@ -2,9 +2,8 @@ import { InjectionToken } from '@angular/core';
  //import { environment } from '../environments/environment';
 
 import { CustomConfig } from 'ng2-ui-auth';
-
-import { SpinnerService } from './core/services/index';
 import { ToastController } from 'ionic-angular';
+import { SessionService } from './core/services/session.service';
 
 export let APP_CONFIG = new InjectionToken<string>('app.config');
 
@@ -53,17 +52,20 @@ export class SOCIAL_AUTH_CONFIG extends CustomConfig {
 
 export function RESTANGULAR_CONFIG (
     RestangularProvider,
-    spinnerService: SpinnerService,
-    toastController: ToastController
+    toastController: ToastController,
+    SessionService
 ) {
   RestangularProvider.setBaseUrl(APP_DI_CONFIG.apiEndpoint);
-
-  // RestangularProvider.addFullRequestInterceptor((element, operation, path, url, headers, params) => {
-  //   return {
-  //     //headers: Object.assign({'Authorization': 'Bearer ' + cookieService.get("accessToken")}),
-  //     params: Object.assign({}, params, {access_token: cookieService.get("accessToken")}),
-  //   };
-  // });
+  
+   RestangularProvider.addFullRequestInterceptor((element, operation, path, url, headers, params) => {
+     return {
+       params: Object.assign({}, params, {access_token: SessionService.getCurrentToken()}),
+       headers: headers,
+       
+       //headers: Object.assign({'Authorization': 'Bearer ' + cookieService.get("accessToken")}),
+       //params: Object.assign({}, params, {access_token: cookieService.get("accessToken")}),
+     };
+   });
 
   // RestangularProvider.addResponseInterceptor((data, operation, what, url, response)=> {
   //   spinnerService.hide();

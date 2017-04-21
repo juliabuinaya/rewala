@@ -1,11 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+
+import { IAppState } from '../../ngrx/state/app.state';
+import * as authStateGetter from '../../ngrx/auth/states/auth-getter.state';
 
 @Injectable()
 export class SessionService {
   
-  constructor(private storage: Storage) {
+  currentToken = null;
+  
+  constructor(private storage: Storage,
+              public store: Store<IAppState>) {
+  
+    this.store.select(authStateGetter.getTokenFromState)
+    .subscribe(token => this.currentToken = token);
+    
   }
   
   setAccessToken(token) {
@@ -29,6 +40,10 @@ export class SessionService {
       this.storage.remove('rewAccessToken');
       subscriber.unsubscribe();
     });
+  }
+  
+  getCurrentToken() {
+    return this.currentToken;
   }
 
 }

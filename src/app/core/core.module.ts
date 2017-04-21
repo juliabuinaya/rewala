@@ -23,6 +23,7 @@ import { SessionPostEffects } from '../ngrx/auth-request/effects';
 import { UserRequestEffects } from '../ngrx/user-request/effects';
 import { UserEffects } from '../ngrx/user/effects';
 import { SpinnerEffects } from '../ngrx/spinner/effects';
+import { SessionService } from './services/session.service';
 
 export function provideStorage() {
   return new Storage({});
@@ -57,8 +58,8 @@ const cloudSettings: CloudSettings = {
     
     RestangularModule.forRoot(
       [
-        SpinnerService,
-        ToastController
+        ToastController,
+        SessionService
       ],
       RESTANGULAR_CONFIG
     ),
