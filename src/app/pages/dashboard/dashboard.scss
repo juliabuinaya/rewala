@@ -2,6 +2,22 @@ page-dashboard {
 
   ion-content {
 
+    ion-grid {
+      padding: 0!important;
+
+      .top-panel {
+        text-align: center;
+        background-color: #dbd9d9;
+        -webkit-box-shadow: 0px 1px 3x -1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 1px 3px -1px rgba(0,0,0,0.75);
+        box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.75);
+
+        button {
+          color: #484343;
+        }
+      }
+    }
+
     ion-list {
 
       ion-icon {

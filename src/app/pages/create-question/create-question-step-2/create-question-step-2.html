@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Enter Your Question
+      Set options type
     </ion-title>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -15,8 +15,10 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Enter Your Question</h3>
-  <form>
-    <ion-input></ion-input>
-  </form>
+
+  <div class="buttons-wrapper">
+    <button ion-button outline (click)="onChoose('picture')">Answer in pictures</button>
+    <button ion-button outline (click)="onChoose('word')">Answer in words</button>
+  </div>
+
 </ion-content>

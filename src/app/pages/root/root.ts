@@ -26,7 +26,6 @@ export class RootPage {
     /** Show loading spinner */
     this.store.dispatch(new spinner.SpinnerLoadingStartAction());
     
-    
     /** Subscribing on routing service streams  */
     this.routingService.pushRootPage$
     .subscribe((data: any) => {

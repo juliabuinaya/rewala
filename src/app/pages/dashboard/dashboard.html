@@ -14,16 +14,28 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
-  <ion-list no-lines>
+  <ion-grid>
+    <ion-row class="top-panel">
+      <ion-col col-4>
+        <button ion-button clear>Created</button>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button clear>Voices</button>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button clear>Awaiting</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list no-lines padding>
   <button ion-item *ngFor="let page of resultsPages" (click)="toResults(page.type)">
     <ion-icon name="arrow-forward"></ion-icon>
     {{page.title}}
   </button>
   </ion-list>
-
-  Token: {{ token$ | async }}
 
   <ion-fab right bottom>
     <button ion-fab (click)="toAddQuestion()">

@@ -27,6 +27,5 @@ export class SignUpPage {
   }
   
   ngOnDestroy() {
-    //this.loadingService.dismissLoader();
   }
 }

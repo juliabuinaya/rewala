@@ -2,17 +2,19 @@ page-sign-in {
 
   ion-content {
 
+    ion-list {
+      padding-right: 15px!important;
+      padding-left: 15px!important;
+
+      ion-item {
+        padding: 0!important;
+      }
+    }
+
     h1 {
       font-weight: 500;
       color: #424242;
       margin-left: 50px;
-    }
-
-    .error-box {
-      color: #f43;
-      font-size: 12px;
-      margin-left: 30px;
-      margin-top: 3px;
     }
 
     .input-invalid {

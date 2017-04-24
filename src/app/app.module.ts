@@ -13,9 +13,8 @@ import { AppSharedModule } from './shared/shared.module';
 import { AuthModule } from './pages/auth/auth.module';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { SettingsModule } from './pages/settings/settings.module';
-import { QuestionModule } from './pages/question/question.module';
 import { GroupsModule } from './pages/groups/groups.module';
-import { QuestionSettingsModule } from './pages/create-question/question-settings/question-settings.module';
+import { CreateQuestionModule } from './pages/create-question/create-question.module';
 import { ResultsModule } from './pages/results/results.module';
 
 
@@ -45,12 +44,11 @@ export function instrumentOptions() {
     AuthModule,
     DashboardModule,
     SettingsModule,
-    QuestionModule,
+    CreateQuestionModule,
     GroupsModule,
     ResultsModule,
 
     // create question pages
-    QuestionSettingsModule,
   
     StoreDevtoolsModule.instrumentStore(instrumentOptions),
     StoreLogMonitorModule

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Enter Your Question
+    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons right>
+      <button ion-button icon-only >
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form class="saveForm" name="saveForm" #saveForm="ngForm" (ngSubmit)="onSubmit(saveForm)">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Enter your question</ion-label>
+        <ion-input type="text" #question="ngModel" [(ngModel)]="questionData.text" name="question" required></ion-input>
+      </ion-item>
+      <div *ngIf="question.errors && (question.dirty || question.touched)"
+        class="error-box">Question is required
+      </div>
+      {{ question.text }}
+    </ion-list>
+    <div class="btn-wrapper">
+      <button ion-button type="submit" [disabled]="!saveForm.valid">Next</button>
+    </div>
+  </form>
+
+</ion-content>

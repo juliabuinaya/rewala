@@ -2,12 +2,24 @@ page-results {
 
   ion-content {
 
-    ion-card-content {
-      padding-bottom: 0!important;
+    h4 {
+      margin-left: 15px;
+    }
 
-      .buttons {
-        text-align: right;
+    ion-card {
+      width: 100% !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+
+      ion-card-content {
+        padding-bottom: 0 !important;
+
+        .buttons {
+          text-align: right;
+        }
       }
+
     }
   }
 }

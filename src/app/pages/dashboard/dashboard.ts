@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
-import { QuestionSettingsPage } from '../create-question/question-settings/question-settings';
 import { ResultsPage } from '../results/results';
 import { Store } from '@ngrx/store';
 
@@ -9,6 +8,7 @@ import { RoutingService } from '../../core/services/routing.service';
 
 import { IAppState } from '../../ngrx/state/app.state';
 import * as authStateGetter from '../../ngrx/auth/states/auth-getter.state';
+import { CreateQuestionStep1Page } from '../create-question/create-question-step-1/create-question-step-1';
 
 
 @IonicPage({
@@ -42,12 +42,10 @@ export class DashboardPage {
   }
 
   toAddQuestion() {
-    //this.navCtrl.push(QuestionSettingsPage);
-    this.routingService.pushPage(QuestionSettingsPage);
+    this.routingService.pushPage(CreateQuestionStep1Page);
   }
   
   toResults(resultsType) {
-    //this.navCtrl.push(ResultsPage, {resultsType});
     this.routingService.pushPage(ResultsPage, {resultsType});
   }
   

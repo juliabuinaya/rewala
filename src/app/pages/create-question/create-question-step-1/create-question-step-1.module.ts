@@ -2,20 +2,20 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 
 import { AppSharedModule } from '../../../shared/shared.module';
-import { QuestionSettingsPage } from './question-settings';
+import { CreateQuestionStep1Page } from './create-question-step-1';
 
 @NgModule({
   declarations: [
-    QuestionSettingsPage
+    CreateQuestionStep1Page
   ],
   imports: [
     AppSharedModule,
-    IonicPageModule.forChild(QuestionSettingsPage)
+    IonicPageModule.forChild(CreateQuestionStep1Page)
   ],
   entryComponents: [
-    QuestionSettingsPage
+    CreateQuestionStep1Page
   ],
   providers: [
   ]
 })
-export class QuestionSettingsModule {}
+export class CreateQuestionStep1Module {}

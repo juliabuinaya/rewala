@@ -14,21 +14,21 @@
   <form class="saveForm" name="saveForm" #saveForm="ngForm" (ngSubmit)="onSubmit(saveForm)">
     <ion-list>
       <ion-item>
-        <ion-label>Email</ion-label>
+        <ion-label floating>Email</ion-label>
         <ion-input type="email" #email="ngModel" [(ngModel)]="formData.email" name="email" email required></ion-input>
       </ion-item>
       <div *ngIf="email.errors && (email.dirty || email.touched)"
         class="error-box">Email is required
       </div>
       <ion-item>
-        <ion-label>Username</ion-label>
+        <ion-label floating>Username</ion-label>
         <ion-input type="text" #username="ngModel" [(ngModel)]="formData.username" name="username" required></ion-input>
       </ion-item>
       <div *ngIf="username.errors && (username.dirty || username.touched)"
         class="error-box">Username is required
       </div>
       <ion-item>
-        <ion-label>Password</ion-label>
+        <ion-label floating>Password</ion-label>
         <ion-input type="password" #password="ngModel" [(ngModel)]="formData.password" name="password" required></ion-input>
       </ion-item>
       <div *ngIf="password.errors && (password.dirty || password.touched)"
