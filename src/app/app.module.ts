@@ -10,17 +10,18 @@ import { CoreModule } from './core/core.module';
 import { AppSharedModule } from './shared/shared.module';
 
 // pages
+import { RootModule } from './pages/root/root.module';
 import { AuthModule } from './pages/auth/auth.module';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { SettingsModule } from './pages/settings/settings.module';
 import { GroupsModule } from './pages/groups/groups.module';
 import { CreateQuestionModule } from './pages/create-question/create-question.module';
 import { ResultsModule } from './pages/results/results.module';
+import { QuestionModule } from './pages/question/question.module';
 
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
-import { RootModule } from './pages/root/root.module';
 
 export function instrumentOptions() {
   return {
@@ -45,6 +46,7 @@ export function instrumentOptions() {
     DashboardModule,
     SettingsModule,
     CreateQuestionModule,
+    QuestionModule,
     GroupsModule,
     ResultsModule,
 

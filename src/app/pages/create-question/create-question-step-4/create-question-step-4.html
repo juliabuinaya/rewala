@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Set your options
+    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons right>
+      <button ion-button icon-only >
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+
+  <ion-list no-lines padding>
+    <ion-item *ngFor="let option of options">
+      <ion-icon name="arrow-forward"></ion-icon>
+      {{option}}
+    </ion-item>
+  </ion-list>
+
+
+  <form class="saveForm" name="saveForm" #saveForm="ngForm" (ngSubmit)="onSubmit(saveForm)" *ngIf="showForm">
+
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10>
+            <ion-item>
+              <ion-input type="text" placeholder="Type your option here"  #option="ngModel" [(ngModel)]="optionText" name="option" required></ion-input>
+            </ion-item>
+            <div *ngIf="option.errors && (option.dirty || option.touched)"
+              class="error-box">Option is required
+            </div>
+          </ion-col>
+          <ion-col col-2>
+            <button ion-button icon-only clear type="submit"><ion-icon name="add"></ion-icon></button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <!--<button ion-button icon-only clear><ion-icon name="add"></ion-icon></button>-->
+      <!--<ion-item>-->
+        <!--<ion-input type="text" placeholder="Type your option here"  #option="ngModel" [(ngModel)]="optionText" name="option" required></ion-input>-->
+      <!--</ion-item>-->
+      <!--<div *ngIf="option.errors && (option.dirty || option.touched)"-->
+        <!--class="error-box">Option is required-->
+      <!--</div>-->
+    <!--</ion-list>-->
+  </form>
+
+</ion-content>

@@ -25,7 +25,6 @@
       <div *ngIf="question.errors && (question.dirty || question.touched)"
         class="error-box">Question is required
       </div>
-      {{ question.text }}
     </ion-list>
     <div class="btn-wrapper">
       <button ion-button type="submit" [disabled]="!saveForm.valid">Next</button>

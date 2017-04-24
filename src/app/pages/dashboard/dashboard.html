@@ -31,14 +31,14 @@
   </ion-grid>
 
   <ion-list no-lines padding>
-  <button ion-item *ngFor="let page of resultsPages" (click)="toResults(page.type)">
+  <button ion-item detail-none *ngFor="let page of resultsPages" (click)="toResults(page.type)">
     <ion-icon name="arrow-forward"></ion-icon>
     {{page.title}}
   </button>
   </ion-list>
 
   <ion-fab right bottom>
-    <button ion-fab (click)="toAddQuestion()">
+    <button ion-fab color="dark" (click)="toAddQuestion()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>

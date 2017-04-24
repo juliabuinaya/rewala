@@ -27,6 +27,7 @@
       <div *ngIf="password.errors && (password.dirty || password.touched)"
         class="error-box">Password is required
       </div>
+      <ion-item></ion-item>
     </ion-list>
     <div class="btn-wrapper">
       <button ion-button color="secondary" type="submit" [disabled]="!saveForm.valid">Sign In</button>

@@ -2,13 +2,12 @@ page-sign-up {
 
   ion-content {
 
-    ion-list {
-      padding-right: 15px!important;
-      padding-left: 15px!important;
+    ion-item:first-child {
+      border-top: none!important;
+    }
 
-      ion-item {
-        padding: 0!important;
-      }
+    ion-item:last-child {
+      display: none;
     }
 
     h1 {
@@ -32,13 +31,6 @@ page-sign-up {
       button {
         width: 220px;
       }
-    }
-
-    .sign-in {
-      float: right;
-      margin-right: 20px;
-      margin-top: 11px;
-      font-size: 16px;
     }
   }
 }
