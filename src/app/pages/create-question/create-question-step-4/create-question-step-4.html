@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Set your options
+      Set options
     </ion-title>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -16,34 +16,39 @@
 
 <ion-content padding>
 
-  <h4>Set your options:</h4>
+  <div class="options-wrapper">
 
-  <ion-list no-lines>
-    <ion-item text-wrap detail-none *ngFor="let option of options; let i = index;">
-      {{ i+1 }}. {{ option }}
-    </ion-item>
-  </ion-list>
+    <h4>Set your options:</h4>
 
-  <form class="saveForm" name="saveForm" #saveForm="ngForm" (ngSubmit)="onSubmit(saveForm)" *ngIf="showForm">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-10>
-            <ion-item>
-              <ion-input type="text" placeholder="Type your option here"  #option="ngModel" [(ngModel)]="optionText" name="option" required></ion-input>
-            </ion-item>
-            <div *ngIf="option.errors && (option.dirty || option.touched)"
-              class="error-box">Option is required
-            </div>
-          </ion-col>
-          <ion-col col-2>
-            <button ion-button icon-only clear type="submit" [disabled]="!saveForm.valid"><ion-icon name="add"></ion-icon></button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-  </form>
+    <ion-list no-lines>
+      <ion-item text-wrap detail-none *ngFor="let option of options; let i = index;">
+        {{ i+1 }}. {{ option }}
+      </ion-item>
+    </ion-list>
 
-  <div class="btn-wrapper" *ngIf="showNextBtn">
-    <button ion-button outline type="button" (click)="toNextStep()">Next</button>
+    <form class="saveForm" name="saveForm" #saveForm="ngForm" (ngSubmit)="onSubmit(saveForm)" *ngIf="showForm">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-10>
+              <ion-item>
+                <ion-input type="text" placeholder="Type your option here"  #option="ngModel" [(ngModel)]="optionText" name="option" required></ion-input>
+              </ion-item>
+              <div *ngIf="option.errors && (option.dirty || option.touched)"
+                class="error-box">Option is required
+              </div>
+            </ion-col>
+            <ion-col col-2>
+              <button ion-button icon-only clear type="submit" [disabled]="!saveForm.valid"><ion-icon name="add"></ion-icon></button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    </form>
   </div>
 
 </ion-content>
+
+<ion-footer *ngIf="showNext">
+  <div class="btn-wrapper">
+    <button ion-button outline full type="button" (click)="toNextStep()">Next</button>
+  </div>
+</ion-footer>

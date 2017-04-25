@@ -2,31 +2,41 @@ page-create-question-step-4 {
 
   ion-content {
 
-    h4 {
-      text-align: center;
-      margin-top: 10px!important;
-    }
+    .options-wrapper {
+      position: relative;
+      top: 15%;
 
-    ion-item {
+      h4 {
+        text-align: center;
+        margin-top: 10px!important;
+      }
 
-      ion-label {
-        font-size: 1.6rem!important;
+      ion-item {
+
+        ion-label {
+          font-size: 1.6rem!important;
+        }
+      }
+
+      button[type="submit"] {
+        color: #424242;
+        font-size: 120%;
       }
     }
+  }
 
-    button[type="submit"] {
-      color: #424242;
-      font-size: 120%;
-    }
+  ion-footer {
 
     .btn-wrapper {
       text-align: center;
-      margin-top: 10px;
+      margin: 0;
+      padding: 0;
 
       button {
-        width: 90%;
         color: #484343;
         border-color: #484343;
+        margin: 0;
+        height: 56px;
       }
     }
   }

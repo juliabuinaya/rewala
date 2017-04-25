@@ -16,7 +16,7 @@ export class CreateQuestionStep4Page {
   options = [];
   counter = 4;
   showForm = true;
-  showNextBtn = false;
+  showNext = false;
   
   constructor(public routingService: RoutingService) {
   }
@@ -30,7 +30,7 @@ export class CreateQuestionStep4Page {
       console.log(this.options);
       if(this.options.length == this.counter) {
         this.showForm = false;
-        this.showNextBtn = true;
+        this.showNext = true;
         
       //save to store
         

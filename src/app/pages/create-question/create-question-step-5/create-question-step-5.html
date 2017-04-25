@@ -16,13 +16,18 @@
 
 <ion-content padding>
 
-  <ion-item>
-    <ion-label>Deadline date</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="deadlineDate"></ion-datetime>
-  </ion-item>
-
-  <div class="btn-wrapper">
-    <button ion-button outline type="button" (click)="toNextStep()">Next</button>
+  <div class="deadline-wrapper">
+    <h4>Choose deadline date:</h4>
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" min="{{ nowDate }}" max="2020-10-31" [(ngModel)]="deadlineDate"></ion-datetime>
+    </ion-item>
   </div>
 
 </ion-content>
+
+<ion-footer>
+  <div class="btn-wrapper">
+    <button ion-button outline full type="button" (click)="toNextStep()">Next</button>
+  </div>
+</ion-footer>

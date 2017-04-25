@@ -20,15 +20,20 @@
     <ion-list>
       <ion-item>
         <ion-label floating>Enter your question</ion-label>
-        <ion-input type="text" #question="ngModel" [(ngModel)]="questionData.text" name="question" required></ion-input>
+        <ion-input type="text" #question="ngModel" [(ngModel)]="questionData.text" name="question"
+          (keydown.enter)="submit(saveForm)" required></ion-input>
       </ion-item>
       <div *ngIf="question.errors && (question.dirty || question.touched)"
         class="error-box">Question is required
       </div>
+      <ion-item></ion-item>
     </ion-list>
-    <div class="btn-wrapper">
-      <button ion-button outline type="submit" [disabled]="!saveForm.valid">Next</button>
-    </div>
   </form>
 
 </ion-content>
+
+<ion-footer>
+  <div class="btn-wrapper">
+    <button ion-button outline full type="button" [disabled]="!saveForm.valid" (click)="submit(saveForm)">Next</button>
+  </div>
+</ion-footer>

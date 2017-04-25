@@ -19,7 +19,7 @@ export class CreateQuestionStep1Page {
   constructor(public routingService: RoutingService) {
   }
   
-  onSubmit(form) {
+  submit(form) {
     if (form.valid) {
       console.log(this.questionData.text);
       

@@ -4,18 +4,32 @@ page-create-question-step-1 {
 
     form {
       position: relative;
-      top: 15%;
+      top: 30%;
     }
 
-    .btn-wrapper {
-      text-align: center;
-      margin-top: 10px;
+    ion-item {
+      padding: 0!important;
 
-      button {
-        width: 90%;
-        color: #484343;
-        border-color: #484343;
+      &:last-child {
+        display: none;
       }
     }
   }
+
+  ion-footer {
+
+    .btn-wrapper {
+      text-align: center;
+      margin: 0;
+      padding: 0;
+
+      button {
+        color: #484343;
+        border-color: #484343;
+        margin: 0;
+        height: 56px;
+      }
+    }
+  }
+
 }

@@ -11,10 +11,12 @@ import { RoutingService } from '../../../core/services/routing.service';
 })
 export class CreateQuestionStep5Page {
   
+  nowDate;
   deadlineDate;
   
   constructor(public routingService: RoutingService) {
-    this.deadlineDate = new Date().toISOString();
+    this.nowDate = new Date().toISOString();
+    this.deadlineDate = this.nowDate;
   }
   
   toNextStep() {
