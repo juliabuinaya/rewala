@@ -5,6 +5,7 @@ import { CreateQuestionStep2Module } from './create-question-step-2/create-quest
 import { CreateQuestionStep3Module } from './create-question-step-3/create-question-step-3.module';
 import { CreateQuestionStep4Module } from './create-question-step-4/create-question-step-4.module';
 import { CreateQuestionStep5Module } from './create-question-step-5/create-question-step-5.module';
+import { CreateQuestionStep6Module } from './create-question-step-6/create-question-step-6.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CreateQuestionStep5Module } from './create-question-step-5/create-quest
     CreateQuestionStep2Module,
     CreateQuestionStep3Module,
     CreateQuestionStep4Module,
-    CreateQuestionStep5Module
+    CreateQuestionStep5Module,
+    CreateQuestionStep6Module
   ],
   entryComponents: [
   ],

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { RoutingService } from '../../../core/services/routing.service';
+import { CreateQuestionStep6Page } from '../create-question-step-6/create-question-step-6';
 
 @IonicPage({
   name: 'create-question-step-5'
@@ -21,7 +22,7 @@ export class CreateQuestionStep5Page {
   
   toNextStep() {
     console.log(this.deadlineDate);
-    //this.routingService.pushPage(CreateQuestionStep6Page);
+    this.routingService.pushPage(CreateQuestionStep6Page);
   }
   
 }
