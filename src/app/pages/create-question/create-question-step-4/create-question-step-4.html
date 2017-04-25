@@ -16,18 +16,15 @@
 
 <ion-content padding>
 
+  <h4>Set your options:</h4>
 
-
-  <ion-list no-lines padding>
-    <ion-item *ngFor="let option of options">
-      <ion-icon name="arrow-forward"></ion-icon>
-      {{option}}
+  <ion-list no-lines>
+    <ion-item text-wrap detail-none *ngFor="let option of options; let i = index;">
+      {{ i+1 }}. {{ option }}
     </ion-item>
   </ion-list>
 
-
   <form class="saveForm" name="saveForm" #saveForm="ngForm" (ngSubmit)="onSubmit(saveForm)" *ngIf="showForm">
-
       <ion-grid>
         <ion-row>
           <ion-col col-10>
@@ -39,19 +36,14 @@
             </div>
           </ion-col>
           <ion-col col-2>
-            <button ion-button icon-only clear type="submit"><ion-icon name="add"></ion-icon></button>
+            <button ion-button icon-only clear type="submit" [disabled]="!saveForm.valid"><ion-icon name="add"></ion-icon></button>
           </ion-col>
         </ion-row>
       </ion-grid>
-
-      <!--<button ion-button icon-only clear><ion-icon name="add"></ion-icon></button>-->
-      <!--<ion-item>-->
-        <!--<ion-input type="text" placeholder="Type your option here"  #option="ngModel" [(ngModel)]="optionText" name="option" required></ion-input>-->
-      <!--</ion-item>-->
-      <!--<div *ngIf="option.errors && (option.dirty || option.touched)"-->
-        <!--class="error-box">Option is required-->
-      <!--</div>-->
-    <!--</ion-list>-->
   </form>
+
+  <div class="btn-wrapper" *ngIf="showNextBtn">
+    <button ion-button outline type="button" (click)="toNextStep()">Next</button>
+  </div>
 
 </ion-content>

@@ -1,17 +1,15 @@
-page-create-question-step-3 {
+page-create-question-step-5 {
 
   ion-content {
 
-    .options-wrapper {
+    .btn-wrapper {
       text-align: center;
-      position: relative;
-      top: 15%;
+      margin-top: 10px;
 
       button {
         width: 90%;
         color: #484343;
         border-color: #484343;
-        margin-bottom: 6px;
       }
     }
   }

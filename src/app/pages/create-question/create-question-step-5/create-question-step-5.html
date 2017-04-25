@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Set options count
+      Set deadline
     </ion-title>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -16,9 +16,13 @@
 
 <ion-content padding>
 
-  <div class="options-wrapper">
-  <h4>How many options are you planning to have?</h4>
-    <button ion-button outline *ngFor="let option of options" (click)="onChoose(option)">{{ option }}</button>
+  <ion-item>
+    <ion-label>Deadline date</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="deadlineDate"></ion-datetime>
+  </ion-item>
+
+  <div class="btn-wrapper">
+    <button ion-button outline type="button" (click)="toNextStep()">Next</button>
   </div>
 
 </ion-content>

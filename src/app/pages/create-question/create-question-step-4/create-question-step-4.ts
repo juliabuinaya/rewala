@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { RoutingService } from '../../../core/services/routing.service';
+import { CreateQuestionStep5Page } from '../create-question-step-5/create-question-step-5';
 
 @IonicPage({
   name: 'create-question-step-4'
@@ -15,6 +16,7 @@ export class CreateQuestionStep4Page {
   options = [];
   counter = 4;
   showForm = true;
+  showNextBtn = false;
   
   constructor(public routingService: RoutingService) {
   }
@@ -25,17 +27,19 @@ export class CreateQuestionStep4Page {
       
       this.options.push(this.optionText);
       this.optionText = '';
+      console.log(this.options);
       if(this.options.length == this.counter) {
         this.showForm = false;
+        this.showNextBtn = true;
         
       //save to store
         
-      //this.routingService.pushPage(CreateQuestionStep5Page);
       }
-      
-  
-      
     }
+  }
+  
+  toNextStep() {
+    this.routingService.pushPage(CreateQuestionStep5Page);
   }
 
 }

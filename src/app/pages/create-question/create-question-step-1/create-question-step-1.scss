@@ -4,7 +4,7 @@ page-create-question-step-1 {
 
     form {
       position: relative;
-      top: 25%;
+      top: 15%;
     }
 
     .btn-wrapper {
@@ -12,7 +12,9 @@ page-create-question-step-1 {
       margin-top: 10px;
 
       button {
-        width: 220px;
+        width: 90%;
+        color: #484343;
+        border-color: #484343;
       }
     }
   }
