@@ -20,7 +20,7 @@
     <ion-list>
       <ion-item>
         <ion-label floating>Enter your question</ion-label>
-        <ion-input type="text" #question="ngModel" [(ngModel)]="questionData.text" name="question"
+        <ion-input type="text" #question="ngModel" [(ngModel)]="questionText" name="question"
           (keydown.enter)="submit(saveForm)" required></ion-input>
       </ion-item>
       <div *ngIf="question.errors && (question.dirty || question.touched)"

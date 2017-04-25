@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { RoutingService } from './routing.service';
 import { LoadingService } from './loading.service';
 import { SessionService } from './session.service';
+import { CreateQuestionService } from './create-question.service';
 
 
 export {
@@ -12,15 +13,17 @@ export {
   AuthService,
   RoutingService,
   LoadingService,
-  SessionService
+  SessionService,
+  CreateQuestionService
 };
 
-// an array of services to resolve routes with data
+// an array of services
 export const APP_SERVICE_PROVIDERS = [
   UserService,
   SpinnerService,
   AuthService,
   RoutingService,
   LoadingService,
-  SessionService
+  SessionService,
+  CreateQuestionService
 ];

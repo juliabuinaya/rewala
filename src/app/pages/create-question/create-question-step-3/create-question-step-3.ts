@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { RoutingService } from '../../../core/services/routing.service';
 import { CreateQuestionStep4Page } from '../create-question-step-4/create-question-step-4';
+import { CreateQuestionService } from '../../../core/services/create-question.service';
 
 @IonicPage({
   name: 'create-question-step-3'
@@ -14,7 +15,8 @@ export class CreateQuestionStep3Page {
   
   options = [1, 2, 3, 4];
   
-  constructor(public routingService: RoutingService) {
+  constructor(public routingService: RoutingService,
+              public createQuestionService: CreateQuestionService) {
   }
   
   onChoose(option) {

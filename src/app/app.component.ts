@@ -27,7 +27,6 @@ export class MyApp {
   rootPage: any = RootPage;
   pages: Array<{title: string, component: any}>;
   user$;
-  id;
 
   constructor(
       public platform: Platform,
@@ -51,11 +50,6 @@ export class MyApp {
 
     this.user$ = this.store.select(userStateGetter.getUserState);
     
-  }
-  
-  ngOnInit() {
-    
-    this.user$.subscribe(data => this.id = data.id);
   }
   
   initializeApp() {

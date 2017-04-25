@@ -1,0 +1,1 @@
+export const CREATE_QUESTION: string = 'Create Question';

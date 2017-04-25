@@ -21,33 +21,4 @@ export class UserEffects {
   .map(toPayload)
   .map(payload => new SetUserAction(new UserModel(payload)));
 
-
-  //@Effect()
-  //populateUser$: Observable<Action> = this.actions$
-  //.ofType(
-  //  authRequest.SessionPostActionTypes.REQUEST_SUCCESS,
-  //  myRequest.ProfileGetActionTypes.REQUEST_SUCCESS,
-  //  myRequest.ProfilePatchActionTypes.REQUEST_SUCCESS
-  //)
-  //.map((action: any) => {
-  //  return new user.SetUserAction(action.payload.data);
-  //});
-  //
-  //
-  //@Effect()
-  //clearUser$: Observable<Action> = this.actions$
-  //.ofType(
-  //  authRequest.SessionDeleteActionTypes.REQUEST_SUCCESS,
-  //  myRequest.ProfileGetActionTypes.REQUEST_FAIL
-  //)
-  //.map((action: any) => {
-  //  return new user.ClearUserAction();
-  //});
-  //
-  //constructor(
-  //    private store: Store<IAppState>,
-  //    private actions$: Actions,
-  //) {
-  //}
-
 }

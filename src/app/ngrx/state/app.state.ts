@@ -44,6 +44,7 @@ import { combineReducers } from '@ngrx/store';
  import * as fromUser from '../user/index';
  import * as fromUserRequest from '../user-request/index';
  import * as fromSpinner from '../spinner/index';
+ import * as fromCreateQuestion from '../create-question/index';
  
  
 /**
@@ -57,6 +58,7 @@ export interface IAppState {
   user: fromUser.IUserState;
   userRequest: fromUserRequest.IUserRequestState;
   spinner: fromSpinner.ISpinnerState;
+  createQuestion: fromCreateQuestion.ICreateQuestionState;
 }
 
 /**
@@ -72,7 +74,8 @@ const reducers = {
   authRequest: fromAuthRequestReducers.authRequestReducer,
   user: fromUser.reducer,
   userRequest: fromUserRequest.reducer,
-  spinner: fromSpinner.reducer
+  spinner: fromSpinner.reducer,
+  createQuestion: fromCreateQuestion.reducer
 };
 
 const developmentReducer: ActionReducer<IAppState> = compose(storeFreeze, combineReducers)(reducers);
