@@ -5,6 +5,7 @@ import { RoutingService } from './routing.service';
 import { LoadingService } from './loading.service';
 import { SessionService } from './session.service';
 import { CreateQuestionService } from './create-question.service';
+import { GroupsService } from './groups.service';
 
 
 export {
@@ -14,7 +15,8 @@ export {
   RoutingService,
   LoadingService,
   SessionService,
-  CreateQuestionService
+  CreateQuestionService,
+  GroupsService
 };
 
 // an array of services
@@ -25,5 +27,6 @@ export const APP_SERVICE_PROVIDERS = [
   RoutingService,
   LoadingService,
   SessionService,
-  CreateQuestionService
+  CreateQuestionService,
+  GroupsService
 ];

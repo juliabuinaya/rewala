@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Restangular } from 'ng2-restangular';
 
 @Injectable()
-export class UserService {
+export class GroupsService {
 
   constructor(public restangular: Restangular) {
   }

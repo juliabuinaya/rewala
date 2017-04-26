@@ -19,13 +19,13 @@ export class GroupsGetAction implements Action {
 export class GroupsGetSuccessAction implements Action {
   type = ActionTypes.REQUEST_SUCCESS;
   
-  constructor(public payload: any) {
+  constructor(public payload?: any) {
   }
 }
 export class GroupsGetFailAction implements Action {
   type = ActionTypes.REQUEST_FAIL;
   
-  constructor(public payload: any) {
+  constructor(public payload?: any) {
   }
 }
 

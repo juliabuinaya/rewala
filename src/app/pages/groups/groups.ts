@@ -21,20 +21,10 @@ export class GroupsPage {
       name: 'Group C'
     }
   ];
-  
-  users = [
-    {
-      name: 'Mark McNulty'
-    },
-    {
-      name: 'John Kavanagh'
-    },
-    {
-      name: 'Anie Columbus'
-    }
-  ];
+
 
   constructor() {
+    
   }
 
 }

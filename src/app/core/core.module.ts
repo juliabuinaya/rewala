@@ -13,8 +13,8 @@ import { APP_CONFIG, APP_DI_CONFIG, RESTANGULAR_CONFIG, SOCIAL_AUTH_CONFIG } fro
 import { RestangularModule } from 'ng2-restangular';
 import { Ng2UiAuthModule } from 'ng2-ui-auth';
 
-// resolver
 import { APP_SERVICE_PROVIDERS, SpinnerService } from './services/index';
+import { SessionService } from './services/session.service';
 
 // effects
 import { AuthEffects } from '../ngrx/auth/effects';
@@ -23,7 +23,7 @@ import { SessionPostEffects } from '../ngrx/auth-request/effects';
 import { UserRequestEffects } from '../ngrx/user-request/effects';
 import { UserEffects } from '../ngrx/user/effects';
 import { SpinnerEffects } from '../ngrx/spinner/effects';
-import { SessionService } from './services/session.service';
+import { GroupsGetEffects } from '../ngrx/groups-request/nested-states/groups-get/effects/groups-get.effect';
 
 export function provideStorage() {
   return new Storage({});
@@ -55,6 +55,7 @@ const cloudSettings: CloudSettings = {
      EffectsModule.run(UserRequestEffects),
      EffectsModule.run(UserEffects),
      EffectsModule.run(SpinnerEffects),
+     EffectsModule.run(GroupsGetEffects),
     
     RestangularModule.forRoot(
       [
