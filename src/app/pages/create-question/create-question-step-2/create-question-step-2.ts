@@ -19,10 +19,7 @@ export class CreateQuestionStep2Page {
   }
 
   onChoose(answerType) {
-    console.log(answerType);
-    
     let payload = {answerType}
-  
     this.createQuestionService.createGroupStepTwo(payload);
     this.routingService.pushPage(CreateQuestionStep3Page);
   }

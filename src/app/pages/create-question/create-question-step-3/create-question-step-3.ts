@@ -13,17 +13,15 @@ import { CreateQuestionService } from '../../../core/services/create-question.se
 })
 export class CreateQuestionStep3Page {
   
-  options = [1, 2, 3, 4];
+  options = [2, 3, 4];
   
   constructor(public routingService: RoutingService,
               public createQuestionService: CreateQuestionService) {
   }
   
   onChoose(option) {
-    console.log(option);
-    
-    //save to store
-    
+    let payload = {optionsQuantity: option}
+    this.createQuestionService.createGroupStepThree(payload);
     this.routingService.pushPage(CreateQuestionStep4Page);
   }
 

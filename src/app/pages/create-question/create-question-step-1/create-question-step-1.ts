@@ -9,7 +9,6 @@ import { IAppState } from '../../../ngrx/state/app.state';
 import { CreateQuestionService } from '../../../core/services/create-question.service';
 
 
-//import * as userStateGetter from './ngrx/user/states/user-getter.state';
 import * as userStateGetter from '../../../ngrx/user/states/user-getter.state';
 
 
@@ -36,16 +35,17 @@ export class CreateQuestionStep1Page {
   
   submit(form) {
     if (form.valid) {
-      console.log(this.questionText);
-      
       let payload = {
         text: this.questionText,
         clientId: this.userId
       };
-      
       this.createQuestionService.createGroupStepOne(payload);
       this.routingService.pushPage(CreateQuestionStep2Page);
     }
+  }
+  
+  ngOnDestroy() {
+    this.subscriber.unsubscribe();
   }
 
 }
