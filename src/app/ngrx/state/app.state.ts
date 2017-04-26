@@ -37,15 +37,22 @@ import { combineReducers } from '@ngrx/store';
  * notation packages up all of the exports into a single object.
  */
 
+
+/** with nested states */
  import * as fromAuthRequestState from '../auth-request/states';
  import * as fromAuthRequestReducers from '../auth-request/reducers';
+ 
+ import * as fromGroupsRequestState from '../groups-request/states';
+ import * as fromGroupsRequestReducers from '../groups-request/reducers';
 
+ 
  import * as fromAuth from '../auth/index';
  import * as fromUser from '../user/index';
  import * as fromUserRequest from '../user-request/index';
  import * as fromSpinner from '../spinner/index';
  import * as fromCreateQuestion from '../create-question/index';
  import * as fromQuestionRequest from '../question-request/index';
+ import * as fromGroups from '../groups/index';
  
  
 /**
@@ -61,6 +68,8 @@ export interface IAppState {
   spinner: fromSpinner.ISpinnerState;
   createQuestion: fromCreateQuestion.ICreateQuestionState;
   questionRequest: fromQuestionRequest.IQuestionRequestState;
+  groups: fromGroups.IGroupsState;
+  groupsRequest: fromGroupsRequestState.IGroupsRequestState;
 }
 
 /**
@@ -78,7 +87,9 @@ const reducers = {
   userRequest: fromUserRequest.reducer,
   spinner: fromSpinner.reducer,
   createQuestion: fromCreateQuestion.reducer,
-  questionRequest: fromQuestionRequest.reducer
+  questionRequest: fromQuestionRequest.reducer,
+  groups: fromGroups.reducer,
+  groupsRequest: fromGroupsRequestReducers.groupsRequestReducer
 };
 
 const developmentReducer: ActionReducer<IAppState> = compose(storeFreeze, combineReducers)(reducers);

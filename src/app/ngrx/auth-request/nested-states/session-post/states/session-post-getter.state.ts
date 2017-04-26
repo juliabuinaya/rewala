@@ -2,7 +2,6 @@
 import { compose } from '@ngrx/core/compose';
 
 //interfaces
-import { ISessionPostState } from './session-post.state';
 import { IAuthRequestState } from '../../../states/auth-request.state';
 
 // states
