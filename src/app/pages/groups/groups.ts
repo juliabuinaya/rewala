@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 
 @IonicPage({
   name: 'groups'
@@ -9,9 +9,32 @@ import { NavController, IonicPage } from 'ionic-angular';
   templateUrl: 'groups.html'
 })
 export class GroupsPage {
+  
+  groups = [
+    {
+      name: 'Group A'
+    },
+    {
+      name: 'Group B'
+    },
+    {
+      name: 'Group C'
+    }
+  ];
+  
+  users = [
+    {
+      name: 'Mark McNulty'
+    },
+    {
+      name: 'John Kavanagh'
+    },
+    {
+      name: 'Anie Columbus'
+    }
+  ];
 
-  constructor(public navCtrl: NavController) {
-
+  constructor() {
   }
 
 }

@@ -1,12 +1,42 @@
 <ion-header>
   <ion-navbar>
+    <ion-title>
+      Select group
+    </ion-title>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Groups</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only >
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
+  <h4>Groups:</h4>
+
+  <ion-list>
+    <ion-item *ngFor="let group of groups">
+      {{ group.name }}
+    </ion-item>
+  </ion-list>
+
+  <h4>Users:</h4>
+
+  <ion-list>
+    <ion-item *ngFor="let user of users">
+      <ion-label>{{ user.name }}</ion-label>
+      <ion-checkbox color="light"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
+
+<ion-footer>
+  <div class="btn-wrapper">
+    <button ion-button outline full type="button">Create group</button>
+  </div>
+</ion-footer>

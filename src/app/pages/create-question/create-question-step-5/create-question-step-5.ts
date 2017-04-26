@@ -15,13 +15,15 @@ import { CreateQuestionStep6Page } from '../create-question-step-6/create-questi
 })
 export class CreateQuestionStep5Page {
   
-  nowDate;
+  defaultDate;
   deadlineDate;
   
   constructor(public routingService: RoutingService,
               public createQuestionService: CreateQuestionService) {
-    this.nowDate = new Date().toISOString();
-    this.deadlineDate = this.nowDate;
+    this.defaultDate = new Date();
+    this.defaultDate.setDate(this.defaultDate.getDate() + 2);
+    this.defaultDate = this.defaultDate.toISOString();
+    this.deadlineDate = this.defaultDate;
   }
   
   toNextStep() {

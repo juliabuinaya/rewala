@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
+
 import { RoutingService } from '../../../core/services/routing.service';
+import { GroupsPage } from '../../groups/groups';
+
 
 @IonicPage({
   name: 'create-question-step-6'
@@ -26,5 +29,8 @@ export class CreateQuestionStep6Page {
   constructor(public routingService: RoutingService) {
   }
   
+  toGroups() {
+    this.routingService.pushPage(GroupsPage);
+  }
   
 }
