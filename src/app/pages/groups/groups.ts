@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavParams } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
 import { IAppState } from '../../ngrx/state/app.state';
@@ -17,9 +17,14 @@ import * as groupsStateGetter from '../../ngrx/groups/states/groups-getter.state
 export class GroupsPage {
   
   groups$;
+  questionSettings;
   
-  constructor(public store: Store<IAppState>) {
+  constructor(public store: Store<IAppState>,
+              public navParams: NavParams) {
+    
     this.groups$ = this.store.select(groupsStateGetter.getGroupsEntitiesState);
+    this.questionSettings = navParams.get('questionSettings');
+    console.log(this.questionSettings);
   }
   
   test(group) {

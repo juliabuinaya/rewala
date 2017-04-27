@@ -16,9 +16,12 @@
 
 <ion-content padding>
 
+  <p *ngIf="questionSettings">Creating a question</p>
+
   <h4 *ngIf="!(groups$ | async).length">You have no created groups yet.</h4>
 
   <h4 *ngIf="(groups$ | async).length">Groups:</h4>
+
   <ion-list>
     <ion-item *ngFor="let group of groups$ | async" (click)="test(group)">
       {{ group.name }}
