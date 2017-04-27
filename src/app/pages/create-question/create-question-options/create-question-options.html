@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Set options
+    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons right>
+      <button ion-button icon-only >
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h4>Type your options:</h4>
+
+  <ion-list no-lines>
+    <ion-item text-wrap detail-none *ngFor="let option of options; let i = index;">
+      {{ i+1 }}. {{ option }}
+    </ion-item>
+  </ion-list>
+
+  <form class="saveForm" name="saveForm" #saveForm="ngForm" (ngSubmit)="onSubmit(saveForm)" *ngIf="showForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-10>
+          <ion-item>
+            <ion-input type="text" placeholder="Type your option here"  #option="ngModel" [(ngModel)]="optionText" name="option"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2>
+          <button ion-button icon-only clear type="submit" [disabled]="!optionText.length"><ion-icon name="add"></ion-icon></button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+</ion-content>
+
+<ion-footer>
+  <div class="btn-wrapper">
+    <button ion-button outline full type="button" [disabled]="minOptionsQuantity > options.length" (click)="toNextStep()">Next</button>
+  </div>
+</ion-footer>

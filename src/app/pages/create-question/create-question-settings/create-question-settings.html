@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Enter Your Question
+      Question settings
     </ion-title>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -18,14 +18,24 @@
 
   <form class="saveForm" name="saveForm" #saveForm="ngForm" (ngSubmit)="onSubmit(saveForm)">
     <ion-list>
-      <ion-item>
-        <ion-label floating>Enter your question</ion-label>
-        <ion-input type="text" #question="ngModel" [(ngModel)]="questionText" name="question"
+      <h4>Enter your question</h4>
+      <ion-item class="question-text">
+        <ion-label floating>Type your question here</ion-label>
+        <ion-input type="text" #question="ngModel" [(ngModel)]="text" name="question"
           (keydown.enter)="submit(saveForm)" required></ion-input>
       </ion-item>
       <div *ngIf="question.errors && (question.dirty || question.touched)"
         class="error-box">Question is required
       </div>
+      <ion-item>
+        <ion-label>Set a deadline</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" min="{{ defaultDate }}" max="2020-10-31"
+          [(ngModel)]="deadlineDate" name="multiple"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Multiple answers</ion-label>
+        <ion-toggle [(ngModel)]="multiple" name="multiple"></ion-toggle>
+      </ion-item>
       <ion-item></ion-item>
     </ion-list>
   </form>

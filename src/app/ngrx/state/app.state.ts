@@ -50,8 +50,6 @@ import { combineReducers } from '@ngrx/store';
  import * as fromUser from '../user/index';
  import * as fromUserRequest from '../user-request/index';
  import * as fromSpinner from '../spinner/index';
- import * as fromCreateQuestion from '../create-question/index';
- import * as fromQuestionRequest from '../question-request/index';
  import * as fromGroups from '../groups/index';
  
  
@@ -66,8 +64,6 @@ export interface IAppState {
   user: fromUser.IUserState;
   userRequest: fromUserRequest.IUserRequestState;
   spinner: fromSpinner.ISpinnerState;
-  createQuestion: fromCreateQuestion.ICreateQuestionState;
-  questionRequest: fromQuestionRequest.IQuestionRequestState;
   groups: fromGroups.IGroupsState;
   groupsRequest: fromGroupsRequestState.IGroupsRequestState;
 }
@@ -86,8 +82,6 @@ const reducers = {
   user: fromUser.reducer,
   userRequest: fromUserRequest.reducer,
   spinner: fromSpinner.reducer,
-  createQuestion: fromCreateQuestion.reducer,
-  questionRequest: fromQuestionRequest.reducer,
   groups: fromGroups.reducer,
   groupsRequest: fromGroupsRequestReducers.groupsRequestReducer
 };

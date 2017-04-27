@@ -1,0 +1,39 @@
+page-create-question-options {
+
+  ion-content {
+
+    h4 {
+      text-align: center;
+      margin-top: 10px!important;
+      margin-bottom: 20px!important;
+    }
+
+    ion-item {
+
+      ion-label {
+        font-size: 1.6rem!important;
+      }
+    }
+
+    button[type="submit"] {
+      color: #424242;
+      font-size: 120%;
+    }
+  }
+}
+
+ion-footer {
+
+  .btn-wrapper {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+
+    button {
+      color: #484343;
+      border-color: #484343;
+      margin: 0;
+      height: 56px;
+    }
+  }
+}
