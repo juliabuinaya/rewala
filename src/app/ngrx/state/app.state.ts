@@ -45,6 +45,9 @@ import { combineReducers } from '@ngrx/store';
  import * as fromGroupsRequestState from '../groups-request/states';
  import * as fromGroupsRequestReducers from '../groups-request/reducers';
 
+ import * as fromQuestionsRequestState from '../questions-request/states';
+ import * as fromQuestionsRequestReducers from '../questions-request/reducers';
+ 
  
  import * as fromAuth from '../auth/index';
  import * as fromUser from '../user/index';
@@ -66,6 +69,8 @@ export interface IAppState {
   spinner: fromSpinner.ISpinnerState;
   groups: fromGroups.IGroupsState;
   groupsRequest: fromGroupsRequestState.IGroupsRequestState;
+  
+  questionsRequest: fromQuestionsRequestState.IQuestionsRequestState;
 }
 
 /**
@@ -83,7 +88,8 @@ const reducers = {
   userRequest: fromUserRequest.reducer,
   spinner: fromSpinner.reducer,
   groups: fromGroups.reducer,
-  groupsRequest: fromGroupsRequestReducers.groupsRequestReducer
+  groupsRequest: fromGroupsRequestReducers.groupsRequestReducer,
+  questionsRequest: fromQuestionsRequestReducers.questionsRequestReducer
 };
 
 const developmentReducer: ActionReducer<IAppState> = compose(storeFreeze, combineReducers)(reducers);
