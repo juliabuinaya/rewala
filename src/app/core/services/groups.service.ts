@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Restangular } from 'ng2-restangular';
+import { Restangular } from 'ngx-restangular';
 
 @Injectable()
 export class GroupsService {
@@ -8,7 +8,7 @@ export class GroupsService {
   }
   
   getUserGroups(userId) {
-    return this.restangular.one('clients', userId).one('groups').get();
+    return this.restangular.one('clients', userId).getList('groups');
   }
   
 }

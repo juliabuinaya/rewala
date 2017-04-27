@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { GroupsService } from '../../../../../core/services/groups.service';
 
 //actions
-import * as user from '../../../../user/actions/user.actions'
 import * as groupsGetRequest from '../actions/groups-get.actions'
 import { GroupsGetSuccessAction, GroupsGetFailAction } from '../actions/index';
 

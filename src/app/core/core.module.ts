@@ -10,7 +10,7 @@ import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { AppReducer } from '../ngrx/state/app.state';
 
 import { APP_CONFIG, APP_DI_CONFIG, RESTANGULAR_CONFIG, SOCIAL_AUTH_CONFIG } from '../app.config';
-import { RestangularModule } from 'ng2-restangular';
+import { RestangularModule } from 'ngx-restangular';
 import { Ng2UiAuthModule } from 'ng2-ui-auth';
 
 import { APP_SERVICE_PROVIDERS, SpinnerService } from './services/index';
@@ -24,6 +24,7 @@ import { UserRequestEffects } from '../ngrx/user-request/effects';
 import { UserEffects } from '../ngrx/user/effects';
 import { SpinnerEffects } from '../ngrx/spinner/effects';
 import { GroupsGetEffects } from '../ngrx/groups-request/nested-states/groups-get/effects/groups-get.effect';
+import { GroupsEffects } from '../ngrx/groups/effects/groups.effect';
 
 export function provideStorage() {
   return new Storage({});
@@ -56,6 +57,7 @@ const cloudSettings: CloudSettings = {
      EffectsModule.run(UserEffects),
      EffectsModule.run(SpinnerEffects),
      EffectsModule.run(GroupsGetEffects),
+     EffectsModule.run(GroupsEffects),
     
     RestangularModule.forRoot(
       [

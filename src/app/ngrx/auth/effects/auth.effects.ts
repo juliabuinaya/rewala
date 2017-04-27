@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { SessionService } from '../../../core/services/session.service';
 import { RoutingService } from '../../../core/services/routing.service';
 
+//actions
 import * as auth from '../actions/auth.actions';
 import * as user from '../../user/actions/index';
 import * as userRequest from '../../user-request/actions/index';
@@ -18,6 +19,7 @@ import { SetTokenAction,
 import { UserGetAction } from '../../user-request/actions/index';
 
 import { SignInPage } from '../../../pages/auth/sign-in/sign-in';
+
 
 @Injectable()
 export class AuthEffects {

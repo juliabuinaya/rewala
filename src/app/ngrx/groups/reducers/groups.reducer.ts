@@ -1,5 +1,6 @@
 import { IGroupsState, initialState } from '../states/groups.state';
 import { Actions, ActionTypes } from '../actions/groups.actions';
+import { GroupModel } from '../../../shared/models/group.model';
 
 
 export function reducer(
@@ -10,9 +11,21 @@ export function reducer(
   
     case ActionTypes.SET_USER_GROUPS:
     case ActionTypes.UPDATE_USER_GROUPS: {
-      console.log(action.payload);
-      return state;
+      let groups = action.payload;
+      let groupsIds = groups.map(group => group.id);
+      let groupsEntities = groups.reduce((entities: { [id: string]: any }, group: any) => {
+        return Object.assign(entities, {
+          [group.id]: new GroupModel(group)
+        });
+      }, {});
+      return {
+        ids: [...state.ids, ...groupsIds],
+        entities: Object.assign({}, state.entities, groupsEntities)
+      };
     }
+    
+    case ActionTypes.CLEAR_USER_GROUPS:
+      return Object.assign({}, state, initialState);
       
     default: {
       return state;
