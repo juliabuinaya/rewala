@@ -8,14 +8,12 @@ export function reducer(
 ): IGroupsState {
   switch (action.type) {
   
-    case ActionTypes.SET_USER_GROUPS: {
+    case ActionTypes.SET_USER_GROUPS:
+    case ActionTypes.UPDATE_USER_GROUPS: {
+      console.log(action.payload);
       return state;
     }
       
-    case ActionTypes.UPDATE_USER_GROUPS: {
-      return state;
-    }
-    
     default: {
       return state;
     }
