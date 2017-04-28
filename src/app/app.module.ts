@@ -14,10 +14,10 @@ import { RootModule } from './pages/root/root.module';
 import { AuthModule } from './pages/auth/auth.module';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { SettingsModule } from './pages/settings/settings.module';
-import { GroupsModule } from './pages/groups/groups.module';
 import { CreateQuestionModule } from './pages/create-question/create-question.module';
 import { ResultsModule } from './pages/results/results.module';
 import { QuestionModule } from './pages/question/question.module';
+import { CreateGroupModule } from './pages/create-group/create-group.module';
 
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -47,7 +47,7 @@ export function instrumentOptions() {
     SettingsModule,
     CreateQuestionModule,
     QuestionModule,
-    GroupsModule,
+    CreateGroupModule,
     ResultsModule,
 
     // create question pages

@@ -1,0 +1,42 @@
+page-create-question-select-group {
+
+  ion-content {
+
+    h4 {
+      text-align: center;
+      margin-top: 10px !important;
+      margin-bottom: 10px !important;
+    }
+
+    ion-item {
+
+      &.search {
+        margin-bottom: 50px;
+      }
+
+      ion-label {
+        font-size: 1.6rem !important;
+      }
+
+      ion-checkbox {
+        margin-right: 20px !important;
+      }
+    }
+  }
+}
+
+ion-footer {
+
+  .btn-wrapper {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+
+    button {
+      color: #484343;
+      border-color: #484343;
+      margin: 0;
+      height: 56px;
+    }
+  }
+}

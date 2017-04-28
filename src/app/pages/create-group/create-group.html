@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Create group
+    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons right>
+      <button ion-button icon-only >
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h4>Add new contact</h4>
+
+  <ion-list>
+    <ion-item class="search">
+      <ion-label floating>Search for contacts</ion-label>
+      <ion-input type="text" [(ngModel)]="searchString" name="search"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <form class="saveForm" name="saveForm" #saveForm="ngForm" (ngSubmit)="onSubmit(saveForm)">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-10>
+          <ion-item>
+            <ion-input type="text" placeholder="Add a new contact"  #option="ngModel" [(ngModel)]="addContact" name="option"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2>
+          <button ion-button icon-only clear type="submit" [disabled]="!addContact.length"><ion-icon name="add"></ion-icon></button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+  <span>Here must be added contscts list...</span>
+
+</ion-content>
+
+<ion-footer>
+  <div class="btn-wrapper">
+    <button ion-button outline full type="button">Create group</button>
+  </div>
+</ion-footer>

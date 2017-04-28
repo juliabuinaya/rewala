@@ -2,20 +2,20 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 
 import { AppSharedModule } from '../../shared/shared.module';
-import { GroupsPage } from './groups';
+import { CreateGroupPage } from './create-group';
 
 @NgModule({
   declarations: [
-    GroupsPage
+    CreateGroupPage
   ],
   imports: [
     AppSharedModule,
-    IonicPageModule.forChild(GroupsPage)
+    IonicPageModule.forChild(CreateGroupPage)
   ],
   entryComponents: [
-    GroupsPage
+    CreateGroupPage
   ],
   providers: [
   ]
 })
-export class GroupsModule {}
+export class CreateGroupModule {}

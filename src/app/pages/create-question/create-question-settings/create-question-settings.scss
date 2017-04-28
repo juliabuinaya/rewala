@@ -8,12 +8,12 @@ page-create-question-settings {
       margin-bottom: 10px!important;
     }
 
+    .deadline {
+      margin-top: 25px;
+    }
+
     ion-item {
       padding: 0!important;
-
-      &.question-text {
-        margin-bottom: 25px;
-      }
 
       &:last-child {
         display: none;

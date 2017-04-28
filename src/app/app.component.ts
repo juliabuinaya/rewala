@@ -7,7 +7,6 @@ import { Store } from '@ngrx/store';
 import { RootPage } from './pages/root/root';
 import { DashboardPage } from './pages/dashboard/dashboard';
 import { SettingsPage } from './pages/settings/settings';
-import { GroupsPage } from './pages/groups/groups';
 import { ResultsPage } from './pages/results/results';
 import { SignUpPage } from './pages/auth/sign-up/sign-up';
 import { SignInPage } from './pages/auth/sign-in/sign-in';
@@ -18,6 +17,8 @@ import { AuthService } from './core/services/auth.service';
 import { IAppState } from './ngrx/state/app.state';
 import * as userStateGetter from './ngrx/user/states/user-getter.state';
 import { CreateQuestionSettingsPage } from './pages/create-question/create-question-settings/create-question-settings';
+import { CreateQuestionGroupsPage } from './pages/create-question/create-question-groups/create-question-groups';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -45,7 +46,7 @@ export class MyApp {
       { title: 'Dashboard', component: DashboardPage },
       { title: 'Add Question', component: CreateQuestionSettingsPage },
       { title: 'Results', component: ResultsPage },
-      { title: 'Groups', component: GroupsPage },
+      { title: 'My groups', component: CreateQuestionGroupsPage },
       { title: 'Settings', component: SettingsPage }
     ];
 

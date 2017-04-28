@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title *ngIf="questionSettings">
+      Select group
+    </ion-title>
+    <ion-title *ngIf="!questionSettings">
+      My groups
+    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="addGroup()" *ngIf="questionSettings">
+        <ion-icon name="add"></ion-icon>
+      </button>
+      <button ion-button icon-only *ngIf="!questionSettings">
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h4 *ngIf="!(groups$ | async).length">You have no created groups yet.</h4>
+
+  <ion-list>
+    <ion-item class="search">
+      <ion-label floating>Search for groups</ion-label>
+      <ion-input type="text" [(ngModel)]="searchString" name="search"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <form class="saveForm" name="saveForm" #saveForm="ngForm">
+    <ion-list>
+      <ion-item *ngFor="let group of groups$ | async">
+        <ion-label>{{ group.name }}</ion-label>
+        <ion-checkbox [(ngModel)]="checkedGroups[group.id]" name="checkbox" *ngIf="questionSettings" required></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </form>
+
+</ion-content>
+
+<ion-footer>
+  <div class="btn-wrapper">
+    <button ion-button outline full type="button" [disabled]="!saveForm.valid" (click)="onComplete()" *ngIf="questionSettings">Complete</button>
+    <button ion-button outline full type="button" [disabled]="!saveForm.valid" (click)="addGroup()" *ngIf="!questionSettings">Add group</button>
+  </div>
+</ion-footer>

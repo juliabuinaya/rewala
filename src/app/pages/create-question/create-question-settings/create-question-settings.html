@@ -6,20 +6,15 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-buttons right>
-      <button ion-button icon-only >
-        <ion-icon name="notifications"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-  <form class="saveForm" name="saveForm" #saveForm="ngForm" (ngSubmit)="onSubmit(saveForm)">
+  <form class="saveForm" name="saveForm" #saveForm="ngForm">
     <ion-list>
       <h4>Enter your question</h4>
-      <ion-item class="question-text">
+      <ion-item>
         <ion-label floating>Type your question here</ion-label>
         <ion-input type="text" #question="ngModel" [(ngModel)]="text" name="question"
           (keydown.enter)="submit(saveForm)" required></ion-input>
@@ -27,7 +22,7 @@
       <div *ngIf="question.errors && (question.dirty || question.touched)"
         class="error-box">Question is required
       </div>
-      <ion-item>
+      <ion-item class="deadline">
         <ion-label>Set a deadline</ion-label>
         <ion-datetime displayFormat="DD/MM/YYYY" min="{{ defaultDate }}" max="2020-10-31"
           [(ngModel)]="deadlineDate" name="multiple"></ion-datetime>

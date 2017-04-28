@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 
 import { RoutingService } from '../../../core/services/routing.service';
-import { GroupsPage } from '../../groups/groups';
+import { CreateQuestionGroupsPage } from '../create-question-groups/create-question-groups';
 
 
 @IonicPage({
@@ -35,7 +35,7 @@ export class CreateQuestionOptionsPage {
   
   toNextStep() {
     this.questionSettings.options = this.options;
-    this.routingService.pushPage(GroupsPage, {questionSettings: this.questionSettings});
+    this.routingService.pushPage(CreateQuestionGroupsPage, {questionSettings: this.questionSettings});
   }
   
   ngOnDestroy() {
