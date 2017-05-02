@@ -24,7 +24,9 @@ export class CreateQuestionGroupsPage {
   groups$;
   questionSettings;
   checkedGroups = {};
+  checkedGroupsIds = [];
   searchString;
+  
   
   constructor(public routingService: RoutingService,
               public store: Store<IAppState>,
@@ -35,11 +37,15 @@ export class CreateQuestionGroupsPage {
     
   }
   
+  checkboxChange() {
+    this.checkedGroupsIds = _.keys(_.pickBy(this.checkedGroups));
+  }
+  
   onComplete() {
-    let checkedGroupsIds = _.reduce(this.checkedGroups, (acc, value, key) => {
-      return value ? [...acc, key] : acc;
-    }, []);
-    console.log(checkedGroupsIds);
+    //this.checkedGroupsIds = _.reduce(this.checkedGroups, (acc, value, key) => {
+    //  return value ? [...acc, key] : acc;
+    //}, []);
+    console.log(this.checkedGroupsIds);
   }
   
   addGroup() {
