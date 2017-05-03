@@ -33,6 +33,10 @@ export class CreateQuestionOptionsPage {
     }
   }
   
+  deleteOption(index) {
+    this.options.splice(index, 1);
+  }
+  
   toNextStep() {
     this.questionSettings.options = this.options;
     this.routingService.pushPage(CreateQuestionGroupsPage, {questionSettings: this.questionSettings});

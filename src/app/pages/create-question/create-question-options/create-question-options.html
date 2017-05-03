@@ -16,6 +16,9 @@
   <ion-list no-lines>
     <ion-item text-wrap detail-none *ngFor="let option of options; let i = index;">
       {{ i+1 }}. {{ option }}
+      <button ion-button icon-only clear small color="danger" item-right (click)="deleteOption(i)">
+        <ion-icon name="close"></ion-icon>
+      </button>
     </ion-item>
   </ion-list>
 

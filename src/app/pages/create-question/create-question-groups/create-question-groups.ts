@@ -65,7 +65,8 @@ export class CreateQuestionGroupsPage {
     //this.checkedGroupsIds = _.reduce(this.checkedGroups, (acc, value, key) => {
     //  return value ? [...acc, key] : acc;
     //}, []);
-    console.log(this.checkedGroupsIds);
+    this.questionSettings.groups = this.checkedGroupsIds;
+    console.log(this.questionSettings);
   }
   
   addGroup() {
