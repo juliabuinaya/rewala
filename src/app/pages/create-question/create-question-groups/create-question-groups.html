@@ -10,11 +10,8 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-buttons right>
-      <button ion-button icon-only (click)="addGroup()" *ngIf="questionSettings">
+      <button ion-button icon-only (click)="addGroup()">
         <ion-icon name="add"></ion-icon>
-      </button>
-      <button ion-button icon-only *ngIf="!questionSettings">
-        <ion-icon name="notifications"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>

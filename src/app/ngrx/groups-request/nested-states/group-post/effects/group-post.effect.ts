@@ -1,18 +1,29 @@
 import { Injectable } from '@angular/core';
-
 import { Action } from '@ngrx/store';
-import { Effect, Actions } from '@ngrx/effects';
+import { Effect, Actions, toPayload } from '@ngrx/effects';
+import { Observable } from 'rxjs';
 
+import { GroupsService } from '../../../../../core/services/groups.service';
 
-import * as groupsGet from '../actions/group-post.actions';
-import * as groups from '../../../../groups/actions/index';
-import { GroupPostAction, GroupPostFailAction, GroupPostSuccessAction } from '../actions/index';
+import * as groupPost from '../actions/group-post.actions';
+import { GroupPostFailAction, GroupPostSuccessAction } from '../actions/index';
 
 
 @Injectable()
 export class GroupPostEffects {
   
-  constructor(private actions$: Actions) {
+  constructor(private actions$: Actions,
+              public groupsService: GroupsService) {
   }
+  
+  @Effect()
+  groupPost$: Observable<Action> = this.actions$
+  .ofType(groupPost.ActionTypes.REQUEST)
+  .map(toPayload)
+  .switchMap((payload: any) => {
+    return this.groupsService.createGroupRequest(payload)
+    .map((res: any) => new GroupPostSuccessAction(res))
+    .catch(error => Observable.of(new GroupPostFailAction(error)));
+  });
   
 }
