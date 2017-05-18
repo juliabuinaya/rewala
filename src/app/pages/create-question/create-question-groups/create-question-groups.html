@@ -29,10 +29,16 @@
   </ion-list>
 
   <form class="saveForm" name="saveForm" #saveForm="ngForm">
-    <ion-list>
+    <!--<ion-list>-->
+      <!--<ion-item *ngFor="let group of displayedGroups">-->
+        <!--<ion-label>{{ group.name }}</ion-label>-->
+        <!--<ion-checkbox [(ngModel)]="checkedGroups[group.id]" name="checkbox" *ngIf="questionSettings" (ionChange)="checkboxChange()"></ion-checkbox>-->
+      <!--</ion-item>-->
+    <!--</ion-list>-->
+    <ion-list radio-group>
       <ion-item *ngFor="let group of displayedGroups">
         <ion-label>{{ group.name }}</ion-label>
-        <ion-checkbox [(ngModel)]="checkedGroups[group.id]" name="checkbox" *ngIf="questionSettings" (ionChange)="checkboxChange()"></ion-checkbox>
+        <ion-radio (ionSelect)="onGroupSelect(group)"></ion-radio>
       </ion-item>
     </ion-list>
   </form>
@@ -41,6 +47,6 @@
 
 <ion-footer>
   <div class="btn-wrapper">
-    <button ion-button outline full type="button" [disabled]="!checkedGroupsIds.length" (click)="onComplete()" *ngIf="questionSettings">Complete</button>
+    <button ion-button outline full type="button" [disabled]="!selectedGroupId" (click)="onComplete()" *ngIf="questionSettings">Complete</button>
   </div>
 </ion-footer>

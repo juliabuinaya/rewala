@@ -18,12 +18,12 @@ import * as userStateGetter from '../../../ngrx/user/states/user-getter.state';
 })
 export class CreateQuestionSettingsPage {
   
-  subscriber;
-  userId;
-  text;
-  multiple = false;
-  defaultDate;
-  deadlineDate;
+  public subscriber;
+  public userId;
+  public text;
+  public multiple = false;
+  public defaultDate;
+  public deadlineDate;
 
   constructor(public routingService: RoutingService,
               public store: Store<IAppState>) {

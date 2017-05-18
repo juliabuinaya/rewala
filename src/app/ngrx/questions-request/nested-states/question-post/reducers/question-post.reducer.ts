@@ -9,7 +9,6 @@ export function questionPostReducer(
   switch (action.type) {
     
     case ActionTypes.REQUEST:
-
       return Object.assign({}, state, {
         loading: true,
         loaded: false,

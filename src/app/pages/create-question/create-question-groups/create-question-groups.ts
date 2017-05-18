@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import * as _ from 'lodash';
+import { Subject } from 'rxjs';
 
 import { RoutingService } from '../../../core/services/routing.service';
 import { CreateGroupPage } from '../../create-group/create-group';
+import { QuestionsService } from '../../../core/services/questions.service';
 
 import { IAppState } from '../../../ngrx/state/app.state';
 //getters
@@ -21,30 +22,34 @@ import * as groupsStateGetter from '../../../ngrx/groups/states/groups-getter.st
 })
 export class CreateQuestionGroupsPage {
   
-  groups$;
-  groups;
-  displayedGroups;
-  groupsSubscriber;
-  checkedGroups = {};
-  checkedGroupsIds = [];
-  search = new FormControl();
-  searchSubscriber;
-  questionSettings;
-  
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
+  public search = new FormControl();
+  public groups$;
+  public groups;
+  public displayedGroups;
+  public checkedGroups = {};
+  public selectedGroupId;
+  public questionSettings;
   
   constructor(public routingService: RoutingService,
               public store: Store<IAppState>,
-              public navParams: NavParams) {
+              public navParams: NavParams,
+              public questionsService: QuestionsService) {
   
     this.groups$ = this.store.select(groupsStateGetter.getGroupsEntitiesState);
-    this.groupsSubscriber = this.groups$.subscribe(groups => this.groups = groups);
+    
+    this.groups$
+    .takeUntil(this.ngUnsubscribe)
+    .subscribe(groups => this.groups = groups);
+    
     this.questionSettings = navParams.get('questionSettings');
   }
   
   ngOnInit() {
     this.displayedGroups = this.groups;
-    this.searchSubscriber = this.search
+    this.search
     .valueChanges
+    .takeUntil(this.ngUnsubscribe)
     .debounceTime(400)
     .distinctUntilChanged()
     .subscribe(search => {
@@ -53,20 +58,20 @@ export class CreateQuestionGroupsPage {
         let searchValue = group.name.trim().toLowerCase();
         return searchValue.indexOf(searchQuery) !== -1;
       });
-      console.log(this.displayedGroups);
     });
   }
   
-  checkboxChange() {
-    this.checkedGroupsIds = _.keys(_.pickBy(this.checkedGroups));
+  //checkboxChange() {
+  //  this.checkedGroupsIds = _.keys(_.pickBy(this.checkedGroups));
+  //}
+  
+  onGroupSelect(group) {
+    this.selectedGroupId = group.id;
   }
   
   onComplete() {
-    //this.checkedGroupsIds = _.reduce(this.checkedGroups, (acc, value, key) => {
-    //  return value ? [...acc, key] : acc;
-    //}, []);
-    this.questionSettings.groups = this.checkedGroupsIds;
-    console.log(this.questionSettings);
+    this.questionSettings.groupId = this.selectedGroupId;
+    this.questionsService.createQuestion(this.questionSettings);
   }
   
   addGroup() {
@@ -74,8 +79,8 @@ export class CreateQuestionGroupsPage {
   }
   
   ngOnDestroy() {
-    this.searchSubscriber.unsubscribe();
-    this.groupsSubscriber.unsubscribe();
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
   
 }

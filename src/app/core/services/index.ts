@@ -4,8 +4,8 @@ import { AuthService } from './auth.service';
 import { RoutingService } from './routing.service';
 import { LoadingService } from './loading.service';
 import { SessionService } from './session.service';
-import { CreateQuestionService } from './create-question.service';
 import { GroupsService } from './groups.service';
+import { QuestionsService } from './questions.service';
 
 
 export {
@@ -15,7 +15,7 @@ export {
   RoutingService,
   LoadingService,
   SessionService,
-  CreateQuestionService,
+  QuestionsService,
   GroupsService
 };
 
@@ -27,6 +27,6 @@ export const APP_SERVICE_PROVIDERS = [
   RoutingService,
   LoadingService,
   SessionService,
-  CreateQuestionService,
+  QuestionsService,
   GroupsService
 ];

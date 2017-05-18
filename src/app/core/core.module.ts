@@ -25,6 +25,7 @@ import { UserEffects } from '../ngrx/user/effects';
 import { SpinnerEffects } from '../ngrx/spinner/effects';
 import { GroupsGetEffects } from '../ngrx/groups-request/nested-states/groups-get/effects/groups-get.effect';
 import { GroupsEffects } from '../ngrx/groups/effects/groups.effect';
+import { QuestionPostEffects } from '../ngrx/questions-request/nested-states/question-post/effects/question-post.effect';
 
 export function provideStorage() {
   return new Storage({});
@@ -58,6 +59,7 @@ const cloudSettings: CloudSettings = {
      EffectsModule.run(SpinnerEffects),
      EffectsModule.run(GroupsGetEffects),
      EffectsModule.run(GroupsEffects),
+     EffectsModule.run(QuestionPostEffects),
     
     RestangularModule.forRoot(
       [
