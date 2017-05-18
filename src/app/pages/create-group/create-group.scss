@@ -1,31 +1,32 @@
 page-create-group {
-
   ion-content {
-
     h4 {
       //text-align: center;
       margin-top: 10px!important;
     }
-
     ion-item {
-
       &.search {
         //margin-bottom: 50px;
       }
     }
-
+    .findContactForm {
+      .list-md {
+        margin: 0!important;
+      }
+      .btn-wrap {
+        margin-top: 7px;
+        text-align: center;
+      }
+    }
     ion-checkbox {
       margin-right: 15px!important;
     }
   }
-
   ion-footer {
-
     .btn-wrapper {
       text-align: center;
       margin: 0;
       padding: 0;
-
       button {
         color: #484343;
         border-color: #484343;
@@ -34,5 +35,4 @@ page-create-group {
       }
     }
   }
-
 }

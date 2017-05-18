@@ -23,22 +23,30 @@
     </ion-item>
   </ion-list>
 
-  <form class="saveForm" name="saveForm" #saveForm="ngForm" (ngSubmit)="onSubmit(saveForm)">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-10>
-          <ion-item>
-            <ion-input type="email" placeholder="Add new contact by email"  #addContact="ngModel" [(ngModel)]="addContactText" name="addContact" email></ion-input>
-          </ion-item>
-          <div *ngIf="addContact.errors && (addContact.dirty || addContact.touched)"
-            class="error-box">Enter user email
-          </div>
-        </ion-col>
-        <ion-col col-2>
-          <button ion-button icon-only clear type="submit" [disabled]="!saveForm.valid"><ion-icon name="add"></ion-icon></button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <form class="findContactForm" name="saveForm" #f="ngForm" (ngSubmit)="onFindSubmit(f)">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Find new contact by email</ion-label>
+        <ion-input type="email"
+          #findContact="ngModel"
+          [(ngModel)]="findContactStr"
+          name="findContact"
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+          required>
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <div *ngIf="findContact.errors && (findContact.dirty || findContact.touched)" class="error-box">
+      <div [hidden]="!findContact.errors.required">
+        Email is required
+      </div>
+      <div [hidden]="!findContact.errors.pattern">
+        Invalid email
+      </div>
+    </div>
+    <div class="btn-wrap">
+      <button ion-button type="submit" [disabled]="!f.valid">Find</button>
+    </div>
   </form>
 
   <h4>My contacts:</h4>

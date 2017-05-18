@@ -16,15 +16,15 @@ import * as groupsStateGetter from '../../ngrx/groups/states/groups-getter.state
 })
 export class CreateGroupPage {
   
-  searchString;
-  addContactText = '';
+  public searchString;
+  public findContactStr = '';
   
   constructor(public store: Store<IAppState>) {
   }
   
-  onSubmit(form) {
+  onFindSubmit(form) {
     if (form.valid) {
-      console.log(this.addContactText);   // <--- need add to contacts
+      console.log(this.findContactStr);   // <--- need add to contacts
     }
   }
   
