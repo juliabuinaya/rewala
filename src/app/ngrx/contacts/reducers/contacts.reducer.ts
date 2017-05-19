@@ -1,0 +1,56 @@
+import { IContactsState, initialState } from '../states/contacts.state';
+import { Actions, ActionTypes } from '../actions/contacts.actions';
+
+import * as _ from 'lodash';
+import { ContactModel } from '../../../shared/models/contact.model';
+
+function updateContacts(payload) {
+  if(!_.isArray(payload)) {
+    payload = [payload];
+  }
+  let contacts = payload;
+  let contactsIds = contacts.map(contact => contact.id);
+  let contactsEntities = contacts.reduce((entities: { [id: string]: any }, contact: any) => {
+    return Object.assign(entities, {
+      [contact.id]: new ContactModel(contact)
+    });
+  }, {});
+  return {contactsIds, contactsEntities};
+}
+
+export function reducer(
+  state = initialState,
+  action: Actions
+): IContactsState {
+    
+  switch (action.type) {
+    
+    case ActionTypes.SET_MY_CONTACTS:
+    case ActionTypes.UPDATE_MY_CONTACTS: {
+      let updatedContacts = updateContacts(action.payload);
+      return {
+        ...state,
+        ids: _.union(state.ids, updatedContacts.contactsIds),
+        entities: Object.assign({}, state.entities, updatedContacts.contactsEntities),
+      };
+    }
+  
+    case ActionTypes.SET_FOUND_CONTACTS:
+    case ActionTypes.UPDATE_FOUND_CONTACTS: {
+      let updatedContacts = updateContacts(action.payload);
+      return {
+        ...state,
+        ids: _.union(state.ids, updatedContacts.contactsIds),
+        entities: Object.assign({}, state.entities, updatedContacts.contactsEntities),
+        foundEntityIds: _.union(state.foundEntityIds, updatedContacts.contactsIds),
+      };
+    }
+    
+    case ActionTypes.CLEAR_MY_CONTACTS:
+      return Object.assign({}, state, initialState);
+    
+    default: {
+      return state;
+    }
+  }
+}

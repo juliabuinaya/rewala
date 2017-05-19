@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
+import { ContactsService } from '../../core/services/contacts.service';
+
 import { IAppState } from '../../ngrx/state/app.state';
 
 //getters
-import * as groupsStateGetter from '../../ngrx/groups/states/groups-getter.state';
-import { ContactsService } from '../../core/services/contacts.service';
+import * as contactsStateGetter from '../../ngrx/contacts/states/contacts-getter.state';
 
 @IonicPage({
   name: 'create-group'
@@ -17,11 +18,15 @@ import { ContactsService } from '../../core/services/contacts.service';
 })
 export class CreateGroupPage {
   
+  public contacts$;
   public searchString;
   public findContactEmail = '';
   
   constructor(public store: Store<IAppState>,
               public contactsService: ContactsService) {
+  
+    this.contacts$ = this.store.select(contactsStateGetter.getContactsEntitiesState);
+    
   }
   
   onFindSubmit(form) {
