@@ -15,10 +15,21 @@
     <ion-list>
       <ion-item>
         <ion-label floating>Email</ion-label>
-        <ion-input type="email" #email="ngModel" [(ngModel)]="formData.email" name="email" email required></ion-input>
+        <ion-input type="email"
+          #email="ngModel"
+          [(ngModel)]="formData.email"
+          name="email"
+          pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"
+          required>
+        </ion-input>
       </ion-item>
-      <div *ngIf="email.errors && (email.dirty || email.touched)"
-        class="error-box">Email is required
+      <div *ngIf="email.errors && (email.dirty || email.touched)" class="error-box">
+        <div [hidden]="!email.errors.required">
+          Email is required
+        </div>
+        <div [hidden]="!email.errors.pattern">
+          Invalid email
+        </div>
       </div>
       <ion-item>
         <ion-label floating>Password</ion-label>
