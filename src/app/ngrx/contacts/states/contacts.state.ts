@@ -1,10 +1,10 @@
 export interface IContactsState {
   ids: string[],
   entities: {},
-  foundEntityIds: string[]
+  foundEntitiesIds: string[]
 }
 export const initialState: IContactsState = {
   ids: [],
   entities: {},
-  foundEntityIds: []
+  foundEntitiesIds: []
 };

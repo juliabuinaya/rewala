@@ -42,7 +42,7 @@ export function reducer(
         ...state,
         ids: _.union(state.ids, updatedContacts.contactsIds),
         entities: Object.assign({}, state.entities, updatedContacts.contactsEntities),
-        foundEntityIds: _.union(state.foundEntityIds, updatedContacts.contactsIds),
+        foundEntitiesIds: _.union(state.foundEntitiesIds, updatedContacts.contactsIds),
       };
     }
     

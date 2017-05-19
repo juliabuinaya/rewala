@@ -18,15 +18,26 @@ import * as contactsStateGetter from '../../ngrx/contacts/states/contacts-getter
 })
 export class CreateGroupPage {
   
-  public contacts$;
+  public contactsState$;
+  public myContacts$;
+  public foundContacts$;
   public searchString;
   public findContactEmail = '';
   
   constructor(public store: Store<IAppState>,
               public contactsService: ContactsService) {
   
-    this.contacts$ = this.store.select(contactsStateGetter.getContactsEntitiesState);
+    this.contactsState$ = this.store.select(contactsStateGetter.getContactsState);
+    this.contactsState$
+    .subscribe(state => console.log(state));
     
+    this.myContacts$ = this.store.select(contactsStateGetter.getContactsEntitiesState);
+    this.myContacts$
+    .subscribe(contacts => console.log(contacts));
+  
+    this.foundContacts$ = this.store.select(contactsStateGetter.getContactsFoundEntitiesState);
+    this.foundContacts$
+    .subscribe(ids => console.log(ids));
   }
   
   onFindSubmit(form) {
