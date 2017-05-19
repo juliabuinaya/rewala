@@ -6,6 +6,7 @@ import { IAppState } from '../../ngrx/state/app.state';
 
 //getters
 import * as groupsStateGetter from '../../ngrx/groups/states/groups-getter.state';
+import { ContactsService } from '../../core/services/contacts.service';
 
 @IonicPage({
   name: 'create-group'
@@ -17,14 +18,17 @@ import * as groupsStateGetter from '../../ngrx/groups/states/groups-getter.state
 export class CreateGroupPage {
   
   public searchString;
-  public findContactStr = '';
+  public findContactEmail = '';
   
-  constructor(public store: Store<IAppState>) {
+  constructor(public store: Store<IAppState>,
+              public contactsService: ContactsService) {
   }
   
   onFindSubmit(form) {
     if (form.valid) {
-      console.log(this.findContactStr);   // <--- need add to contacts
+      this.findContactEmail = this.findContactEmail.trim().toLowerCase();
+      this.contactsService.findContactByEmail(this.findContactEmail);
+      form.reset();
     }
   }
   

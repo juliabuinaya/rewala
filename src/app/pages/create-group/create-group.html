@@ -16,6 +16,29 @@
 
 <ion-content padding>
 
+  <form class="findContactForm" name="saveForm" #f="ngForm" (ngSubmit)="onFindSubmit(f)">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Find new contact by email</ion-label>
+        <ion-input type="text"
+          #findContact="ngModel"
+          [(ngModel)]="findContactEmail"
+          name="findContact"
+          pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <div *ngIf="findContact?.errors?.pattern && findContact.dirty" class="error-box">
+      Invalid email
+    </div>
+    <div class="btn-wrap">
+      <button ion-button type="submit"
+        [disabled]="!findContact?.value?.length || findContact?.errors?.pattern">
+        Find
+      </button>
+    </div>
+  </form>
+
   <ion-list>
     <ion-item class="search">
       <ion-label floating>Search in my contacts</ion-label>
@@ -23,33 +46,7 @@
     </ion-item>
   </ion-list>
 
-  <form class="findContactForm" name="saveForm" #f="ngForm" (ngSubmit)="onFindSubmit(f)">
-    <ion-list>
-      <ion-item>
-        <ion-label floating>Find new contact by email</ion-label>
-        <ion-input type="text"
-          #findContact="ngModel"
-          [(ngModel)]="findContactStr"
-          name="findContact"
-          pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
-        </ion-input>
-      </ion-item>
-    </ion-list>
-    <div *ngIf="findContact.errors && (findContact.dirty || findContact.touched)" class="error-box">
-      <div [hidden]="!findContact.errors.required">
-        Email is required
-      </div>
-      <div [hidden]="!findContact.errors.pattern">
-        Invalid email
-      </div>
-    </div>
-    <div class="btn-wrap">
-      <button ion-button type="submit" [disabled]="!f.valid">Find</button>
-    </div>
-  </form>
-
   <h4>My contacts:</h4>
-  <span>Here must be added contacts list...</span>
 
 </ion-content>
 

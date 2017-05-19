@@ -6,6 +6,7 @@ import { LoadingService } from './loading.service';
 import { SessionService } from './session.service';
 import { GroupsService } from './groups.service';
 import { QuestionsService } from './questions.service';
+import { ContactsService } from './contacts.service';
 
 
 export {
@@ -16,7 +17,8 @@ export {
   LoadingService,
   SessionService,
   QuestionsService,
-  GroupsService
+  GroupsService,
+  ContactsService
 };
 
 // an array of services
@@ -28,5 +30,6 @@ export const APP_SERVICE_PROVIDERS = [
   LoadingService,
   SessionService,
   QuestionsService,
-  GroupsService
+  GroupsService,
+  ContactsService
 ];
