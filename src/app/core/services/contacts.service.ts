@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { IAppState } from '../../ngrx/state/app.state';
 import * as contactsRequest from '../../ngrx/contacts-request/actions/index';
+import * as contacts from '../../ngrx/contacts/actions/index';
 
 @Injectable()
 export class ContactsService {
@@ -21,6 +22,10 @@ export class ContactsService {
   
   findContactByEmailRequest(payload: any) {
     return this.restangular.all('clients').one('find-by-email').get({email: payload});
+  }
+  
+  removeFoundContactsIds(data) {
+    this.store.dispatch(new contacts.RemoveFoundContactsIdsAction(data));
   }
   
 }

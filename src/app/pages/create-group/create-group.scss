@@ -13,16 +13,26 @@ page-create-group {
       .list-md {
         margin: 0!important;
       }
-      .btn-wrap {
-        margin-top: 7px;
-        text-align: center;
-        button {
-          height: 30px;
-        }
+    }
+    .found-contacts {
+      margin-top: 15px;
+      .username {
+        color: #000;
+        font-size: 120%;
+      }
+      .email {
+        font-size: 100%;
       }
     }
     ion-checkbox {
       margin-right: 15px!important;
+    }
+  }
+  .btn-wrap {
+    margin-top: 7px;
+    text-align: center;
+    button {
+      height: 30px;
     }
   }
   ion-footer {

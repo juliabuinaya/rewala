@@ -45,6 +45,14 @@ export function reducer(
         foundEntitiesIds: _.union(state.foundEntitiesIds, updatedContacts.contactsIds),
       };
     }
+  
+    case ActionTypes.REMOVE_FOUND_CONTACTS_IDS: {
+      let foundEntitiesIds = _.difference(state.foundEntitiesIds, action.payload);
+      return {
+        ...state,
+        foundEntitiesIds: foundEntitiesIds
+      };
+    }
     
     case ActionTypes.CLEAR_MY_CONTACTS:
       return Object.assign({}, state, initialState);
