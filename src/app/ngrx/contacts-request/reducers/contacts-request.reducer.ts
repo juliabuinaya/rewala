@@ -20,13 +20,20 @@ export function reducer(
     }
   
     case ActionTypes.GET_REQUEST_SUCCESS:
-    case ActionTypes.GET_REQUEST_FAIL:
     case ActionTypes.FIND_BY_EMAIL_GET_REQUEST_SUCCESS:
+      return Object.assign({}, state, {
+        loading: false,
+        loaded: true,
+        status: 'success',
+        data: action.payload.data
+      });
+  
+    case ActionTypes.GET_REQUEST_FAIL:
     case ActionTypes.FIND_BY_EMAIL_GET_REQUEST_FAIL:
       return Object.assign({}, state, {
         loading: false,
         loaded: true,
-        status: action.payload.status,
+        status: 'fail',
         data: action.payload.data
       });
     

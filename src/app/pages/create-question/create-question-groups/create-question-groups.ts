@@ -61,10 +61,6 @@ export class CreateQuestionGroupsPage {
     });
   }
   
-  //checkboxChange() {
-  //  this.checkedGroupsIds = _.keys(_.pickBy(this.checkedGroups));
-  //}
-  
   onGroupSelect(group) {
     this.selectedGroupId = group.id;
   }
@@ -82,5 +78,4 @@ export class CreateQuestionGroupsPage {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
-  
 }

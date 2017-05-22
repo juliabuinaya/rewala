@@ -17,28 +17,25 @@
 <ion-content padding>
 
   <form class="findContactForm"
-    name="findForm"
-    #findForm="ngForm"
-    (ngSubmit)="onFindSubmit(findForm)">
+    (ngSubmit)="onFindSubmit()"
+    [formGroup]="findContactForm">
     <ion-list>
       <ion-item>
         <ion-label floating>Find new contact by email</ion-label>
         <ion-input type="text"
-          #findContact="ngModel"
           [(ngModel)]="findContactEmail"
-          name="findContact"
-          pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
+          formControlName="email">
         </ion-input>
       </ion-item>
     </ion-list>
-    <div *ngIf="findContact?.errors?.pattern && findContact.dirty" class="error-box">
+    <div *ngIf="findContactForm.get('email').hasError('pattern') && findContactForm.get('email').dirty" class="error-box">
       Invalid email
     </div>
     <div class="btn-wrap">
       <button ion-button
         type="submit"
         color="dark"
-        [disabled]="!findContact?.value?.length || findContact?.errors?.pattern">
+        [disabled]="!findContactForm.get('email').value?.length || findContactForm.get('email').hasError('pattern')">
         Find
       </button>
     </div>
