@@ -5,8 +5,8 @@ import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 
 import { RoutingService } from '../../../core/services/routing.service';
-import { CreateGroupPage } from '../../create-group/create-group';
 import { QuestionsService } from '../../../core/services/questions.service';
+import { CreateGroupMembersPage } from '../../create-group/create-group-members/create-group-members';
 
 import { IAppState } from '../../../ngrx/state/app.state';
 //getters
@@ -71,7 +71,7 @@ export class CreateQuestionGroupsPage {
   }
   
   addGroup() {
-    this.routingService.pushPage(CreateGroupPage);
+    this.routingService.pushPage(CreateGroupMembersPage);
   }
   
   ngOnDestroy() {

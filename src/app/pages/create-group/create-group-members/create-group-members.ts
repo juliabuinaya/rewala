@@ -6,20 +6,22 @@ import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import * as _ from 'lodash';
 
-import { ContactsService } from '../../core/services/contacts.service';
+import { ContactsService } from '../../../core/services/contacts.service';
+import { RoutingService } from '../../../core/services/routing.service';
 
-import { IAppState } from '../../ngrx/state/app.state';
+import { IAppState } from '../../../ngrx/state/app.state';
 //getters
-import * as contactsStateGetter from '../../ngrx/contacts/states/contacts-getter.state';
+import * as contactsStateGetter from '../../../ngrx/contacts/states/contacts-getter.state';
+import { CreateGroupCompletePage } from '../create-group-complete/create-group-complete';
 
 @IonicPage({
-  name: 'create-group'
+  name: 'create-group-members'
 })
 @Component({
-  selector: 'page-create-group',
-  templateUrl: 'create-group.html'
+  selector: 'page-create-group-members',
+  templateUrl: 'create-group-members.html'
 })
-export class CreateGroupPage {
+export class CreateGroupMembersPage {
   
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   public findContactForm: FormGroup;
@@ -33,7 +35,8 @@ export class CreateGroupPage {
   
   constructor(public store: Store<IAppState>,
               private fb: FormBuilder,
-              public contactsService: ContactsService) {
+              public contactsService: ContactsService,
+              public routingService: RoutingService) {
   
     this.contactsState$ = this.store.select(contactsStateGetter.getContactsState);
     this.myContacts$ = this.store.select(contactsStateGetter.getContactsEntitiesState);
@@ -70,6 +73,11 @@ export class CreateGroupPage {
   
   foundContactChange() {
     this.checkedFoundContactsIds = _.keys(_.pickBy(this.checkedFoundContacts));
+  }
+  
+  toCreateGroup() {
+    let data = {};
+    this.routingService.pushPage(CreateGroupCompletePage, {data});
   }
   
   ngOnDestroy() {

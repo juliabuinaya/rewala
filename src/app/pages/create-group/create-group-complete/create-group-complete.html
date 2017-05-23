@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Create group
+    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons right>
+      <button ion-button icon-only >
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <!--<form class="findContactForm"-->
+    <!--(ngSubmit)="onFindSubmit()"-->
+    <!--[formGroup]="findContactForm">-->
+    <!--<ion-list>-->
+      <!--<ion-item>-->
+        <!--<ion-label floating>Find new contact by email</ion-label>-->
+        <!--<ion-input type="text"-->
+          <!--[(ngModel)]="findContactEmail"-->
+          <!--formControlName="email">-->
+        <!--</ion-input>-->
+      <!--</ion-item>-->
+    <!--</ion-list>-->
+    <!--<div *ngIf="findContactForm.get('email').hasError('pattern') && findContactForm.get('email').dirty" class="error-box">-->
+      <!--Invalid email-->
+    <!--</div>-->
+    <!--<div class="btn-wrap">-->
+      <!--<button ion-button-->
+        <!--type="submit"-->
+        <!--color="dark"-->
+        <!--[disabled]="!findContactForm.get('email').value?.length || findContactForm.get('email').hasError('pattern')">-->
+        <!--Find-->
+      <!--</button>-->
+    <!--</div>-->
+  <!--</form>-->
+
+
+  <!--<form *ngIf="(foundContacts$ | async).length"-->
+    <!--name="addContact"-->
+    <!--#addContactForm="ngForm"-->
+    <!--(ngSubmit)="onAddContactSubmit(addContactForm)">-->
+    <!--<ion-list class="found-contacts">-->
+      <!--<h4>Found contacts:</h4>-->
+      <!--<ion-item *ngFor="let contact of (foundContacts$ | async)">-->
+        <!--<ion-label>-->
+          <!--<p class="username">{{ contact.username }}</p>-->
+          <!--<p class="email">{{ contact.email }}</p>-->
+        <!--</ion-label>-->
+        <!--<ion-checkbox [(ngModel)]="checkedFoundContacts[contact.id]" name="foundContact" (ionChange)="foundContactChange()"></ion-checkbox>-->
+      <!--</ion-item>-->
+    <!--</ion-list>-->
+    <!--<div class="btn-wrap">-->
+      <!--<button ion-button-->
+        <!--type="submit"-->
+        <!--color="dark"-->
+        <!--[disabled]="!checkedFoundContactsIds.length">-->
+        <!--Add to my contacts-->
+      <!--</button>-->
+    <!--</div>-->
+  <!--</form>-->
+
+</ion-content>
+
+<ion-footer>
+  <div class="btn-wrapper">
+    <button ion-button outline full type="button"
+      (click)="createGroup()">Create group</button>
+  </div>
+</ion-footer>

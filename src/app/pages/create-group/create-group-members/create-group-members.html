@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Create group
+      Select group members
     </ion-title>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -79,6 +79,8 @@
 
 <ion-footer>
   <div class="btn-wrapper">
-    <button ion-button outline full type="button">Create group</button>
+    <button ion-button outline full type="button"
+      [disabled]="!checkedFoundContactsIds.length"
+      (click)="toCreateGroup()">Next</button>
   </div>
 </ion-footer>
