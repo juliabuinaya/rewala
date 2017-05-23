@@ -63,4 +63,6 @@ export class RemoveFoundContactsIdsAction implements Action {
 }
 
 export type Actions
-  = SetMyContactsAction | ClearMyContactsAction | UpdateMyContactsAction | RemoveFoundContactsIdsAction;
+  = SetMyContactsAction | ClearMyContactsAction | UpdateMyContactsAction |
+  RemoveFoundContactsIdsAction | SetFoundContactsAction | ClearFoundContactsAction | UpdateFoundContactsAction |
+  RemoveFoundContactsIdsAction;
