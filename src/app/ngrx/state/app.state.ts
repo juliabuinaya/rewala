@@ -47,6 +47,10 @@ import { combineReducers } from '@ngrx/store';
 
  import * as fromQuestionsRequestState from '../questions-request/states';
  import * as fromQuestionsRequestReducers from '../questions-request/reducers';
+
+import * as fromOptionsRequestState from '../options-request/states';
+import * as fromOptionsRequestReducers from '../options-request/reducers';
+ 
  
  /** without nested states */
  import * as fromAuth from '../auth/index';
@@ -72,6 +76,7 @@ export interface IAppState {
   groups: fromGroups.IGroupsState;
   groupsRequest: fromGroupsRequestState.IGroupsRequestState;
   questionsRequest: fromQuestionsRequestState.IQuestionsRequestState;
+  optionsRequest: fromOptionsRequestState.IOptionsRequestState;
   contacts: fromContacts.IContactsState;
   contactsRequest: fromContactsRequest.IContactsRequestState;
 }
@@ -93,6 +98,7 @@ const reducers = {
   groups: fromGroups.reducer,
   groupsRequest: fromGroupsRequestReducers.groupsRequestReducer,
   questionsRequest: fromQuestionsRequestReducers.questionsRequestReducer,
+  optionsRequest: fromOptionsRequestReducers.optionsRequestReducer,
   contacts: fromContacts.reducer,
   contactsRequest: fromContactsRequest.reducer
 };
