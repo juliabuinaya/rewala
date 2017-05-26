@@ -16,6 +16,8 @@
 
 <ion-content padding>
 
+  <h4 *ngIf="!contacts?.length">You don't have any contact yet</h4>
+
   <form class="findContactForm"
     (ngSubmit)="onFindSubmit()"
     [formGroup]="findContactForm">
@@ -41,7 +43,7 @@
     </div>
   </form>
 
-  <ion-list>
+  <ion-list *ngIf="contacts?.length">
     <ion-item class="search">
       <ion-label floating>Search in my contacts</ion-label>
       <ion-input type="text" [formControl]="search" name="search"></ion-input>

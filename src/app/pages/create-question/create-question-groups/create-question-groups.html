@@ -19,9 +19,9 @@
 
 <ion-content padding>
 
-  <h4 *ngIf="!groups?.length">You have no created groups yet.</h4>
+  <h4 *ngIf="!groups?.length">You have no created groups yet</h4>
 
-  <ion-list>
+  <ion-list *ngIf="groups?.length">
     <ion-item class="search">
       <ion-label floating>Search for groups</ion-label>
       <ion-input type="text" [formControl]="search"></ion-input>

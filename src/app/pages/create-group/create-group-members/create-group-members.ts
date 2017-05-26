@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, ToastController } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import * as _ from 'lodash';
 
 import { ContactsService } from '../../../core/services/contacts.service';
@@ -29,6 +29,7 @@ export class CreateGroupMembersPage {
   public findContactForm: FormGroup;
   public search = new FormControl();
   public clientId;
+  public userEmail;
   public contacts;
   public foundContacts$;
   public displayedContacts;
@@ -39,11 +40,15 @@ export class CreateGroupMembersPage {
   constructor(public store: Store<IAppState>,
               private fb: FormBuilder,
               public contactsService: ContactsService,
-              public routingService: RoutingService) {
+              public routingService: RoutingService,
+              public toastController: ToastController) {
   
     this.store.select(userStateGetter.getIdFromState)
     .takeUntil(this.ngUnsubscribe)
     .subscribe(id => this.clientId = id);
+    this.store.select(userStateGetter.getEmailFromState)
+    .takeUntil(this.ngUnsubscribe)
+    .subscribe(email => this.userEmail = email);
     this.foundContacts$ = this.store.select(contactsStateGetter.getContactsFoundEntitiesState);
     this.store.select(contactsStateGetter.getContactsEntitiesState)
     .takeUntil(this.ngUnsubscribe)
@@ -81,7 +86,18 @@ export class CreateGroupMembersPage {
   onFindSubmit() {
     if (this.findContactForm.valid) {
       this.findContactEmail = this.findContactEmail.trim().toLowerCase();
-      this.contactsService.findContactByEmail(this.findContactEmail);
+      if (this.findContactEmail !== this.userEmail) {
+        this.contactsService.findContactByEmail(this.findContactEmail);
+      }
+      else {
+        let toast = this.toastController.create({
+          message: 'Found contact is Yours',
+          duration: 4000,
+          position: 'bottom',
+          cssClass: 'toast-error'
+        });
+        toast.present();
+      }
     }
   }
   
