@@ -55,6 +55,18 @@ export function reducer(
       };
     }
   
+    case ActionTypes.SET_SELECTED_CONTACTS:
+      return {
+        ...state,
+        selectedEntitiesIds: action.payload
+      };
+  
+    case ActionTypes.CLEAR_SELECTED_CONTACTS:
+      return {
+        ...state,
+        selectedEntitiesIds: []
+      };
+  
     case ActionTypes.CLEAR_FOUND_CONTACTS:
       return {
         ...state,

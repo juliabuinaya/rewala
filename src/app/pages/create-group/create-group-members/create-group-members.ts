@@ -90,6 +90,7 @@ export class CreateGroupMembersPage {
   }
   
   toCreateGroupCompletePage() {
+    this.contactsService.setSelectedContacts(this.checkedContactsIds);
     let groupData = {
       memberIds: this.checkedContactsIds,
       clientId: this.clientId

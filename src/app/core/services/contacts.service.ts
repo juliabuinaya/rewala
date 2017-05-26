@@ -37,4 +37,12 @@ export class ContactsService {
     this.store.dispatch(new contacts.ClearFoundContactsAction());
   }
   
+  setSelectedContacts(data) {
+    this.store.dispatch(new contacts.SetSelectedContactsAction(data));
+  }
+  
+  clearSelectedContacts() {
+    this.store.dispatch(new contacts.ClearSelectedContactsAction());
+  }
+  
 }

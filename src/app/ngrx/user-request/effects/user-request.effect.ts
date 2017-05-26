@@ -12,9 +12,6 @@ import { SignInPage } from '../../../pages/auth/sign-in/sign-in';
 import * as userRequest from '../actions/user-request.actions';
 import { UserGetSuccessAction, UserGetFailAction } from '../actions/index';
 import { SpinnerLoadingEndAction } from '../../spinner/actions/index';
-import { GroupsGetAction } from '../../groups-request/nested-states/groups-get/actions/groups-get.actions';
-import { ContactsGetAction } from '../../contacts-request/actions/contacts-request.actions';
-
 
 
 @Injectable()

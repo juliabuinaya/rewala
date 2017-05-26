@@ -20,3 +20,9 @@ export const getContactsFoundEntitiesState = createSelector(getContactsState, st
     return state.entities[key];
   });
 });
+
+export const getContactsSelectedEntitiesState = createSelector(getContactsState, state => {
+  return state.selectedEntitiesIds.map(key => {
+    return state.entities[key];
+  });
+});

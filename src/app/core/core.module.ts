@@ -23,8 +23,9 @@ import { SessionPostEffects } from '../ngrx/auth-request/effects';
 import { UserRequestEffects } from '../ngrx/user-request/effects';
 import { UserEffects } from '../ngrx/user/effects';
 import { SpinnerEffects } from '../ngrx/spinner/effects';
-import { GroupsGetEffects } from '../ngrx/groups-request/nested-states/groups-get/effects/groups-get.effect';
 import { GroupsEffects } from '../ngrx/groups/effects/groups.effect';
+import { GroupsGetEffects } from '../ngrx/groups-request/nested-states/groups-get/effects/groups-get.effect';
+import { GroupPostEffects } from '../ngrx/groups-request/nested-states/group-post/effects/group-post.effect';
 import { QuestionPostEffects } from '../ngrx/questions-request/nested-states/question-post/effects/question-post.effect';
 import { ContactsEffects } from '../ngrx/contacts/effects/contacts.effect';
 import { ContactsRequestEffects } from '../ngrx/contacts-request/effects/contacts-request.effect';
@@ -61,6 +62,7 @@ const cloudSettings: CloudSettings = {
      EffectsModule.run(SpinnerEffects),
      EffectsModule.run(GroupsGetEffects),
      EffectsModule.run(GroupsEffects),
+     EffectsModule.run(GroupPostEffects),
      EffectsModule.run(QuestionPostEffects),
      EffectsModule.run(ContactsEffects),
      EffectsModule.run(ContactsRequestEffects),

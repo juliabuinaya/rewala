@@ -2,19 +2,14 @@ page-create-group-complete {
   ion-content {
     h4 {
       //text-align: center;
-      margin-top: 10px!important;
+      margin-top: 10px !important;
     }
-    ion-item {
-      &.search {
-        //margin-bottom: 50px;
-      }
-    }
-    .findContactForm {
+    .createGroupForm {
       .list-md {
         margin: 0!important;
       }
     }
-    .found-contacts {
+    .contacts {
       margin-top: 15px;
       .username {
         color: #000;
@@ -24,27 +19,17 @@ page-create-group-complete {
         font-size: 100%;
       }
     }
-    ion-checkbox {
-      margin-right: 15px!important;
-    }
-  }
-  .btn-wrap {
-    margin-top: 7px;
-    text-align: center;
-    button {
-      height: 30px;
-    }
-  }
-  ion-footer {
-    .btn-wrapper {
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      button {
-        color: #484343;
-        border-color: #484343;
+    ion-footer {
+      .btn-wrapper {
+        text-align: center;
         margin: 0;
-        height: 56px;
+        padding: 0;
+        button {
+          color: #484343;
+          border-color: #484343;
+          margin: 0;
+          height: 56px;
+        }
       }
     }
   }

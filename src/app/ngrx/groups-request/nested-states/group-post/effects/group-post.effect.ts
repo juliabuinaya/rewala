@@ -4,10 +4,10 @@ import { Effect, Actions, toPayload } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 
 import { GroupsService } from '../../../../../core/services/groups.service';
+import { CreateQuestionGroupsPage } from '../../../../../pages/create-question/create-question-groups/create-question-groups';
 
 import * as groupPost from '../actions/group-post.actions';
 import { GroupPostFailAction, GroupPostSuccessAction } from '../actions/index';
-
 
 @Injectable()
 export class GroupPostEffects {
@@ -19,11 +19,9 @@ export class GroupPostEffects {
   @Effect()
   groupPost$: Observable<Action> = this.actions$
   .ofType(groupPost.ActionTypes.REQUEST)
-  .map(toPayload)
-  .switchMap((payload: any) => {
-    return this.groupsService.createGroupRequest(payload)
+  .switchMap((action: any) => {
+    return this.groupsService.createGroupRequest(toPayload(action))
     .map((res: any) => new GroupPostSuccessAction(res))
     .catch(error => Observable.of(new GroupPostFailAction(error)));
   });
-  
 }
