@@ -4,31 +4,31 @@ import { type } from '../../util';
 import { CONTACTS } from '../common/index';
 
 export const ActionTypes = {
-  SET_MY_CONTACTS: type(`[${CONTACTS}] Set My Contacts`),
-  CLEAR_MY_CONTACTS: type(`[${CONTACTS}] Clear My Contacts`),
-  UPDATE_MY_CONTACTS: type(`[${CONTACTS}] Update My Contacts`),
+  SET_CONTACTS: type(`[${CONTACTS}] Set Contacts`),
+  CLEAR_CONTACTS: type(`[${CONTACTS}] Clear Contacts`),
+  UPDATE_CONTACTS: type(`[${CONTACTS}] Update Contacts`),
   SET_FOUND_CONTACTS: type(`[${CONTACTS}] Set Found Contacts`),
   CLEAR_FOUND_CONTACTS: type(`[${CONTACTS}] Clear Found Contacts`),
   UPDATE_FOUND_CONTACTS: type(`[${CONTACTS}] Update Found Contacts`),
   REMOVE_FOUND_CONTACTS_IDS: type(`[${CONTACTS}] Remove Found Contacts Ids`),
 };
 
-export class SetMyContactsAction implements Action {
-  type = ActionTypes.SET_MY_CONTACTS;
+export class SetContactsAction implements Action {
+  type = ActionTypes.SET_CONTACTS;
   
   constructor(public payload?: any) {
   }
 }
 
-export class ClearMyContactsAction implements Action {
-  type = ActionTypes.CLEAR_MY_CONTACTS;
+export class ClearContactsAction implements Action {
+  type = ActionTypes.CLEAR_CONTACTS;
   
   constructor(public payload?: any) {
   }
 }
 
-export class UpdateMyContactsAction implements Action {
-  type = ActionTypes.UPDATE_MY_CONTACTS;
+export class UpdateContactsAction implements Action {
+  type = ActionTypes.UPDATE_CONTACTS;
 
   constructor(public payload?: any) {
   }
@@ -63,6 +63,6 @@ export class RemoveFoundContactsIdsAction implements Action {
 }
 
 export type Actions
-  = SetMyContactsAction | ClearMyContactsAction | UpdateMyContactsAction |
+  = SetContactsAction | ClearContactsAction | UpdateContactsAction |
   RemoveFoundContactsIdsAction | SetFoundContactsAction | ClearFoundContactsAction | UpdateFoundContactsAction |
   RemoveFoundContactsIdsAction;

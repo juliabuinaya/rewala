@@ -25,13 +25,14 @@ export function reducer(
     
   switch (action.type) {
     
-    case ActionTypes.SET_MY_CONTACTS:
-    case ActionTypes.UPDATE_MY_CONTACTS: {
+    case ActionTypes.SET_CONTACTS:
+    case ActionTypes.UPDATE_CONTACTS: {
       let updatedContacts = updateContacts(action.payload);
       return {
         ...state,
         ids: _.union(state.ids, updatedContacts.contactsIds),
         entities: Object.assign({}, state.entities, updatedContacts.contactsEntities),
+        myEntitiesIds: _.union(state.ids, updatedContacts.contactsIds)
       };
     }
   
@@ -53,8 +54,14 @@ export function reducer(
         foundEntitiesIds: foundEntitiesIds
       };
     }
+  
+    case ActionTypes.CLEAR_FOUND_CONTACTS:
+      return {
+        ...state,
+        foundEntitiesIds: []
+      };
     
-    case ActionTypes.CLEAR_MY_CONTACTS:
+    case ActionTypes.CLEAR_CONTACTS:
       return Object.assign({}, state, initialState);
     
     default: {

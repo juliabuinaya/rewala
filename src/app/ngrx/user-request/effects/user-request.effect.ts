@@ -13,6 +13,7 @@ import * as userRequest from '../actions/user-request.actions';
 import { UserGetSuccessAction, UserGetFailAction } from '../actions/index';
 import { SpinnerLoadingEndAction } from '../../spinner/actions/index';
 import { GroupsGetAction } from '../../groups-request/nested-states/groups-get/actions/groups-get.actions';
+import { ContactsGetAction } from '../../contacts-request/actions/contacts-request.actions';
 
 
 
@@ -41,11 +42,6 @@ export class UserRequestEffects {
     this.routingService.pushRootPage(DashboardPage);
     return new SpinnerLoadingEndAction();
   });
-  
-  @Effect()
-  getUserGroups$: Observable<Action> = this.actions$
-  .ofType(userRequest.ActionTypes.GET_REQUEST_SUCCESS)
-  .map((action: any) => new GroupsGetAction(action.payload));
   
   @Effect()
   redirectToSignInPage$: Observable<Action> = this.actions$

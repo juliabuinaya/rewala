@@ -13,7 +13,12 @@ export class ContactsService {
               public store: Store<IAppState>) {
   }
   
-  getContactsData(token) {
+  getContacts() {
+    this.store.dispatch(new contactsRequest.ContactsGetAction());
+  }
+  
+  getContactsRequest() {
+    return this.restangular.all('clients').one('get-contacts').get();
   }
   
   findContactByEmail(data) {
@@ -26,6 +31,10 @@ export class ContactsService {
   
   removeFoundContactsIds(data) {
     this.store.dispatch(new contacts.RemoveFoundContactsIdsAction(data));
+  }
+  
+  clearFoundContacts() {
+    this.store.dispatch(new contacts.ClearFoundContactsAction());
   }
   
 }

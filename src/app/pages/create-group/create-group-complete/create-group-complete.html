@@ -16,61 +16,31 @@
 
 <ion-content padding>
 
-  <!--<form class="findContactForm"-->
-    <!--(ngSubmit)="onFindSubmit()"-->
-    <!--[formGroup]="findContactForm">-->
-    <!--<ion-list>-->
-      <!--<ion-item>-->
-        <!--<ion-label floating>Find new contact by email</ion-label>-->
-        <!--<ion-input type="text"-->
-          <!--[(ngModel)]="findContactEmail"-->
-          <!--formControlName="email">-->
-        <!--</ion-input>-->
-      <!--</ion-item>-->
-    <!--</ion-list>-->
-    <!--<div *ngIf="findContactForm.get('email').hasError('pattern') && findContactForm.get('email').dirty" class="error-box">-->
-      <!--Invalid email-->
-    <!--</div>-->
-    <!--<div class="btn-wrap">-->
-      <!--<button ion-button-->
-        <!--type="submit"-->
-        <!--color="dark"-->
-        <!--[disabled]="!findContactForm.get('email').value?.length || findContactForm.get('email').hasError('pattern')">-->
-        <!--Find-->
-      <!--</button>-->
-    <!--</div>-->
-  <!--</form>-->
-
-
-  <!--<form *ngIf="(foundContacts$ | async).length"-->
-    <!--name="addContact"-->
-    <!--#addContactForm="ngForm"-->
-    <!--(ngSubmit)="onAddContactSubmit(addContactForm)">-->
-    <!--<ion-list class="found-contacts">-->
-      <!--<h4>Found contacts:</h4>-->
-      <!--<ion-item *ngFor="let contact of (foundContacts$ | async)">-->
-        <!--<ion-label>-->
-          <!--<p class="username">{{ contact.username }}</p>-->
-          <!--<p class="email">{{ contact.email }}</p>-->
-        <!--</ion-label>-->
-        <!--<ion-checkbox [(ngModel)]="checkedFoundContacts[contact.id]" name="foundContact" (ionChange)="foundContactChange()"></ion-checkbox>-->
-      <!--</ion-item>-->
-    <!--</ion-list>-->
-    <!--<div class="btn-wrap">-->
-      <!--<button ion-button-->
-        <!--type="submit"-->
-        <!--color="dark"-->
-        <!--[disabled]="!checkedFoundContactsIds.length">-->
-        <!--Add to my contacts-->
-      <!--</button>-->
-    <!--</div>-->
-  <!--</form>-->
+  <form class="createGroupForm"
+    (ngSubmit)="onCreateSubmit()"
+    [formGroup]="createGroupForm">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Enter group name</ion-label>
+        <ion-input type="text"
+          [(ngModel)]="groupName"
+          formControlName="name">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <div *ngIf="createGroupForm.get('name').hasError('required') && createGroupForm.get('name').touched" class="error-box">
+      Group name required
+    </div>
+    <div *ngIf="createGroupForm.get('name').hasError('minlength') && createGroupForm.get('name').dirty" class="error-box">
+      Minimum of 3 characters
+    </div>
+  </form>
 
 </ion-content>
 
 <ion-footer>
   <div class="btn-wrapper">
-    <button ion-button outline full type="button"
+    <button ion-button outline full type="button" [disabled]="!createGroupForm.valid"
       (click)="createGroup()">Create group</button>
   </div>
 </ion-footer>

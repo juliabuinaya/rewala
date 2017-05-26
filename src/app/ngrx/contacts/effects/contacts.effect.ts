@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 //actions
 import * as contactsRequest from '../../contacts-request/actions/index';
-import { UpdateFoundContactsAction } from '../actions/contacts.actions';
+import { UpdateFoundContactsAction, SetContactsAction } from '../actions/contacts.actions';
 
 @Injectable()
 export class ContactsEffects {
@@ -18,5 +18,11 @@ export class ContactsEffects {
   .ofType(contactsRequest.ActionTypes.FIND_BY_EMAIL_GET_REQUEST_SUCCESS)
   .map(toPayload)
   .map(payload => new UpdateFoundContactsAction(payload.data));
-
+  
+  @Effect()
+  setUserContacts$: Observable<Action> = this.actions$
+  .ofType(contactsRequest.ActionTypes.GET_REQUEST_SUCCESS)
+  .map(toPayload)
+  .map(payload => new SetContactsAction(payload.data));
+  
 }

@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IonicPage } from 'ionic-angular';
-import { Store } from '@ngrx/store';
+import { IonicPage, NavParams } from 'ionic-angular';
 
-import { ContactsService } from '../../../core/services/contacts.service';
+import { GroupsService } from '../../../core/services/groups.service';
 
 @IonicPage({
   name: 'create-group-complete'
@@ -14,30 +13,25 @@ import { ContactsService } from '../../../core/services/contacts.service';
 })
 export class CreateGroupCompletePage {
   
-  public findContactForm: FormGroup;
-  public contactsState$;
-  public myContacts$;
-  public foundContacts$;
-  public searchString;
-  public findContactEmail;
-  public checkedFoundContacts = [];
-  public checkedFoundContactsIds = [];
+  public createGroupForm: FormGroup;
+  public groupData;
+  public groupName = null;
   
   constructor(private fb: FormBuilder,
-              public contactsService: ContactsService) {
-    
+              public navParams: NavParams,
+              public groupsService: GroupsService) {
+    this.groupData = navParams.get('groupData');
   }
   
   ngOnInit() {
+    this.createGroupForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(24)]]
+    });
   }
   
   createGroup() {
-    console.log('qweqwe');
-    let data = {
-      name: 'qqq',
-      memberIds: [],
-      clientId: '1111qqq'
-    };
+    console.log(this.groupData);
+    //this.groupsService.createGroup(this.groupData);
   }
   
   ngOnDestroy() {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { Store } from '@ngrx/store';
+import { Subject } from 'rxjs';
 
 import { RoutingService } from '../../../core/services/routing.service';
 import { CreateQuestionOptionsPage } from '../create-question-options/create-question-options';
@@ -18,8 +19,8 @@ import * as userStateGetter from '../../../ngrx/user/states/user-getter.state';
 })
 export class CreateQuestionSettingsPage {
   
-  public subscriber;
-  public userId;
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
+  public clientId;
   public text;
   public multiple = false;
   public defaultDate;
@@ -28,8 +29,9 @@ export class CreateQuestionSettingsPage {
   constructor(public routingService: RoutingService,
               public store: Store<IAppState>) {
   
-    this.subscriber = this.store.select(userStateGetter.getIdFromState)
-    .subscribe(id => this.userId = id);
+    this.store.select(userStateGetter.getIdFromState)
+    .takeUntil(this.ngUnsubscribe)
+    .subscribe(id => this.clientId = id);
   
     this.defaultDate = new Date();
     this.defaultDate.setDate(this.defaultDate.getDate() + 2);
@@ -40,7 +42,7 @@ export class CreateQuestionSettingsPage {
   submit(form) {
     if (form.valid) {
       let questionSettings = {
-        clientId: this.userId,
+        clientId: this.clientId,
         text: this.text,
         multiple: this.multiple,
         deadline: this.deadlineDate
@@ -50,7 +52,8 @@ export class CreateQuestionSettingsPage {
   }
   
   ngOnDestroy() {
-    this.subscriber.unsubscribe();
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
 }
