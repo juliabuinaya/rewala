@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 import { RoutingService } from '../../../core/services/routing.service';
 import { QuestionsService } from '../../../core/services/questions.service';
@@ -22,11 +22,10 @@ import * as groupsStateGetter from '../../../ngrx/groups/states/groups-getter.st
 })
 export class CreateQuestionGroupsPage {
   
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
   public search = new FormControl();
   public groups$;
-  public groups;
-  public displayedGroups;
+  public displayedGroups$;
+  public search$;
   public checkedGroups = {};
   public selectedGroupId;
   public questionSettings;
@@ -36,27 +35,23 @@ export class CreateQuestionGroupsPage {
               public navParams: NavParams,
               public questionsService: QuestionsService) {
   
-    this.groups$ = this.store.select(groupsStateGetter.getGroupsEntitiesState);
-    
-    this.groups$
-    .takeUntil(this.ngUnsubscribe)
-    .subscribe(groups => this.groups = groups);
-    
     this.questionSettings = navParams.get('questionSettings');
+    
   }
   
   ngOnInit() {
-    this.displayedGroups = this.groups;
-    this.search
+    this.groups$ = this.store.select(groupsStateGetter.getGroupsEntitiesState);
+    this.search$ = this.search
     .valueChanges
-    .takeUntil(this.ngUnsubscribe)
     .debounceTime(400)
     .distinctUntilChanged()
-    .subscribe(search => {
-      let searchQuery = search.trim().toLowerCase();
-      this.displayedGroups = this.groups.filter(group => {
-        let searchValue = group.name.trim().toLowerCase();
-        return searchValue.indexOf(searchQuery) !== -1;
+    .map(search => search.trim().toLowerCase())
+    .startWith('');
+    
+    this.displayedGroups$ = Observable.combineLatest(this.groups$, this.search$)
+    .map(([groups, search]) => {
+      return (<any>groups).filter(group => {
+        return group.name.trim().toLowerCase().indexOf(search) !== -1;
       });
     });
   }
@@ -70,12 +65,10 @@ export class CreateQuestionGroupsPage {
     this.questionsService.createQuestion(this.questionSettings);
   }
   
-  addGroup() {
+  createGroup() {
     this.routingService.pushPage(CreateGroupMembersPage);
   }
   
   ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
   }
 }

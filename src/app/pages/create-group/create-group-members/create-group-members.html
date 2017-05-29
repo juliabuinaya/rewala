@@ -16,7 +16,7 @@
 
 <ion-content padding>
 
-  <h4 *ngIf="!contacts?.length">You don't have any contact yet</h4>
+  <h4 *ngIf="!(contacts$ | async)?.length">You don't have any contact yet</h4>
 
   <form class="findContactForm"
     (ngSubmit)="onFindSubmit()"
@@ -43,16 +43,16 @@
     </div>
   </form>
 
-  <ion-list *ngIf="contacts?.length">
+  <ion-list *ngIf="(contacts$ | async)?.length">
     <ion-item class="search">
       <ion-label floating>Search in my contacts</ion-label>
       <ion-input type="text" [formControl]="search" name="search"></ion-input>
     </ion-item>
   </ion-list>
 
-  <ion-list class="contacts" *ngIf="contacts?.length">
+  <ion-list class="contacts" *ngIf="(contacts$ | async)?.length">
     <h4>Contacts:</h4>
-    <ion-item *ngFor="let contact of displayedContacts">
+    <ion-item *ngFor="let contact of (displayedContacts$ | async)">
       <ion-label>
         <p class="username">{{ contact.username }}</p>
         <p class="email">{{ contact.email }}</p>

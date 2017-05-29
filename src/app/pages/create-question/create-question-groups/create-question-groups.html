@@ -10,7 +10,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-buttons right>
-      <button ion-button icon-only (click)="addGroup()">
+      <button ion-button icon-only (click)="createGroup()">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
@@ -19,9 +19,9 @@
 
 <ion-content padding>
 
-  <h4 *ngIf="!groups?.length">You have no created groups yet</h4>
+  <h4 *ngIf="!(groups$ | async)?.length">You have no created groups yet</h4>
 
-  <ion-list *ngIf="groups?.length">
+  <ion-list *ngIf="(groups$ | async)?.length">
     <ion-item class="search">
       <ion-label floating>Search for groups</ion-label>
       <ion-input type="text" [formControl]="search"></ion-input>
@@ -30,7 +30,7 @@
 
   <form class="saveForm" name="saveForm" #saveForm="ngForm">
     <ion-list radio-group>
-      <ion-item *ngFor="let group of displayedGroups">
+      <ion-item *ngFor="let group of (displayedGroups$ | async)">
         <ion-label>{{ group.name }}</ion-label>
         <ion-radio *ngIf="questionSettings" (ionSelect)="onGroupSelect(group)"></ion-radio>
       </ion-item>

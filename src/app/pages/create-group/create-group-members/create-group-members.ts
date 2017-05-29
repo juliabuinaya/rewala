@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { IonicPage, ToastController } from 'ionic-angular';
+import { IonicPage, ToastController, NavParams } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import * as _ from 'lodash';
 
 import { ContactsService } from '../../../core/services/contacts.service';
@@ -25,68 +25,70 @@ import * as contactsStateGetter from '../../../ngrx/contacts/states/contacts-get
 })
 export class CreateGroupMembersPage {
   
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
   public findContactForm: FormGroup;
   public search = new FormControl();
-  public clientId;
-  public userEmail;
-  public contacts;
+  public search$;
+  public contacts$;
   public foundContacts$;
-  public displayedContacts;
+  public foundContactsSubscriber;
+  public displayedContacts$;
+  public clientId;
+  public clientIdSubscriber;
+  public clientEmail;
+  public clientEmailSubscriber;
   public findContactEmail;
   public checkedContacts = [];
   public checkedContactsIds = [];
+  public questionSettings;
   
   constructor(public store: Store<IAppState>,
               private fb: FormBuilder,
               public contactsService: ContactsService,
               public routingService: RoutingService,
-              public toastController: ToastController) {
+              public toastController: ToastController,
+              public navParams: NavParams) {
   
-    this.store.select(userStateGetter.getIdFromState)
-    .takeUntil(this.ngUnsubscribe)
-    .subscribe(id => this.clientId = id);
-    this.store.select(userStateGetter.getEmailFromState)
-    .takeUntil(this.ngUnsubscribe)
-    .subscribe(email => this.userEmail = email);
-    this.foundContacts$ = this.store.select(contactsStateGetter.getContactsFoundEntitiesState);
-    this.store.select(contactsStateGetter.getContactsEntitiesState)
-    .takeUntil(this.ngUnsubscribe)
-    .subscribe(contacts => {
-      this.contacts = contacts;
-      this.displayedContacts = this.contacts;
-    });
+    this.questionSettings = navParams.get('questionSettings');
+   
   }
   
   ngOnInit() {
+  
+    this.clientIdSubscriber = this.store.select(userStateGetter.getIdFromState)
+    .subscribe(id => this.clientId = id);
+    this.clientEmailSubscriber = this.store.select(userStateGetter.getEmailFromState)
+    .subscribe(email => this.clientEmail = email);
+    this.foundContacts$ = this.store.select(contactsStateGetter.getContactsFoundEntitiesState);
+    
     this.findContactForm = this.fb.group({
       email: ['', Validators.pattern('[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})')]
     });
     
-    this.search
+    this.search$ = this.search
     .valueChanges
-    .takeUntil(this.ngUnsubscribe)
     .debounceTime(400)
     .distinctUntilChanged()
-    .subscribe(search => {
-      let searchQuery = search.trim().toLowerCase();
-      this.displayedContacts = this.contacts.filter(contact => {
-        let searchValue = contact.username.trim().toLowerCase();
-        return searchValue.indexOf(searchQuery) !== -1;
+    .map(search => search.trim().toLowerCase())
+    .startWith('');
+    this.contacts$ = this.store.select(contactsStateGetter.getContactsEntitiesState);
+  
+    this.displayedContacts$ = Observable.combineLatest(this.contacts$, this.search$)
+    .map(([contacts, search]) => {
+      return (<any>contacts).filter(contact => {
+        return contact.username.trim().toLowerCase().indexOf(search) !== -1;
       });
     });
   }
   
   ngAfterViewInit() {
-    this.foundContacts$
-    .takeUntil(this.ngUnsubscribe)
+    this.foundContactsSubscriber = this.foundContacts$
     .subscribe(() => this.findContactForm.reset());
   }
   
   onFindSubmit() {
     if (this.findContactForm.valid) {
       this.findContactEmail = this.findContactEmail.trim().toLowerCase();
-      if (this.findContactEmail !== this.userEmail) {
+      if (this.findContactEmail !== this.clientEmail) {
         this.contactsService.findContactByEmail(this.findContactEmail);
       }
       else {
@@ -115,7 +117,8 @@ export class CreateGroupMembersPage {
   }
   
   ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
+    this.foundContactsSubscriber.unsubscribe();
+    this.clientIdSubscriber.unsubscribe();
+    this.clientEmailSubscriber.unsubscribe();
   }
 }

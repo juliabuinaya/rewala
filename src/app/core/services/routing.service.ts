@@ -14,6 +14,8 @@ export class RoutingService {
   public pushPage$ = new Subject();
   public popToRootPage$ = new Subject();
   public popPage$ = new Subject();
+  public remove$ = new Subject();
+  public removeFromActive$ = new Subject();
   
   pushRootPage(page: any, params = {}) {
     let data = {page, params};
@@ -32,4 +34,14 @@ export class RoutingService {
   popPage() {
     this.popPage$.next();
   }
+  
+  remove(startIndex, removeCount) {
+    let data = {startIndex, removeCount};
+    this.remove$.next(data);
+  }
+  
+  removeFromActive(removeCount) {
+    this.removeFromActive$.next(removeCount);
+  }
+  
 }

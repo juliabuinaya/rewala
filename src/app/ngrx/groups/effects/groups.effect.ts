@@ -10,7 +10,6 @@ import * as groupsGet from '../../groups-request/nested-states/groups-get/action
 import * as groupPost from '../../groups-request/nested-states/group-post/actions/group-post.actions';
 import { SetUserGroupsAction } from '../actions/index';
 import { UpdateUserGroupsAction } from '../actions/groups.actions';
-import { CreateQuestionGroupsPage } from '../../../pages/create-question/create-question-groups/create-question-groups';
 
 
 @Injectable()
@@ -29,9 +28,6 @@ export class GroupsEffects {
   @Effect()
   updateGroups$: Observable<Action> = this.actions$
   .ofType(groupPost.ActionTypes.REQUEST_SUCCESS)
-  .map(action => {
-    return new UpdateUserGroupsAction(toPayload(action))
-  })
-  .do(() => this.routingService.pushRootPage(CreateQuestionGroupsPage));
-
+  .map(action => new UpdateUserGroupsAction(toPayload(action)))
+  .do(() => this.routingService.removeFromActive(2));
 }

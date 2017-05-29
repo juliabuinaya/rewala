@@ -47,6 +47,17 @@ export class RootPage {
     .subscribe(() => {
       this.navCtrl.popToRoot();
     });
+  
+    this.routingService.remove$
+    .subscribe((data: any) => {
+      this.navCtrl.remove(data.startIndex, data.removeCount);
+    });
+  
+    this.routingService.removeFromActive$
+    .subscribe((removeCount: number) => {
+      this.navCtrl.remove(this.navCtrl.getActive().index - 1, removeCount);
+    });
+    
   }
   
   ngOnDestroy() {
