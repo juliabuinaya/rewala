@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Restangular } from 'ngx-restangular';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+
+import { OptionsService } from '../services/options.service';
 
 import * as _ from 'lodash';
 
@@ -11,6 +12,7 @@ import * as questionsRequest from '../../ngrx/questions-request/actions/index';
 @Injectable()
 export class QuestionsService {
   
+  public options;
   private questionTypes = [
     {
       id: "507f1f77bcf86cd799439100",
@@ -22,12 +24,13 @@ export class QuestionsService {
     }
   ];
   
-  constructor(public store: Store<IAppState>, public restangular: Restangular) {
+  constructor(public store: Store<IAppState>,
+              public restangular: Restangular,
+              public optionsService: OptionsService) {
   }
   
   createQuestion(data) {
-    console.log(data);
-    
+    this.options = data.options;
     let nowDate: any = new Date();
     let deadlineDate: any = new Date(new Date(data.deadline));
     let ttl = Math.floor((deadlineDate - nowDate)/1000);
@@ -46,10 +49,14 @@ export class QuestionsService {
   }
   
   createQuestionRequest(payload: any) {
-    return this.restangular.all('questions').post(payload);
-    //.switchMap(question => {
-    //  return question.all('questionOptions').post();
-    //});
+    return this.restangular.all('questions').post(payload)
+    .map(question => {
+      let payload = this.options.map(option => {
+        option.questionId = question.id;
+        return option;
+      });
+      this.optionsService.createQuestionOptions(payload);
+    });
   }
-
+  
 }

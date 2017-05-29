@@ -7,6 +7,7 @@ import { QuestionsService } from '../../../../../core/services/questions.service
 
 import * as questionPost from '../actions/question-post.actions';
 import { QuestionPostSuccessAction, QuestionPostFailAction } from '../actions/question-post.actions';
+import { SpinnerLoadingStartAction } from '../../../../spinner/actions/spinner.actions';
 
 @Injectable()
 export class QuestionPostEffects {
@@ -22,6 +23,13 @@ export class QuestionPostEffects {
     return this.questionsService.createQuestionRequest(payload)
     .map((res: any) => new QuestionPostSuccessAction(res))
     .catch(error => Observable.of(new QuestionPostFailAction(error)));
+  });
+  
+  @Effect()
+  spinnerStart$: Observable<Action> = this.actions$
+  .ofType(questionPost.ActionTypes.REQUEST)
+  .map((action: any) => {
+    return new SpinnerLoadingStartAction();
   });
   
 }

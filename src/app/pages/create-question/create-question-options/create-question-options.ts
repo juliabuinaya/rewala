@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { RoutingService } from '../../../core/services/routing.service';
 import { CreateQuestionGroupsPage } from '../create-question-groups/create-question-groups';
@@ -14,6 +15,7 @@ import { CreateQuestionGroupsPage } from '../create-question-groups/create-quest
 })
 export class CreateQuestionOptionsPage {
   
+  public optionsForm: FormGroup;
   questionSettings;
   optionText = '';
   options = [];
@@ -21,14 +23,21 @@ export class CreateQuestionOptionsPage {
   showForm = true;
   
   constructor(public routingService: RoutingService,
-              public navParams: NavParams) {
+              public navParams: NavParams,
+              private fb: FormBuilder) {
   
     this.questionSettings = navParams.get('questionSettings');
   }
   
+  ngOnInit() {
+    this.optionsForm = this.fb.group({
+      text: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(1024)]]
+    });
+  }
+  
   onSubmit(form) {
     if (form.valid) {
-      this.options.push(this.optionText);
+      this.options.push({text: this.optionText});
       this.optionText = '';
     }
   }

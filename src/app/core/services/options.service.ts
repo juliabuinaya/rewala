@@ -12,14 +12,20 @@ export class OptionsService {
   constructor(public store: Store<IAppState>, public restangular: Restangular) {
   }
   
-  createOptions(data) {
-    console.log(data);
+  createQuestionOptions(data) {
     this.store.dispatch(new optionsRequest.OptionsPostAction(data));
   }
   
-  createOptionsRequest(payload: any) {
-    return Observable.of(true);
-    //return this.restangular.all('questions').post(payload);
+  createQuestionOptionsRequest(payload: any) {
+    return this.restangular.all('questionOptions').customPOST(payload, 'post-multiple-options');
   }
-
+  
+  getQuestionOptions(questionId) {
+    //this.store.dispatch(new optionsRequest.OptionsGetAction(questionId));   <--  need to create options state
+  }
+  
+  getQuestionOptionsRequest(questionId) {
+    return this.restangular.all('questions', questionId).one('questionOptions').get();
+  }
+  
 }

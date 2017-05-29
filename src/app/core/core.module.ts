@@ -29,6 +29,7 @@ import { GroupPostEffects } from '../ngrx/groups-request/nested-states/group-pos
 import { QuestionPostEffects } from '../ngrx/questions-request/nested-states/question-post/effects/question-post.effect';
 import { ContactsEffects } from '../ngrx/contacts/effects/contacts.effect';
 import { ContactsRequestEffects } from '../ngrx/contacts-request/effects/contacts-request.effect';
+import { OptionsPostEffects } from '../ngrx/options-request/nested-states/options-post/effects/options-post.effect';
 
 export function provideStorage() {
   return new Storage({});
@@ -64,6 +65,7 @@ const cloudSettings: CloudSettings = {
      EffectsModule.run(GroupsEffects),
      EffectsModule.run(GroupPostEffects),
      EffectsModule.run(QuestionPostEffects),
+     EffectsModule.run(OptionsPostEffects),
      EffectsModule.run(ContactsEffects),
      EffectsModule.run(ContactsRequestEffects),
     

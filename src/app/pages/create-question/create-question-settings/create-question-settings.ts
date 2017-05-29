@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { Store } from '@ngrx/store';
-import { Subject } from 'rxjs';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { RoutingService } from '../../../core/services/routing.service';
 import { CreateQuestionOptionsPage } from '../create-question-options/create-question-options';
@@ -19,18 +19,19 @@ import * as userStateGetter from '../../../ngrx/user/states/user-getter.state';
 })
 export class CreateQuestionSettingsPage {
   
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
+  public settingsForm: FormGroup;
   public clientId;
-  public text;
+  public clientIdSubscriber;
+  public questionText;
   public multiple = false;
   public defaultDate;
   public deadlineDate;
 
   constructor(public routingService: RoutingService,
-              public store: Store<IAppState>) {
+              public store: Store<IAppState>,
+              private fb: FormBuilder) {
   
-    this.store.select(userStateGetter.getIdFromState)
-    .takeUntil(this.ngUnsubscribe)
+    this.clientIdSubscriber = this.store.select(userStateGetter.getIdFromState)
     .subscribe(id => this.clientId = id);
   
     this.defaultDate = new Date();
@@ -39,11 +40,19 @@ export class CreateQuestionSettingsPage {
     this.deadlineDate = this.defaultDate;
   }
   
+  ngOnInit() {
+    this.settingsForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(1024)]],
+      deadline: [],
+      multiple: []
+    });
+  }
+  
   submit(form) {
     if (form.valid) {
       let questionSettings = {
         clientId: this.clientId,
-        text: this.text,
+        text: this.questionText,
         multiple: this.multiple,
         deadline: this.deadlineDate
       };
@@ -52,8 +61,7 @@ export class CreateQuestionSettingsPage {
   }
   
   ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
+    this.clientIdSubscriber.unsubscribe();
   }
 
 }

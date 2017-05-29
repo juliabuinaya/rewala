@@ -11,25 +11,30 @@
 
 <ion-content padding>
 
-  <form class="saveForm" name="saveForm" #saveForm="ngForm">
+  <form class="saveForm" [formGroup]="settingsForm">
     <ion-list>
       <h4>Enter your question</h4>
       <ion-item>
         <ion-label floating>Type your question here</ion-label>
-        <ion-input type="text" #question="ngModel" [(ngModel)]="text" name="question"
-          (keydown.enter)="submit(saveForm)" required></ion-input>
+        <ion-input type="text"
+          formControlName="name"
+          [(ngModel)]="questionText"
+          (keydown.enter)="submit(settingsForm)"></ion-input>
       </ion-item>
-      <div *ngIf="question.errors && (question.dirty || question.touched)"
-        class="error-box">Question is required
+      <div *ngIf="settingsForm.get('name').hasError('required') && settingsForm.get('name').touched" class="error-box">
+        Question text required
+      </div>
+      <div *ngIf="settingsForm.get('name').hasError('minlength') && settingsForm.get('name').dirty" class="error-box">
+        Minimum of 3 characters
       </div>
       <ion-item class="deadline">
         <ion-label>Set a deadline</ion-label>
         <ion-datetime displayFormat="DD/MM/YYYY" min="{{ defaultDate }}" max="2020-10-31"
-          [(ngModel)]="deadlineDate" name="multiple"></ion-datetime>
+          [(ngModel)]="deadlineDate" formControlName="deadline"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label>Multiple answers</ion-label>
-        <ion-toggle [(ngModel)]="multiple" name="multiple"></ion-toggle>
+        <ion-toggle [(ngModel)]="multiple" formControlName="multiple"></ion-toggle>
       </ion-item>
       <ion-item></ion-item>
     </ion-list>
@@ -39,6 +44,6 @@
 
 <ion-footer>
   <div class="btn-wrapper">
-    <button ion-button outline full type="button" [disabled]="!saveForm.valid" (click)="submit(saveForm)">Next</button>
+    <button ion-button outline full type="button" [disabled]="!settingsForm.valid" (click)="submit(settingsForm)">Next</button>
   </div>
 </ion-footer>

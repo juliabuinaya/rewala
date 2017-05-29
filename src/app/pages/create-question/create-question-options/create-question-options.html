@@ -15,20 +15,30 @@
 
   <ion-list no-lines>
     <ion-item text-wrap detail-none *ngFor="let option of options; let i = index;">
-      {{ i+1 }}. {{ option }}
+      {{ i+1 }}. {{ option.text }}
       <button ion-button icon-only clear small color="danger" item-right (click)="deleteOption(i)">
         <ion-icon name="close"></ion-icon>
       </button>
     </ion-item>
   </ion-list>
 
-  <form class="saveForm" name="saveForm" #saveForm="ngForm" (ngSubmit)="onSubmit(saveForm)" *ngIf="showForm">
+  <form class="saveForm"
+    [formGroup]="optionsForm"
+    (ngSubmit)="onSubmit(optionsForm)"
+    *ngIf="showForm">
     <ion-grid>
       <ion-row>
         <ion-col col-10>
           <ion-item>
-            <ion-input type="text" placeholder="Type your option here"  #option="ngModel" [(ngModel)]="optionText" name="option"></ion-input>
+            <ion-input type="text"
+              placeholder="Type your option here"
+              formControlName="text"
+              [(ngModel)]="optionText">
+            </ion-input>
           </ion-item>
+          <div *ngIf="optionsForm.get('text').hasError('minlength') && optionsForm.get('text').dirty" class="error-box">
+            Minimum of 3 characters
+          </div>
         </ion-col>
         <ion-col col-2>
           <button ion-button icon-only clear type="submit" [disabled]="!optionText.length"><ion-icon name="add"></ion-icon></button>

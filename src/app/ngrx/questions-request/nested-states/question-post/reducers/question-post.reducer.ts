@@ -20,9 +20,7 @@ export function questionPostReducer(
     case ActionTypes.REQUEST_FAIL:
       return Object.assign({}, state, {
         loading: false,
-        loaded: true,
-        status: action.payload.status,
-        data: action.payload.data
+        loaded: true
       });
     
     default: {
