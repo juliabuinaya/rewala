@@ -16,19 +16,20 @@
 
 <ion-content>
 
-  <ion-grid>
-    <ion-row class="top-panel">
-      <ion-col col-4>
-        <button ion-button clear>Created</button>
-      </ion-col>
-      <ion-col col-4>
-        <button ion-button clear>Voices</button>
-      </ion-col>
-      <ion-col col-4>
-        <button ion-button clear>Awaiting</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class="top-panel">
+    <button ion-button clear>
+      <span>Created</span>
+      <span>12</span>
+    </button>
+    <button ion-button clear>
+      <span>Voice given</span>
+      <span></span>
+    </button>
+    <button ion-button clear>
+      <span>Awaiting</span>
+      <span></span>
+    </button>
+  </div>
 
   <ion-list no-lines padding>
   <button ion-item detail-none *ngFor="let page of resultsPages" (click)="toResults(page.type)">

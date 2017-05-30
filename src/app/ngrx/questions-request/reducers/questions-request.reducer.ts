@@ -2,6 +2,7 @@ import { questionsRequestInitialState, IQuestionsRequestState  } from '../states
 
 import {
   questionsGetReducer,
+  myQuestionsGetReducer,
   questionPostReducer
 } from './index';
 
@@ -12,6 +13,7 @@ export function questionsRequestReducer(
 ): IQuestionsRequestState {
   return {
     questionsGetState: questionsGetReducer(state.questionsGetState, action),
+    myQuestionsGetState: questionsGetReducer(state.myQuestionsGetState, action),
     questionPostState: questionPostReducer(state.questionPostState, action)
   };
 }

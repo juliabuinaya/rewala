@@ -1,7 +1,8 @@
-import { IQuestionsGetState, IQuestionPostState } from './index';
+import { IQuestionsGetState, IMyQuestionsGetState, IQuestionPostState } from './index';
 
 export interface IQuestionsRequestState {
   questionsGetState?: IQuestionsGetState;
+  myQuestionsGetState?: IMyQuestionsGetState;
   questionPostState?: IQuestionPostState;
 }
 

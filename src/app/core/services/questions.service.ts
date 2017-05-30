@@ -8,6 +8,7 @@ import * as _ from 'lodash';
 
 import { IAppState } from '../../ngrx/state/app.state';
 import * as questionsRequest from '../../ngrx/questions-request/actions/index';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class QuestionsService {
@@ -56,6 +57,14 @@ export class QuestionsService {
       });
       this.optionsService.createQuestionOptions(payload);
     });
+  }
+  
+  getMyQuestions() {
+    this.store.dispatch(new questionsRequest.MyQuestionsGetAction());
+  }
+  
+  getMyQuestionsRequest(clientId) {
+    return this.restangular.one('clients', clientId).all('questions').getList();
   }
   
 }

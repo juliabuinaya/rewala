@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
-import { ResultsPage } from '../results/results';
 import { RoutingService } from '../../core/services/routing.service';
+import { QuestionsService } from '../../core/services/questions.service';
+
+import { ResultsPage } from '../results/results';
 import { CreateQuestionSettingsPage } from '../create-question/create-question-settings/create-question-settings';
 
 
@@ -18,11 +20,11 @@ export class DashboardPage {
   resultsPages: any;
   
 
-  constructor(public routingService: RoutingService) {
+  constructor(public routingService: RoutingService, public questionsService: QuestionsService) {
   }
   
   ngOnInit() {
-  
+    
     this.resultsPages = [
       { title: 'Awaiting your answer', type: 'awaiting-your-answer' },
       { title: 'Awaiting others', type: 'awaiting-others' },
