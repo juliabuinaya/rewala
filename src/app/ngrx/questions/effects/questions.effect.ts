@@ -8,8 +8,10 @@ import { DashboardPage } from '../../../pages/dashboard/dashboard';
 
 //actions
 import * as myQuestionsGet from '../../questions-request/nested-states/my-questions-get/actions/my-questions-get.actions';
-import { SetMyQuestionsAction } from '../actions/questions.actions';
+import * as questionPost from '../../questions-request/nested-states/question-post/actions/question-post.actions';
+import { SetMyQuestionsAction, UpdateMyQuestionsAction } from '../actions/questions.actions';
 import { SpinnerLoadingEndAction } from '../../spinner/actions/spinner.actions';
+
 
 @Injectable()
 export class QuestionsEffects {
@@ -31,4 +33,10 @@ export class QuestionsEffects {
     this.routingService.pushRootPage(DashboardPage);
     return new SpinnerLoadingEndAction();
   });
+  
+  @Effect()
+  updateMyQuestions$: Observable<Action> = this.actions$
+  .ofType(questionPost.ActionTypes.REQUEST_SUCCESS)
+  .map(action => new UpdateMyQuestionsAction(toPayload(action)));
+  
 }

@@ -50,7 +50,7 @@ export class QuestionsService {
   
   createQuestionRequest(payload: any) {
     return this.restangular.all('questions').post(payload)
-    .map(question => {
+    .do(question => {
       let payload = this.options.map(option => {
         option.questionId = question.id;
         return option;
