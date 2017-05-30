@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Question Page
+      Question
     </ion-title>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -15,7 +15,10 @@
 </ion-header>
 
 <ion-content padding>
-  <h4>Action: {{ action }}</h4>
-  <h5>Result type: {{ resultsType }}</h5>
-  <p>Question ID: {{ id }}</p>
+  <p>Action: {{ action }}</p>
+  <div class="question-wrap">
+    <h4 class="title">Question</h4>
+    <h2 class="question">{{ question.text }}</h2>
+    <p class="deadline"></p>
+  </div>
 </ion-content>

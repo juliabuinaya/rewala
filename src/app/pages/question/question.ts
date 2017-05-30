@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, IonicPage, NavParams } from 'ionic-angular';
 
 @IonicPage({
@@ -11,19 +11,16 @@ import { NavController, IonicPage, NavParams } from 'ionic-angular';
 })
 export class QuestionPage {
   
-  action: string;
-  resultsType: string;
-  id: string;
+  public action;
+  public question;
   
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams) {
+  constructor(public navParams: NavParams) {
     
     this.action = navParams.get('action');
-    this.resultsType = navParams.get('resultsType');
-    this.id = navParams.get('id');
+    this.question = navParams.get('question');
   }
 
   ngOnInit() {
-    
+    console.log(this.question);
   }
 }
