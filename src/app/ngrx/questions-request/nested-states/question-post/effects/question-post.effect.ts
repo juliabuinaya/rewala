@@ -45,4 +45,11 @@ export class QuestionPostEffects {
     return new SpinnerLoadingEndAction();
   });
   
+  @Effect()
+  spinnerEnd$: Observable<Action> = this.actions$
+  .ofType(questionPost.ActionTypes.REQUEST_FAIL)
+  .map((action: any) => {
+    return new SpinnerLoadingEndAction();
+  });
+  
 }

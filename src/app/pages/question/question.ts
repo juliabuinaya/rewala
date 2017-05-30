@@ -13,6 +13,7 @@ export class QuestionPage {
   
   public action;
   public question;
+  public deadline;
   
   constructor(public navParams: NavParams) {
     
@@ -22,5 +23,8 @@ export class QuestionPage {
 
   ngOnInit() {
     console.log(this.question);
+    console.log(new Date(this.question.createdAt).getTime());
+    this.deadline = new Date(new Date(this.question.createdAt).getTime() + this.question.ttl*1000);
+    console.log(this.deadline);
   }
 }
