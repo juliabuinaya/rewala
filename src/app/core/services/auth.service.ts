@@ -10,6 +10,7 @@ import * as appState from '../../ngrx/state/app.state';
 import * as authRequest from '../../ngrx/auth-request/actions/index';
 import * as user from '../../ngrx/user/actions/index';
 import * as groups from '../../ngrx/groups/actions/index';
+import * as questions from '../../ngrx/questions/actions/index';
 
 
 @Injectable()
@@ -38,5 +39,6 @@ export class AuthService {
   logout() {
     this.store.dispatch(new user.ClearUserAction());
     this.store.dispatch(new groups.ClearUserGroupsAction());
+    this.store.dispatch(new questions.ClearQuestionsAction());
   }
 }

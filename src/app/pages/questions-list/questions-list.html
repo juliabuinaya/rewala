@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Questions
+      Questions list
     </ion-title>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -15,15 +15,17 @@
 </ion-header>
 
 <ion-content>
-
-  <!--<ion-card *ngFor="let question of questions">-->
-    <!--<ion-card-content>-->
-      <!--{{ question.text }}-->
-      <!--<div class="buttons">-->
-        <!--<button ion-button clear (click)="toQuestionPage(resultsType, question.id, actionType='details')">See details</button>-->
-        <!--<button ion-button clear color="danger" (click)="toQuestionPage(resultsType, question.id, actionType='recast')">Recast</button>-->
-      <!--</div>-->
-    <!--</ion-card-content>-->
-  <!--</ion-card>-->
-
+  <h4 *ngIf="!(questionList$ | async).length">List is empty</h4>
+  <div *ngIf="(questionList$ | async).length">
+    <h4>{{ questionType }}</h4>
+    <ion-card *ngFor="let question of (questionList$ | async)">
+      <ion-card-content>
+        <p>{{ question.text }}</p>
+        <div class="buttons">
+          <button ion-button clear (click)="toQuestionPage(question, 'details')">See details</button>
+          <button ion-button clear color="danger" (click)="toQuestionPage(question, 'recast')">Recast</button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

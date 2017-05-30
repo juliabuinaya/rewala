@@ -3,9 +3,8 @@ import { IonicPage } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
 import { RoutingService } from '../../core/services/routing.service';
-
-import { ResultsPage } from '../results/results';
 import { CreateQuestionSettingsPage } from '../create-question/create-question-settings/create-question-settings';
+import { QuestionsListPage } from '../questions-list/questions-list';
 
 import { IAppState } from '../../ngrx/state/app.state';
 //getters
@@ -38,15 +37,13 @@ export class DashboardPage {
     ];
   
     this.myQuestions$ = this.store.select(questionsStateGetter.getQuestionsMyEntitiesState);
-    //this.myQuestions$.subscribe(res => console.log(res));
   }
 
   toCreateQuestion() {
     this.routingService.pushPage(CreateQuestionSettingsPage);
   }
   
-  toResultsPage(resultsType) {
-    this.routingService.pushPage(ResultsPage, {resultsType});
+  toQuestionsList(questionType) {
+    this.routingService.pushPage(QuestionsListPage, {questionType});
   }
-  
 }
