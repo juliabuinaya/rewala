@@ -8,8 +8,6 @@ import { RoutingService } from '../../../../../core/services/routing.service';
 
 import * as optionsPost from '../actions/options-post.actions';
 import { OptionsPostSuccessAction, OptionsPostFailAction } from '../actions/options-post.actions';
-import { DashboardPage } from '../../../../../pages/dashboard/dashboard';
-import { SpinnerLoadingEndAction } from '../../../../spinner/actions/spinner.actions';
 
 
 @Injectable()
@@ -28,14 +26,6 @@ export class OptionsPostEffects {
     return this.optionsService.createQuestionOptionsRequest(payload)
     .map((res: any) => new OptionsPostSuccessAction(res))
     .catch(error => Observable.of(new OptionsPostFailAction(error)));
-  });
-  
-  @Effect()
-  redirectToDashboardPage$: Observable<Action> = this.actions$
-  .ofType(optionsPost.ActionTypes.REQUEST_SUCCESS)
-  .map((action: any) => {
-    this.routingService.pushRootPage(DashboardPage);
-    return new SpinnerLoadingEndAction();
   });
   
 }

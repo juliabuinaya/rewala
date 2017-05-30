@@ -19,15 +19,15 @@
   <div class="top-panel">
     <button ion-button clear>
       <span>Created</span>
-      <span>12</span>
+      <span class="quantity" *ngIf="(myQuestions$ | async)?.length">{{(myQuestions$ | async)?.length}}</span>
     </button>
     <button ion-button clear>
       <span>Voice given</span>
-      <span></span>
+      <span class="quantity"></span>
     </button>
     <button ion-button clear>
       <span>Awaiting</span>
-      <span></span>
+      <span class="quantity"></span>
     </button>
   </div>
 

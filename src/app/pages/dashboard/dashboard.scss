@@ -16,6 +16,9 @@ page-dashboard {
           display: flex;
           flex-direction: column;
           margin-top: 2px;
+          .quantity {
+            margin-top: 2px;
+          }
         }
       }
     }

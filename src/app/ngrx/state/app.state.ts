@@ -58,6 +58,7 @@ import * as fromOptionsRequestReducers from '../options-request/reducers';
  import * as fromUserRequest from '../user-request/index';
  import * as fromSpinner from '../spinner/index';
  import * as fromGroups from '../groups/index';
+ import * as fromQuestions from '../questions/index';
  import * as fromContacts from '../contacts/index';
  import * as fromContactsRequest from '../contacts-request/index';
  
@@ -77,6 +78,7 @@ export interface IAppState {
   groupsRequest: fromGroupsRequestState.IGroupsRequestState;
   questionsRequest: fromQuestionsRequestState.IQuestionsRequestState;
   optionsRequest: fromOptionsRequestState.IOptionsRequestState;
+  questions: fromQuestions.IQuestionsState;
   contacts: fromContacts.IContactsState;
   contactsRequest: fromContactsRequest.IContactsRequestState;
 }
@@ -99,6 +101,7 @@ const reducers = {
   groupsRequest: fromGroupsRequestReducers.groupsRequestReducer,
   questionsRequest: fromQuestionsRequestReducers.questionsRequestReducer,
   optionsRequest: fromOptionsRequestReducers.optionsRequestReducer,
+  questions: fromQuestions.reducer,
   contacts: fromContacts.reducer,
   contactsRequest: fromContactsRequest.reducer
 };
