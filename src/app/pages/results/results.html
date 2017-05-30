@@ -19,7 +19,7 @@
 
   <ion-card *ngFor="let question of questions">
     <ion-card-content>
-      {{ question.text }}
+      <p>{{ question.text }}</p>
       <div class="buttons">
         <button ion-button clear (click)="toQuestionPage(resultsType, question.id, actionType='details')">See details</button>
         <button ion-button clear color="danger" (click)="toQuestionPage(resultsType, question.id, actionType='recast')">Recast</button>

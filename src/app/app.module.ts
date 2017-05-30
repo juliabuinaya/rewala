@@ -18,6 +18,7 @@ import { CreateQuestionModule } from './pages/create-question/create-question.mo
 import { ResultsModule } from './pages/results/results.module';
 import { QuestionModule } from './pages/question/question.module';
 import { CreateGroupModule } from './pages/create-group/create-group.module';
+import { QuestionsListModule } from './pages/questions-list/questions-list.module';
 
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -49,6 +50,7 @@ export function instrumentOptions() {
     QuestionModule,
     CreateGroupModule,
     ResultsModule,
+    QuestionsListModule,
 
     // create question pages
   

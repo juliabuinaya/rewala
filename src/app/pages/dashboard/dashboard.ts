@@ -45,7 +45,7 @@ export class DashboardPage {
     this.routingService.pushPage(CreateQuestionSettingsPage);
   }
   
-  toResults(resultsType) {
+  toResultsPage(resultsType) {
     this.routingService.pushPage(ResultsPage, {resultsType});
   }
   
