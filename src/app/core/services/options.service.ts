@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Restangular } from 'ngx-restangular';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 
 import { IAppState } from '../../ngrx/state/app.state';
 import * as optionsRequest from '../../ngrx/options-request/actions/index';
+
 
 @Injectable()
 export class OptionsService {
@@ -21,7 +21,7 @@ export class OptionsService {
   }
   
   getQuestionOptions(questionId) {
-    //this.store.dispatch(new optionsRequest.OptionsGetAction(questionId));   <--  need to create options state
+    this.store.dispatch(new optionsRequest.OptionsGetAction(questionId));
   }
   
   getQuestionOptionsRequest(questionId) {

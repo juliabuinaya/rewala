@@ -4,15 +4,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Store } from '@ngrx/store';
 
+import { AuthService } from './core/services/auth.service';
+
 import { RootPage } from './pages/root/root';
 import { DashboardPage } from './pages/dashboard/dashboard';
 import { SettingsPage } from './pages/settings/settings';
-import { ResultsPage } from './pages/results/results';
-import { SignUpPage } from './pages/auth/sign-up/sign-up';
-import { SignInPage } from './pages/auth/sign-in/sign-in';
-
-
-import { AuthService } from './core/services/auth.service';
 
 import { IAppState } from './ngrx/state/app.state';
 import * as userStateGetter from './ngrx/user/states/user-getter.state';
@@ -41,11 +37,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Sign Up', component: SignUpPage },
-      { title: 'Sign In', component: SignInPage },
       { title: 'Dashboard', component: DashboardPage },
-      { title: 'Add Question', component: CreateQuestionSettingsPage },
-      { title: 'Results', component: ResultsPage },
+      { title: 'Create Question', component: CreateQuestionSettingsPage },
       { title: 'My groups', component: CreateQuestionGroupsPage },
       { title: 'Settings', component: SettingsPage }
     ];

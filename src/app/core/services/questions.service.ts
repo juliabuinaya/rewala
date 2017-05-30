@@ -37,7 +37,6 @@ export class QuestionsService {
     let questionTypeId = (_.find(this.questionTypes, ['multiple', data.multiple])).id;
     
     let questionData: any = {
-      name: data.text,
       text: data.text,
       clientId: data.clientId,
       ttl: ttl,
