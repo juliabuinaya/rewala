@@ -19,9 +19,12 @@
   <div class="question-wrap">
     <h4 class="title">Question</h4>
     <h2 class="question">{{ question.text }}</h2>
-    <div class="options">
-
-    </div>
+    <ion-list no-lines class="options">
+      <ion-item  *ngFor="let option of (currentOptions$ | async); let i = index">
+        <ion-label>{{i+1}}. {{option.text}}</ion-label>
+        <!--<ion-checkbox *ngIf="true"></ion-checkbox>-->
+      </ion-item>
+    </ion-list>
     <p class="deadline"> Deadline: {{ deadline | date }}</p>
   </div>
 </ion-content>
