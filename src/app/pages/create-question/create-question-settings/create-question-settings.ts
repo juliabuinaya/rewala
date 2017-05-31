@@ -22,7 +22,7 @@ export class CreateQuestionSettingsPage {
   public settingsForm: FormGroup;
   public clientId;
   public clientIdSubscriber;
-  public questionText;
+  public questionText = null;
   public multiple = false;
   public defaultDate;
   public deadlineDate;
