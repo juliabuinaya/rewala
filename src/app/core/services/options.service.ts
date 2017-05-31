@@ -10,15 +10,19 @@ import * as optionsRequest from '../../ngrx/options-request/actions/index';
 
 //getters
 import * as optionsStateGetter from '../../ngrx/options/states/options-getter.state';
+import * as optionsGetStateGetter from '../../ngrx/options-request/nested-states/options-get/states/options-get-getter.state';
 
 
 @Injectable()
 export class OptionsService {
   
   public currentOptions$: Observable<any>;
+  public optionsRequestGetLoadedState$: Observable<any>;
   
   constructor(public store: Store<IAppState>, public restangular: Restangular) {
+    
     this.currentOptions$ = this.store.select(optionsStateGetter.getOptionsCurrentEntitiesState);
+    this.optionsRequestGetLoadedState$ = this.store.select(optionsGetStateGetter.getOptionsGetLoadedState);
   }
   
   createQuestionOptions(data) {
