@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IonicPage, NavParams, NavController } from 'ionic-angular';
-import { Store } from '@ngrx/store';
+import { IonicPage, NavParams } from 'ionic-angular';
 
 import { GroupsService } from '../../../core/services/groups.service';
 import { RoutingService } from '../../../core/services/routing.service';
-
-import { IAppState } from '../../../ngrx/state/app.state';
-import * as contactsStateGetter from '../../../ngrx/contacts/states/contacts-getter.state';
+import { ContactsService } from '../../../core/services/contacts.service';
 
 
 @IonicPage({
@@ -25,15 +22,15 @@ export class CreateGroupCompletePage {
   public groupName = null;
   public selectedContacts$;
   
-  constructor(public store: Store<IAppState>,
-              private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
               public navParams: NavParams,
+              public contactsService: ContactsService,
               public groupsService: GroupsService,
               public routingService: RoutingService) {
     
     this.groupData = navParams.get('groupData');
     this.questionSettings = navParams.get('questionSettings');
-    this.selectedContacts$ = this.store.select(contactsStateGetter.getContactsSelectedEntitiesState);
+    this.selectedContacts$ = this.contactsService.selectedContacts$;
   }
   
   ngOnInit() {

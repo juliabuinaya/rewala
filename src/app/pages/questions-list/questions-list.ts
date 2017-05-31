@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
-import { Store } from '@ngrx/store';
 
 import { RoutingService } from '../../core/services/routing.service';
-import { QuestionPage } from '../question/question';
+import { QuestionsService } from '../../core/services/questions.service';
 
-import { IAppState } from '../../ngrx/state/app.state';
-//getters
-import * as questionsStateGetter from '../../ngrx/questions/states/questions-getter.state';
+import { QuestionPage } from '../question/question';
 
 
 @IonicPage({
@@ -23,8 +20,8 @@ export class QuestionsListPage {
   public questionList$;
 
   constructor(public navParams: NavParams,
-              public store: Store<IAppState>,
-              public routingService: RoutingService) {
+              public routingService: RoutingService,
+              public questionsService: QuestionsService) {
     
     this.questionType = navParams.get('questionType');
     console.log(this.questionType);
@@ -33,19 +30,19 @@ export class QuestionsListPage {
   ngOnInit() {
     switch(this.questionType) {
       case 'My questions':
-        this.questionList$ = this.store.select(questionsStateGetter.getQuestionsMyEntitiesState);
+        this.questionList$ = this.questionsService.myQuestions$;
         break;
   
       case 'Voice given questions':
-        //this.questionList$ = this.store.select(questionsStateGetter.getQuestionsMyEntitiesState);
+        //this.questionList$ =
         break;
   
       case 'Awaiting answer questions':
-        //this.questionList$ = this.store.select(questionsStateGetter.getQuestionsMyEntitiesState);
+        //this.questionList$ =
         break;
         
       default:
-        this.questionList$ = this.store.select(questionsStateGetter.getQuestionsMyEntitiesState);
+        this.questionList$ = this.questionsService.myQuestions$;
         break;
     }
   }

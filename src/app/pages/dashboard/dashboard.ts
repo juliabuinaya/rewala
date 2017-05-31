@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import { Store } from '@ngrx/store';
 
 import { RoutingService } from '../../core/services/routing.service';
+import { QuestionsService } from '../../core/services/questions.service';
+
 import { CreateQuestionSettingsPage } from '../create-question/create-question-settings/create-question-settings';
 import { QuestionsListPage } from '../questions-list/questions-list';
-
-import { IAppState } from '../../ngrx/state/app.state';
-//getters
-import * as questionsStateGetter from '../../ngrx/questions/states/questions-getter.state';
 
 
 @IonicPage({
@@ -24,7 +21,7 @@ export class DashboardPage {
   public resultsPages: any;
   
   constructor(public routingService: RoutingService,
-              public store: Store<IAppState>) {
+              public questionsService: QuestionsService) {
   }
   
   ngOnInit() {
@@ -36,7 +33,7 @@ export class DashboardPage {
       { title: 'Past questions', type: 'past questions' }
     ];
   
-    this.myQuestions$ = this.store.select(questionsStateGetter.getQuestionsMyEntitiesState);
+    this.myQuestions$ = this.questionsService.myQuestions$;
   }
 
   toCreateQuestion() {

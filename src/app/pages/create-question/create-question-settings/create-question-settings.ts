@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import { Store } from '@ngrx/store';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
+import { UserService } from '../../../core/services/user.service';
 import { RoutingService } from '../../../core/services/routing.service';
-import { CreateQuestionOptionsPage } from '../create-question-options/create-question-options';
 
-import { IAppState } from '../../../ngrx/state/app.state';
-import * as userStateGetter from '../../../ngrx/user/states/user-getter.state';
+import { CreateQuestionOptionsPage } from '../create-question-options/create-question-options';
 
 
 @IonicPage({
@@ -20,18 +18,20 @@ import * as userStateGetter from '../../../ngrx/user/states/user-getter.state';
 export class CreateQuestionSettingsPage {
   
   public settingsForm: FormGroup;
+  public userId$;
   public clientId;
-  public clientIdSubscriber;
+  public userIdSubscriber;
   public questionText = null;
   public multiple = false;
   public defaultDate;
   public deadlineDate;
 
   constructor(public routingService: RoutingService,
-              public store: Store<IAppState>,
+              public userService: UserService,
               private fb: FormBuilder) {
   
-    this.clientIdSubscriber = this.store.select(userStateGetter.getIdFromState)
+    this.userId$ = this.userService.userId$;
+    this.userIdSubscriber =  this.userId$
     .subscribe(id => this.clientId = id);
   
     this.defaultDate = new Date();
@@ -61,7 +61,7 @@ export class CreateQuestionSettingsPage {
   }
   
   ngOnDestroy() {
-    this.clientIdSubscriber.unsubscribe();
+    this.userIdSubscriber.unsubscribe();
   }
 
 }

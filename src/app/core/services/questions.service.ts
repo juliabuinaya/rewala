@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Restangular } from 'ngx-restangular';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { OptionsService } from '../services/options.service';
+import { OptionsService } from './options.service';
 
 import * as _ from 'lodash';
 
 import { IAppState } from '../../ngrx/state/app.state';
+//actions
 import * as questionsRequest from '../../ngrx/questions-request/actions/index';
-import { Observable } from 'rxjs';
+//getters
+import * as questionsStateGetter from '../../ngrx/questions/states/questions-getter.state';
+
 
 @Injectable()
 export class QuestionsService {
   
+  public myQuestions$: Observable<any>;
   public options;
   private questionTypes = [
     {
@@ -28,6 +33,9 @@ export class QuestionsService {
   constructor(public store: Store<IAppState>,
               public restangular: Restangular,
               public optionsService: OptionsService) {
+    
+    this.myQuestions$ = this.store.select(questionsStateGetter.getQuestionsMyEntitiesState);
+  
   }
   
   createQuestion(data) {

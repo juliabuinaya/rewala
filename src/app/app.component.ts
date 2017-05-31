@@ -2,16 +2,13 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Store } from '@ngrx/store';
 
 import { AuthService } from './core/services/auth.service';
+import { UserService } from './core/services/user.service';
 
 import { RootPage } from './pages/root/root';
 import { DashboardPage } from './pages/dashboard/dashboard';
 import { SettingsPage } from './pages/settings/settings';
-
-import { IAppState } from './ngrx/state/app.state';
-import * as userStateGetter from './ngrx/user/states/user-getter.state';
 import { CreateQuestionSettingsPage } from './pages/create-question/create-question-settings/create-question-settings';
 import { CreateQuestionGroupsPage } from './pages/create-question/create-question-groups/create-question-groups';
 
@@ -30,8 +27,8 @@ export class MyApp {
       public platform: Platform,
       public statusBar: StatusBar,
       public splashScreen: SplashScreen,
-      public store: Store<IAppState>,
-      public authService: AuthService) {
+      public authService: AuthService,
+      public userService: UserService) {
     
     this.initializeApp();
 
@@ -43,7 +40,7 @@ export class MyApp {
       { title: 'Settings', component: SettingsPage }
     ];
 
-    this.user$ = this.store.select(userStateGetter.getUserState);
+    this.user$ = this.userService.user$;
     
   }
   

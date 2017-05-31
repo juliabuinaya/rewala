@@ -1,16 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { Subject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { RoutingService } from '../../../core/services/routing.service';
 import { QuestionsService } from '../../../core/services/questions.service';
 import { CreateGroupMembersPage } from '../../create-group/create-group-members/create-group-members';
-
-import { IAppState } from '../../../ngrx/state/app.state';
-//getters
-import * as groupsStateGetter from '../../../ngrx/groups/states/groups-getter.state';
+import { GroupsService } from '../../../core/services/groups.service';
 
 
 @IonicPage({
@@ -31,16 +27,16 @@ export class CreateQuestionGroupsPage {
   public questionSettings;
   
   constructor(public routingService: RoutingService,
-              public store: Store<IAppState>,
               public navParams: NavParams,
-              public questionsService: QuestionsService) {
+              public questionsService: QuestionsService,
+              public groupsService: GroupsService) {
   
     this.questionSettings = navParams.get('questionSettings');
     
   }
   
   ngOnInit() {
-    this.groups$ = this.store.select(groupsStateGetter.getGroupsEntitiesState);
+    this.groups$ = this.groupsService.groups$;
     this.search$ = this.search
     .valueChanges
     .debounceTime(400)
