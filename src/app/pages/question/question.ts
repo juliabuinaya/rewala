@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { OptionsService } from '../../core/services/options.service';
 
 import { IAppState } from '../../ngrx/state/app.state';
+import { Observable } from 'rxjs';
 
 @IonicPage({
   name: 'question',
@@ -19,13 +20,23 @@ export class QuestionPage {
   public question;
   public deadline;
   public currentOptions$;
+  public resolver$;
   
   constructor(public store: Store<IAppState>,
               public navParams: NavParams,
               public optionsService: OptionsService) {
     this.action = navParams.get('action');
     this.question = navParams.get('question');
+  
+    //this.resolver$ = Observable.of(true)
+    //.delay(2000)
+    //.toPromise();
   }
+  
+  //ionViewCanEnter() {
+  //  return this.resolver$
+  //  .then((res) => res);
+  //}
 
   ngOnInit() {
     console.log(this.question);

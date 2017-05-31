@@ -35,7 +35,8 @@ export class RootPage {
     
     this.routingService.pushPage$
     .subscribe((data: any) => {
-      this.navCtrl.push(data.page, data.params);
+      this.navCtrl.push(data.page, data.params)
+      .catch(() => console.log('should I stay or should I go now'));
     });
     
     this.routingService.popPage$
