@@ -25,7 +25,8 @@ export class OptionsService {
   }
   
   getQuestionOptionsRequest(questionId) {
-    return this.restangular.all('questions', questionId).one('questionOptions').get();
+    debugger;
+    return this.restangular.one('questions', questionId).all('questionOptions').getList();
   }
   
 }
