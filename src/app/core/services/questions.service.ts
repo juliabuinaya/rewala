@@ -19,7 +19,7 @@ export class QuestionsService {
   
   public myQuestions$: Observable<any>;
   public options;
-  private questionTypes = [
+  public questionTypes = [
     {
       id: "507f1f77bcf86cd799439100",
       multiple: false

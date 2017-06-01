@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
-import { Store } from '@ngrx/store';
 
 import { OptionsService } from '../../core/services/options.service';
+import { QuestionsService } from '../../core/services/questions.service';
 
-import { IAppState } from '../../ngrx/state/app.state';
-
+import * as _ from 'lodash';
 
 @IonicPage({
   name: 'question',
@@ -18,14 +17,16 @@ export class QuestionPage {
   
   public action;
   public question;
+  public questionTypes;
+  public optionType;
   public deadline;
   public currentOptions$;
   public optionsRequestGetLoadedState$;
   public optionsResolver;
   
-  constructor(public store: Store<IAppState>,
-              public navParams: NavParams,
-              public optionsService: OptionsService) {
+  constructor(public navParams: NavParams,
+              public optionsService: OptionsService,
+              public questionsService: QuestionsService) {
     
     this.action = navParams.get('action');
     this.question = navParams.get('question');
@@ -47,6 +48,8 @@ export class QuestionPage {
     console.log(this.question);
     this.deadline = new Date(new Date(this.question.createdAt).getTime() + this.question.ttl*1000);
     this.currentOptions$ = this.optionsService.currentOptions$;
+    this.questionTypes = this.questionsService.questionTypes;
+    this.optionType = _.find(this.questionTypes, ['id', this.question.questionTypeId]);
   }
   
   ngOnDestroy() {
