@@ -11,6 +11,8 @@ import * as authRequest from '../../ngrx/auth-request/actions/index';
 import * as user from '../../ngrx/user/actions/index';
 import * as groups from '../../ngrx/groups/actions/index';
 import * as questions from '../../ngrx/questions/actions/index';
+import * as options from '../../ngrx/options/actions/index';
+import * as contacts from '../../ngrx/contacts/actions/index';
 
 
 @Injectable()
@@ -39,6 +41,8 @@ export class AuthService {
   logout() {
     this.store.dispatch(new user.ClearUserAction());
     this.store.dispatch(new groups.ClearUserGroupsAction());
+    this.store.dispatch(new options.ClearOptionsAction());
     this.store.dispatch(new questions.ClearQuestionsAction());
+    this.store.dispatch(new contacts.ClearContactsAction());
   }
 }
