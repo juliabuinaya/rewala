@@ -32,10 +32,22 @@
   </div>
 
   <ion-list no-lines padding>
-  <button ion-item detail-none *ngFor="let page of resultsPages">
-    <ion-icon name="arrow-forward"></ion-icon>
-    {{page.title}}
-  </button>
+    <button ion-item detail-none (click)="toQuestionsList('My questions')">
+      <ion-icon name="arrow-forward"></ion-icon>
+      Your created questions
+    </button>
+    <button ion-item detail-none>
+      <ion-icon name="arrow-forward"></ion-icon>
+      Awaiting your answer
+    </button>
+    <button ion-item detail-none>
+      <ion-icon name="arrow-forward"></ion-icon>
+      Awaiting others
+    </button>
+    <button ion-item detail-none>
+      <ion-icon name="arrow-forward"></ion-icon>
+      Past questions
+    </button>
   </ion-list>
 
   <ion-fab right bottom>

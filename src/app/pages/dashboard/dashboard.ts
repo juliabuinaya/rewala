@@ -18,21 +18,12 @@ import { QuestionsListPage } from '../questions-list/questions-list';
 export class DashboardPage {
   
   public myQuestions$;
-  public resultsPages: any;
   
   constructor(public routingService: RoutingService,
               public questionsService: QuestionsService) {
   }
   
   ngOnInit() {
-    
-    this.resultsPages = [
-      { title: 'Awaiting your answer', type: 'awaiting-your-answer' },
-      { title: 'Awaiting others', type: 'awaiting-others' },
-      { title: 'Public questions', type: 'public questions' },
-      { title: 'Past questions', type: 'past questions' }
-    ];
-  
     this.myQuestions$ = this.questionsService.myQuestions$;
   }
 
