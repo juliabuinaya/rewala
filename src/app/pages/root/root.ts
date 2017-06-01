@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
 import { RoutingService } from '../../core/services/routing.service';
+import { SpinnerService } from '../../core/services/spinner.service';
 
 // app state
 import * as appState from '../../ngrx/state/app.state';
@@ -18,13 +19,14 @@ export class RootPage {
   
   constructor(public navCtrl: NavController,
               public routingService: RoutingService,
-              public store: Store<appState.IAppState>) {
+              public store: Store<appState.IAppState>,
+              public spinnerService: SpinnerService) {
   }
   
   ngOnInit() {
     
     /** Show loading spinner */
-    this.store.dispatch(new spinner.SpinnerLoadingStartAction());
+    this.spinnerService.showSpinner();
     
     /** Subscribing on routing service streams  */
     this.routingService.pushRootPage$
