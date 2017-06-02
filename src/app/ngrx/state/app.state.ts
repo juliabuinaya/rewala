@@ -62,6 +62,7 @@ import * as fromOptionsRequestReducers from '../options-request/reducers';
  import * as fromOptions from '../options/index';
  import * as fromContacts from '../contacts/index';
  import * as fromContactsRequest from '../contacts-request/index';
+ import * as fromAnswers from '../answers/index';
  
  
 /**
@@ -83,6 +84,7 @@ export interface IAppState {
   options: fromOptions.IOptionsState;
   contacts: fromContacts.IContactsState;
   contactsRequest: fromContactsRequest.IContactsRequestState;
+  answers: fromAnswers.IAnswersState;
 }
 
 /**
@@ -106,7 +108,8 @@ const reducers = {
   questions: fromQuestions.reducer,
   options: fromOptions.reducer,
   contacts: fromContacts.reducer,
-  contactsRequest: fromContactsRequest.reducer
+  contactsRequest: fromContactsRequest.reducer,
+  answers: fromAnswers.reducer
 };
 
 const developmentReducer: ActionReducer<IAppState> = compose(storeFreeze, combineReducers)(reducers);
