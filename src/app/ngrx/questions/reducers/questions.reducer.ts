@@ -15,7 +15,6 @@ export function reducer(
     
     case ActionTypes.SET_QUESTIONS:
     case ActionTypes.UPDATE_QUESTIONS: {
-      let updatedQuestions = updateEntities(action.payload, QuestionModel);
       return {
         ...state
       };

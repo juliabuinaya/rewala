@@ -39,30 +39,33 @@ import { combineReducers } from '@ngrx/store';
 
 
 /** with nested states */
- import * as fromAuthRequestState from '../auth-request/states';
- import * as fromAuthRequestReducers from '../auth-request/reducers';
- 
- import * as fromGroupsRequestState from '../groups-request/states';
- import * as fromGroupsRequestReducers from '../groups-request/reducers';
+import * as fromAuthRequestState from '../auth-request/states';
+import * as fromAuthRequestReducers from '../auth-request/reducers';
 
- import * as fromQuestionsRequestState from '../questions-request/states';
- import * as fromQuestionsRequestReducers from '../questions-request/reducers';
+import * as fromGroupsRequestState from '../groups-request/states';
+import * as fromGroupsRequestReducers from '../groups-request/reducers';
+
+import * as fromQuestionsRequestState from '../questions-request/states';
+import * as fromQuestionsRequestReducers from '../questions-request/reducers';
 
 import * as fromOptionsRequestState from '../options-request/states';
 import * as fromOptionsRequestReducers from '../options-request/reducers';
+
+import * as fromAnswersRequestState from '../answers-request/states';
+import * as fromAnswersRequestReducers from '../answers-request/reducers';
  
  
  /** without nested states */
- import * as fromAuth from '../auth/index';
- import * as fromUser from '../user/index';
- import * as fromUserRequest from '../user-request/index';
- import * as fromSpinner from '../spinner/index';
- import * as fromGroups from '../groups/index';
- import * as fromQuestions from '../questions/index';
- import * as fromOptions from '../options/index';
- import * as fromContacts from '../contacts/index';
- import * as fromContactsRequest from '../contacts-request/index';
- import * as fromAnswers from '../answers/index';
+import * as fromAuth from '../auth/index';
+import * as fromUser from '../user/index';
+import * as fromUserRequest from '../user-request/index';
+import * as fromSpinner from '../spinner/index';
+import * as fromGroups from '../groups/index';
+import * as fromQuestions from '../questions/index';
+import * as fromOptions from '../options/index';
+import * as fromContacts from '../contacts/index';
+import * as fromContactsRequest from '../contacts-request/index';
+import * as fromAnswers from '../answers/index';
  
  
 /**
@@ -85,6 +88,7 @@ export interface IAppState {
   contacts: fromContacts.IContactsState;
   contactsRequest: fromContactsRequest.IContactsRequestState;
   answers: fromAnswers.IAnswersState;
+  answersRequest: fromAnswersRequestState.IAnswersRequestState;
 }
 
 /**
@@ -109,7 +113,8 @@ const reducers = {
   options: fromOptions.reducer,
   contacts: fromContacts.reducer,
   contactsRequest: fromContactsRequest.reducer,
-  answers: fromAnswers.reducer
+  answers: fromAnswers.reducer,
+  answersRequest: fromAnswersRequestReducers.answersRequestReducer
 };
 
 const developmentReducer: ActionReducer<IAppState> = compose(storeFreeze, combineReducers)(reducers);
