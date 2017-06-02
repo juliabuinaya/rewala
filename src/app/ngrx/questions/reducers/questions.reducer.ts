@@ -1,22 +1,10 @@
-import { IQuestionsState, initialState } from '../states/questions.state';
-import { Actions, ActionTypes } from '../actions/questions.actions';
-
-import { QuestionModel } from '../../../shared/models/question.model';
 import * as _ from 'lodash';
 
-function updateQuestions(payload) {
-  if(!_.isArray(payload)) {
-    payload = [payload];
-  }
-  let questions = payload;
-  let questionsIds = questions.map(question => question.id);
-  let questionsEntities = questions.reduce((entities: { [id: string]: any }, question: any) => {
-    return Object.assign(entities, {
-      [question.id]: new QuestionModel(question)
-    });
-  }, {});
-  return {questionsIds, questionsEntities};
-}
+import { IQuestionsState, initialState } from '../states/questions.state';
+import { Actions, ActionTypes } from '../actions/questions.actions';
+import { updateEntities } from '../../util';
+import { QuestionModel } from '../../../shared/models/question.model';
+
 
 export function reducer(
   state = initialState,
@@ -27,23 +15,20 @@ export function reducer(
     
     case ActionTypes.SET_QUESTIONS:
     case ActionTypes.UPDATE_QUESTIONS: {
-      let updatedQuestions = updateQuestions(action.payload);
+      let updatedQuestions = updateEntities(action.payload, QuestionModel);
       return {
-        ...state,
-        //ids: _.union(state.ids, updatedQuestions.questionsIds),
-        //entities: Object.assign({}, state.entities, updatedQuestions.questionsEntities),
-        //myEntitiesIds: _.union(state.ids, updatedQuestions.questionsIds)
+        ...state
       };
     }
   
     case ActionTypes.SET_MY_QUESTIONS:
     case ActionTypes.UPDATE_MY_QUESTIONS: {
-      let updatedQuestions = updateQuestions(action.payload);
+      let updatedQuestions = updateEntities(action.payload, QuestionModel);
       return {
         ...state,
-        ids: _.union(state.ids, updatedQuestions.questionsIds),
-        entities: Object.assign({}, state.entities, updatedQuestions.questionsEntities),
-        myEntitiesIds: _.union(state.ids, updatedQuestions.questionsIds),
+        ids: _.union(state.ids, updatedQuestions.entitiesIds),
+        entities: Object.assign({}, state.entities, updatedQuestions.entities),
+        myEntitiesIds: _.union(state.ids, updatedQuestions.entitiesIds),
       };
     }
     

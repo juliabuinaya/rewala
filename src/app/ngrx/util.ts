@@ -8,6 +8,8 @@
  * are unique.
  */
 
+import * as _ from 'lodash';
+
 let typeCache: { [label: string]: boolean } = {};
 export function type<T>(label: T | ''): T {
   if (typeCache[<string>label]) {
@@ -17,4 +19,17 @@ export function type<T>(label: T | ''): T {
   typeCache[<string>label] = true;
   
   return <T>label;
+}
+
+export function updateEntities(payload, entityModel?) {
+  if(!_.isArray(payload)) {
+    payload = [payload];
+  }
+  let entitiesIds = payload.map(payload => payload.id);
+  let entities = payload.reduce((entities: { [id: string]: any }, entity: any) => {
+    return Object.assign(entities, {
+      [entity.id]: entityModel ? new entityModel(entity) : entity
+    });
+  }, {});
+  return {entitiesIds, entities};
 }

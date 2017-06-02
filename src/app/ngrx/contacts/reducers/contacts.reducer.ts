@@ -1,22 +1,9 @@
+import * as _ from 'lodash';
+
 import { IContactsState, initialState } from '../states/contacts.state';
 import { Actions, ActionTypes } from '../actions/contacts.actions';
-
-import * as _ from 'lodash';
+import { updateEntities } from '../../util';
 import { ContactModel } from '../../../shared/models/contact.model';
-
-function updateContacts(payload) {
-  if(!_.isArray(payload)) {
-    payload = [payload];
-  }
-  let contacts = payload;
-  let contactsIds = contacts.map(contact => contact.id);
-  let contactsEntities = contacts.reduce((entities: { [id: string]: any }, contact: any) => {
-    return Object.assign(entities, {
-      [contact.id]: new ContactModel(contact)
-    });
-  }, {});
-  return {contactsIds, contactsEntities};
-}
 
 export function reducer(
   state = initialState,
@@ -27,23 +14,23 @@ export function reducer(
     
     case ActionTypes.SET_CONTACTS:
     case ActionTypes.UPDATE_CONTACTS: {
-      let updatedContacts = updateContacts(action.payload);
+      let updatedContacts = updateEntities(action.payload, ContactModel);
       return {
         ...state,
-        ids: _.union(state.ids, updatedContacts.contactsIds),
-        entities: Object.assign({}, state.entities, updatedContacts.contactsEntities),
-        myEntitiesIds: _.union(state.ids, updatedContacts.contactsIds)
+        ids: _.union(state.ids, updatedContacts.entitiesIds),
+        entities: Object.assign({}, state.entities, updatedContacts.entities),
+        myEntitiesIds: _.union(state.ids, updatedContacts.entitiesIds)
       };
     }
   
     case ActionTypes.SET_FOUND_CONTACTS:
     case ActionTypes.UPDATE_FOUND_CONTACTS: {
-      let updatedContacts = updateContacts(action.payload);
+      let updatedContacts = updateEntities(action.payload, ContactModel);
       return {
         ...state,
-        ids: _.union(state.ids, updatedContacts.contactsIds),
-        entities: Object.assign({}, state.entities, updatedContacts.contactsEntities),
-        foundEntitiesIds: _.union(state.foundEntitiesIds, updatedContacts.contactsIds),
+        ids: _.union(state.ids, updatedContacts.entitiesIds),
+        entities: Object.assign({}, state.entities, updatedContacts.entities),
+        foundEntitiesIds: _.union(state.foundEntitiesIds, updatedContacts.entitiesIds),
       };
     }
   

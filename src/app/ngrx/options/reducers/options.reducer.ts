@@ -1,22 +1,9 @@
+import * as _ from 'lodash';
+
 import { IOptionsState, initialState } from '../states/options.state';
 import { Actions, ActionTypes } from '../actions/options.actions';
-
-import * as _ from 'lodash';
+import { updateEntities } from '../../util';
 import { OptionModel } from '../../../shared/models/option.model';
-
-function updateOptions(payload) {
-  if(!_.isArray(payload)) {
-    payload = [payload];
-  }
-  let options = payload;
-  let optionsIds = options.map(option => option.id);
-  let optionsEntities = options.reduce((entities: { [id: string]: any }, option: any) => {
-    return Object.assign(entities, {
-      [option.id]: new OptionModel(option)
-    });
-  }, {});
-  return {optionsIds, optionsEntities};
-}
 
 export function reducer(
   state = initialState,
@@ -27,23 +14,23 @@ export function reducer(
     
     case ActionTypes.SET_OPTIONS:
     case ActionTypes.UPDATE_OPTIONS: {
-      let updatedOptions = updateOptions(action.payload);
+      let updatedOptions = updateEntities(action.payload, OptionModel);
       return {
         ...state,
-        ids: _.union(state.ids, updatedOptions.optionsIds),
-        entities: Object.assign({}, state.entities, updatedOptions.optionsEntities),
-        currentEntitiesIds: _.union(state.ids, updatedOptions.optionsIds)
+        ids: _.union(state.ids, updatedOptions.entitiesIds),
+        entities: Object.assign({}, state.entities, updatedOptions.entities),
+        currentEntitiesIds: _.union(state.ids, updatedOptions.entitiesIds)
       };
     }
   
     case ActionTypes.SET_CURRENT_OPTIONS:
     case ActionTypes.UPDATE_CURRENT_OPTIONS: {
-      let updatedOptions = updateOptions(action.payload);
+      let updatedOptions = updateEntities(action.payload, OptionModel);
       return {
         ...state,
-        ids: _.union(state.ids, updatedOptions.optionsIds),
-        entities: Object.assign({}, state.entities, updatedOptions.optionsEntities),
-        currentEntitiesIds: updatedOptions.optionsIds,
+        ids: _.union(state.ids, updatedOptions.entitiesIds),
+        entities: Object.assign({}, state.entities, updatedOptions.entities),
+        currentEntitiesIds: updatedOptions.entitiesIds,
       };
     }
     
