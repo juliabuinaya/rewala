@@ -95,7 +95,7 @@ export class CreateGroupMembersPage {
       }
       else {
         let toast = this.toastController.create({
-          message: 'Found contact is Yours',
+          message: 'Email is yours',
           duration: 4000,
           position: 'bottom',
           cssClass: 'toast-error'
