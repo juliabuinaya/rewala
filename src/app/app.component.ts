@@ -34,7 +34,6 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Dashboard', component: DashboardPage },
       { title: 'Create Question', component: CreateQuestionSettingsPage },
       { title: 'My groups', component: CreateQuestionGroupsPage },
       { title: 'Settings', component: SettingsPage }
@@ -52,11 +51,15 @@ export class MyApp {
       this.splashScreen.hide();
     });
   }
+  
+  toDashboardPage() {
+    this.nav.setRoot(DashboardPage);
+  }
 
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.push(page.component);
   }
 
   logout() {
