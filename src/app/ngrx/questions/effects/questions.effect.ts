@@ -8,8 +8,9 @@ import { DashboardPage } from '../../../pages/dashboard/dashboard';
 
 //actions
 import * as myQuestionsGet from '../../questions-request/nested-states/my-questions-get/actions/my-questions-get.actions';
+import * as awaitingQuestionsGet from '../../questions-request/nested-states/awaiting-questions-get/actions/awaiting-questions-get.actions';
 import * as questionPost from '../../questions-request/nested-states/question-post/actions/question-post.actions';
-import { SetMyQuestionsAction, UpdateMyQuestionsAction } from '../actions/questions.actions';
+import { SetAwaitingQuestionsAction, SetMyQuestionsAction, UpdateMyQuestionsAction } from '../actions/questions.actions';
 import { SpinnerLoadingEndAction } from '../../spinner/actions/spinner.actions';
 
 
@@ -26,8 +27,13 @@ export class QuestionsEffects {
   .map(action => new SetMyQuestionsAction(toPayload(action)));
   
   @Effect()
+  setAwaitingQuestions$: Observable<Action> = this.actions$
+  .ofType(awaitingQuestionsGet.ActionTypes.REQUEST_SUCCESS)
+  .map(action => new SetAwaitingQuestionsAction(toPayload(action)));
+  
+  @Effect()
   redirectToDashboardPage$: Observable<Action> = this.actions$
-  .ofType(myQuestionsGet.ActionTypes.REQUEST_SUCCESS)
+  .ofType(awaitingQuestionsGet.ActionTypes.REQUEST_SUCCESS)
   .map((action: any) => {
     this.routingService.pushRootPage(DashboardPage);
     return new SpinnerLoadingEndAction();

@@ -27,7 +27,7 @@ export function reducer(
         ...state,
         ids: _.union(state.ids, updatedQuestions.entitiesIds),
         entities: Object.assign({}, state.entities, updatedQuestions.entities),
-        myEntitiesIds: _.union(state.ids, updatedQuestions.entitiesIds),
+        myEntitiesIds: _.union(state.myEntitiesIds, updatedQuestions.entitiesIds),
       };
     }
     
@@ -40,11 +40,12 @@ export function reducer(
     case ActionTypes.SET_AWAITING_QUESTIONS:
     case ActionTypes.UPDATE_AWAITING_QUESTIONS: {
       let updatedQuestions = updateEntities(action.payload, QuestionModel);
+      debugger;
       return {
         ...state,
         ids: _.union(state.ids, updatedQuestions.entitiesIds),
         entities: Object.assign({}, state.entities, updatedQuestions.entities),
-        awaitingEntitiesIds: _.union(state.ids, updatedQuestions.entitiesIds),
+        awaitingEntitiesIds: _.union(state.awaitingEntitiesIds, updatedQuestions.entitiesIds),
       };
     }
   

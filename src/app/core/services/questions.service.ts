@@ -75,4 +75,12 @@ export class QuestionsService {
     return this.restangular.one('clients', clientId).all('questions').getList();
   }
   
+  getAwaitingQuestions() {
+    this.store.dispatch(new questionsRequest.AwaitingQuestionsGetAction());
+  }
+  
+  getAwaitingQuestionsRequest() {
+    return this.restangular.all('clients').one('get-awaiting-questions').get();
+  }
+  
 }
