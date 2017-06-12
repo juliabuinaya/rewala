@@ -81,7 +81,6 @@ export class QuestionPage {
  
   vote() {
     let optionsIds;
-    console.log(this.userId);
     this.selectedOptionId ? optionsIds = [this.selectedOptionId] : optionsIds = this.checkedOptionsIds;
     if(optionsIds.length) this.answersService.createAnswer(this.userId, optionsIds);
   }

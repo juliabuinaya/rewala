@@ -25,15 +25,15 @@ export class AnswersService {
     _.forEach(optionsIds, optionId => {
       let payload: any = {
         clientId,
-        id: optionId
+        questionOptionId: optionId,
       };
       this.store.dispatch(new answersRequest.AnswerPostAction(payload));
     });
   }
   
   createAnswerRequest(payload: any) {
-    return Observable.of(true);
-    //return this.restangular.all('answers').post(payload);
+    debugger;
+    return this.restangular.all('answers').post(payload);
   }
   
 }
