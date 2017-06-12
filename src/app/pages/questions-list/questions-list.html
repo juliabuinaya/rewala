@@ -22,8 +22,8 @@
       <ion-card-content>
         <p>{{ question.text }}</p>
         <div class="buttons">
-          <button ion-button clear (click)="toQuestionPage(question, 'details')">See details</button>
-          <!--<button ion-button clear color="danger" (click)="toQuestionPage(question, 'recast')">Recast</button>-->
+          <button ion-button clear (click)="toQuestionPage(question, questionType, ACTION_DETAILS)">See details</button>
+          <!--<button ion-button clear color="danger" (click)="toQuestionPage(question, ACTION_RECAST)">Recast</button>-->
         </div>
       </ion-card-content>
     </ion-card>

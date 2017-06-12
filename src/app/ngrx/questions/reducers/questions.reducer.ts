@@ -40,7 +40,6 @@ export function reducer(
     case ActionTypes.SET_AWAITING_QUESTIONS:
     case ActionTypes.UPDATE_AWAITING_QUESTIONS: {
       let updatedQuestions = updateEntities(action.payload, QuestionModel);
-      debugger;
       return {
         ...state,
         ids: _.union(state.ids, updatedQuestions.entitiesIds),

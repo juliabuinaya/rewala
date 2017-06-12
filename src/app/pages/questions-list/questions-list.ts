@@ -19,6 +19,8 @@ export class QuestionsListPage {
   
   public questionType;
   public questionList$;
+  public ACTION_DETAILS = 'Action Details';
+  public ACTION_RECAST = 'Action Recast';
 
   constructor(public navParams: NavParams,
               public routingService: RoutingService,
@@ -31,7 +33,7 @@ export class QuestionsListPage {
 
   ngOnInit() {
     switch(this.questionType) {
-      case 'My questions':
+      case 'My Questions':
         this.questionList$ = this.questionsService.myQuestions$;
         break;
   
@@ -39,19 +41,19 @@ export class QuestionsListPage {
         //this.questionList$ =
         break;
   
-      case 'Awaiting answer questions':
-        //this.questionList$ =
+      case 'Awaiting Questions':
+        this.questionList$ = this.questionsService.awaitingQuestions$;
         break;
         
       default:
-        this.questionList$ = this.questionsService.myQuestions$;
+        this.questionList$ = [];
         break;
     }
   }
   
-  toQuestionPage(question, action) {
+  toQuestionPage(question, questionType, action) {
     this.spinnerService.showSpinner();
-    this.routingService.pushPage(QuestionPage, {question, action});
+    this.routingService.pushPage(QuestionPage, {question, questionType, action});
   }
   
 }

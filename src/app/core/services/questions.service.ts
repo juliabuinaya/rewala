@@ -18,6 +18,7 @@ import * as questionsStateGetter from '../../ngrx/questions/states/questions-get
 export class QuestionsService {
   
   public myQuestions$: Observable<any>;
+  public awaitingQuestions$: Observable<any>;
   public options;
   public questionTypes = [
     {
@@ -35,6 +36,7 @@ export class QuestionsService {
               public optionsService: OptionsService) {
     
     this.myQuestions$ = this.store.select(questionsStateGetter.getQuestionsMyEntitiesState);
+    this.awaitingQuestions$ = this.store.select(questionsStateGetter.getQuestionsAwaitingEntitiesState);
   
   }
   

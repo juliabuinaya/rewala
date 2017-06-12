@@ -21,10 +21,22 @@
     <ion-list no-lines radio-group class="options">
       <ion-item  *ngFor="let option of (currentOptions$ | async); let i = index">
         <ion-label>{{i+1}}. {{option?.text}}</ion-label>
-        <!--<ion-radio *ngIf="!optionType?.multiple"></ion-radio>-->
-        <!--<ion-checkbox *ngIf="optionType?.multiple"></ion-checkbox>-->
+        <ion-radio *ngIf="questionType == 'Awaiting Questions' && !optionType?.multiple"
+          (ionSelect)="onOptionSelect(option)">
+        </ion-radio>
+        <ion-checkbox *ngIf="questionType == 'Awaiting Questions' && optionType?.multiple"
+          [(ngModel)]="checkedOptions[option.id]"
+          (ionChange)="onOptionChange()">
+        </ion-checkbox>
       </ion-item>
     </ion-list>
     <p class="deadline"> Deadline: {{ deadline | date }}</p>
+  </div>
+  <div class="btn-wrapper">
+    <button ion-button color="dark" type="button"
+      *ngIf="questionType == 'Awaiting Questions'"
+      [disabled]="!selectedOptionId && !checkedOptionsIds.length">
+      Vote
+    </button>
   </div>
 </ion-content>

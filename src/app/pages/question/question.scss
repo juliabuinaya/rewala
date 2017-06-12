@@ -11,5 +11,13 @@ page-question {
         text-align: right;
       }
     }
+    .btn-wrapper {
+      text-align: center;
+      margin-top: 10px;
+
+      button {
+        width: 220px;
+      }
+    }
   }
 }

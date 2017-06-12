@@ -17,7 +17,7 @@
 <ion-content>
 
   <div class="top-panel">
-    <button ion-button clear (click)="toQuestionsList('My questions')">
+    <button ion-button clear (click)="toQuestionsList(MY_QUESTIONS)">
       <span>Created</span>
       <span class="quantity">{{(myQuestions$ | async)?.length}}</span>
     </button>
@@ -25,18 +25,18 @@
       <span>Voice given</span>
       <span class="quantity">0</span>
     </button>
-    <button ion-button clear>
+    <button ion-button clear (click)="toQuestionsList(AWAITING_QUESTIONS)">
       <span>Awaiting</span>
-      <span class="quantity">0</span>
+      <span class="quantity">{{(awaitingQuestions$ | async)?.length}}</span>
     </button>
   </div>
 
   <ion-list no-lines padding>
-    <button ion-item detail-none (click)="toQuestionsList('My questions')">
+    <button ion-item detail-none (click)="toQuestionsList(MY_QUESTIONS)">
       <ion-icon name="arrow-forward"></ion-icon>
       Your created questions
     </button>
-    <button ion-item detail-none>
+    <button ion-item detail-none (click)="toQuestionsList(AWAITING_QUESTIONS)">
       <ion-icon name="arrow-forward"></ion-icon>
       Awaiting your answer
     </button>

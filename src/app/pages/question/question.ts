@@ -16,10 +16,14 @@ import * as _ from 'lodash';
 })
 export class QuestionPage {
   
-  public action;
   public question;
+  public questionType;
+  public action;
   public questionTypes;
   public optionType;
+  public checkedOptions = [];
+  public checkedOptionsIds = [];
+  public selectedOptionId;
   public deadline;
   public currentOptions$;
   public optionsRequestGetLoadedState$;
@@ -30,8 +34,9 @@ export class QuestionPage {
               public questionsService: QuestionsService,
               public spinnerService: SpinnerService) {
     
-    this.action = navParams.get('action');
     this.question = navParams.get('question');
+    this.questionType = navParams.get('questionType');
+    this.action = navParams.get('action');
     this.optionsService.getQuestionOptions(this.question.id);
     this.optionsRequestGetLoadedState$ = this.optionsService.optionsRequestGetLoadedState$;
     
@@ -48,13 +53,25 @@ export class QuestionPage {
 
   ngOnInit() {
     this.spinnerService.hideSpinner();
-    console.log(this.question);
     this.deadline = new Date(new Date(this.question.createdAt).getTime() + this.question.ttl*1000);
     this.currentOptions$ = this.optionsService.currentOptions$;
     this.questionTypes = this.questionsService.questionTypes;
     this.optionType = _.find(this.questionTypes, ['id', this.question.questionTypeId]);
+    
   }
   
+  onOptionChange() {
+    this.checkedOptionsIds = _.keys(_.pickBy(this.checkedOptions));
+  }
+  
+  onOptionSelect(option) {
+    this.selectedOptionId = option.id;
+  }
+ 
+  vote() {
+    console.log('vote!!!');
+  }
+ 
   ngOnDestroy() {
   }
 }

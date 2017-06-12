@@ -18,6 +18,9 @@ import { QuestionsListPage } from '../questions-list/questions-list';
 export class DashboardPage {
   
   public myQuestions$;
+  public awaitingQuestions$;
+  public MY_QUESTIONS = 'My Questions';
+  public AWAITING_QUESTIONS = 'Awaiting Questions';
   
   constructor(public routingService: RoutingService,
               public questionsService: QuestionsService) {
@@ -25,6 +28,7 @@ export class DashboardPage {
   
   ngOnInit() {
     this.myQuestions$ = this.questionsService.myQuestions$;
+    this.awaitingQuestions$ = this.questionsService.awaitingQuestions$;
   }
 
   toCreateQuestion() {
