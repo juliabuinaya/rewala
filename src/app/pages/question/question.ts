@@ -4,8 +4,10 @@ import { IonicPage, NavParams } from 'ionic-angular';
 import { OptionsService } from '../../core/services/options.service';
 import { QuestionsService } from '../../core/services/questions.service';
 import { SpinnerService } from '../../core/services/spinner.service';
+import { AnswersService } from '../../core/services/answers.service';
 
 import * as _ from 'lodash';
+import { UserService } from '../../core/services/user.service';
 
 @IonicPage({
   name: 'question',
@@ -28,10 +30,15 @@ export class QuestionPage {
   public currentOptions$;
   public optionsRequestGetLoadedState$;
   public optionsResolver;
+  public userId$;
+  public userIdSubscriber;
+  public userId;
   
   constructor(public navParams: NavParams,
               public optionsService: OptionsService,
               public questionsService: QuestionsService,
+              public answersService: AnswersService,
+              public userService: UserService,
               public spinnerService: SpinnerService) {
     
     this.question = navParams.get('question');
@@ -44,6 +51,10 @@ export class QuestionPage {
     .skipWhile(loaded => !loaded)
     .take(1)
     .toPromise();
+  
+    this.userId$ = this.userService.userId$;
+    this.userIdSubscriber =  this.userId$
+    .subscribe(id => this.userId = id);
   
   }
   
@@ -69,7 +80,10 @@ export class QuestionPage {
   }
  
   vote() {
-    console.log('vote!!!');
+    let optionsIds;
+    console.log(this.userId);
+    this.selectedOptionId ? optionsIds = [this.selectedOptionId] : optionsIds = this.checkedOptionsIds;
+    if(optionsIds.length) this.answersService.createAnswer(this.userId, optionsIds);
   }
  
   ngOnDestroy() {

@@ -35,7 +35,8 @@
   <div class="btn-wrapper">
     <button ion-button color="dark" type="button"
       *ngIf="questionType == 'Awaiting Questions'"
-      [disabled]="!selectedOptionId && !checkedOptionsIds.length">
+      [disabled]="!selectedOptionId && !checkedOptionsIds.length"
+      (click)="vote()">
       Vote
     </button>
   </div>

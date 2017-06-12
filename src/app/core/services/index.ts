@@ -8,6 +8,7 @@ import { GroupsService } from './groups.service';
 import { QuestionsService } from './questions.service';
 import { ContactsService } from './contacts.service';
 import { OptionsService } from './options.service';
+import { AnswersService } from './answers.service';
 
 
 export {
@@ -20,7 +21,8 @@ export {
   QuestionsService,
   GroupsService,
   ContactsService,
-  OptionsService
+  OptionsService,
+  AnswersService
 };
 
 // an array of services
@@ -34,5 +36,6 @@ export const APP_SERVICE_PROVIDERS = [
   QuestionsService,
   GroupsService,
   ContactsService,
-  OptionsService
+  OptionsService,
+  AnswersService
 ];
