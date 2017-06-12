@@ -36,6 +36,23 @@ export function reducer(
         ...state,
         myEntitiesIds: []
       };
+  
+    case ActionTypes.SET_AWAITING_QUESTIONS:
+    case ActionTypes.UPDATE_AWAITING_QUESTIONS: {
+      let updatedQuestions = updateEntities(action.payload, QuestionModel);
+      return {
+        ...state,
+        ids: _.union(state.ids, updatedQuestions.entitiesIds),
+        entities: Object.assign({}, state.entities, updatedQuestions.entities),
+        awaitingEntitiesIds: _.union(state.ids, updatedQuestions.entitiesIds),
+      };
+    }
+  
+    case ActionTypes.CLEAR_AWAITING_QUESTIONS:
+      return {
+        ...state,
+        awaitingEntitiesIds: []
+      };
     
     case ActionTypes.CLEAR_QUESTIONS:
       return Object.assign({}, state, initialState);

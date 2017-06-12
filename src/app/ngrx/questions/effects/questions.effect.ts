@@ -25,7 +25,6 @@ export class QuestionsEffects {
   .ofType(myQuestionsGet.ActionTypes.REQUEST_SUCCESS)
   .map(action => new SetMyQuestionsAction(toPayload(action)));
   
-  
   @Effect()
   redirectToDashboardPage$: Observable<Action> = this.actions$
   .ofType(myQuestionsGet.ActionTypes.REQUEST_SUCCESS)

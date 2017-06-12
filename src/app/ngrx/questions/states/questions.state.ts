@@ -1,10 +1,12 @@
 export interface IQuestionsState {
   ids: string[],
   entities: {},
-  myEntitiesIds: string[]
+  myEntitiesIds: string[],
+  awaitingEntitiesIds: string[]
 }
 export const initialState: IQuestionsState = {
   ids: [],
   entities: {},
-  myEntitiesIds: []
+  myEntitiesIds: [],
+  awaitingEntitiesIds: []
 };
