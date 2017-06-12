@@ -3,7 +3,8 @@ import { questionsRequestInitialState, IQuestionsRequestState  } from '../states
 import {
   questionsGetReducer,
   myQuestionsGetReducer,
-  questionPostReducer
+  questionPostReducer,
+  awaitingQuestionsGetReducer
 } from './index';
 
 
@@ -13,7 +14,8 @@ export function questionsRequestReducer(
 ): IQuestionsRequestState {
   return {
     questionsGetState: questionsGetReducer(state.questionsGetState, action),
-    myQuestionsGetState: questionsGetReducer(state.myQuestionsGetState, action),
+    myQuestionsGetState: myQuestionsGetReducer(state.myQuestionsGetState, action),
+    awaitingQuestionsGetState: awaitingQuestionsGetReducer(state.awaitingQuestionsGetState, action),
     questionPostState: questionPostReducer(state.questionPostState, action)
   };
 }
