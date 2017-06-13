@@ -7,7 +7,7 @@ export const ActionTypes = {
   SET_MY_ANSWERS: type(`[${ANSWERS}] Set My Answers`),
   UPDATE_MY_ANSWERS: type(`[${ANSWERS}] Update My Answers`),
   CLEAR_MY_ANSWERS: type(`[${ANSWERS}] Clear My Answers`),
-
+  CLEAR_ANSWERS: type(`[${ANSWERS}] Clear Answers`),
 };
 
 export class SetMyAnswersAction implements Action {
@@ -25,11 +25,18 @@ export class UpdateMyAnswersAction implements Action {
 }
 
 export class ClearMyAnswersAction implements Action {
-  type = ActionTypes.CLEAR_MY_ANSWERS;
+  type = ActionTypes.CLEAR_ANSWERS;
+  
+  constructor(public payload?: any) {
+  }
+}
+
+export class ClearAnswersAction implements Action {
+  type = ActionTypes.CLEAR_ANSWERS;
   
   constructor(public payload?: any) {
   }
 }
 
 export type Actions
-  = SetMyAnswersAction | UpdateMyAnswersAction | ClearMyAnswersAction;
+  = SetMyAnswersAction | UpdateMyAnswersAction | ClearMyAnswersAction | ClearAnswersAction;

@@ -13,6 +13,7 @@ import * as groups from '../../ngrx/groups/actions/index';
 import * as questions from '../../ngrx/questions/actions/index';
 import * as options from '../../ngrx/options/actions/index';
 import * as contacts from '../../ngrx/contacts/actions/index';
+import * as answers from '../../ngrx/answers/actions/index';
 
 
 @Injectable()
@@ -44,5 +45,6 @@ export class AuthService {
     this.store.dispatch(new options.ClearOptionsAction());
     this.store.dispatch(new questions.ClearQuestionsAction());
     this.store.dispatch(new contacts.ClearContactsAction());
+    this.store.dispatch(new answers.ClearAnswersAction());
   }
 }

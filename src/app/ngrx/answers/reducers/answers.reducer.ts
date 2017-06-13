@@ -22,8 +22,14 @@ export function reducer(
         myEntitiesIds: _.union(state.myEntitiesIds, updatedAnswers.entitiesIds),
       };
     }
-      
+  
     case ActionTypes.CLEAR_MY_ANSWERS:
+      return {
+        ...state,
+        myEntitiesIds: []
+      };
+      
+    case ActionTypes.CLEAR_ANSWERS:
       return Object.assign({}, state, initialState);
     
     default: {
