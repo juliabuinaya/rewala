@@ -36,6 +36,7 @@ import { OptionsGetEffects } from '../ngrx/options-request/nested-states/options
 import { OptionsEffects } from '../ngrx/options/effects/options.effect';
 import { AwaitingQuestionsGetEffects } from '../ngrx/questions-request/nested-states/awaiting-questions-get/effects/awaiting-questions-get.effect';
 import { AnswerPostEffects } from '../ngrx/answers-request/nested-states/answer-post/effects/answer-post.effect';
+import { MyAnswersGetEffects } from '../ngrx/answers-request/nested-states/my-answers-get/effects/my-answers-get.effect';
 
 export function provideStorage() {
   return new Storage({});
@@ -80,6 +81,7 @@ const cloudSettings: CloudSettings = {
      EffectsModule.run(OptionsEffects),
      EffectsModule.run(AwaitingQuestionsGetEffects),
      EffectsModule.run(AnswerPostEffects),
+     EffectsModule.run(MyAnswersGetEffects),
     
     RestangularModule.forRoot(
       [

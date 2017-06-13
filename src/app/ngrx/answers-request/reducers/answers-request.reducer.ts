@@ -3,7 +3,8 @@ import { answersRequestInitialState, IAnswersRequestState  } from '../states/ans
 import {
   answersGetReducer,
   answerGetReducer,
-  answerPostReducer
+  answerPostReducer,
+  myAnswersGetReducer
 } from './index';
 
 
@@ -14,6 +15,7 @@ export function answersRequestReducer(
   return {
     answersGetState: answersGetReducer(state.answersGetState, action),
     answerGetState: answerGetReducer(state.answerGetState, action),
+    myAnswersGetState: myAnswersGetReducer(state.answerGetState, action),
     answerPostState: answerPostReducer(state.answerPostState, action)
   };
 }

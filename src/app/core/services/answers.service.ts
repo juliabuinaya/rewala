@@ -32,8 +32,15 @@ export class AnswersService {
   }
   
   createAnswerRequest(payload: any) {
-    debugger;
     return this.restangular.all('answers').post(payload);
+  }
+  
+  getMyAnswers(clientId) {
+    this.store.dispatch(new answersRequest.MyAnswersGetAction(clientId));
+  }
+  
+  getMyAnswersRequest(clientId) {
+    return this.restangular.one('clients', clientId).all('answers').getList();
   }
   
 }
