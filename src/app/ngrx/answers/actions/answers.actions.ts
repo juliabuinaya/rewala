@@ -4,32 +4,32 @@ import { type } from '../../util';
 import { ANSWERS } from '../common/index';
 
 export const ActionTypes = {
-  SET_ANSWERS: type(`[${ANSWERS}] Set Answers`),
-  UPDATE_ANSWERS: type(`[${ANSWERS}] Update Answers`),
-  CLEAR_ANSWERS: type(`[${ANSWERS}] Clear Answers`),
+  SET_MY_ANSWERS: type(`[${ANSWERS}] Set My Answers`),
+  UPDATE_MY_ANSWERS: type(`[${ANSWERS}] Update My Answers`),
+  CLEAR_MY_ANSWERS: type(`[${ANSWERS}] Clear My Answers`),
 
 };
 
-export class SetAnswersAction implements Action {
-  type = ActionTypes.SET_ANSWERS;
+export class SetMyAnswersAction implements Action {
+  type = ActionTypes.SET_MY_ANSWERS;
   
   constructor(public payload?: any) {
   }
 }
 
-export class UpdateAnswersAction implements Action {
-  type = ActionTypes.UPDATE_ANSWERS;
+export class UpdateMyAnswersAction implements Action {
+  type = ActionTypes.UPDATE_MY_ANSWERS;
 
   constructor(public payload?: any) {
   }
 }
 
-export class ClearAnswersAction implements Action {
-  type = ActionTypes.CLEAR_ANSWERS;
+export class ClearMyAnswersAction implements Action {
+  type = ActionTypes.CLEAR_MY_ANSWERS;
   
   constructor(public payload?: any) {
   }
 }
 
 export type Actions
-  = SetAnswersAction | UpdateAnswersAction | ClearAnswersAction;
+  = SetMyAnswersAction | UpdateMyAnswersAction | ClearMyAnswersAction;

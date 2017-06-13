@@ -19,6 +19,7 @@ export class AnswersService {
   
   constructor(public store: Store<IAppState>,
               public restangular: Restangular) {
+    this.myAnswers$ = this.store.select(answersStateGetter.getAnswersMyEntitiesState);
   }
   
   createAnswer(clientId, optionsIds) {

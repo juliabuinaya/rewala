@@ -21,7 +21,6 @@ export class MyAnswersGetEffects {
   getMyAnswers$: Observable<Action> = this.actions$
   .ofType(userRequest.ActionTypes.GET_REQUEST_SUCCESS)
   .map((action: any) => {
-    debugger;
     return new MyAnswersGetAction(action.payload.id);
   });
   
@@ -30,7 +29,6 @@ export class MyAnswersGetEffects {
   .ofType(myAnswersGet.ActionTypes.REQUEST)
   .map(toPayload)
   .switchMap((payload: any) => {
-    debugger;
     return this.answersService.getMyAnswersRequest(payload)
     .map((res: any) => new MyAnswersGetSuccessAction(res))
     .catch(error => Observable.of(new MyAnswersGetFailAction(error)));
