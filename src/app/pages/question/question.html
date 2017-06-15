@@ -16,7 +16,7 @@
 
 <ion-content padding>
   <div class="question-wrap">
-    <h4 class="title">Question</h4>
+    <h4 class="title">Question text:</h4>
     <h2 class="question">{{ question?.text }}</h2>
     <ion-list no-lines radio-group class="options">
       <ion-item  *ngFor="let option of (currentOptions$ | async); let i = index">
@@ -34,9 +34,9 @@
           (ionChange)="onOptionChange()">
         </ion-checkbox>
       </ion-item>
-      <ion-item class="voted-option" *ngIf="questionType == 'Voice Given Questions'">
-        Your answer is blabla
-      </ion-item>
+      <!--<ion-item class="voted-option" *ngIf="questionType == 'Voice Given Questions'">-->
+        <!--Your answer is blabla-->
+      <!--</ion-item>-->
     </ion-list>
     <p class="deadline"> Deadline: {{ deadline | date }}</p>
   </div>

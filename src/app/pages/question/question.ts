@@ -66,6 +66,7 @@ export class QuestionPage {
     this.spinnerService.hideSpinner();
     this.deadline = new Date(new Date(this.question.createdAt).getTime() + this.question.ttl*1000);
     this.currentOptions$ = this.optionsService.currentOptions$;
+    //this.currentOptions$.subscribe(q => console.log(q));
     this.questionTypes = this.questionsService.questionTypes;
     this.optionType = _.find(this.questionTypes, ['id', this.question.questionTypeId]);
     
