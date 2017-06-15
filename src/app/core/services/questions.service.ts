@@ -85,4 +85,14 @@ export class QuestionsService {
     return this.restangular.all('clients').one('get-awaiting-questions').get();
   }
   
+  getVoiceGivenQuestions() {
+    //this.store.dispatch(new questionsRequest.AwaitingQuestionsGetAction());
+  }
+  
+  getVoiceGivenQuestionsRequest() {
+    return Observable.of(true);
+    //return this.restangular.all('clients').one('get-voice-given-questions').get();
+  }
+  
+  
 }
