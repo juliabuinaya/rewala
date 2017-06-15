@@ -20,7 +20,12 @@
     <h2 class="question">{{ question?.text }}</h2>
     <ion-list no-lines radio-group class="options">
       <ion-item  *ngFor="let option of (currentOptions$ | async); let i = index">
-        <ion-label>{{i+1}}. {{option?.text}}</ion-label>
+        <p *ngIf="questionType == 'Voice Given Questions'">
+          Your voted option:
+        </p>
+        <ion-label [class.voted-option]="questionType == 'Voice Given Questions'">
+          {{i+1}}. {{option?.text}}
+        </ion-label>
         <ion-radio *ngIf="questionType == 'Awaiting Questions' && !optionType?.multiple"
           (ionSelect)="onOptionSelect(option)">
         </ion-radio>
@@ -28,6 +33,9 @@
           [(ngModel)]="checkedOptions[option.id]"
           (ionChange)="onOptionChange()">
         </ion-checkbox>
+      </ion-item>
+      <ion-item class="voted-option" *ngIf="questionType == 'Voice Given Questions'">
+        Your answer is blabla
       </ion-item>
     </ion-list>
     <p class="deadline"> Deadline: {{ deadline | date }}</p>
