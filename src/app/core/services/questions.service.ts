@@ -19,6 +19,7 @@ export class QuestionsService {
   
   public myQuestions$: Observable<any>;
   public awaitingQuestions$: Observable<any>;
+  public voiceGivenQuestions$: Observable<any>;
   public options;
   public questionTypes = [
     {
@@ -37,6 +38,7 @@ export class QuestionsService {
     
     this.myQuestions$ = this.store.select(questionsStateGetter.getQuestionsMyEntitiesState);
     this.awaitingQuestions$ = this.store.select(questionsStateGetter.getQuestionsAwaitingEntitiesState);
+    this.voiceGivenQuestions$ = this.store.select(questionsStateGetter.getQuestionsVoiceGivenEntitiesState);
   
   }
   
@@ -86,12 +88,11 @@ export class QuestionsService {
   }
   
   getVoiceGivenQuestions() {
-    //this.store.dispatch(new questionsRequest.AwaitingQuestionsGetAction());
+    this.store.dispatch(new questionsRequest.VoiceGivenQuestionsGetAction());
   }
   
   getVoiceGivenQuestionsRequest() {
-    return Observable.of(true);
-    //return this.restangular.all('clients').one('get-voice-given-questions').get();
+    return this.restangular.all('clients').one('get-voice-given-questions').get();
   }
   
   

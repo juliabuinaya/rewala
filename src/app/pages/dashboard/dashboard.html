@@ -21,9 +21,9 @@
       <span>Created</span>
       <span class="quantity">{{(myQuestions$ | async)?.length}}</span>
     </button>
-    <button ion-button clear>
+    <button ion-button clear (click)="toQuestionsList(VOICE_GIVEN_QUESTIONS)">
       <span>Voice given</span>
-      <span class="quantity">0</span>
+      <span class="quantity">{{(voiceGivenQuestions$ | async)?.length}}</span>
     </button>
     <button ion-button clear (click)="toQuestionsList(AWAITING_QUESTIONS)">
       <span>Awaiting</span>

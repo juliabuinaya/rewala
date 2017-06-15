@@ -38,6 +38,7 @@ import { AwaitingQuestionsGetEffects } from '../ngrx/questions-request/nested-st
 import { AnswerPostEffects } from '../ngrx/answers-request/nested-states/answer-post/effects/answer-post.effect';
 import { MyAnswersGetEffects } from '../ngrx/answers-request/nested-states/my-answers-get/effects/my-answers-get.effect';
 import { AnswersEffects } from '../ngrx/answers/effects/answers.effect';
+import { VoiceGivenQuestionsGetEffects } from '../ngrx/questions-request/nested-states/voice-given-questions-get/effects/voice-given-questions-get.effect';
 
 export function provideStorage() {
   return new Storage({});
@@ -84,7 +85,8 @@ const cloudSettings: CloudSettings = {
      EffectsModule.run(AnswerPostEffects),
      EffectsModule.run(AnswersEffects),
      EffectsModule.run(MyAnswersGetEffects),
-    
+     EffectsModule.run(VoiceGivenQuestionsGetEffects),
+  
     RestangularModule.forRoot(
       [
         ToastController,

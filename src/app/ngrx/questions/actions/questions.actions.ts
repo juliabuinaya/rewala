@@ -13,6 +13,9 @@ export const ActionTypes = {
   SET_AWAITING_QUESTIONS: type(`[${QUESTIONS}] Set Awaiting Questions`),
   CLEAR_AWAITING_QUESTIONS: type(`[${QUESTIONS}] Clear Awaiting Questions`),
   UPDATE_AWAITING_QUESTIONS: type(`[${QUESTIONS}] Update Awaiting Questions`),
+  SET_VOICE_GIVEN_QUESTIONS: type(`[${QUESTIONS}] Set Voice Given Questions`),
+  CLEAR_VOICE_GIVEN_QUESTIONS: type(`[${QUESTIONS}] Clear Voice Given Questions`),
+  UPDATE_VOICE_GIVEN_QUESTIONS: type(`[${QUESTIONS}] Update Voice Given Questions`),
 };
 
 export class SetQuestionsAction implements Action {
@@ -73,6 +76,27 @@ export class ClearAwaitingQuestionsAction implements Action {
 
 export class UpdateAwaitingQuestionsAction implements Action {
   type = ActionTypes.UPDATE_AWAITING_QUESTIONS;
+  
+  constructor(public payload?: any) {
+  }
+}
+
+export class SetVoiceGivenQuestionsAction implements Action {
+  type = ActionTypes.SET_VOICE_GIVEN_QUESTIONS;
+  
+  constructor(public payload?: any) {
+  }
+}
+
+export class ClearVoiceGivenQuestionsAction implements Action {
+  type = ActionTypes.CLEAR_VOICE_GIVEN_QUESTIONS;
+  
+  constructor(public payload?: any) {
+  }
+}
+
+export class UpdateVoiceGivenQuestionsAction implements Action {
+  type = ActionTypes.UPDATE_VOICE_GIVEN_QUESTIONS;
   
   constructor(public payload?: any) {
   }

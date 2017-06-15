@@ -20,3 +20,9 @@ export const getQuestionsAwaitingEntitiesState = createSelector(getQuestionsStat
     return state.entities[key];
   });
 });
+
+export const getQuestionsVoiceGivenEntitiesState = createSelector(getQuestionsState, state => {
+  return state.voiceGivenEntitiesIds.map(key => {
+    return state.entities[key];
+  });
+});

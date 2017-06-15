@@ -19,7 +19,9 @@ export class DashboardPage {
   
   public myQuestions$;
   public awaitingQuestions$;
+  public voiceGivenQuestions$;
   public MY_QUESTIONS = 'My Questions';
+  public VOICE_GIVEN_QUESTIONS = 'Voice Given Questions';
   public AWAITING_QUESTIONS = 'Awaiting Questions';
   
   constructor(public routingService: RoutingService,
@@ -29,6 +31,7 @@ export class DashboardPage {
   ngOnInit() {
     this.myQuestions$ = this.questionsService.myQuestions$;
     this.awaitingQuestions$ = this.questionsService.awaitingQuestions$;
+    this.voiceGivenQuestions$ = this.questionsService.voiceGivenQuestions$;
   }
 
   toCreateQuestion() {

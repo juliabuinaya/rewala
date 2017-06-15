@@ -9,8 +9,12 @@ import { DashboardPage } from '../../../pages/dashboard/dashboard';
 //actions
 import * as myQuestionsGet from '../../questions-request/nested-states/my-questions-get/actions/my-questions-get.actions';
 import * as awaitingQuestionsGet from '../../questions-request/nested-states/awaiting-questions-get/actions/awaiting-questions-get.actions';
+import * as voiceGivenQuestionsGet from '../../questions-request/nested-states/voice-given-questions-get/actions/voice-given-questions-get.actions';
 import * as questionPost from '../../questions-request/nested-states/question-post/actions/question-post.actions';
-import { SetAwaitingQuestionsAction, SetMyQuestionsAction, UpdateMyQuestionsAction } from '../actions/questions.actions';
+import {
+  SetAwaitingQuestionsAction, SetMyQuestionsAction, SetVoiceGivenQuestionsAction,
+  UpdateMyQuestionsAction
+} from '../actions/questions.actions';
 import { SpinnerLoadingEndAction } from '../../spinner/actions/spinner.actions';
 
 
@@ -32,16 +36,20 @@ export class QuestionsEffects {
   .map(action => new SetAwaitingQuestionsAction(toPayload(action)));
   
   @Effect()
-  redirectToDashboardPage$: Observable<Action> = this.actions$
-  .ofType(awaitingQuestionsGet.ActionTypes.REQUEST_SUCCESS)
-  .map((action: any) => {
-    this.routingService.pushRootPage(DashboardPage);
-    return new SpinnerLoadingEndAction();
-  });
-  
-  @Effect()
   updateMyQuestions$: Observable<Action> = this.actions$
   .ofType(questionPost.ActionTypes.REQUEST_SUCCESS)
   .map(action => new UpdateMyQuestionsAction(toPayload(action)));
   
+  @Effect()
+  setVoiceGivenQuestions$: Observable<Action> = this.actions$
+  .ofType(voiceGivenQuestionsGet.ActionTypes.REQUEST_SUCCESS)
+  .map(action => new SetVoiceGivenQuestionsAction(toPayload(action)));
+  
+  @Effect()
+  redirectToDashboardPage$: Observable<Action> = this.actions$
+  .ofType(voiceGivenQuestionsGet.ActionTypes.REQUEST_SUCCESS)
+  .map((action: any) => {
+    this.routingService.pushRootPage(DashboardPage);
+    return new SpinnerLoadingEndAction();
+  });
 }

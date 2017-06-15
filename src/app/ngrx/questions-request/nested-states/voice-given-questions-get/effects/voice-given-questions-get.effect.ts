@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { QuestionsService } from '../../../../../core/services/questions.service';
 
 import * as userRequest from '../../../../user-request/actions/user-request.actions';
-import * as awaitingQuestionsGet from '../../awaiting-questions-get/actions/awaiting-questions-get.actions';
+import * as voiceGivenQuestionsGet from '../../voice-given-questions-get/actions/voice-given-questions-get.actions';
 import { VoiceGivenQuestionsGetAction, VoiceGivenQuestionsGetSuccessAction, VoiceGivenQuestionsGetFailAction } from '../actions/voice-given-questions-get.actions';
 
 
@@ -23,7 +23,7 @@ export class VoiceGivenQuestionsGetEffects {
 
   @Effect()
   getVoiceGivenQuestionsRequest$: Observable<Action> = this.actions$
-  .ofType(awaitingQuestionsGet.ActionTypes.REQUEST)
+  .ofType(voiceGivenQuestionsGet.ActionTypes.REQUEST)
   .switchMap((action: any) => {
     return this.questionsService.getVoiceGivenQuestionsRequest()
     .map((res: any) => new VoiceGivenQuestionsGetSuccessAction(res.data))

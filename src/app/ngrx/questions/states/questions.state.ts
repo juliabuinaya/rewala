@@ -2,11 +2,13 @@ export interface IQuestionsState {
   ids: string[],
   entities: {},
   myEntitiesIds: string[],
-  awaitingEntitiesIds: string[]
+  awaitingEntitiesIds: string[],
+  voiceGivenEntitiesIds: string[]
 }
 export const initialState: IQuestionsState = {
   ids: [],
   entities: {},
   myEntitiesIds: [],
-  awaitingEntitiesIds: []
+  awaitingEntitiesIds: [],
+  voiceGivenEntitiesIds: []
 };

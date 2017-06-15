@@ -37,8 +37,8 @@ export class QuestionsListPage {
         this.questionList$ = this.questionsService.myQuestions$;
         break;
   
-      case 'Voice given questions':
-        //this.questionList$ =
+      case 'Voice Given Questions':
+        this.questionList$ = this.questionsService.voiceGivenQuestions$;
         break;
   
       case 'Awaiting Questions':
