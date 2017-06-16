@@ -1,6 +1,5 @@
 export class OptionModel {
   id: string = null;
-  name: string = null;
   text: string = null;
   questionId: string = null;
   
