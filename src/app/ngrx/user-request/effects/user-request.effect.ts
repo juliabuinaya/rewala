@@ -32,14 +32,6 @@ export class UserRequestEffects {
     .catch(error => Observable.of(new UserGetFailAction(error)));
   });
   
-  //@Effect()
-  //redirectToDashboardPage$: Observable<Action> = this.actions$
-  //.ofType(userRequest.ActionTypes.GET_REQUEST_SUCCESS)
-  //.map((action: any) => {
-  //  this.routingService.pushRootPage(DashboardPage);
-  //  return new SpinnerLoadingEndAction();
-  //});
-  
   @Effect()
   redirectToSignInPage$: Observable<Action> = this.actions$
   .ofType(userRequest.ActionTypes.GET_REQUEST_FAIL)

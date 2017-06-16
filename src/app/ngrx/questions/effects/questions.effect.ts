@@ -45,11 +45,4 @@ export class QuestionsEffects {
   .ofType(voiceGivenQuestionsGet.ActionTypes.REQUEST_SUCCESS)
   .map(action => new SetVoiceGivenQuestionsAction(toPayload(action)));
   
-  @Effect()
-  redirectToDashboardPage$: Observable<Action> = this.actions$
-  .ofType(voiceGivenQuestionsGet.ActionTypes.REQUEST_SUCCESS)
-  .map((action: any) => {
-    this.routingService.pushRootPage(DashboardPage);
-    return new SpinnerLoadingEndAction();
-  });
 }

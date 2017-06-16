@@ -7,6 +7,7 @@ import { QuestionsService } from '../../../../../core/services/questions.service
 
 import * as userRequest from '../../../../user-request/actions/user-request.actions';
 import * as awaitingQuestionsGet from '../../awaiting-questions-get/actions/awaiting-questions-get.actions';
+import * as answerPost from '../../../../answers-request/nested-states/answer-post/actions/answer-post.actions';
 import { AwaitingQuestionsGetAction, AwaitingQuestionsGetSuccessAction, AwaitingQuestionsGetFailAction } from '../actions/awaiting-questions-get.actions';
 
 
@@ -18,7 +19,10 @@ export class AwaitingQuestionsGetEffects {
   
   @Effect()
   getAwaitingQuestions$: Observable<Action> = this.actions$
-  .ofType(userRequest.ActionTypes.GET_REQUEST_SUCCESS)
+  .ofType(
+    userRequest.ActionTypes.GET_REQUEST_SUCCESS,
+    answerPost.ActionTypes.REQUEST_SUCCESS
+  )
   .map((action: any) => new AwaitingQuestionsGetAction());
 
   @Effect()

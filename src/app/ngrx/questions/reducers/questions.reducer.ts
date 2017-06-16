@@ -44,7 +44,7 @@ export function reducer(
         ...state,
         ids: _.union(state.ids, updatedQuestions.entitiesIds),
         entities: Object.assign({}, state.entities, updatedQuestions.entities),
-        awaitingEntitiesIds: _.union(state.awaitingEntitiesIds, updatedQuestions.entitiesIds),
+        awaitingEntitiesIds: updatedQuestions.entitiesIds
       };
     }
   
@@ -61,7 +61,7 @@ export function reducer(
         ...state,
         ids: _.union(state.ids, updatedQuestions.entitiesIds),
         entities: Object.assign({}, state.entities, updatedQuestions.entities),
-        voiceGivenEntitiesIds: _.union(state.voiceGivenEntitiesIds, updatedQuestions.entitiesIds),
+        voiceGivenEntitiesIds: updatedQuestions.entitiesIds
       };
     }
   
