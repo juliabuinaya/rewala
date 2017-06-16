@@ -11,5 +11,5 @@ import { getQuestionsRequestState } from '../../../states/questions-request-gett
 
 
 export const getGroupPostState = compose((state: IQuestionsRequestState) => {
-  return state.questionPostState;
+  return <IQuestionPostState>state.questionPostState;
 }, getQuestionsRequestState);

@@ -1,5 +1,3 @@
-//lib
-import { compose } from '@ngrx/core/compose';
 import { createSelector } from 'reselect';
 
 //interfaces

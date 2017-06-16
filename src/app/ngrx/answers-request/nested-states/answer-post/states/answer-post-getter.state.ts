@@ -11,5 +11,5 @@ import { getAnswersRequestState } from '../../../states/answers-request-getter.s
 
 
 export const getAnswerPostState = compose((state: IAnswersRequestState) => {
-  return state.answerPostState;
+  return <IAnswerPostState>state.answerPostState;
 }, getAnswersRequestState);

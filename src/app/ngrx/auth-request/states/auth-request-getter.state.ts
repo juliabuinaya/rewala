@@ -1,7 +1,3 @@
-// lib
-import { compose } from '@ngrx/core/compose';
-
-//interfaces
 import { IAppState } from '../../state/app.state';
 
 export const getAuthRequestState = (state: IAppState) => state.authRequest;

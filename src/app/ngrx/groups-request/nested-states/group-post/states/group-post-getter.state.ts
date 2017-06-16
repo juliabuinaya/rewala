@@ -11,5 +11,5 @@ import { getGroupsRequestState } from '../../../states/groups-request-getter.sta
 
 
 export const getGroupPostState = compose((state: IGroupsRequestState) => {
-  return state.groupPostState;
+  return <IGroupPostState>state.groupPostState;
 }, getGroupsRequestState);

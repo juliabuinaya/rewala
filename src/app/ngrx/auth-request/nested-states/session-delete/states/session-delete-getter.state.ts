@@ -10,5 +10,5 @@ import { getAuthRequestState } from '../../../states/auth-request-getter.state';
 
 
 export const getSessionDeleteState = compose((state: IAuthRequestState) => {
-  return state.sessionDeleteState;
+  return <ISessionDeleteState>state.sessionDeleteState;
 }, getAuthRequestState);

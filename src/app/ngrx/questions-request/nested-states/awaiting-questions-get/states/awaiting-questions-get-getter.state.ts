@@ -6,5 +6,5 @@ import { getQuestionsRequestState } from '../../../states/questions-request-gett
 
 
 export const awaitingQuestionsGetState = compose((state: IQuestionsRequestState) => {
-  return state.awaitingQuestionsGetState;
+  return <IAwaitingQuestionsGetState>state.awaitingQuestionsGetState;
 }, getQuestionsRequestState);

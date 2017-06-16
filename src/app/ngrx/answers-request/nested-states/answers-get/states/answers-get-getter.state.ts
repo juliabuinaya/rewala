@@ -6,5 +6,5 @@ import { getAnswersRequestState } from '../../../states/answers-request-getter.s
 
 
 export const getAnswersGetState = compose((state: IAnswersRequestState) => {
-  return state.answersGetState;
+  return <IAnswersGetState>state.answersGetState;
 }, getAnswersRequestState);

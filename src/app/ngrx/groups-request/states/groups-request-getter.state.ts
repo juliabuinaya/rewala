@@ -1,6 +1,4 @@
-import { compose } from '@ngrx/core/compose';
 import { IAppState } from '../../state/app.state';
-
 
 export const getGroupsRequestState = (state: IAppState) => state.groupsRequest;
 

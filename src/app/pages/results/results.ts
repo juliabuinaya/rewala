@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, IonicPage, NavController } from 'ionic-angular';
+import { NavParams, IonicPage } from 'ionic-angular';
 import { QuestionPage } from '../question/question';
 import { RoutingService } from '../../core/services/routing.service';
 

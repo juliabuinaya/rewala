@@ -3,7 +3,6 @@ import { InjectionToken } from '@angular/core';
 
 import { CustomConfig } from 'ng2-ui-auth';
 import { ToastController } from 'ionic-angular';
-import { SessionService } from './core/services/session.service';
 
 export let APP_CONFIG = new InjectionToken<string>('app.config');
 
@@ -60,18 +59,10 @@ export function RESTANGULAR_CONFIG (
    RestangularProvider.addFullRequestInterceptor((element, operation, path, url, headers, params) => {
      return {
        params: Object.assign({}, params, {access_token: SessionService.getCurrentToken()}),
-       headers: headers,
-       
-       //headers: Object.assign({'Authorization': 'Bearer ' + cookieService.get("accessToken")}),
-       //params: Object.assign({}, params, {access_token: cookieService.get("accessToken")}),
+       headers: headers
      };
    });
-
-  // RestangularProvider.addResponseInterceptor((data, operation, what, url, response)=> {
-  //   spinnerService.hide();
-  //   return data;
-  // });
-
+   
   RestangularProvider.addErrorInterceptor((response, subject, responseHandler) => {
     let errorMsg = response.statusText;
     if (response.data.error.message) {

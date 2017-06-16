@@ -4,7 +4,6 @@ import { Effect, Actions, toPayload } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 
 import { UserService } from '../../../core/services/user.service';
-import { DashboardPage } from '../../../pages/dashboard/dashboard';
 import { RoutingService } from '../../../core/services/routing.service';
 import { SignInPage } from '../../../pages/auth/sign-in/sign-in';
 

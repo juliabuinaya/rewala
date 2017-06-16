@@ -11,5 +11,5 @@ import { getOptionsRequestState } from '../../../states/options-request-getter.s
 
 
 export const getOptionsPostState = compose((state: IOptionsRequestState) => {
-  return state.optionsPostState;
+  return <IOptionsPostState>state.optionsPostState;
 }, getOptionsRequestState);

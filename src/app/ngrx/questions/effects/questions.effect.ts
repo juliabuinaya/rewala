@@ -4,7 +4,6 @@ import { Effect, Actions, toPayload } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 
 import { RoutingService } from '../../../core/services/routing.service';
-import { DashboardPage } from '../../../pages/dashboard/dashboard';
 
 //actions
 import * as myQuestionsGet from '../../questions-request/nested-states/my-questions-get/actions/my-questions-get.actions';
@@ -15,7 +14,6 @@ import {
   SetAwaitingQuestionsAction, SetMyQuestionsAction, SetVoiceGivenQuestionsAction,
   UpdateMyQuestionsAction
 } from '../actions/questions.actions';
-import { SpinnerLoadingEndAction } from '../../spinner/actions/spinner.actions';
 
 
 @Injectable()

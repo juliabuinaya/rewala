@@ -4,7 +4,6 @@ import { Effect, Actions, toPayload } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 
 import { GroupsService } from '../../../../../core/services/groups.service';
-import { CreateQuestionGroupsPage } from '../../../../../pages/create-question/create-question-groups/create-question-groups';
 
 import * as groupPost from '../actions/group-post.actions';
 import { GroupPostFailAction, GroupPostSuccessAction } from '../actions/index';

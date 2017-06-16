@@ -6,5 +6,5 @@ import { getQuestionsRequestState } from '../../../states/questions-request-gett
 
 
 export const getQuestionsGetState = compose((state: IQuestionsRequestState) => {
-  return state.questionPostState;
+  return <IQuestionsGetState>state.questionsGetState;
 }, getQuestionsRequestState);

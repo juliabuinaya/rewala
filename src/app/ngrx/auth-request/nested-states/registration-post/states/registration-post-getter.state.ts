@@ -10,5 +10,5 @@ import { getAuthRequestState } from '../../../states/auth-request-getter.state';
 
 
 export const getRegistrationPostState = compose((state: IAuthRequestState) => {
-  return state.registrationPostState;
+  return <IRegistrationPostState>state.registrationPostState;
 }, getAuthRequestState);

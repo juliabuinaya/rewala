@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
-import { Effect, Actions, toPayload } from '@ngrx/effects';
+import { Effect, Actions } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 
 import { QuestionsService } from '../../../../../core/services/questions.service';
@@ -14,7 +14,8 @@ import { AwaitingQuestionsGetAction, AwaitingQuestionsGetSuccessAction, Awaiting
 @Injectable()
 export class AwaitingQuestionsGetEffects {
   
-  constructor(private actions$: Actions, public questionsService: QuestionsService) {
+  constructor(private actions$: Actions,
+              public questionsService: QuestionsService) {
   }
   
   @Effect()
