@@ -33,6 +33,10 @@ export class QuestionPage {
   public userId$;
   public userIdSubscriber;
   public userId;
+  public myAnswers$;
+  
+  qSubs;
+  aSubs;
   
   constructor(public navParams: NavParams,
               public optionsService: OptionsService,
@@ -66,7 +70,11 @@ export class QuestionPage {
     this.spinnerService.hideSpinner();
     this.deadline = new Date(new Date(this.question.createdAt).getTime() + this.question.ttl*1000);
     this.currentOptions$ = this.optionsService.currentOptions$;
-    //this.currentOptions$.subscribe(q => console.log(q));
+    this.myAnswers$ = this.answersService.myAnswers$;
+    
+    this.qSubs = this.currentOptions$.subscribe(q => console.log(q));
+    this.aSubs = this.myAnswers$.subscribe(a => console.log(a));
+    
     this.questionTypes = this.questionsService.questionTypes;
     this.optionType = _.find(this.questionTypes, ['id', this.question.questionTypeId]);
     
@@ -87,5 +95,7 @@ export class QuestionPage {
   }
  
   ngOnDestroy() {
+    this.qSubs.unsubscribe();
+    this.aSubs.unsubscribe();
   }
 }
