@@ -5,16 +5,21 @@ page-question {
       .deadline {
         text-align: right;
       }
+      .options {
+        .voted-option-wrap {
+          font-size: 120%;
+          .voted-option {
+            font-weight: bold;
+            color: #358a29;
+          }
+        }
+      }
     }
     .btn-wrapper {
       text-align: center;
       margin-top: 10px;
-
       button {
         width: 220px;
-      }
-      .voted-option {
-        color: #358a29;
       }
     }
   }

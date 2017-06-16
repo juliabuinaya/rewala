@@ -8,6 +8,7 @@ import { AnswersService } from '../../core/services/answers.service';
 
 import * as _ from 'lodash';
 import { UserService } from '../../core/services/user.service';
+import { Observable } from 'rxjs/Observable';
 
 @IonicPage({
   name: 'question',
@@ -34,10 +35,8 @@ export class QuestionPage {
   public userIdSubscriber;
   public userId;
   public myAnswers$;
-  
-  qSubs;
-  aSubs;
-  
+  public answeredOptions$;
+
   constructor(public navParams: NavParams,
               public optionsService: OptionsService,
               public questionsService: QuestionsService,
@@ -50,16 +49,13 @@ export class QuestionPage {
     this.action = navParams.get('action');
     this.optionsService.getQuestionOptions(this.question.id);
     this.optionsRequestGetLoadedState$ = this.optionsService.optionsRequestGetLoadedState$;
-    
     this.optionsResolver = this.optionsRequestGetLoadedState$
     .skipWhile(loaded => !loaded)
     .take(1)
     .toPromise();
-  
     this.userId$ = this.userService.userId$;
     this.userIdSubscriber =  this.userId$
     .subscribe(id => this.userId = id);
-  
   }
   
   ionViewCanEnter() {
@@ -69,15 +65,20 @@ export class QuestionPage {
   ngOnInit() {
     this.spinnerService.hideSpinner();
     this.deadline = new Date(new Date(this.question.createdAt).getTime() + this.question.ttl*1000);
-    this.currentOptions$ = this.optionsService.currentOptions$;
     this.myAnswers$ = this.answersService.myAnswers$;
-    
-    this.qSubs = this.currentOptions$.subscribe(q => console.log(q));
-    this.aSubs = this.myAnswers$.subscribe(a => console.log(a));
-    
+    this.currentOptions$ = this.optionsService.currentOptions$;
+    this.answeredOptions$ = Observable.combineLatest(this.myAnswers$, this.currentOptions$)
+    .map(([answers, currentOptions]) => [
+      _.map(answers, (answer: any) => answer.questionOptionId),
+      currentOptions
+    ])
+    .map(([answersIds, currentOptions]: any) =>
+      _.filter(currentOptions, ({id}: any) =>
+        _.indexOf(answersIds, id) != -1
+      )
+    );
     this.questionTypes = this.questionsService.questionTypes;
     this.optionType = _.find(this.questionTypes, ['id', this.question.questionTypeId]);
-    
   }
   
   onOptionChange() {
@@ -95,7 +96,5 @@ export class QuestionPage {
   }
  
   ngOnDestroy() {
-    this.qSubs.unsubscribe();
-    this.aSubs.unsubscribe();
   }
 }

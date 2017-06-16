@@ -31,8 +31,18 @@
           (ionChange)="onOptionChange()">
         </ion-checkbox>
       </ion-item>
-      <ion-item class="voted-option" *ngIf="questionType == 'Voice Given Questions'">
-        Your answer is:
+      <ion-item *ngIf="questionType == 'Voice Given Questions'">
+        <div class="voted-option-wrap"
+          *ngIf="(answeredOptions$ | async).length === 1">
+          Your answer is: <span class="voted-option">{{(answeredOptions$ | async)[0].text}}</span>
+        </div>
+        <div class="voted-option-wrap"
+          *ngIf="(answeredOptions$ | async).length > 1">
+          Your answers are:
+            <div *ngFor="let option of (answeredOptions$ | async); let i = index">
+              {{i+1}}. <span class="voted-option">{{option.text}}</span>
+            </div>
+        </div>
       </ion-item>
     </ion-list>
     <p class="deadline"> Deadline: {{ deadline | date }}</p>
