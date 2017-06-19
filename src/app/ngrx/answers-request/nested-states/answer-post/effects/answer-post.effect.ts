@@ -9,6 +9,7 @@ import { RoutingService } from '../../../../../core/services/routing.service';
 //actions
 import * as answerPost from '../actions/answer-post.actions';
 import { AnswerPostFailAction, AnswerPostSuccessAction } from '../actions/answer-post.actions';
+import { SpinnerLoadingEndAction, SpinnerLoadingStartAction } from '../../../../spinner/actions/spinner.actions';
 
 
 @Injectable()
@@ -29,9 +30,23 @@ export class AnswerPostEffects {
     .catch(error => Observable.of(new AnswerPostFailAction(error)));
   });
   
-  @Effect({dispatch: false})
+  @Effect()
+  spinnerStart$: Observable<Action> = this.actions$
+  .ofType(answerPost.ActionTypes.REQUEST)
+  .map((action: any) => new SpinnerLoadingStartAction());
+  
+  @Effect()
+  spinnerEnd$: Observable<Action> = this.actions$
+  .ofType(answerPost.ActionTypes.REQUEST_SUCCESS,
+          answerPost.ActionTypes.REQUEST_FAIL)
+  .map((action: any) => new SpinnerLoadingEndAction());
+  
+  @Effect()
   postSuccessRedirect$: Observable<Action> = this.actions$
   .ofType(answerPost.ActionTypes.REQUEST_SUCCESS)
-  .do((action: any) => this.routingService.popPage());
+  .map((action: any) => {
+    this.routingService.popPage();
+    return new SpinnerLoadingEndAction();
+  });
   
 }

@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 
 import { QuestionsService } from '../../../../../core/services/questions.service';
 import { RoutingService } from '../../../../../core/services/routing.service';
-import { DashboardPage } from '../../../../../pages/dashboard/dashboard';
 
 //actions
 import * as questionPost from '../actions/question-post.actions';
@@ -35,14 +34,6 @@ export class QuestionPostEffects {
   .ofType(questionPost.ActionTypes.REQUEST)
   .map((action: any) => {
     return new SpinnerLoadingStartAction();
-  });
-  
-  @Effect()
-  redirectToDashboardPage$: Observable<Action> = this.actions$
-  .ofType(questionPost.ActionTypes.REQUEST_SUCCESS)
-  .map((action: any) => {
-    this.routingService.pushRootPage(DashboardPage);
-    return new SpinnerLoadingEndAction();
   });
   
   @Effect()
