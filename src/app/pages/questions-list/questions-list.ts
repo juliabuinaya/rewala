@@ -3,7 +3,7 @@ import { IonicPage, NavParams } from 'ionic-angular';
 
 import { RoutingService } from '../../core/services/routing.service';
 import { QuestionsService } from '../../core/services/questions.service';
-import { SpinnerService } from '../../core/services/spinner.service';
+import { LoadingService } from '../../core/services/loading.service';
 
 import { QuestionPage } from '../question/question';
 
@@ -25,7 +25,7 @@ export class QuestionsListPage {
   constructor(public navParams: NavParams,
               public routingService: RoutingService,
               public questionsService: QuestionsService,
-              public spinnerService: SpinnerService) {
+              public loadingService: LoadingService) {
     
     this.questionType = navParams.get('questionType');
     
@@ -52,7 +52,7 @@ export class QuestionsListPage {
   }
   
   toQuestionPage(question, questionType, action) {
-    this.spinnerService.showSpinner();
+    this.loadingService.showSpinner();
     this.routingService.pushPage(QuestionPage, {question, questionType, action});
   }
   

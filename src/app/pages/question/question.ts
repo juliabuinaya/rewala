@@ -3,7 +3,7 @@ import { IonicPage, NavParams } from 'ionic-angular';
 
 import { OptionsService } from '../../core/services/options.service';
 import { QuestionsService } from '../../core/services/questions.service';
-import { SpinnerService } from '../../core/services/spinner.service';
+import { LoadingService } from '../../core/services/loading.service';
 import { AnswersService } from '../../core/services/answers.service';
 
 import * as _ from 'lodash';
@@ -42,7 +42,7 @@ export class QuestionPage {
               public questionsService: QuestionsService,
               public answersService: AnswersService,
               public userService: UserService,
-              public spinnerService: SpinnerService) {
+              public loadingService: LoadingService) {
     
     this.question = navParams.get('question');
     this.questionType = navParams.get('questionType');
@@ -63,7 +63,7 @@ export class QuestionPage {
   }
 
   ngOnInit() {
-    this.spinnerService.hideSpinner();
+    this.loadingService.hideSpinner();
     this.deadline = new Date(new Date(this.question.createdAt).getTime() + this.question.ttl*1000);
     this.myAnswers$ = this.answersService.myAnswers$;
     this.currentOptions$ = this.optionsService.currentOptions$;

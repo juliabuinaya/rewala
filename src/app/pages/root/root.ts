@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
 import { RoutingService } from '../../core/services/routing.service';
-import { SpinnerService } from '../../core/services/spinner.service';
+import { LoadingService } from '../../core/services/loading.service';
 
 // app state
 import * as appState from '../../ngrx/state/app.state';
@@ -20,13 +20,13 @@ export class RootPage {
   constructor(public navCtrl: NavController,
               public routingService: RoutingService,
               public store: Store<appState.IAppState>,
-              public spinnerService: SpinnerService) {
+              public loadingService: LoadingService) {
   }
   
   ngOnInit() {
     
     /** Show loading spinner */
-    this.spinnerService.showSpinner();
+    this.loadingService.showSpinner();
     
     /** Subscribing on routing service streams  */
     this.routingService.pushRootPage$

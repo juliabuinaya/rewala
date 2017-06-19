@@ -13,7 +13,7 @@ import { APP_CONFIG, APP_DI_CONFIG, RESTANGULAR_CONFIG, SOCIAL_AUTH_CONFIG } fro
 import { RestangularModule } from 'ngx-restangular';
 import { Ng2UiAuthModule } from 'ng2-ui-auth';
 
-import { APP_SERVICE_PROVIDERS, SpinnerService } from './services/index';
+import { APP_SERVICE_PROVIDERS } from './services/index';
 import { SessionService } from './services/session.service';
 
 // effects
