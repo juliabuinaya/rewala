@@ -61,8 +61,12 @@ export class CreateQuestionGroupsPage {
     this.questionsService.createQuestion(this.questionSettings);
   }
   
-  createGroup() {
-    this.routingService.pushPage(CreateGroupMembersPage);
+  toGroupCreate() {
+    this.routingService.pushPage(CreateGroupMembersPage, {pageType: 'GROUP_CREATE'});
+  }
+  
+  toGroupDetails(group) {
+    this.routingService.pushPage(CreateGroupMembersPage, {pageType: 'GROUP_DETAILS', detailsCurrentGroup: group});
   }
   
   ngOnDestroy() {

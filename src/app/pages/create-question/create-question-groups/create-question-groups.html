@@ -10,7 +10,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-buttons right>
-      <button ion-button icon-only (click)="createGroup()">
+      <button ion-button icon-only (click)="toGroupCreate()">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
@@ -30,8 +30,11 @@
 
   <form class="saveForm" name="saveForm" #saveForm="ngForm">
     <ion-list radio-group>
-      <ion-item *ngFor="let group of (displayedGroups$ | async)">
-        <ion-label>{{ group.name }}</ion-label>
+      <ion-item class="group" *ngFor="let group of (displayedGroups$ | async)">
+        <ion-label>
+          <ion-icon class="group-details-icon" name="eye" (click)="toGroupDetails(group)"></ion-icon>
+          {{group.name}}
+        </ion-label>
         <ion-radio *ngIf="questionSettings" (ionSelect)="onGroupSelect(group)"></ion-radio>
       </ion-item>
     </ion-list>

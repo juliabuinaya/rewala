@@ -1,7 +1,10 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Select group members
+    <ion-title *ngIf="pageType == 'GROUP_CREATE'">
+      Select members
+    </ion-title>
+    <ion-title *ngIf="pageType == 'GROUP_DETAILS'">
+      {{detailsCurrentGroup?.name}} members
     </ion-title>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -18,7 +21,8 @@
 
   <h4 *ngIf="!(contacts$ | async)?.length">You don't have any contact yet</h4>
 
-  <form class="findContactForm"
+  <form *ngIf="pageType == 'GROUP_CREATE'"
+    class="findContactForm"
     (ngSubmit)="onFindSubmit()"
     [formGroup]="findContactForm">
     <ion-list>
@@ -45,7 +49,7 @@
 
   <ion-list *ngIf="(contacts$ | async)?.length">
     <ion-item class="search">
-      <ion-label floating>Search in my contacts</ion-label>
+      <ion-label floating>Search in contacts</ion-label>
       <ion-input type="text" [formControl]="search" name="search"></ion-input>
     </ion-item>
   </ion-list>
@@ -57,14 +61,18 @@
         <p class="username">{{ contact.username }}</p>
         <p class="email">{{ contact.email }}</p>
       </ion-label>
-      <ion-checkbox [(ngModel)]="checkedContacts[contact.id]" name="foundContact" (ionChange)="contactChange()"></ion-checkbox>
+      <ion-checkbox *ngIf="pageType == 'GROUP_CREATE'"
+        [(ngModel)]="checkedContacts[contact.id]"
+        name="foundContact"
+        (ionChange)="contactChange()">
+      </ion-checkbox>
     </ion-item>
   </ion-list>
 
 </ion-content>
 
 <ion-footer>
-  <div class="btn-wrapper">
+  <div *ngIf="pageType == 'GROUP_CREATE'" class="btn-wrapper">
     <button ion-button outline full type="button"
       [disabled]="!checkedContactsIds.length"
       (click)="toCreateGroupCompletePage()">Next</button>

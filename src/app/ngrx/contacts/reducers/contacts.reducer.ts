@@ -41,7 +41,13 @@ export function reducer(
         foundEntitiesIds: foundEntitiesIds
       };
     }
-  
+    
+    case ActionTypes.CLEAR_FOUND_CONTACTS:
+      return {
+        ...state,
+        foundEntitiesIds: []
+      };
+    
     case ActionTypes.SET_SELECTED_CONTACTS:
       return {
         ...state,
@@ -53,13 +59,21 @@ export function reducer(
         ...state,
         selectedEntitiesIds: []
       };
-  
-    case ActionTypes.CLEAR_FOUND_CONTACTS:
+    
+    case ActionTypes.SET_GROUP_DETAILS_CONTACTS: {
       return {
         ...state,
-        foundEntitiesIds: []
+        groupDetailsEntitiesIds: action.payload
       };
-    
+    }
+  
+    case ActionTypes.CLEAR_GROUP_DETAILS_CONTACTS:
+      return {
+        ...state,
+        groupDetailsEntitiesIds: []
+      };
+  
+  
     case ActionTypes.CLEAR_CONTACTS:
       return Object.assign({}, state, initialState);
     

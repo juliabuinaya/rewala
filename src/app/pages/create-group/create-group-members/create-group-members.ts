@@ -26,6 +26,8 @@ export class CreateGroupMembersPage {
   public userId$;
   public userEmail$;
   public search$;
+  public pageType;
+  public detailsCurrentGroup;
   public contacts$;
   public foundContacts$;
   public foundContactsSubscriber;
@@ -37,7 +39,6 @@ export class CreateGroupMembersPage {
   public findContactEmail;
   public checkedContacts = [];
   public checkedContactsIds = [];
-  public questionSettings;
   
   constructor(private fb: FormBuilder,
               public userService: UserService,
@@ -46,8 +47,8 @@ export class CreateGroupMembersPage {
               public toastController: ToastController,
               public navParams: NavParams) {
   
-    this.questionSettings = navParams.get('questionSettings');
-   
+    this.pageType = navParams.get('pageType');
+    
   }
   
   ngOnInit() {
@@ -72,8 +73,14 @@ export class CreateGroupMembersPage {
     .map(search => search.trim().toLowerCase())
     .startWith('');
     
-    this.contacts$ = this.contactsService.contacts$;
-  
+    if(this.pageType == 'GROUP_DETAILS') {
+      this.detailsCurrentGroup = this.navParams.get('detailsCurrentGroup');
+      this.contactsService.setGroupDetailsContacts(this.detailsCurrentGroup.memberIds);
+      this.contacts$ = this.contactsService.groupDetailsContacts$;
+    } else {
+      this.contacts$ = this.contactsService.contacts$;
+    }
+    
     this.displayedContacts$ = Observable.combineLatest(this.contacts$, this.search$)
     .map(([contacts, search]) => {
       return (<any>contacts).filter(contact => {
@@ -122,5 +129,6 @@ export class CreateGroupMembersPage {
     this.foundContactsSubscriber.unsubscribe();
     this.userIdSubscriber.unsubscribe();
     this.userEmailSubscriber.unsubscribe();
+    this.contactsService.clearGroupDetailsContacts();
   }
 }

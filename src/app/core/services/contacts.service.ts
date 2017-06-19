@@ -17,6 +17,7 @@ export class ContactsService {
   public contacts$: Observable<any>;
   public foundContacts$: Observable<any>;
   public selectedContacts$: Observable<any>;
+  public groupDetailsContacts$: Observable<any>;
   
   constructor(public restangular: Restangular,
               public store: Store<IAppState>) {
@@ -24,6 +25,7 @@ export class ContactsService {
     this.contacts$ = this.store.select(contactsStateGetter.getContactsEntitiesState);
     this.foundContacts$ = this.store.select(contactsStateGetter.getContactsFoundEntitiesState);
     this.selectedContacts$ = this.store.select(contactsStateGetter.getContactsSelectedEntitiesState);
+    this.groupDetailsContacts$ = this.store.select(contactsStateGetter.getContactsGroupDetailsEntitiesState);
     
   }
   
@@ -57,6 +59,14 @@ export class ContactsService {
   
   clearSelectedContacts() {
     this.store.dispatch(new contacts.ClearSelectedContactsAction());
+  }
+  
+  setGroupDetailsContacts(contactsIds) {
+    this.store.dispatch(new contacts.SetGroupDetailsContactsAction(contactsIds));
+  }
+  
+  clearGroupDetailsContacts() {
+    this.store.dispatch(new contacts.ClearGroupDetailsContactsAction());
   }
   
 }

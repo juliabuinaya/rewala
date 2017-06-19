@@ -13,6 +13,8 @@ export const ActionTypes = {
   CLEAR_FOUND_CONTACTS: type(`[${CONTACTS}] Clear Found Contacts`),
   UPDATE_FOUND_CONTACTS: type(`[${CONTACTS}] Update Found Contacts`),
   REMOVE_FOUND_CONTACTS_IDS: type(`[${CONTACTS}] Remove Found Contacts Ids`),
+  SET_GROUP_DETAILS_CONTACTS: type(`[${CONTACTS}] Set Group Details Contacts`),
+  CLEAR_GROUP_DETAILS_CONTACTS: type(`[${CONTACTS}] Clear Group Details Contacts`),
 };
 
 export class SetContactsAction implements Action {
@@ -78,7 +80,22 @@ export class RemoveFoundContactsIdsAction implements Action {
   }
 }
 
+export class SetGroupDetailsContactsAction implements Action {
+  type = ActionTypes.SET_GROUP_DETAILS_CONTACTS;
+  
+  constructor(public payload?: any) {
+  }
+}
+
+export class ClearGroupDetailsContactsAction implements Action {
+  type = ActionTypes.CLEAR_GROUP_DETAILS_CONTACTS;
+  
+  constructor(public payload?: any) {
+  }
+}
+
 export type Actions
   = SetContactsAction | ClearContactsAction | UpdateContactsAction |
   RemoveFoundContactsIdsAction | SetFoundContactsAction | ClearFoundContactsAction | UpdateFoundContactsAction |
-  RemoveFoundContactsIdsAction | SetSelectedContactsAction | ClearSelectedContactsAction;
+  RemoveFoundContactsIdsAction | SetSelectedContactsAction | ClearSelectedContactsAction |
+  SetGroupDetailsContactsAction | ClearGroupDetailsContactsAction;
