@@ -24,6 +24,8 @@ export class SignInPage {
   
   onSubmit(form) {
     if (form.valid) {
+      this.formData.email = this.formData.email.trim();
+      this.formData.password = this.formData.password.trim();
       this.authService.signIn({...(this.formData)});
     }
   }

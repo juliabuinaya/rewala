@@ -22,6 +22,9 @@ export class SignUpPage {
   
   onSubmit(form) {
     if (form.valid) {
+      this.formData.email = this.formData.email.trim();
+      this.formData.username = this.formData.username.trim();
+      this.formData.password = this.formData.password.trim();
       this.authService.signUp({...(this.formData)});
     }
   }
