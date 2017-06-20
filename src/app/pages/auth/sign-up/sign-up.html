@@ -11,44 +11,52 @@
 
   <h1>Sign Up</h1>
 
-  <form class="saveForm" name="saveForm" #saveForm="ngForm" (ngSubmit)="onSubmit(saveForm)">
+  <form (ngSubmit)="onSubmit(signUpForm)"
+    [formGroup]="signUpForm">
     <ion-list>
       <ion-item>
         <ion-label floating>Email</ion-label>
         <ion-input type="email"
-          #email="ngModel"
           [(ngModel)]="formData.email"
-          name="email"
-          pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z0-9]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"
-          required>
+          formControlName="email">
         </ion-input>
       </ion-item>
-      <div *ngIf="email.errors && (email.dirty || email.touched)" class="error-box">
-        <div [hidden]="!email.errors.required">
-          Email is required
-        </div>
-        <div [hidden]="!email.errors.pattern">
-          Invalid email
-        </div>
+      <div *ngIf="signUpForm.get('email').hasError('required') && signUpForm.get('email').touched" class="error-box">
+        Email is required
+      </div>
+      <div *ngIf="signUpForm.get('email').hasError('pattern') && signUpForm.get('email').dirty" class="error-box">
+        Invalid email
       </div>
       <ion-item>
         <ion-label floating>Username</ion-label>
-        <ion-input type="text" #username="ngModel" [(ngModel)]="formData.username" name="username" required></ion-input>
+        <ion-input type="text"
+          [(ngModel)]="formData.username"
+          formControlName="username">
+        </ion-input>
       </ion-item>
-      <div *ngIf="username.errors && (username.dirty || username.touched)"
-        class="error-box">Username is required
+      <div *ngIf="signUpForm.get('username').hasError('required') && signUpForm.get('username').touched" class="error-box">
+        Email is required
+      </div>
+      <div *ngIf="signUpForm.get('username').hasError('minlength') && signUpForm.get('username').dirty" class="error-box">
+        Minimum of 2 characters
       </div>
       <ion-item>
         <ion-label floating>Password</ion-label>
-        <ion-input type="password" #password="ngModel" [(ngModel)]="formData.password" name="password" required></ion-input>
+        <ion-input type="password"
+          [(ngModel)]="formData.password"
+          formControlName="password">
+        </ion-input>
       </ion-item>
-      <div *ngIf="password.errors && (password.dirty || password.touched)"
-        class="error-box">Password is required
+      <div *ngIf="signUpForm.get('password').hasError('required') && signUpForm.get('password').touched" class="error-box">
+        Password is required
+      </div>
+      <div *ngIf="signUpForm.get('password').hasError('minlength') && signUpForm.get('password').dirty" class="error-box">
+        Minimum of 6 characters
       </div>
       <ion-item></ion-item>
     </ion-list>
     <div class="btn-wrapper">
-      <button ion-button type="submit" [disabled]="!saveForm.valid">Sign Up</button>
+      <button ion-button type="submit" [disabled]="!signUpForm.valid">Sign In</button>
     </div>
   </form>
 

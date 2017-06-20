@@ -11,37 +11,39 @@
 
   <h1>Sign In</h1>
 
-  <form class="saveForm" name="saveForm" #saveForm="ngForm" (ngSubmit)="onSubmit(saveForm)">
+  <form (ngSubmit)="onSubmit(signInForm)"
+        [formGroup]="signInForm">
     <ion-list>
       <ion-item>
         <ion-label floating>Email</ion-label>
         <ion-input type="email"
-          #email="ngModel"
           [(ngModel)]="formData.email"
-          name="email"
-          pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z0-9]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"
-          required>
+          formControlName="email">
         </ion-input>
       </ion-item>
-      <div *ngIf="email.errors && (email.dirty || email.touched)" class="error-box">
-        <div [hidden]="!email.errors.required">
-          Email is required
-        </div>
-        <div [hidden]="!email.errors.pattern">
-          Invalid email
-        </div>
+      <div *ngIf="signInForm.get('email').hasError('required') && signInForm.get('email').touched" class="error-box">
+        Email is required
+      </div>
+      <div *ngIf="signInForm.get('email').hasError('pattern') && signInForm.get('email').dirty" class="error-box">
+        Invalid email
       </div>
       <ion-item>
         <ion-label floating>Password</ion-label>
-        <ion-input type="password" #password="ngModel" [(ngModel)]="formData.password" name="password" required></ion-input>
+        <ion-input type="password"
+          [(ngModel)]="formData.password"
+          formControlName="password">
+        </ion-input>
       </ion-item>
-      <div *ngIf="password.errors && (password.dirty || password.touched)"
-        class="error-box">Password is required
+      <div *ngIf="signInForm.get('password').hasError('required') && signInForm.get('password').touched" class="error-box">
+        Password is required
+      </div>
+      <div *ngIf="signInForm.get('password').hasError('minlength') && signInForm.get('password').dirty" class="error-box">
+        Minimum of 6 characters
       </div>
       <ion-item></ion-item>
     </ion-list>
     <div class="btn-wrapper">
-      <button ion-button color="secondary" type="submit" [disabled]="!saveForm.valid">Sign In</button>
+      <button ion-button color="secondary" type="submit" [disabled]="!signInForm.valid">Sign In</button>
       <br>
       or
       <br>

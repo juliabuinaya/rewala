@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import { SignUpPage } from '../sign-up/sign-up';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+
 import { AuthService } from '../../../core/services/auth.service';
 import { RoutingService } from '../../../core/services/routing.service';
+
+import { SignUpPage } from '../sign-up/sign-up';
 
 @IonicPage({
   name: 'sign-in'
@@ -13,13 +16,33 @@ import { RoutingService } from '../../../core/services/routing.service';
 })
 export class SignInPage {
   
+  public signInForm: FormGroup;
   private formData = {
-    email: '',
-    password: ''
+    email: null,
+    password: null
   };
   
   constructor(public authService: AuthService,
-              public routingService: RoutingService) {
+              public routingService: RoutingService,
+              private fb: FormBuilder) {
+  }
+  
+  ngOnInit() {
+    this.signInForm = this.fb.group({
+      email: ['',
+        [
+          Validators.required,
+          Validators.pattern('[A-Za-z0-9._%+-]{3,}@[a-zA-Z0-9]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})')
+        ]
+      ],
+      password: ['',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(24)
+        ]
+      ]
+    });
   }
   
   onSubmit(form) {
