@@ -23,13 +23,22 @@ export class AnswersService {
   }
   
   createAnswer(clientId, optionsIds) {
-    _.forEach(optionsIds, optionId => {
-      let payload: any = {
-        clientId,
-        questionOptionId: optionId,
+    let payload: any = {
+      clientId
+    };
+    if(optionsIds.length === 1) {
+      payload = {
+        ...payload,
+        questionOptionId: optionsIds[0],
       };
       this.store.dispatch(new answersRequest.AnswerPostAction(payload));
-    });
+    } else if(optionsIds.length > 1) {
+      payload = {
+        ...payload,
+        questionOptionId: optionsIds,
+      };
+      this.store.dispatch(new answersRequest.MultipleAnswersPostAction(payload));
+    }
   }
   
   createAnswerRequest(payload: any) {

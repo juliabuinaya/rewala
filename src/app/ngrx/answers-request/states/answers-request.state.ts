@@ -5,6 +5,7 @@ export interface IAnswersRequestState {
   answerGetState?: IAnswerGetState;
   myAnswersGetState?: IAnswerGetState;
   answerPostState?: IAnswerPostState;
+  multipleAnswersPostState?: IAnswerPostState;
 }
 
 export const answersRequestInitialState: IAnswersRequestState = {};

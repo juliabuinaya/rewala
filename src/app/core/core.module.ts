@@ -39,6 +39,7 @@ import { AnswerPostEffects } from '../ngrx/answers-request/nested-states/answer-
 import { MyAnswersGetEffects } from '../ngrx/answers-request/nested-states/my-answers-get/effects/my-answers-get.effect';
 import { AnswersEffects } from '../ngrx/answers/effects/answers.effect';
 import { VoiceGivenQuestionsGetEffects } from '../ngrx/questions-request/nested-states/voice-given-questions-get/effects/voice-given-questions-get.effect';
+import { MultipleAnswersPostEffects } from '../ngrx/answers-request/nested-states/multiple-answers-post/effects/multiple-answers-post.effect';
 
 export function provideStorage() {
   return new Storage({});
@@ -83,6 +84,7 @@ const cloudSettings: CloudSettings = {
      EffectsModule.run(OptionsEffects),
      EffectsModule.run(AwaitingQuestionsGetEffects),
      EffectsModule.run(AnswerPostEffects),
+     EffectsModule.run(MultipleAnswersPostEffects),
      EffectsModule.run(AnswersEffects),
      EffectsModule.run(MyAnswersGetEffects),
      EffectsModule.run(VoiceGivenQuestionsGetEffects),
