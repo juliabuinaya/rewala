@@ -8,6 +8,7 @@ import { QuestionsService } from '../../../../../core/services/questions.service
 import * as userRequest from '../../../../user-request/actions/user-request.actions';
 import * as voiceGivenQuestionsGet from '../../voice-given-questions-get/actions/voice-given-questions-get.actions';
 import * as answerPost from '../../../../answers-request/nested-states/answer-post/actions/answer-post.actions';
+import * as multipleAnswersPost from '../../../../answers-request/nested-states/multiple-answers-post/actions/multiple-answers-post.actions';
 import { VoiceGivenQuestionsGetAction, VoiceGivenQuestionsGetSuccessAction, VoiceGivenQuestionsGetFailAction } from '../actions/voice-given-questions-get.actions';
 
 
@@ -21,7 +22,8 @@ export class VoiceGivenQuestionsGetEffects {
   getVoiceGivenQuestions$: Observable<Action> = this.actions$
   .ofType(
     userRequest.ActionTypes.GET_REQUEST_SUCCESS,
-    answerPost.ActionTypes.REQUEST_SUCCESS
+    answerPost.ActionTypes.REQUEST_SUCCESS,
+    multipleAnswersPost.ActionTypes.REQUEST_SUCCESS
   )
   .map((action: any) => new VoiceGivenQuestionsGetAction());
 
