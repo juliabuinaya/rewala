@@ -40,20 +40,38 @@
       <div *ngIf="signUpForm.get('username').hasError('minlength') && signUpForm.get('username').dirty" class="error-box">
         Minimum of 2 characters
       </div>
-      <ion-item>
-        <ion-label floating>Password</ion-label>
-        <ion-input type="password"
-          [(ngModel)]="formData.password"
-          formControlName="password">
-        </ion-input>
-      </ion-item>
-      <div *ngIf="signUpForm.get('password').hasError('required') && signUpForm.get('password').touched" class="error-box">
-        Password is required
+      <div formGroupName="password" class="password-group">
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password"
+            [(ngModel)]="formData.password"
+            formControlName="pass">
+          </ion-input>
+        </ion-item>
+        <div *ngIf="signUpForm.get('password').get('pass').hasError('required') &&
+                    signUpForm.get('password').get('pass').touched" class="error-box">
+          Password is required
+        </div>
+        <div *ngIf="signUpForm.get('password').get('pass').hasError('minlength') &&
+                    signUpForm.get('password').get('pass').dirty" class="error-box">
+          Minimum of 6 characters
+        </div>
+        <ion-item>
+          <ion-label floating>Repeat password</ion-label>
+          <ion-input type="password"
+            formControlName="repass">
+          </ion-input>
+        </ion-item>
+        <div *ngIf="signUpForm.get('password').get('repass').hasError('required') &&
+                    signUpForm.get('password').get('repass').touched" class="error-box">
+          Repeat password field is required
+        </div>
+        <div *ngIf="signUpForm.get('password').hasError('nomatch') &&
+                    !signUpForm.get('password').get('repass').hasError('required')" class="error-box">
+          Passwords don't match
+        </div>
+        <ion-item></ion-item>
       </div>
-      <div *ngIf="signUpForm.get('password').hasError('minlength') && signUpForm.get('password').dirty" class="error-box">
-        Minimum of 6 characters
-      </div>
-      <ion-item></ion-item>
     </ion-list>
     <div class="btn-wrapper">
       <button ion-button type="submit" [disabled]="!signUpForm.valid">Sign In</button>

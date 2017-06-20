@@ -15,7 +15,7 @@ import { AuthService } from '../../../core/services/auth.service';
 export class SignUpPage {
   
   public signUpForm: FormGroup;
-  public formData = {
+  private formData = {
     email: null,
     username: null,
     password: null
@@ -40,13 +40,20 @@ export class SignUpPage {
           Validators.maxLength(24)
         ]
       ],
-      password: ['',
-        [
-          Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(24)
+      password: this.fb.group({
+        pass: ['',
+          [
+            Validators.required,
+            Validators.minLength(6),
+            Validators.maxLength(24)
+          ]
+        ],
+        repass: ['',
+          [
+            Validators.required,
+          ]
         ]
-      ]
+      }, {validator: this.isEqual})
     });
   }
   
@@ -57,6 +64,13 @@ export class SignUpPage {
       this.formData.password = this.formData.password.trim();
       this.authService.signUp({...(this.formData)});
     }
+  }
+
+  isEqual(c: any) {
+    if (c.controls.pass.value === c.controls.repass.value) {
+      return null;
+    }
+    return {nomatch: true};
   }
   
   ngOnDestroy() {
