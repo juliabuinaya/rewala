@@ -7,6 +7,7 @@ import { AuthService } from './core/services/auth.service';
 import { UserService } from './core/services/user.service';
 
 import { RootPage } from './pages/root/root';
+import { SignInPage } from './pages/auth/sign-in/sign-in';
 import { DashboardPage } from './pages/dashboard/dashboard';
 import { SettingsPage } from './pages/settings/settings';
 import { CreateQuestionSettingsPage } from './pages/create-question/create-question-settings/create-question-settings';
@@ -34,7 +35,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Create Question', component: CreateQuestionSettingsPage },
+      { title: 'Create new question', component: CreateQuestionSettingsPage },
       { title: 'My groups', component: CreateQuestionGroupsPage },
       { title: 'Settings', component: SettingsPage }
     ];
@@ -52,10 +53,14 @@ export class MyApp {
     });
   }
   
+  toSignInPage() {
+    this.nav.setRoot(SignInPage);
+  }
+  
   toDashboardPage() {
     this.nav.setRoot(DashboardPage);
   }
-
+  
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario

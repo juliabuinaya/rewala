@@ -1,28 +1,29 @@
 <ion-menu [content]="content">
 
-  <!--<ion-header>-->
-    <!--<ion-toolbar>-->
-      <!--<ion-title>Menu</ion-title>-->
-    <!--</ion-toolbar>-->
-  <!--</ion-header>-->
-
   <ion-content>
-
-    <div class="userinfo">
-      <h3>{{ (user$ | async)?.username }}</h3>
-      <p>{{ (user$ | async)?.email }}</p>
+    <div class="userinfo" *ngIf="(user$ | async)?.id == null">
+      <h3>Welcome, guest</h3>
+      <p>Please sign in</p>
     </div>
-
-    <ion-list>
-      <button menuClose ion-item detail-none (click)="toDashboardPage()">
+    <div class="userinfo" *ngIf="(user$ | async)?.id != null">
+      <h3>{{(user$ | async)?.username}}</h3>
+      <p>{{(user$ | async)?.email}}</p>
+    </div>
+    <ion-list *ngIf="(user$ | async)?.id != null">
+      <button menuClose ion-item detail-none
+        (click)="toDashboardPage()">
         Dashboard
       </button>
-      <button menuClose ion-item detail-none *ngFor="let p of pages" (click)="openPage(p)">
+      <button menuClose ion-item detail-none
+        *ngFor="let p of pages"
+        (click)="openPage(p)">
         {{p.title}}
       </button>
-      <button menuClose ion-item detail-none (click)="logout()">Log Out</button>
+      <button menuClose ion-item detail-none
+        (click)="logout()">
+        Log Out
+      </button>
     </ion-list>
-
   </ion-content>
 
 </ion-menu>
