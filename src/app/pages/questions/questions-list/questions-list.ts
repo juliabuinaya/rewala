@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 
-import { RoutingService } from '../../core/services/routing.service';
-import { QuestionsService } from '../../core/services/questions.service';
-import { LoadingService } from '../../core/services/loading.service';
+import { RoutingService } from '../../../core/services/routing.service';
+import { QuestionsService } from '../../../core/services/questions.service';
+import { LoadingService } from '../../../core/services/loading.service';
 
 import { QuestionPage } from '../question/question';
 

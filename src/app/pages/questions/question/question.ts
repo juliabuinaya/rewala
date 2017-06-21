@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 
-import { OptionsService } from '../../core/services/options.service';
-import { QuestionsService } from '../../core/services/questions.service';
-import { LoadingService } from '../../core/services/loading.service';
-import { AnswersService } from '../../core/services/answers.service';
+import { OptionsService } from '../../../core/services/options.service';
+import { QuestionsService } from '../../../core/services/questions.service';
+import { LoadingService } from '../../../core/services/loading.service';
+import { AnswersService } from '../../../core/services/answers.service';
+import { UserService } from '../../../core/services/user.service';
 
 import * as _ from 'lodash';
-import { UserService } from '../../core/services/user.service';
 import { Observable } from 'rxjs/Observable';
 
 @IonicPage({

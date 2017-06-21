@@ -15,10 +15,9 @@ import { AuthModule } from './pages/auth/auth.module';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { SettingsModule } from './pages/settings/settings.module';
 import { CreateQuestionModule } from './pages/create-question/create-question.module';
+import { QuestionsModule } from './pages/questions/questions.module';
 import { ResultsModule } from './pages/results/results.module';
-import { QuestionModule } from './pages/question/question.module';
 import { CreateGroupModule } from './pages/create-group/create-group.module';
-import { QuestionsListModule } from './pages/questions-list/questions-list.module';
 
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -47,10 +46,9 @@ export function instrumentOptions() {
     DashboardModule,
     SettingsModule,
     CreateQuestionModule,
-    QuestionModule,
+    QuestionsModule,
     CreateGroupModule,
     ResultsModule,
-    QuestionsListModule,
 
     // create question pages
   

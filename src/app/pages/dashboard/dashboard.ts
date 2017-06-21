@@ -5,7 +5,7 @@ import { RoutingService } from '../../core/services/routing.service';
 import { QuestionsService } from '../../core/services/questions.service';
 
 import { CreateQuestionSettingsPage } from '../create-question/create-question-settings/create-question-settings';
-import { QuestionsListPage } from '../questions-list/questions-list';
+import { QuestionsListPage } from '../questions/questions-list/questions-list';
 
 
 @IonicPage({
