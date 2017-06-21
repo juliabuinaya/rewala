@@ -95,5 +95,12 @@ export class QuestionsService {
     return this.restangular.all('clients').one('get-voice-given-questions').get();
   }
   
+  deleteQuestion(questionId) {
+    this.store.dispatch(new questionsRequest.QuestionDeleteAction(questionId));
+  }
+  
+  deleteQuestionRequest(questionId) {
+    return this.restangular.one('questions', questionId).remove();
+  }
   
 }

@@ -27,6 +27,7 @@ import { GroupsEffects } from '../ngrx/groups/effects/groups.effect';
 import { GroupsGetEffects } from '../ngrx/groups-request/nested-states/groups-get/effects/groups-get.effect';
 import { GroupPostEffects } from '../ngrx/groups-request/nested-states/group-post/effects/group-post.effect';
 import { QuestionPostEffects } from '../ngrx/questions-request/nested-states/question-post/effects/question-post.effect';
+import { QuestionDeleteEffects } from '../ngrx/questions-request/nested-states/question-delete/effects/question-delete.effect';
 import { ContactsEffects } from '../ngrx/contacts/effects/contacts.effect';
 import { ContactsRequestEffects } from '../ngrx/contacts-request/effects/contacts-request.effect';
 import { OptionsPostEffects } from '../ngrx/options-request/nested-states/options-post/effects/options-post.effect';
@@ -75,6 +76,7 @@ const cloudSettings: CloudSettings = {
      EffectsModule.run(GroupsEffects),
      EffectsModule.run(GroupPostEffects),
      EffectsModule.run(QuestionPostEffects),
+     EffectsModule.run(QuestionDeleteEffects),
      EffectsModule.run(MyQuestionsGetEffects),
      EffectsModule.run(QuestionsEffects),
      EffectsModule.run(OptionsPostEffects),

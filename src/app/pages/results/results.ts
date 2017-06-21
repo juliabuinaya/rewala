@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, IonicPage } from 'ionic-angular';
-import { RoutingService } from '../../core/services/routing.service';
-
+import { IonicPage } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -10,8 +8,7 @@ import { RoutingService } from '../../core/services/routing.service';
 })
 export class ResultsPage {
   
-  constructor(public navParams: NavParams,
-              public routingService: RoutingService) {
+  constructor() {
 
   }
   

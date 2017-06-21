@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams } from 'ionic-angular';
+import { AlertController, IonicPage, NavParams } from 'ionic-angular';
 
 import { OptionsService } from '../../../core/services/options.service';
 import { QuestionsService } from '../../../core/services/questions.service';
@@ -42,7 +42,8 @@ export class QuestionPage {
               public questionsService: QuestionsService,
               public answersService: AnswersService,
               public userService: UserService,
-              public loadingService: LoadingService) {
+              public loadingService: LoadingService,
+              public alertCtrl: AlertController) {
     
     this.question = navParams.get('question');
     this.questionType = navParams.get('questionType');
@@ -88,13 +89,38 @@ export class QuestionPage {
   onOptionSelect(option) {
     this.selectedOptionId = option.id;
   }
+  
+  deleteQuestion(question) {
+    this.questionsService.deleteQuestion(question.id);
+  }
  
   vote() {
     let optionsIds;
     this.selectedOptionId ? optionsIds = [this.selectedOptionId] : optionsIds = this.checkedOptionsIds;
     if(optionsIds.length) this.answersService.createAnswer(this.userId, optionsIds);
   }
- 
+  
+  showDeleteAlert(question) {
+    let confirm = this.alertCtrl.create({
+      title: 'Are you sure you want to delete this question?',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+            return;
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.deleteQuestion(question);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+  
   ngOnDestroy() {
   }
 }

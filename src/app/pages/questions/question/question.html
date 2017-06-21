@@ -48,6 +48,11 @@
     <p class="deadline"> Deadline: {{ deadline | date }}</p>
   </div>
   <div class="btn-wrapper">
+    <button ion-button color="danger" type="button"
+      *ngIf="questionType == 'My Questions'"
+      (click)="showDeleteAlert(question)">
+      Delete this question
+    </button>
     <button ion-button color="dark" type="button"
       *ngIf="questionType == 'Awaiting Questions'"
       [disabled]="!selectedOptionId && !checkedOptionsIds.length"
