@@ -3,8 +3,6 @@ import { Restangular } from 'ngx-restangular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import * as _ from 'lodash';
-
 import { IAppState } from '../../ngrx/state/app.state';
 //actions
 import * as answersRequest from '../../ngrx/answers-request/actions/index';
