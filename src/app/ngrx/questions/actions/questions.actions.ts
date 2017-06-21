@@ -7,15 +7,20 @@ export const ActionTypes = {
   SET_QUESTIONS: type(`[${QUESTIONS}] Set Questions`),
   CLEAR_QUESTIONS: type(`[${QUESTIONS}] Clear Questions`),
   UPDATE_QUESTIONS: type(`[${QUESTIONS}] Update Questions`),
+  
   SET_MY_QUESTIONS: type(`[${QUESTIONS}] Set My Questions`),
   CLEAR_MY_QUESTIONS: type(`[${QUESTIONS}] Clear My Questions`),
   UPDATE_MY_QUESTIONS: type(`[${QUESTIONS}] Update My Questions`),
+  
   SET_AWAITING_QUESTIONS: type(`[${QUESTIONS}] Set Awaiting Questions`),
   CLEAR_AWAITING_QUESTIONS: type(`[${QUESTIONS}] Clear Awaiting Questions`),
   UPDATE_AWAITING_QUESTIONS: type(`[${QUESTIONS}] Update Awaiting Questions`),
+  
   SET_VOICE_GIVEN_QUESTIONS: type(`[${QUESTIONS}] Set Voice Given Questions`),
   CLEAR_VOICE_GIVEN_QUESTIONS: type(`[${QUESTIONS}] Clear Voice Given Questions`),
   UPDATE_VOICE_GIVEN_QUESTIONS: type(`[${QUESTIONS}] Update Voice Given Questions`),
+  
+  DELETE_QUESTION: type(`[${QUESTIONS}] Delete Question`),
 };
 
 export class SetQuestionsAction implements Action {
@@ -102,8 +107,16 @@ export class UpdateVoiceGivenQuestionsAction implements Action {
   }
 }
 
+export class DeleteQuestionAction implements Action {
+  type = ActionTypes.DELETE_QUESTION;
+  
+  constructor(public payload?: any) {
+  }
+}
+
 
 export type Actions
   = SetQuestionsAction | ClearQuestionsAction | UpdateQuestionsAction |
   SetMyQuestionsAction | ClearMyQuestionsAction | UpdateMyQuestionsAction |
-  SetAwaitingQuestionsAction | ClearAwaitingQuestionsAction | UpdateAwaitingQuestionsAction;
+  SetAwaitingQuestionsAction | ClearAwaitingQuestionsAction | UpdateAwaitingQuestionsAction |
+  DeleteQuestionAction;

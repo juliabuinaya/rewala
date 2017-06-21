@@ -10,8 +10,13 @@ import * as myQuestionsGet from '../../questions-request/nested-states/my-questi
 import * as awaitingQuestionsGet from '../../questions-request/nested-states/awaiting-questions-get/actions/awaiting-questions-get.actions';
 import * as voiceGivenQuestionsGet from '../../questions-request/nested-states/voice-given-questions-get/actions/voice-given-questions-get.actions';
 import * as questionPost from '../../questions-request/nested-states/question-post/actions/question-post.actions';
+import * as questionDelete from '../../questions-request/nested-states/question-delete/actions/question-delete.actions';
+import { SpinnerLoadingEndAction } from '../../spinner/actions/spinner.actions';
 import {
-  SetAwaitingQuestionsAction, SetMyQuestionsAction, SetVoiceGivenQuestionsAction,
+  DeleteQuestionAction,
+  SetAwaitingQuestionsAction,
+  SetMyQuestionsAction,
+  SetVoiceGivenQuestionsAction,
   UpdateMyQuestionsAction
 } from '../actions/questions.actions';
 
@@ -42,5 +47,18 @@ export class QuestionsEffects {
   setVoiceGivenQuestions$: Observable<Action> = this.actions$
   .ofType(voiceGivenQuestionsGet.ActionTypes.REQUEST_SUCCESS)
   .map(action => new SetVoiceGivenQuestionsAction(toPayload(action)));
+  
+  @Effect()
+  deleteQuestion: Observable<Action> = this.actions$
+  .ofType(questionDelete.ActionTypes.REQUEST_SUCCESS)
+  .map(action => new DeleteQuestionAction(toPayload(action)));
+  
+  @Effect()
+  deleteQuestionRedirect$: Observable<Action> = this.actions$
+  .ofType(questionDelete.ActionTypes.REQUEST_SUCCESS)
+  .map((action: any) => {
+    this.routingService.popPage();
+    return new SpinnerLoadingEndAction();
+  });
   
 }

@@ -65,6 +65,17 @@ export function reducer(
       };
     }
   
+    case ActionTypes.DELETE_QUESTION: {
+      let questionId = action.payload;
+      return {
+        ...state,
+        ids: _.difference(state.ids, [questionId]),
+        myEntitiesIds: _.difference(state.myEntitiesIds, [questionId]),
+        awaitingEntitiesIds: _.difference(state.awaitingEntitiesIds, [questionId]),
+        voiceGivenEntitiesIds: _.difference(state.voiceGivenEntitiesIds, [questionId]),
+      };
+    }
+  
     case ActionTypes.CLEAR_VOICE_GIVEN_QUESTIONS:
       return {
         ...state,
