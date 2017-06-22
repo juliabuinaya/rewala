@@ -18,8 +18,8 @@
   <div class="question-wrap">
     <h4 class="title">Question text:</h4>
     <h2 class="question">{{ question?.text }}</h2>
-    <ion-list no-lines radio-group class="options">
-      <ion-item  *ngFor="let option of (currentOptions$ | async); let i = index">
+    <ion-list radio-group class="options">
+      <ion-item  *ngFor="let option of (currentOptions$ | async); let i = index" tappable>
         <ion-label [class.voted-option]="questionType == 'Voice Given Questions'">
           {{i+1}}. {{option?.text}}
         </ion-label>

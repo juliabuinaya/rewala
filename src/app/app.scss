@@ -15,22 +15,22 @@
 // automatically applied to the <body> element in the app.
 
 h3 {
-  text-align:center;
+  text-align: center;
 }
-
 .toast-error {
   .toast-message {
     color: #f43!important;
   }
 }
-
 .userinfo {
   text-align: center;
 }
-
 .error-box {
   color: #f43;
   font-size: 12px;
   margin-left: 30px;
   margin-top: 3px;
+}
+.list-ios {
+  margin: 0!important;
 }

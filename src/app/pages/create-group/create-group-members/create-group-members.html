@@ -56,7 +56,7 @@
 
   <ion-list class="contacts" *ngIf="(contacts$ | async)?.length">
     <h4>Contacts:</h4>
-    <ion-item *ngFor="let contact of (displayedContacts$ | async)">
+    <ion-item *ngFor="let contact of (displayedContacts$ | async)" tappable>
       <ion-label>
         <p class="username">{{ contact.username }}</p>
         <p class="email">{{ contact.email }}</p>
