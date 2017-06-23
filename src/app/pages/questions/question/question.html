@@ -16,22 +16,25 @@
 
 <ion-content padding>
   <div class="question-wrap">
-    <h4 class="title">Question text:</h4>
-    <h2 class="question">{{ question?.text }}</h2>
+    <h4 class="title" *ngIf="!voteChanging">Question text:</h4>
+    <h4 class="title" *ngIf="voteChanging">Change new vote:</h4>
+    <h2 class="question" *ngIf="!voteChanging">{{ question?.text }}</h2>
     <ion-list radio-group class="options">
-      <ion-item  *ngFor="let option of (currentOptions$ | async); let i = index">
-        <ion-label [class.voted-option]="questionType == 'Voice Given Questions'">
+
+      <ion-item *ngFor="let option of (currentOptions$ | async); let i = index">
+        <ion-label>
           {{i+1}}. {{option?.text}}
         </ion-label>
-        <ion-radio *ngIf="questionType == 'Awaiting Questions' && !optionType?.multiple"
+        <ion-radio *ngIf="(questionType == 'Awaiting Questions' || voteChanging) && !optionType?.multiple"
           (ionSelect)="onOptionSelect(option)">
         </ion-radio>
-        <ion-checkbox *ngIf="questionType == 'Awaiting Questions' && optionType?.multiple"
+        <ion-checkbox *ngIf="(questionType == 'Awaiting Questions' || voteChanging) && optionType?.multiple"
           [(ngModel)]="checkedOptions[option.id]"
           (ionChange)="onOptionChange()">
         </ion-checkbox>
       </ion-item>
-      <ion-item *ngIf="questionType == 'Voice Given Questions'">
+
+      <ion-item *ngIf="questionType == 'Voice Given Questions' && !voteChanging">
         <div class="voted-option-wrap"
           *ngIf="(answeredOptions$ | async).length === 1">
           Your answer is: <span class="voted-option">{{(answeredOptions$ | async)[0].text}}</span>
@@ -44,14 +47,31 @@
             </div>
         </div>
       </ion-item>
+
     </ion-list>
-    <p class="deadline"> Deadline: {{ deadline | date }}</p>
+    <p class="deadline"> Deadline: {{deadline | date}}</p>
   </div>
   <div class="btn-wrapper">
     <button ion-button color="danger" type="button"
       *ngIf="questionType == 'My Questions'"
       (click)="showDeleteAlert(question)">
       Delete this question
+    </button>
+    <button ion-button color="danger" type="button"
+      *ngIf="questionType == 'Voice Given Questions' && !voteChanging"
+      (click)="showChangeVoteAlert()">
+      Change my vote
+    </button>
+    <button ion-button color="secondary" type="button"
+      *ngIf="questionType == 'Voice Given Questions' && voteChanging"
+      [disabled]="!selectedOptionId && !checkedOptionsIds.length"
+      (click)="confirmVoteChange()">
+      Confirm changing
+    </button>
+    <button ion-button type="button"
+      *ngIf="questionType == 'Voice Given Questions' && voteChanging"
+      (click)="cancel()">
+      Cancel
     </button>
     <button ion-button color="dark" type="button"
       *ngIf="questionType == 'Awaiting Questions'"

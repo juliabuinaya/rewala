@@ -50,8 +50,6 @@ export function instrumentOptions() {
     CreateGroupModule,
     ResultsModule,
 
-    // create question pages
-  
     StoreDevtoolsModule.instrumentStore(instrumentOptions),
     StoreLogMonitorModule
   ],

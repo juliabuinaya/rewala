@@ -6,6 +6,7 @@ import { QuestionsService } from '../../../core/services/questions.service';
 import { LoadingService } from '../../../core/services/loading.service';
 import { AnswersService } from '../../../core/services/answers.service';
 import { UserService } from '../../../core/services/user.service';
+import { RoutingService } from '../../../core/services/routing.service';
 
 import * as _ from 'lodash';
 import { Observable } from 'rxjs/Observable';
@@ -36,6 +37,7 @@ export class QuestionPage {
   public userId;
   public myAnswers$;
   public answeredOptions$;
+  public voteChanging = false;
 
   constructor(public navParams: NavParams,
               public optionsService: OptionsService,
@@ -43,6 +45,7 @@ export class QuestionPage {
               public answersService: AnswersService,
               public userService: UserService,
               public loadingService: LoadingService,
+              public routingService: RoutingService,
               public alertCtrl: AlertController) {
     
     this.question = navParams.get('question');
@@ -93,11 +96,31 @@ export class QuestionPage {
   deleteQuestion(question) {
     this.questionsService.deleteQuestion(question.id);
   }
- 
+  
   vote() {
     let optionsIds;
     this.selectedOptionId ? optionsIds = [this.selectedOptionId] : optionsIds = this.checkedOptionsIds;
     if(optionsIds.length) this.answersService.createAnswer(this.userId, optionsIds);
+  }
+  
+  changeVote() {
+    this.voteChanging = true;
+  }
+  
+  cancel() {
+    this.routingService.popPage();
+  }
+  
+  //cancelVoteChanging() {
+  //  this.voteChanging = false;
+  //  this.selectedOptionId = null;
+  //  this.checkedOptionsIds = [];
+  //  this.checkedOptions = [];
+  //  this.questionForm.reset();
+  //}
+  
+  confirmVoteChange() {
+    console.log('confirm vote change');
   }
   
   showDeleteAlert(question) {
@@ -114,6 +137,27 @@ export class QuestionPage {
           text: 'Yes',
           handler: () => {
             this.deleteQuestion(question);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+  
+  showChangeVoteAlert() {
+    let confirm = this.alertCtrl.create({
+      title: 'Are you sure you want to change your vote?',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+            return;
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.changeVote();
           }
         }
       ]
