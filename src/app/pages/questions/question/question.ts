@@ -36,6 +36,8 @@ export class QuestionPage {
   public userIdSubscriber;
   public userId;
   public myAnswers$;
+  public currentAnswersIds;
+  public currentAnswersIdsSubscriber;
   public answeredOptions$;
   public voteChanging = false;
 
@@ -71,6 +73,7 @@ export class QuestionPage {
     this.deadline = new Date(new Date(this.question.createdAt).getTime() + this.question.ttl*1000);
     this.myAnswers$ = this.answersService.myAnswers$;
     this.currentOptions$ = this.optionsService.currentOptions$;
+    
     this.answeredOptions$ = Observable.combineLatest(this.myAnswers$, this.currentOptions$)
     .map(([answers, currentOptions]) => [
       _.map(answers, (answer: any) => answer.questionOptionId),
@@ -81,8 +84,22 @@ export class QuestionPage {
         _.indexOf(answersIds, id) != -1
       )
     );
+    
     this.questionTypes = this.questionsService.questionTypes;
     this.optionType = _.find(this.questionTypes, ['id', this.question.questionTypeId]);
+    
+    this.currentAnswersIdsSubscriber = Observable.combineLatest(this.answeredOptions$, this.myAnswers$)
+    .map(([options, answers]) => [
+      _.map(options, (option: any) => option.id),
+      answers
+    ])
+    .map(([optionsIds, answers]: any) =>
+      _.filter(answers, ({questionOptionId}: any) =>
+        _.indexOf(optionsIds, questionOptionId) != -1
+      )
+    )
+    .map(answers => _.map(answers, (answer: any) => answer.id))
+    .subscribe(answersIds => this.currentAnswersIds = answersIds);
   }
   
   onOptionChange() {
@@ -97,30 +114,26 @@ export class QuestionPage {
     this.questionsService.deleteQuestion(question.id);
   }
   
-  vote() {
+  getChosenOptionsIds() {
     let optionsIds;
     this.selectedOptionId ? optionsIds = [this.selectedOptionId] : optionsIds = this.checkedOptionsIds;
-    if(optionsIds.length) this.answersService.createAnswer(this.userId, optionsIds);
+    return optionsIds;
+  }
+  
+  vote() {
+    this.answersService.createAnswer(this.userId, this.getChosenOptionsIds());
   }
   
   changeVote() {
     this.voteChanging = true;
   }
   
-  cancel() {
+  cancelVoteChange() {
     this.routingService.popPage();
   }
   
-  //cancelVoteChanging() {
-  //  this.voteChanging = false;
-  //  this.selectedOptionId = null;
-  //  this.checkedOptionsIds = [];
-  //  this.checkedOptions = [];
-  //  this.questionForm.reset();
-  //}
-  
   confirmVoteChange() {
-    console.log('confirm vote change');
+    this.answersService.changeAnswer(this.currentAnswersIds, this.getChosenOptionsIds());
   }
   
   showDeleteAlert(question) {
@@ -166,5 +179,7 @@ export class QuestionPage {
   }
   
   ngOnDestroy() {
+    this.userIdSubscriber.unsubscribe();
+    this.currentAnswersIdsSubscriber.unsubscribe();
   }
 }

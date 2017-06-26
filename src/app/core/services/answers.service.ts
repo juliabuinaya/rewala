@@ -51,4 +51,13 @@ export class AnswersService {
     return this.restangular.one('clients', clientId).all('answers').getList();
   }
   
+  changeAnswer(answersIds, optionsIds) {
+    console.log('change aaa', answersIds);
+    console.log('change opts', optionsIds);
+  }
+  
+  deleteAnswerRequest(answersIds) {
+    console.log('deleteAnswerRequest', answersIds);
+  }
+  
 }
