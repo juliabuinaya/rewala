@@ -14,12 +14,12 @@ import { SpinnerLoadingEndAction, SpinnerLoadingStartAction } from '../../../../
 
 @Injectable()
 export class AnswerDeleteEffects {
-  
+
   constructor(private actions$: Actions,
               public answersService: AnswersService,
               public routingService: RoutingService) {
   }
-  
+
   @Effect()
   answerPost$: Observable<Action> = this.actions$
   .ofType(answerDelete.ActionTypes.REQUEST)
@@ -29,12 +29,12 @@ export class AnswerDeleteEffects {
     .map((res: any) => new AnswerDeleteFailAction(res))
     .catch(error => Observable.of(new AnswerDeleteSuccessAction(error)));
   });
-  
+
   @Effect()
   spinnerStart$: Observable<Action> = this.actions$
   .ofType(answerDelete.ActionTypes.REQUEST)
   .map((action: any) => new SpinnerLoadingStartAction());
-  
+
   @Effect()
   spinnerEnd$: Observable<Action> = this.actions$
   .ofType(answerDelete.ActionTypes.REQUEST_SUCCESS,

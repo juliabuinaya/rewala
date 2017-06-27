@@ -133,7 +133,7 @@ export class QuestionPage {
   }
   
   confirmVoteChange() {
-    this.answersService.changeAnswer(this.currentAnswersIds, this.getChosenOptionsIds());
+    this.answersService.changeAnswer(this.userId, this.currentAnswersIds, this.getChosenOptionsIds());
   }
   
   showDeleteAlert(question) {

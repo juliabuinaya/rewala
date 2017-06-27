@@ -8,8 +8,10 @@ import { RoutingService } from '../../../../../core/services/routing.service';
 
 //actions
 import * as answersChange from '../actions/answers-change.actions';
-import { AnswersChangeFailAction, AnswersChangeSuccessAction } from '../actions/answers-change.actions';
+import * as answerDelete from '../../answer-delete/actions/answer-delete.actions';
+import { AnswersChangeSuccessAction, AnswersChangeFailAction } from '../actions/answers-change.actions';
 import { SpinnerLoadingEndAction, SpinnerLoadingStartAction } from '../../../../spinner/actions/spinner.actions';
+import { AnswerDeleteFailAction, AnswerDeleteSuccessAction } from '../../answer-delete/actions/answer-delete.actions';
 
 @Injectable()
 export class AnswersChangeEffects {
@@ -28,8 +30,8 @@ export class AnswersChangeEffects {
       return this.answersService.deleteAnswerRequest(answerId);
     });
     return Observable.zip(...multipleReq$)
-    .map((res: any) => new AnswersChangeSuccessAction(res)) // must be AnswersDeleteSuccessAction
-    .catch(error => Observable.of(new AnswersChangeFailAction(error))); // must be AnswersDeletefailAction
+    .mapTo(payload)
+    .catch(error => Observable.of(new AnswersChangeFailAction(error)))
   })
   .switchMap((payload: any) => {
     let multipleReq$ = payload.optionsIds.map(optionId => {
@@ -51,8 +53,12 @@ export class AnswersChangeEffects {
   
   @Effect()
   spinnerEnd$: Observable<Action> = this.actions$
-  .ofType(answersChange.ActionTypes.REQUEST_SUCCESS,
-    answersChange.ActionTypes.REQUEST_FAIL)
+  .ofType(
+    answersChange.ActionTypes.REQUEST_SUCCESS,
+    answersChange.ActionTypes.REQUEST_FAIL,
+    answerDelete.ActionTypes.REQUEST_SUCCESS,
+    answerDelete.ActionTypes.REQUEST_FAIL
+  )
   .map((action: any) => new SpinnerLoadingEndAction());
   
   @Effect()

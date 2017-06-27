@@ -41,6 +41,8 @@ import { MyAnswersGetEffects } from '../ngrx/answers-request/nested-states/my-an
 import { AnswersEffects } from '../ngrx/answers/effects/answers.effect';
 import { VoiceGivenQuestionsGetEffects } from '../ngrx/questions-request/nested-states/voice-given-questions-get/effects/voice-given-questions-get.effect';
 import { MultipleAnswersPostEffects } from '../ngrx/answers-request/nested-states/multiple-answers-post/effects/multiple-answers-post.effect';
+import { AnswersChangeEffects } from '../ngrx/answers-request/nested-states/answers-change/effects/answers-change.effect';
+import { AnswerDeleteEffects } from '../ngrx/answers-request/nested-states/answer-delete/effects/answer-delete.effect';
 
 export function provideStorage() {
   return new Storage({});
@@ -90,6 +92,8 @@ const cloudSettings: CloudSettings = {
      EffectsModule.run(AnswersEffects),
      EffectsModule.run(MyAnswersGetEffects),
      EffectsModule.run(VoiceGivenQuestionsGetEffects),
+     EffectsModule.run(AnswersChangeEffects),
+     EffectsModule.run(AnswerDeleteEffects),
   
     RestangularModule.forRoot(
       [
