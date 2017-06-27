@@ -5,7 +5,8 @@ import {
   answerGetReducer,
   answerPostReducer,
   multipleAnswersPostReducer,
-  myAnswersGetReducer
+  myAnswersGetReducer,
+  answersChangeReducer
 } from './index';
 
 
@@ -18,6 +19,7 @@ export function answersRequestReducer(
     answerGetState: answerGetReducer(state.answerGetState, action),
     myAnswersGetState: myAnswersGetReducer(state.answerGetState, action),
     answerPostState: answerPostReducer(state.answerPostState, action),
-    multipleAnswersPostState: multipleAnswersPostReducer(state.answerPostState, action)
+    multipleAnswersPostState: multipleAnswersPostReducer(state.answerPostState, action),
+    answersChangeState: answersChangeReducer(state.answersChangeState, action)
   };
 }

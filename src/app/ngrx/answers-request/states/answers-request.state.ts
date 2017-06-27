@@ -1,4 +1,4 @@
-import { IAnswersGetState, IAnswerGetState, IAnswerPostState } from './index';
+import { IAnswersGetState, IAnswerGetState, IAnswerPostState, IAnswersChangeState } from './index';
 
 export interface IAnswersRequestState {
   answersGetState?: IAnswersGetState;
@@ -6,6 +6,7 @@ export interface IAnswersRequestState {
   myAnswersGetState?: IAnswerGetState;
   answerPostState?: IAnswerPostState;
   multipleAnswersPostState?: IAnswerPostState;
+  answersChangeState?: IAnswersChangeState;
 }
 
 export const answersRequestInitialState: IAnswersRequestState = {};

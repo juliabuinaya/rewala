@@ -54,10 +54,15 @@ export class AnswersService {
   changeAnswer(answersIds, optionsIds) {
     console.log('change aaa', answersIds);
     console.log('change opts', optionsIds);
+    let payload: any = {
+      answersIds,
+      optionsIds
+    };
+    //this.store.dispatch(new answersRequest.AnswersChangeAction(payload));
   }
   
-  deleteAnswerRequest(answersIds) {
-    console.log('deleteAnswerRequest', answersIds);
+  deleteAnswerRequest(answerId) {
+    console.log('deleteAnswerRequest', answerId);
   }
   
 }
