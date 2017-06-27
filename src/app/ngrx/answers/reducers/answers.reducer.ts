@@ -23,6 +23,12 @@ export function reducer(
       };
     }
   
+    case ActionTypes.DELETE_MY_ANSWERS:
+      return {
+        ...state,
+        myEntitiesIds: _.difference(state.myEntitiesIds, action.payload)
+      };
+  
     case ActionTypes.CLEAR_MY_ANSWERS:
       return {
         ...state,

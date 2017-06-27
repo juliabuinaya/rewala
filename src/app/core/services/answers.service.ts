@@ -65,7 +65,6 @@ export class AnswersService {
   }
   
   deleteAnswerRequest(answerId) {
-    console.log('deleteAnswerRequest', answerId);
     return this.restangular.one('answers', answerId).remove();
   }
   

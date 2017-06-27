@@ -11,7 +11,6 @@ import * as answersChange from '../actions/answers-change.actions';
 import * as answerDelete from '../../answer-delete/actions/answer-delete.actions';
 import { AnswersChangeSuccessAction, AnswersChangeFailAction } from '../actions/answers-change.actions';
 import { SpinnerLoadingEndAction, SpinnerLoadingStartAction } from '../../../../spinner/actions/spinner.actions';
-import { AnswerDeleteFailAction, AnswerDeleteSuccessAction } from '../../answer-delete/actions/answer-delete.actions';
 
 @Injectable()
 export class AnswersChangeEffects {
@@ -27,11 +26,10 @@ export class AnswersChangeEffects {
   .map(toPayload)
   .switchMap((payload: any) => {
     let multipleReq$ = payload.answersIds.map(answerId => {
-      return this.answersService.deleteAnswerRequest(answerId);
+      return this.answersService.deleteAnswerRequest(answerId)
     });
     return Observable.zip(...multipleReq$)
     .mapTo(payload)
-    .catch(error => Observable.of(new AnswersChangeFailAction(error)))
   })
   .switchMap((payload: any) => {
     let multipleReq$ = payload.optionsIds.map(optionId => {
@@ -39,12 +37,23 @@ export class AnswersChangeEffects {
         clientId: payload.clientId,
         questionOptionId: optionId
       };
-      return this.answersService.createAnswerRequest(reqData);
+      return this.answersService.createAnswerRequest(reqData)
+      //.catch(error => {                       <--- server do not return any data if error, can't catch
+      //  debugger;
+      //  return Observable.of({error: true, response : error}})
+      //});
     });
     return Observable.zip(...multipleReq$)
-    .map((res: any) => new AnswersChangeSuccessAction(res))
-    .catch(error => Observable.of(new AnswersChangeFailAction(error)));
-  });
+    .map((res: any) => {
+      let result =  {
+        deletedAnswersIds: payload.answersIds,
+        newAnswers: res
+      };
+      console.log(result);
+      return new AnswersChangeSuccessAction(result);
+    })
+  })
+  .catch((error) => Observable.of(new AnswersChangeFailAction(error)));
   
   @Effect()
   spinnerStart$: Observable<Action> = this.actions$
@@ -54,9 +63,7 @@ export class AnswersChangeEffects {
   @Effect()
   spinnerEnd$: Observable<Action> = this.actions$
   .ofType(
-    answersChange.ActionTypes.REQUEST_SUCCESS,
     answersChange.ActionTypes.REQUEST_FAIL,
-    answerDelete.ActionTypes.REQUEST_SUCCESS,
     answerDelete.ActionTypes.REQUEST_FAIL
   )
   .map((action: any) => new SpinnerLoadingEndAction());
