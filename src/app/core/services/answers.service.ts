@@ -61,8 +61,13 @@ export class AnswersService {
     //this.store.dispatch(new answersRequest.AnswersChangeAction(payload));
   }
   
+  deleteAnswer(answerId) {
+    this.store.dispatch(new answersRequest.AnswerDeleteAction(answerId));
+  }
+  
   deleteAnswerRequest(answerId) {
     console.log('deleteAnswerRequest', answerId);
+    return this.restangular.one('answers', answerId).remove();
   }
   
 }

@@ -4,17 +4,19 @@ import { Effect, Actions, toPayload } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 
 import { AnswersService } from '../../../../../core/services/answers.service';
+import { RoutingService } from '../../../../../core/services/routing.service';
 
 //actions
 import * as answersChange from '../actions/answers-change.actions';
 import { AnswersChangeFailAction, AnswersChangeSuccessAction } from '../actions/answers-change.actions';
-import { SpinnerLoadingStartAction } from '../../../../spinner/actions/spinner.actions';
+import { SpinnerLoadingEndAction, SpinnerLoadingStartAction } from '../../../../spinner/actions/spinner.actions';
 
 @Injectable()
 export class AnswersChangeEffects {
   
   constructor(private actions$: Actions,
-              public answersService: AnswersService) {
+              public answersService: AnswersService,
+              public routingService: RoutingService) {
   }
   
   @Effect()
@@ -47,4 +49,17 @@ export class AnswersChangeEffects {
   .ofType(answersChange.ActionTypes.REQUEST)
   .map((action: any) => new SpinnerLoadingStartAction());
   
+  @Effect()
+  spinnerEnd$: Observable<Action> = this.actions$
+  .ofType(answersChange.ActionTypes.REQUEST_SUCCESS,
+    answersChange.ActionTypes.REQUEST_FAIL)
+  .map((action: any) => new SpinnerLoadingEndAction());
+  
+  @Effect()
+  changeSuccessRedirect$: Observable<Action> = this.actions$
+  .ofType(answersChange.ActionTypes.REQUEST_SUCCESS)
+  .map((action: any) => {
+    this.routingService.popPage();
+    return new SpinnerLoadingEndAction();
+  });
 }
