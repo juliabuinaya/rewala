@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
 import { Chart } from 'chart.js';
-
 import * as _ from 'lodash';
+import shuffle from 'shuffle-array';
 
 @IonicPage()
 @Component({
@@ -21,7 +21,6 @@ export class QuestionResultsPage {
   public resultsLabels;
   public resultsQuantities;
   public chartDataset;
-  public chartOptions;
   public colors;
   public chartSwitched = false;
   
@@ -77,9 +76,7 @@ export class QuestionResultsPage {
       datasets: [{
         labels: this.resultsLabels,
         data: this.resultsQuantities,
-        backgroundColor: this.colors,
-        borderColor: this.colors,
-        borderWidth: 1
+        backgroundColor: shuffle(this.colors),
       }]
     };
     
