@@ -49,7 +49,6 @@ export class AnswersChangeEffects {
         deletedAnswersIds: payload.answersIds,
         newAnswers: res
       };
-      console.log(result);
       return new AnswersChangeSuccessAction(result);
     })
   })

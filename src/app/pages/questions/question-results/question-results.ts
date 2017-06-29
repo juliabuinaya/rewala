@@ -3,10 +3,10 @@ import { IonicPage } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-results',
-  templateUrl: 'results.html'
+  selector: 'page-question-results',
+  templateUrl: 'question-results.html'
 })
-export class ResultsPage {
+export class QuestionResultsPage {
   
   constructor() {
 

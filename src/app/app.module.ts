@@ -16,7 +16,6 @@ import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { SettingsModule } from './pages/settings/settings.module';
 import { CreateQuestionModule } from './pages/create-question/create-question.module';
 import { QuestionsModule } from './pages/questions/questions.module';
-import { ResultsModule } from './pages/results/results.module';
 import { CreateGroupModule } from './pages/create-group/create-group.module';
 
 
@@ -48,7 +47,6 @@ export function instrumentOptions() {
     CreateQuestionModule,
     QuestionsModule,
     CreateGroupModule,
-    ResultsModule,
 
     StoreDevtoolsModule.instrumentStore(instrumentOptions),
     StoreLogMonitorModule
