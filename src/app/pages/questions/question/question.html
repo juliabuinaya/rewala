@@ -16,9 +16,9 @@
 
 <ion-content padding>
   <div class="question-wrap">
-    <h4 class="title" *ngIf="!voteChanging">Question text:</h4>
-    <h4 class="title" *ngIf="voteChanging">Change new vote:</h4>
-    <h2 class="question" *ngIf="!voteChanging">{{ question?.text }}</h2>
+    <h4 class="title" *ngIf="!voteChanging">Question text</h4>
+    <h4 class="title" *ngIf="voteChanging">Change new vote</h4>
+    <h2 class="question-text" *ngIf="!voteChanging">{{ question?.text }}</h2>
     <ion-list radio-group class="options">
 
       <ion-item *ngFor="let option of (currentOptions$ | async); let i = index">

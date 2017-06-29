@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 
+import { Observable } from 'rxjs/Observable';
+
 import { RoutingService } from '../../../core/services/routing.service';
 import { QuestionsService } from '../../../core/services/questions.service';
 import { LoadingService } from '../../../core/services/loading.service';
@@ -46,7 +48,7 @@ export class QuestionsListPage {
         break;
         
       default:
-        this.questionList$ = [];
+        this.questionList$ = Observable.of([]);
         break;
     }
   }

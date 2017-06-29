@@ -1,23 +1,17 @@
-page-results {
+page-question-results {
   ion-content {
-    h4 {
-      margin-left: 15px;
+    .question-wrap {
+      .question-text {
+        margin-top: 0;
+      }
     }
-    p {
-      font-size: 1.6rem;
-    }
-    ion-card {
-      //width: 100% !important;
-      //margin-left: 0 !important;
-      //margin-right: 0 !important;
-      border-top: 0.5px solid rgba(0, 0, 0, 0.1);
-
-      ion-card-content {
-        padding-bottom: 0 !important;
-
-        .buttons {
-          text-align: right;
-        }
+    .optimal-choice-wrap {
+      text-align: center;
+      .title {
+      }
+      .choice {
+        margin-top: 0;
+        color: #358a29;
       }
     }
   }

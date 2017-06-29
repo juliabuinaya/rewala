@@ -29,6 +29,10 @@
       <span>Awaiting</span>
       <span class="quantity">{{(awaitingQuestions$ | async)?.length}}</span>
     </button>
+    <button ion-button clear (click)="toQuestionsList(QUESTIONS_RESULTS)">
+      <span>Results</span>
+      <span class="quantity">1</span>
+    </button>
   </div>
 
   <ion-list no-lines padding>
@@ -44,9 +48,20 @@
       <ion-icon name="arrow-forward"></ion-icon>
       Awaiting your answer questions
     </button>
+    <button ion-item detail-none (click)="toQuestionsList(QUESTIONS_RESULTS)">
+      <ion-icon name="arrow-forward"></ion-icon>
+      Questions results
+    </button>
     <button ion-item detail-none>
       <ion-icon name="arrow-forward"></ion-icon>
       Past questions
+    </button>
+
+    <hr>
+
+    <button ion-item detail-none (click)="toQuestionResults()">
+      <ion-icon name="arrow-forward"></ion-icon>
+      Results example page
     </button>
   </ion-list>
 

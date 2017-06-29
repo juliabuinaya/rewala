@@ -6,6 +6,7 @@ import { QuestionsService } from '../../core/services/questions.service';
 
 import { CreateQuestionSettingsPage } from '../create-question/create-question-settings/create-question-settings';
 import { QuestionsListPage } from '../questions/questions-list/questions-list';
+import { QuestionResultsPage } from '../questions/question-results/question-results';
 
 
 @IonicPage({
@@ -23,6 +24,7 @@ export class DashboardPage {
   public MY_QUESTIONS = 'My Questions';
   public VOICE_GIVEN_QUESTIONS = 'Voice Given Questions';
   public AWAITING_QUESTIONS = 'Awaiting Questions';
+  public QUESTIONS_RESULTS = 'Questions Results';
   
   constructor(public routingService: RoutingService,
               public questionsService: QuestionsService) {
@@ -40,5 +42,9 @@ export class DashboardPage {
   
   toQuestionsList(questionType) {
     this.routingService.pushPage(QuestionsListPage, {questionType});
+  }
+  
+  toQuestionResults() {
+    this.routingService.pushPage(QuestionResultsPage);
   }
 }
