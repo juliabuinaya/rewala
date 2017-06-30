@@ -8,12 +8,12 @@ export class ToastService {
   constructor(public toastCtrl: ToastController) {
   }
   
-  presentToast(message) {
+  presentToast(message, duration=4000, position='bottom', cssClass='toast-error') {
     let toast = this.toastCtrl.create({
       message,
-      duration: 4000,
-      position: 'bottom',
-      cssClass: 'toast-error'
+      duration,
+      position,
+      cssClass
     });
     toast.present();
   }

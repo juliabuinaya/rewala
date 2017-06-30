@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AuthService } from './core/services/auth.service';
 import { UserService } from './core/services/user.service';
+import { ToastService } from './core/services/toast.service';
 
 import { RootPage } from './pages/root/root';
 import { SignInPage } from './pages/auth/sign-in/sign-in';
@@ -29,7 +30,8 @@ export class MyApp {
       public statusBar: StatusBar,
       public splashScreen: SplashScreen,
       public authService: AuthService,
-      public userService: UserService) {
+      public userService: UserService,
+      public toastService: ToastService) {
     
     this.initializeApp();
 
@@ -50,6 +52,26 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+  
+      let lastTimeBackPress = 0;
+      let timePeriodToExit  = 2000;
+  
+      this.platform.registerBackButtonAction(() => {
+        // get current active page
+        let view = this.nav.getActive();
+        if (view.component.name == "DashboardPage") {
+          //Double check to exit app
+          if (new Date().getTime() - lastTimeBackPress < timePeriodToExit) {
+            this.platform.exitApp(); //Exit from app
+          } else {
+            this.toastService.presentToast('Press back again to exit app', 2000, 'bottom', '');
+            lastTimeBackPress = new Date().getTime();
+          }
+        } else {
+          // go to previous page
+          this.nav.pop();
+        }
+      });
     });
   }
   
