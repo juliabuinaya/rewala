@@ -34,3 +34,11 @@ h3 {
 .list-ios {
   margin: 0!important;
 }
+
+ion-content {
+  ion-item, button {
+    ion-label {
+      white-space: normal!important;
+    }
+  }
+}
