@@ -22,7 +22,7 @@
       <span class="quantity">{{(myQuestions$ | async)?.length}}</span>
     </button>
     <button ion-button clear (click)="toQuestionsList(VOICE_GIVEN_QUESTIONS)">
-      <span>Voice given</span>
+      <span>Voted</span>
       <span class="quantity">{{(voiceGivenQuestions$ | async)?.length}}</span>
     </button>
     <button ion-button clear (click)="toQuestionsList(AWAITING_QUESTIONS)">

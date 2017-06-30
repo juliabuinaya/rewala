@@ -3,7 +3,6 @@ import { IonicPage } from 'ionic-angular';
 
 import { Chart } from 'chart.js';
 import * as _ from 'lodash';
-import shuffle from 'shuffle-array';
 
 @IonicPage()
 @Component({
@@ -32,12 +31,16 @@ export class QuestionResultsPage {
     this.results =
       [
         {
+          text: 'Tequila',
+          quantity: 5
+        },
+        {
           text: 'Vodka',
           quantity: 2
         },
         {
           text: 'Jin',
-          quantity: 5
+          quantity: 4
         },
         {
           text: 'Whisky',
@@ -46,10 +49,6 @@ export class QuestionResultsPage {
         {
           text: 'Rum',
           quantity: 3
-        },
-        {
-          text: 'Tequila',
-          quantity: 4
         }
       ];
     
@@ -63,12 +62,12 @@ export class QuestionResultsPage {
       'rgba(255,206,86, 0.7)',
       'rgba(211,47,47, 0.7)',
       'rgba(153,102,255, 0.7)',
-      'rgba(255,159,64, 0.7)',
       'rgba(75,192,192, 0.7)',
       'rgba(81,45,168, 0.7)',
       'rgba(255,99,132, 0.7)',
       'rgba(93,64,55, 0.7)',
       'rgba(69,90,100, 0.7)',
+      'rgba(255,159,64, 0.7)',
       'rgba(175,180,43, 0.7)',
     ];
     this.chartDataset = {
@@ -76,7 +75,7 @@ export class QuestionResultsPage {
       datasets: [{
         labels: this.resultsLabels,
         data: this.resultsQuantities,
-        backgroundColor: shuffle(this.colors),
+        backgroundColor: this.colors,
       }]
     };
     
