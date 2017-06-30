@@ -32,13 +32,15 @@ export class RootPage {
     this.routingService.pushRootPage$
     .subscribe((data: any) => {
       this.navCtrl.setRoot(data.page, data.params)
-      .catch(() => console.log('should I stay or should I go now'));
+      .then(() => console.log('nav setRoot success'))
+      .catch(() => console.log('nav setRoot error'));
     });
     
     this.routingService.pushPage$
     .subscribe((data: any) => {
       this.navCtrl.push(data.page, data.params)
-      .catch(() => console.log('should I stay or should I go now'));
+      .then(() => console.log('nav push success'))
+      .catch(() => console.log('nav push error'));
     });
     
     this.routingService.popPage$
