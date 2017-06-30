@@ -28,8 +28,11 @@
     </div>
   </div>
   <div class="optimal-choice-wrap">
-    <h5 class="title">Optimal choice</h5>
-    <h2 class="choice">{{optimalChoice?.text}}</h2>
+    <h5 class="title">Optimal
+      <span *ngIf="optimalResults.length === 1">choice</span>
+      <span *ngIf="optimalResults.length > 1">choices</span>
+    </h5>
+    <h2 class="choice" *ngFor="let result of optimalResults">{{result.text}}</h2>
   </div>
   <div class="btn-wrapper">
     <button ion-button color="secondary" type="button"

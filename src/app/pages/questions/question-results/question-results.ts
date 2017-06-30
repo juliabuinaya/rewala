@@ -14,7 +14,8 @@ export class QuestionResultsPage {
   @ViewChild('barCanvas') barCanvas;
   @ViewChild('doughnutCanvas') doughnutCanvas;
   public results;
-  public optimalChoice;
+  public maxQuantity;
+  public optimalResults;
   public barChart;
   public doughnutChart;
   public resultsLabels;
@@ -32,7 +33,7 @@ export class QuestionResultsPage {
       [
         {
           text: 'Tequila',
-          quantity: 5
+          quantity: 7
         },
         {
           text: 'Vodka',
@@ -44,7 +45,7 @@ export class QuestionResultsPage {
         },
         {
           text: 'Whisky',
-          quantity: 7
+          quantity: 6
         },
         {
           text: 'Rum',
@@ -52,7 +53,9 @@ export class QuestionResultsPage {
         }
       ];
     
-    this.optimalChoice = _.maxBy(this.results, 'quantity');
+    this.maxQuantity = _.get(_.maxBy(this.results, 'quantity'), 'quantity');
+    this.optimalResults = _.filter(this.results, ['quantity', this.maxQuantity]);
+    
     this.resultsLabels = this.results.map(result => result.text);
     this.resultsQuantities = this.results.map(result => result.quantity);
     this.colors = [
