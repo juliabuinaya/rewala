@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { IonicPage, ToastController, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams } from 'ionic-angular';
 
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
@@ -8,6 +8,7 @@ import * as _ from 'lodash';
 import { UserService } from '../../../core/services/user.service';
 import { ContactsService } from '../../../core/services/contacts.service';
 import { RoutingService } from '../../../core/services/routing.service';
+import { ToastService } from '../../../core/services/toast.service';
 
 import { CreateGroupCompletePage } from '../create-group-complete/create-group-complete';
 
@@ -44,7 +45,7 @@ export class CreateGroupMembersPage {
               public userService: UserService,
               public contactsService: ContactsService,
               public routingService: RoutingService,
-              public toastController: ToastController,
+              public toastService: ToastService,
               public navParams: NavParams) {
   
     this.pageType = navParams.get('pageType');
@@ -101,13 +102,7 @@ export class CreateGroupMembersPage {
         this.contactsService.findContactByEmail(this.findContactEmail);
       }
       else {
-        let toast = this.toastController.create({
-          message: 'Email is yours',
-          duration: 4000,
-          position: 'bottom',
-          cssClass: 'toast-error'
-        });
-        toast.present();
+        this.toastService.presentToast('Email is yours');
       }
     }
   }

@@ -51,7 +51,7 @@ export class SOCIAL_AUTH_CONFIG extends CustomConfig {
 
 export function RESTANGULAR_CONFIG (
     RestangularProvider,
-    toastController: ToastController,
+    ToastService,
     SessionService
 ) {
   RestangularProvider.setBaseUrl(APP_DI_CONFIG.apiEndpoint);
@@ -68,14 +68,7 @@ export function RESTANGULAR_CONFIG (
     if (response.data.error.message) {
       errorMsg = response.data.error.message;
     }
-
-    let toast = toastController.create({
-      message: errorMsg,
-      duration: 4000,
-      position: 'bottom',
-      cssClass: 'toast-error'
-    });
-    toast.present();
+    ToastService.presentToast(errorMsg);
   });
 
 }

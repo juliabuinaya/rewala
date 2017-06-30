@@ -15,6 +15,8 @@ import { Ng2UiAuthModule } from 'ng2-ui-auth';
 
 import { APP_SERVICE_PROVIDERS } from './services/index';
 import { SessionService } from './services/session.service';
+import { ToastService } from './services/toast.service';
+
 
 // effects
 import { AuthEffects } from '../ngrx/auth/effects';
@@ -97,7 +99,7 @@ const cloudSettings: CloudSettings = {
   
     RestangularModule.forRoot(
       [
-        ToastController,
+        ToastService,
         SessionService
       ],
       RESTANGULAR_CONFIG
