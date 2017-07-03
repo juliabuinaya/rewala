@@ -40,10 +40,35 @@
     </ion-list>
   </form>
 
+  <ion-fab right bottom>
+  <button ion-fab color="dark" (click)="submit(settingsForm)" [disabled]="!settingsForm.valid">
+  <ion-icon name="checkmark"></ion-icon>
+  </button>
+  </ion-fab>
+
 </ion-content>
 
 <ion-footer>
-  <div class="btn-wrapper">
-    <button ion-button outline full type="button" [disabled]="!settingsForm.valid" (click)="submit(settingsForm)">Next</button>
-  </div>
+  <!--<div class="btn-wrapper">-->
+    <!--<button ion-button outline full type="button" [disabled]="!settingsForm.valid" (click)="submit(settingsForm)">Next</button>-->
+  <!--</div>-->
+
+  <ion-buttons class="menu-buttons-wrap">
+    <button ion-fab mini (click)="toDashboardPage()" class="active">
+      <ion-icon name="home"></ion-icon>
+    </button>
+    <button ion-fab mini (click)="toQuestionsList(QUESTIONS_RESULTS)">
+      <ion-icon name="podium"></ion-icon>
+    </button>
+    <button class="create-question" ion-button icon-only clear (click)="toCreateQuestion()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <button ion-fab mini (click)="toGroupsPage()">
+      <ion-icon name="people"></ion-icon>
+    </button>
+    <button ion-fab mini (click)="toSettingsPage()">
+      <ion-icon name="settings"></ion-icon>
+    </button>
+  </ion-buttons>
+
 </ion-footer>

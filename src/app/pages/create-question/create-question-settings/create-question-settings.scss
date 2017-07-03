@@ -1,17 +1,13 @@
 page-create-question-settings {
-
   ion-content {
-
     h4 {
       text-align: center;
       margin-top: 10px!important;
       margin-bottom: 10px!important;
     }
-
     .deadline {
       margin-top: 25px;
     }
-
     ion-item {
       padding: 0!important;
 
@@ -19,22 +15,14 @@ page-create-question-settings {
         display: none;
       }
     }
-  }
-
-  ion-footer {
-
-    .btn-wrapper {
-      text-align: center;
-      margin: 0;
-      padding: 0;
-
-      button {
-        color: #484343;
-        border-color: #484343;
-        margin: 0;
-        height: 56px;
+    ion-fab {
+      right: 20px!important;
+      bottom: 20px!important;
+      .fab {
+        ion-icon {
+          font-size: 55px;
+        }
       }
     }
   }
-
 }
