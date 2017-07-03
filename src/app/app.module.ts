@@ -9,15 +9,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { CoreModule } from './core/core.module';
 import { AppSharedModule } from './shared/shared.module';
 
-// pages
-import { RootModule } from './pages/root/root.module';
-import { AuthModule } from './pages/auth/auth.module';
-import { DashboardModule } from './pages/dashboard/dashboard.module';
-import { SettingsModule } from './pages/settings/settings.module';
-import { CreateQuestionModule } from './pages/create-question/create-question.module';
-import { QuestionsModule } from './pages/questions/questions.module';
-import { CreateGroupModule } from './pages/create-group/create-group.module';
-
+import {
+  RootModule,
+  AuthModule,
+  DashboardModule,
+  SettingsModule,
+  CreateQuestionModule,
+  QuestionsModule,
+  CreateGroupModule
+} from './pages/index'
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
