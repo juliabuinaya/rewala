@@ -7,6 +7,8 @@ import { QuestionsService } from '../../core/services/questions.service';
 import { CreateQuestionSettingsPage } from '../create-question/create-question-settings/create-question-settings';
 import { QuestionsListPage } from '../questions/questions-list/questions-list';
 import { QuestionResultsPage } from '../questions/question-results/question-results';
+import { SettingsPage } from '../settings/settings';
+import { CreateQuestionGroupsPage } from '../create-question/create-question-groups/create-question-groups';
 
 
 @IonicPage({
@@ -46,5 +48,17 @@ export class DashboardPage {
   
   toQuestionResults() {
     this.routingService.pushPage(QuestionResultsPage);
+  }
+  
+  toDashboardPage() {
+    this.routingService.pushRootPage(DashboardPage);
+  }
+  
+  toSettingsPage() {
+    this.routingService.pushPage(SettingsPage);
+  }
+  
+  toGroupsPage() {
+    this.routingService.pushPage(CreateQuestionGroupsPage);
   }
 }

@@ -16,24 +16,24 @@
 
 <ion-content>
 
-  <div class="top-panel">
-    <button ion-button clear (click)="toQuestionsList(MY_QUESTIONS)">
-      <span>Created</span>
-      <span class="quantity">{{(myQuestions$ | async)?.length}}</span>
-    </button>
-    <button ion-button clear (click)="toQuestionsList(VOICE_GIVEN_QUESTIONS)">
-      <span>Voted</span>
-      <span class="quantity">{{(voiceGivenQuestions$ | async)?.length}}</span>
-    </button>
-    <button ion-button clear (click)="toQuestionsList(AWAITING_QUESTIONS)">
-      <span>Awaiting</span>
-      <span class="quantity">{{(awaitingQuestions$ | async)?.length}}</span>
-    </button>
-    <button ion-button clear (click)="toQuestionsList(QUESTIONS_RESULTS)">
-      <span>Results</span>
-      <span class="quantity">1</span>
-    </button>
-  </div>
+  <ion-list class="top-panel">
+    <ion-item>
+      <div>Created</div>
+      <div class="quantity">{{(myQuestions$ | async)?.length}}</div>
+    </ion-item>
+    <ion-item>
+      <div>Voted</div>
+      <div class="quantity">{{(voiceGivenQuestions$ | async)?.length}}</div>
+    </ion-item>
+    <ion-item>
+      <div>Awaiting</div>
+      <div class="quantity">{{(awaitingQuestions$ | async)?.length}}</div>
+    </ion-item>
+    <ion-item>
+      <div>Results</div>
+      <div class="quantity">1</div>
+    </ion-item>
+  </ion-list>
 
   <ion-list no-lines padding>
     <button ion-item detail-none (click)="toQuestionsList(MY_QUESTIONS)">
@@ -57,6 +57,8 @@
       Past questions
     </button>
 
+    <img src="/assets/icon/bars-chart.svg" alt="" width="50px" height="50px">
+
     <hr>
 
     <button ion-item detail-none (click)="toQuestionResults()">
@@ -65,10 +67,31 @@
     </button>
   </ion-list>
 
-  <ion-fab right bottom>
-    <button ion-fab color="dark" (click)="toCreateQuestion()">
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-fab>
+  <!--<ion-fab right bottom>-->
+    <!--<button ion-fab color="dark" (click)="toCreateQuestion()">-->
+      <!--<ion-icon name="checkmark"></ion-icon>-->
+    <!--</button>-->
+  <!--</ion-fab>-->
 
 </ion-content>
+
+<ion-footer>
+  <ion-buttons class="menu-buttons-wrap">
+    <button ion-fab mini (click)="toDashboardPage()" class="active">
+      <ion-icon name="home"></ion-icon>
+    </button>
+    <button ion-fab mini (click)="toQuestionsList(QUESTIONS_RESULTS)">
+      <ion-icon name="podium"></ion-icon>
+    </button>
+    <button class="create-question" ion-button icon-only clear (click)="toCreateQuestion()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <button ion-fab mini (click)="toGroupsPage()">
+      <ion-icon name="people"></ion-icon>
+    </button>
+    <button ion-fab mini (click)="toSettingsPage()">
+      <ion-icon name="settings"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-footer>
+
