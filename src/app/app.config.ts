@@ -2,7 +2,6 @@ import { InjectionToken } from '@angular/core';
  //import { environment } from '../environments/environment';
 
 import { CustomConfig } from 'ng2-ui-auth';
-import { ToastController } from 'ionic-angular';
 
 export let APP_CONFIG = new InjectionToken<string>('app.config');
 
