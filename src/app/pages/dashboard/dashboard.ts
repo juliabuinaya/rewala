@@ -10,7 +10,6 @@ import { QuestionResultsPage } from '../questions/question-results/question-resu
 import { SettingsPage } from '../settings/settings';
 import { CreateQuestionGroupsPage } from '../create-question/create-question-groups/create-question-groups';
 
-
 @IonicPage({
   name: 'dashboard'
 })
