@@ -6,9 +6,6 @@ import { UserService } from '../../../core/services/user.service';
 import { RoutingService } from '../../../core/services/routing.service';
 
 import { CreateQuestionOptionsPage } from '../create-question-options/create-question-options';
-import { QuestionsListPage } from '../../questions/questions-list/questions-list';
-import { QuestionResultsPage } from '../../questions/question-results/question-results';
-
 
 @IonicPage({
   name: 'create-question-settings'
