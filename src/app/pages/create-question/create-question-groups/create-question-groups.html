@@ -40,10 +40,17 @@
     </ion-list>
   </form>
 
+  <ion-fab right bottom *ngIf="questionSettings">
+    <button ion-fab color="dark"
+      type="button"
+      [disabled]="!selectedGroupId"
+      (click)="onComplete()">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+
 </ion-content>
 
 <ion-footer>
-  <div class="btn-wrapper">
-    <button ion-button outline full type="button" [disabled]="!selectedGroupId" (click)="onComplete()" *ngIf="questionSettings">Complete</button>
-  </div>
+  <app-footer></app-footer>
 </ion-footer>

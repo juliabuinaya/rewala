@@ -1,4 +1,6 @@
-<app-header title="Set options"></app-header>
+<ion-header>
+  <app-header title="Set options"></app-header>
+</ion-header>
 
 <ion-content padding>
 
@@ -38,10 +40,16 @@
     </ion-grid>
   </form>
 
+  <ion-fab right bottom>
+    <button ion-fab color="dark" type="button"
+      [disabled]="minOptionsQuantity > options.length"
+      (click)="toNextStep()">
+      <ion-icon name="arrow-round-forward"></ion-icon>
+    </button>
+  </ion-fab>
+
 </ion-content>
 
 <ion-footer>
-  <div class="btn-wrapper">
-    <button ion-button outline full type="button" [disabled]="minOptionsQuantity > options.length" (click)="toNextStep()">Next</button>
-  </div>
+  <app-footer></app-footer>
 </ion-footer>

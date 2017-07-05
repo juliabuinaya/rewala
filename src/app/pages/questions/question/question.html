@@ -1,4 +1,6 @@
-<app-header title="Question"></app-header>
+<ion-header>
+  <app-header title="Question"></app-header>
+</ion-header>
 
 <ion-content padding>
   <div class="question-wrap">
@@ -23,7 +25,10 @@
       <ion-item *ngIf="questionType == 'Voice Given Questions' && !voteChanging">
         <div class="voted-option-wrap"
           *ngIf="(answeredOptions$ | async).length === 1">
-          Your answer is: <span class="voted-option">{{(answeredOptions$ | async)[0].text}}</span>
+          <div>Thank you for giving your voice!</div>
+          <div>Your answer is:
+            <span class="voted-option">{{(answeredOptions$ | async)[0].text}}</span>
+          </div>
         </div>
         <div class="voted-option-wrap"
           *ngIf="(answeredOptions$ | async).length > 1">
@@ -67,3 +72,8 @@
     </button>
   </div>
 </ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>
+

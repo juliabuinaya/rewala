@@ -1,4 +1,6 @@
-<app-header title="Dashboard"></app-header>
+<ion-header>
+  <app-header title="Dashboard"></app-header>
+</ion-header>
 
 <ion-content>
 
@@ -56,22 +58,6 @@
 </ion-content>
 
 <ion-footer>
-  <ion-buttons class="menu-buttons-wrap">
-    <button ion-fab mini (click)="toDashboardPage()" class="active">
-      <ion-icon name="home"></ion-icon>
-    </button>
-    <button ion-fab mini (click)="toQuestionsList(QUESTIONS_RESULTS)">
-      <ion-icon name="podium"></ion-icon>
-    </button>
-    <button class="create-question" ion-button icon-only clear (click)="toCreateQuestion()">
-      <ion-icon name="add"></ion-icon>
-    </button>
-    <button ion-fab mini (click)="toGroupsPage()">
-      <ion-icon name="people"></ion-icon>
-    </button>
-    <button ion-fab mini (click)="toSettingsPage()">
-      <ion-icon name="settings"></ion-icon>
-    </button>
-  </ion-buttons>
+  <app-footer></app-footer>
 </ion-footer>
 

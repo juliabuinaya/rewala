@@ -1,4 +1,6 @@
-<app-header title="Questions"></app-header>
+<ion-header>
+  <app-header title="Questions"></app-header>
+</ion-header>
 
 <ion-content>
   <h4 *ngIf="!(questionList$ | async).length">List is empty</h4>
@@ -15,3 +17,7 @@
     </ion-card>
   </div>
 </ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>
