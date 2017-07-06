@@ -23,17 +23,18 @@
     <h2 class="choice" *ngFor="let result of optimalResults">{{result.text}}</h2>
   </div>
 
-  <ion-fab class="bar-chart-fab" right *ngIf="pieChartActive">
+  <ion-fab class="pie-chart-fab" right [hidden]="!barChartActive">
+    <button ion-fab type="button" color="light" (click)="showPieChart()">
+      <img src="/assets/icon/pie-chart.svg" alt="">
+    </button>
+  </ion-fab>
+
+  <ion-fab class="bar-chart-fab" right  [hidden]="!pieChartActive">
     <button ion-fab type="button" color="light" (click)="showBarChart()">
       <img src="/assets/icon/bar-chart.svg" alt="">
     </button>
   </ion-fab>
 
-  <ion-fab class="pie-chart-fab" right *ngIf="barChartActive">
-    <button ion-fab type="button" color="light" (click)="showPieChart()">
-      <img src="/assets/icon/pie-chart.svg" alt="">
-    </button>
-  </ion-fab>
 
 
 </ion-content>
