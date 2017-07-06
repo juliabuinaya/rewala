@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { RoutingService } from '../../../core/services/routing.service';
@@ -16,6 +16,10 @@ import { CreateQuestionGroupsPage } from '../../../pages/create-question/create-
 })
 export class FooterComponent {
   
+  @Input() currentPageName: string;
+  @Input() questionType: string;
+  public QUESTIONS_RESULTS = 'Questions Results';
+  
   constructor(public routingService: RoutingService,
               public navCtrl: NavController) {
   }
@@ -30,10 +34,6 @@ export class FooterComponent {
   
   toQuestionsList(questionType) {
     this.routingService.pushPage(QuestionsListPage, {questionType});
-  }
-  
-  toQuestionResults() {
-    this.routingService.pushPage(QuestionResultsPage);
   }
   
   toDashboardPage() {

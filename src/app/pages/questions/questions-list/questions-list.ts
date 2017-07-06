@@ -23,14 +23,21 @@ export class QuestionsListPage {
   public questionList$;
   public ACTION_DETAILS = 'Action Details';
   public ACTION_RECAST = 'Action Recast';
+  public currentPageName;
 
   constructor(public navParams: NavParams,
               public routingService: RoutingService,
               public questionsService: QuestionsService,
               public loadingService: LoadingService) {
     
-    this.questionType = navParams.get('questionType');
     
+  }
+  
+  ionViewWillEnter() {
+    this.questionType = this.navParams.get('questionType');
+    this.currentPageName = this.constructor.name;
+    console.log(this.currentPageName);
+    console.log(this.questionType);
   }
 
   ngOnInit() {

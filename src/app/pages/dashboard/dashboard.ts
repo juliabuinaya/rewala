@@ -26,9 +26,14 @@ export class DashboardPage {
   public VOICE_GIVEN_QUESTIONS = 'Voice Given Questions';
   public AWAITING_QUESTIONS = 'Awaiting Questions';
   public QUESTIONS_RESULTS = 'Questions Results';
+  public currentPageName;
   
   constructor(public routingService: RoutingService,
               public questionsService: QuestionsService) {
+  }
+  
+  ionViewWillEnter() {
+    this.currentPageName = this.constructor.name;
   }
   
   ngOnInit() {

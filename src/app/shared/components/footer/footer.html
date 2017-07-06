@@ -1,17 +1,22 @@
 <ion-buttons class="menu-buttons-wrap">
-  <button ion-fab mini (click)="toDashboardPage()">
+  <button ion-fab mini (click)="toDashboardPage()"
+    [disabled]="currentPageName === 'DashboardPage'">
     <ion-icon name="home"></ion-icon>
   </button>
-  <button ion-fab mini (click)="toQuestionsList(QUESTIONS_RESULTS)">
+  <button ion-fab mini (click)="toQuestionsList(QUESTIONS_RESULTS)"
+    [disabled]="currentPageName === 'QuestionsListPage' && questionType === 'Questions Results'">
     <ion-icon name="podium"></ion-icon>
   </button>
-  <button class="create-question" ion-button icon-only clear (click)="toCreateQuestion()">
+  <button class="create-question" ion-button icon-only clear (click)="toCreateQuestion()"
+    [disabled]="currentPageName === 'CreateQuestionSettingsPage'">
     <ion-icon name="add"></ion-icon>
   </button>
-  <button ion-fab mini (click)="toGroupsPage()">
+  <button ion-fab mini (click)="toGroupsPage()"
+    [disabled]="currentPageName === 'CreateQuestionGroupsPage'">
     <ion-icon name="people"></ion-icon>
   </button>
-  <button ion-fab mini (click)="toSettingsPage()">
+  <button ion-fab mini (click)="toSettingsPage()"
+    [disabled]="currentPageName === 'SettingsPage'">
     <ion-icon name="settings"></ion-icon>
   </button>
-</ion-buttons>
+</ion-buttons> 

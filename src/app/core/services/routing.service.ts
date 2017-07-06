@@ -7,7 +7,6 @@ export class RoutingService {
   constructor() {
   }
   
-  
   /** Need to subscribe to routing subjects in the initial(root) page */
   
   public pushRootPage$ = new Subject();

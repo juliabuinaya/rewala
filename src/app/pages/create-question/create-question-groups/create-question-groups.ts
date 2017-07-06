@@ -25,6 +25,7 @@ export class CreateQuestionGroupsPage {
   public checkedGroups = {};
   public selectedGroupId;
   public questionSettings;
+  public currentPageName;
   
   constructor(public routingService: RoutingService,
               public navParams: NavParams,
@@ -33,6 +34,10 @@ export class CreateQuestionGroupsPage {
   
     this.questionSettings = navParams.get('questionSettings');
     
+  }
+  
+  ionViewWillEnter() {
+    this.currentPageName = this.constructor.name;
   }
   
   ngOnInit() {

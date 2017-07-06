@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 
 @IonicPage({
   name: 'settings'
@@ -9,16 +9,19 @@ import { NavController, IonicPage } from 'ionic-angular';
   templateUrl: 'settings.html'
 })
 export class SettingsPage {
+  
   public settings: any;
+  public currentPageName;
 
-  constructor(
-      public navCtrl: NavController
-  ) {
-
+  constructor() {
     this.settings = [
       { label: 'Send daily emails', description: 'Emails about daily activity', value: false },
       { label: 'Send push notifications', description: '', value: true }
     ];
+  }
+  
+  ionViewWillEnter() {
+    this.currentPageName = this.constructor.name;
   }
 
   saveSettigns(event) {

@@ -24,6 +24,7 @@ export class CreateQuestionSettingsPage {
   public multiple = false;
   public defaultDate;
   public deadlineDate;
+  public currentPageName;
 
   constructor(public routingService: RoutingService,
               public userService: UserService,
@@ -37,6 +38,10 @@ export class CreateQuestionSettingsPage {
     this.defaultDate.setDate(this.defaultDate.getDate() + 2);
     this.defaultDate = this.defaultDate.toISOString();
     this.deadlineDate = this.defaultDate;
+  }
+  
+  ionViewWillEnter() {
+    this.currentPageName = this.constructor.name;
   }
   
   ngOnInit() {
