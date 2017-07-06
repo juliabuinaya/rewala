@@ -29,7 +29,8 @@ export class QuestionsListPage {
               public routingService: RoutingService,
               public questionsService: QuestionsService,
               public loadingService: LoadingService) {
-    
+  
+      this.questionType = navParams.get('questionType');
     
   }
   
