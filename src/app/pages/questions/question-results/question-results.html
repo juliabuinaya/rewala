@@ -8,10 +8,10 @@
     <h2 class="question-text">What we gonna drink tonight?</h2>
   </div>
   <div class="charts-wrap">
-    <div class="bar-chart" [hidden]="chartSwitched">
+    <div class="bar-chart" [hidden]="!barChartActive">
       <canvas #barCanvas></canvas>
     </div>
-    <div class="doughnut-chart" [hidden]="!chartSwitched">
+    <div class="doughnut-chart" [hidden]="!pieChartActive">
       <canvas #doughnutCanvas></canvas>
     </div>
   </div>
@@ -22,12 +22,20 @@
     </h5>
     <h2 class="choice" *ngFor="let result of optimalResults">{{result.text}}</h2>
   </div>
-  <div class="btn-wrapper">
-    <button ion-button color="secondary" type="button"
-      (click)="onSwitchChart()">
-      Switch chart
+
+  <ion-fab class="bar-chart-fab" right *ngIf="pieChartActive">
+    <button ion-fab type="button" color="light" (click)="showBarChart()">
+      <img src="/assets/icon/bar-chart.svg" alt="">
     </button>
-  </div>
+  </ion-fab>
+
+  <ion-fab class="pie-chart-fab" right *ngIf="barChartActive">
+    <button ion-fab type="button" color="light" (click)="showPieChart()">
+      <img src="/assets/icon/pie-chart.svg" alt="">
+    </button>
+  </ion-fab>
+
+
 </ion-content>
 
 <ion-footer>

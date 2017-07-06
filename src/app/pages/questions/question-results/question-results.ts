@@ -22,8 +22,8 @@ export class QuestionResultsPage {
   public resultsQuantities;
   public chartDataset;
   public colors;
-  public chartSwitched = false;
-  
+  public barChartActive = true;
+  public pieChartActive = false;
   
   constructor() {
   }
@@ -111,7 +111,14 @@ export class QuestionResultsPage {
     });
   }
   
-  onSwitchChart() {
-    this.chartSwitched = !this.chartSwitched;
+  showPieChart() {
+    this.barChartActive = false;
+    this.pieChartActive = true;
   }
+  
+  showBarChart() {
+    this.pieChartActive = false;
+    this.barChartActive = true;
+  }
+  
 }
