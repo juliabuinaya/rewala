@@ -5,7 +5,8 @@
   <button ion-button menuToggle>
     <ion-icon name="menu"></ion-icon>
   </button>
-  <ion-buttons right>
+  <ion-buttons right
+    *ngIf="currentPageName !== 'SignInPage' && currentPageName !== 'SignUpPage'">
     <button ion-button icon-only >
       <ion-icon name="notifications"></ion-icon>
     </button>

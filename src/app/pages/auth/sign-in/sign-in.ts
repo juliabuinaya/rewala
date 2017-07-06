@@ -21,10 +21,15 @@ export class SignInPage {
     email: null,
     password: null
   };
+  public currentPageName;
   
   constructor(public authService: AuthService,
               public routingService: RoutingService,
               private fb: FormBuilder) {
+  }
+  
+  ionViewWillEnter() {
+    this.currentPageName = this.constructor.name;
   }
   
   ngOnInit() {

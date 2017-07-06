@@ -20,9 +20,14 @@ export class SignUpPage {
     username: null,
     password: null
   };
+  public currentPageName;
 
   constructor(public authService: AuthService,
               private fb: FormBuilder) {
+  }
+  
+  ionViewWillEnter() {
+    this.currentPageName = this.constructor.name;
   }
   
   ngOnInit() {
