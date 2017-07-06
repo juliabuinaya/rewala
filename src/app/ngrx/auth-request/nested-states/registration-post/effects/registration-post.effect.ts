@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 
 import * as registrationPost from '../actions/registration-post.actions';
 import { RegistrationPostSuccessAction, RegistrationPostFailAction } from '../actions/index';
-import { SessionPostAction } from '../../session-post/actions/index';
 import { SpinnerLoadingStartAction, SpinnerLoadingEndAction } from '../../../../spinner/actions/index';
 
 import { AuthService } from '../../../../../core/services/index';
@@ -28,12 +27,6 @@ export class RegistrationPostEffects {
     .map((res: any) => new RegistrationPostSuccessAction(payload))
     .catch(error => Observable.of(new RegistrationPostFailAction(error)));
   });
-  
-  @Effect()
-  registrationPostSuccess$: Observable<Action> = this.actions$
-  .ofType(registrationPost.ActionTypes.REQUEST_SUCCESS)
-  .map(toPayload)
-  .map(payload => new SessionPostAction(payload));
   
   @Effect()
   spinnerStart$: Observable<Action> = this.actions$

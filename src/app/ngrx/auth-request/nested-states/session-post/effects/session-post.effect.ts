@@ -8,8 +8,10 @@ import { Observable } from 'rxjs';
 
 //actions
 import * as sessionPost from '../actions/session-post.actions';
+import * as registrationPost from '../../registration-post/actions/registration-post.actions';
 import { SessionPostSuccessAction, SessionPostFailAction } from '../actions/index';
 import { SpinnerLoadingStartAction, SpinnerLoadingEndAction } from '../../../../spinner/actions/index';
+import { SessionPostAction } from '../actions/session-post.actions';
 
 @Injectable()
 export class SessionPostEffects {
@@ -27,6 +29,12 @@ export class SessionPostEffects {
     .map((res: any) => new SessionPostSuccessAction(res))
     .catch(error => Observable.of(new SessionPostFailAction(error)));
   });
+  
+  @Effect()
+  registrationPostSuccess$: Observable<Action> = this.actions$
+  .ofType(registrationPost.ActionTypes.REQUEST_SUCCESS)
+  .map(toPayload)
+  .map(payload => new SessionPostAction(payload));
   
   @Effect()
   spinnerStart$: Observable<Action> = this.actions$
