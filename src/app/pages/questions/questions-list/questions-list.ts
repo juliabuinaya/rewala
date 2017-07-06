@@ -36,8 +36,6 @@ export class QuestionsListPage {
   ionViewWillEnter() {
     this.questionType = this.navParams.get('questionType');
     this.currentPageName = this.constructor.name;
-    console.log(this.currentPageName);
-    console.log(this.questionType);
   }
 
   ngOnInit() {
