@@ -7,6 +7,7 @@ import { LoadingService } from '../../../core/services/loading.service';
 import { AnswersService } from '../../../core/services/answers.service';
 import { UserService } from '../../../core/services/user.service';
 import { RoutingService } from '../../../core/services/routing.service';
+import { AlertService } from '../../../core/services/alert.service';
 
 import * as _ from 'lodash';
 import { Observable } from 'rxjs/Observable';
@@ -40,6 +41,7 @@ export class QuestionPage {
   public currentAnswersIdsSubscriber;
   public answeredOptions$;
   public voteChanging = false;
+  public voiceGiven;
 
   constructor(public navParams: NavParams,
               public optionsService: OptionsService,
@@ -48,7 +50,8 @@ export class QuestionPage {
               public userService: UserService,
               public loadingService: LoadingService,
               public routingService: RoutingService,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              public alertService: AlertService) {
     
     this.question = navParams.get('question');
     this.questionType = navParams.get('questionType');
@@ -66,6 +69,10 @@ export class QuestionPage {
   
   ionViewCanEnter() {
     return this.optionsResolver.then(loaded => loaded);
+  }
+  
+  ionViewWillEnter() {
+    this.voiceGiven = this.constructor.name;
   }
 
   ngOnInit() {
@@ -110,10 +117,6 @@ export class QuestionPage {
     this.selectedOptionId = option.id;
   }
   
-  deleteQuestion(question) {
-    this.questionsService.deleteQuestion(question.id);
-  }
-  
   getChosenOptionsIds() {
     let optionsIds;
     this.selectedOptionId ? optionsIds = [this.selectedOptionId] : optionsIds = this.checkedOptionsIds;
@@ -122,10 +125,7 @@ export class QuestionPage {
   
   vote() {
     this.answersService.createAnswer(this.userId, this.getChosenOptionsIds());
-  }
-  
-  changeVote() {
-    this.voteChanging = true;
+    this.voiceGiven = true;
   }
   
   cancelVoteChange() {
@@ -135,47 +135,21 @@ export class QuestionPage {
   confirmVoteChange() {
     this.answersService.changeAnswer(this.userId, this.currentAnswersIds, this.getChosenOptionsIds());
   }
-  
+
   showDeleteAlert(question) {
-    let confirm = this.alertCtrl.create({
-      title: 'Are you sure you want to delete this question?',
-      buttons: [
-        {
-          text: 'No',
-          handler: () => {
-            return;
-          }
-        },
-        {
-          text: 'Yes',
-          handler: () => {
-            this.deleteQuestion(question);
-          }
-        }
-      ]
-    });
-    confirm.present();
+    this.alertService.showDeleteQuestionAlert(question);
   }
   
   showChangeVoteAlert() {
-    let confirm = this.alertCtrl.create({
-      title: 'Are you sure you want to change your vote?',
-      buttons: [
-        {
-          text: 'No',
-          handler: () => {
-            return;
-          }
-        },
-        {
-          text: 'Yes',
-          handler: () => {
-            this.changeVote();
-          }
-        }
-      ]
+    let subscriber = this.alertService.showChangeVoteAlert()
+    .subscribe(voteChanging => {
+      this.changeVote(voteChanging);
+      subscriber.unsubscribe();
     });
-    confirm.present();
+  }
+  
+  changeVote(voteChanging) {
+    this.voteChanging = voteChanging;
   }
   
   ngOnDestroy() {

@@ -4,6 +4,7 @@ import { Effect, Actions, toPayload } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 
 import { RoutingService } from '../../../core/services/routing.service';
+import { AlertService } from '../../../core/services/alert.service';
 
 //actions
 import * as myQuestionsGet from '../../questions-request/nested-states/my-questions-get/actions/my-questions-get.actions';
@@ -25,7 +26,8 @@ import {
 export class QuestionsEffects {
   
   constructor(private actions$: Actions,
-              public routingService: RoutingService) {
+              public routingService: RoutingService,
+              public alertService: AlertService) {
   }
   
   @Effect()
@@ -53,12 +55,13 @@ export class QuestionsEffects {
   .ofType(questionDelete.ActionTypes.REQUEST_SUCCESS)
   .map(action => new DeleteQuestionAction(toPayload(action)));
   
-  @Effect()
+  @Effect({dispatch: false})
   deleteQuestionRedirect$: Observable<Action> = this.actions$
   .ofType(questionDelete.ActionTypes.REQUEST_SUCCESS)
-  .map((action: any) => {
+  .do((action: any) => {
+    let ms = 1500;
+    this.alertService.showSuccessDeleteQuestionAlert(ms);
     this.routingService.popPage();
-    return new SpinnerLoadingEndAction();
   });
   
 }

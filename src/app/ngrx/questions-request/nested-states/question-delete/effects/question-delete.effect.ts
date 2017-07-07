@@ -32,15 +32,14 @@ export class QuestionDeleteEffects {
   @Effect()
   spinnerStart$: Observable<Action> = this.actions$
   .ofType(questionDelete.ActionTypes.REQUEST)
-  .map((action: any) => {
-    return new SpinnerLoadingStartAction();
-  });
+  .map((action: any) => new SpinnerLoadingStartAction());
 
   @Effect()
   spinnerEnd$: Observable<Action> = this.actions$
-  .ofType(questionDelete.ActionTypes.REQUEST_FAIL)
-  .map((action: any) => {
-    return new SpinnerLoadingEndAction();
-  });
+  .ofType(
+    questionDelete.ActionTypes.REQUEST_FAIL,
+    questionDelete.ActionTypes.REQUEST_SUCCESS
+  )
+  .map((action: any) => new SpinnerLoadingEndAction());
 
 }

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import { AnswersService } from '../../../../../core/services/answers.service';
 import { RoutingService } from '../../../../../core/services/routing.service';
+import { ToastService } from '../../../../../core/services/toast.service';
 
 //actions
 import * as answerPost from '../actions/answer-post.actions';
@@ -17,7 +18,8 @@ export class AnswerPostEffects {
   
   constructor(private actions$: Actions,
               public answersService: AnswersService,
-              public routingService: RoutingService) {
+              public routingService: RoutingService,
+              public toastService: ToastService) {
   }
   
   @Effect()
@@ -41,12 +43,13 @@ export class AnswerPostEffects {
           answerPost.ActionTypes.REQUEST_FAIL)
   .map((action: any) => new SpinnerLoadingEndAction());
   
-  @Effect()
+  @Effect({dispatch: false})
   postSuccessRedirect$: Observable<Action> = this.actions$
   .ofType(answerPost.ActionTypes.REQUEST_SUCCESS)
-  .map((action: any) => {
-    this.routingService.popPage();
-    return new SpinnerLoadingEndAction();
+  .do((action: any) => {
+    let ms = 2000;
+    this.toastService.presentToast('Vote has been accepted', ms, 'middle', '');
+    setTimeout(() => this.routingService.popPage(), ms);
   });
   
 }
