@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { AnswersService } from '../../../../../core/services/answers.service';
 import { RoutingService } from '../../../../../core/services/routing.service';
-import { ToastService } from '../../../../../core/services/toast.service';
+import { AlertService } from '../../../../../core/services/alert.service';
 
 //actions
 import * as answerPost from '../actions/answer-post.actions';
@@ -19,7 +19,7 @@ export class AnswerPostEffects {
   constructor(private actions$: Actions,
               public answersService: AnswersService,
               public routingService: RoutingService,
-              public toastService: ToastService) {
+              public alertService: AlertService) {
   }
   
   @Effect()
@@ -47,9 +47,8 @@ export class AnswerPostEffects {
   postSuccessRedirect$: Observable<Action> = this.actions$
   .ofType(answerPost.ActionTypes.REQUEST_SUCCESS)
   .do((action: any) => {
-    let ms = 2000;
-    this.toastService.presentToast('Vote has been accepted', ms, 'middle', '');
-    setTimeout(() => this.routingService.popPage(), ms);
+    this.alertService.showSuccessAlert('Vote has been accepted', 1500);
+    this.routingService.popPage();
   });
   
 }

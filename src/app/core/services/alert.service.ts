@@ -34,15 +34,6 @@ export class AlertService {
     confirm.present();
   }
   
-  showSuccessDeleteQuestionAlert(ms) {
-    let alert = this.alertCtrl.create({
-      title: 'Question has been deleted',
-      enableBackdropDismiss: false
-    });
-    alert.present();
-    setTimeout(() => alert.dismiss(), ms);
-  }
-  
   showChangeVoteAlert() {
     let observable$ = Observable.create(observer => {
       let confirm = this.alertCtrl.create({
@@ -66,6 +57,15 @@ export class AlertService {
       confirm.present();
     });
     return observable$;
+  }
+  
+  showSuccessAlert(title, ms=2000) {
+    let alert = this.alertCtrl.create({
+      title,
+      enableBackdropDismiss: false
+    });
+    alert.present();
+    setTimeout(() => alert.dismiss(), ms);
   }
   
 }

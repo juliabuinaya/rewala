@@ -59,8 +59,7 @@ export class QuestionsEffects {
   deleteQuestionRedirect$: Observable<Action> = this.actions$
   .ofType(questionDelete.ActionTypes.REQUEST_SUCCESS)
   .do((action: any) => {
-    let ms = 1500;
-    this.alertService.showSuccessDeleteQuestionAlert(ms);
+    this.alertService.showSuccessAlert('Question has been deleted', 1500);
     this.routingService.popPage();
   });
   

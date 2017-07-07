@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import { AnswersService } from '../../../../../core/services/answers.service';
 import { RoutingService } from '../../../../../core/services/routing.service';
+import { AlertService } from '../../../../../core/services/alert.service';
 
 //actions
 import * as answersChange from '../actions/answers-change.actions';
@@ -17,7 +18,8 @@ export class AnswersChangeEffects {
   
   constructor(private actions$: Actions,
               public answersService: AnswersService,
-              public routingService: RoutingService) {
+              public routingService: RoutingService,
+              public alertService: AlertService) {
   }
   
   @Effect()
@@ -63,15 +65,16 @@ export class AnswersChangeEffects {
   spinnerEnd$: Observable<Action> = this.actions$
   .ofType(
     answersChange.ActionTypes.REQUEST_FAIL,
-    answerDelete.ActionTypes.REQUEST_FAIL
+    answerDelete.ActionTypes.REQUEST_FAIL,
+    answersChange.ActionTypes.REQUEST_SUCCESS
   )
   .map((action: any) => new SpinnerLoadingEndAction());
   
-  @Effect()
+  @Effect({dispatch: false})
   changeSuccessRedirect$: Observable<Action> = this.actions$
   .ofType(answersChange.ActionTypes.REQUEST_SUCCESS)
-  .map((action: any) => {
+  .do((action: any) => {
+    this.alertService.showSuccessAlert('Vote has been changed', 1500);
     this.routingService.popPage();
-    return new SpinnerLoadingEndAction();
   });
 }
