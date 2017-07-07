@@ -41,7 +41,8 @@ export class QuestionPage {
   public currentAnswersIdsSubscriber;
   public answeredOptions$;
   public voteChanging = false;
-  public voiceGiven;
+  public voiceGiven = false;
+  public canLeaveView = false;
 
   constructor(public navParams: NavParams,
               public optionsService: OptionsService,
@@ -72,7 +73,8 @@ export class QuestionPage {
   }
   
   ionViewWillEnter() {
-    this.voiceGiven = this.constructor.name;
+    this.voiceGiven = false;
+    this.canLeaveView = false;
   }
 
   ngOnInit() {
@@ -124,8 +126,9 @@ export class QuestionPage {
   }
   
   vote() {
-    this.answersService.createAnswer(this.userId, this.getChosenOptionsIds());
     this.voiceGiven = true;
+    this.canLeaveView = true;
+    this.answersService.createAnswer(this.userId, this.getChosenOptionsIds());
   }
   
   cancelVoteChange() {
@@ -150,6 +153,18 @@ export class QuestionPage {
   
   changeVote(voteChanging) {
     this.voteChanging = voteChanging;
+  }
+  
+  ionViewCanLeave() {
+    if(this.questionType === 'Awaiting Questions' &&
+      this.getChosenOptionsIds().length &&
+      (!this.canLeaveView || !this.voiceGiven)) {
+      return this.alertService.showLeaveConfirmAlert()
+      .then(res => res);
+    }
+    else {
+      return true;
+    }
   }
   
   ngOnDestroy() {

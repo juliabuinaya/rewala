@@ -68,4 +68,31 @@ export class AlertService {
     setTimeout(() => alert.dismiss(), ms);
   }
   
+  showLeaveConfirmAlert() {
+    let observable$ = Observable.create(observer => {
+      let confirm = this.alertCtrl.create({
+        title: 'Are you sure you want to leave?',
+        buttons: [
+          {
+            text: 'No',
+            handler: () => {
+              observer.next(false);
+              observer.complete();
+            }
+          },
+          {
+            text: 'Yes',
+            handler: () => {
+              observer.next(true);
+              observer.complete();
+            }
+          }
+        ],
+        enableBackdropDismiss: false
+      });
+      confirm.present();
+    });
+    return observable$.toPromise();
+  }
+  
 }

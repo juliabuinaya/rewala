@@ -13,16 +13,16 @@
         <ion-label>
           {{i+1}}. {{option?.text}}
         </ion-label>
-        <ion-radio *ngIf="(questionType == 'Awaiting Questions' || voteChanging) && !optionType?.multiple"
+        <ion-radio *ngIf="(questionType === 'Awaiting Questions' || voteChanging) && !optionType?.multiple"
           (ionSelect)="onOptionSelect(option)">
         </ion-radio>
-        <ion-checkbox *ngIf="(questionType == 'Awaiting Questions' || voteChanging) && optionType?.multiple"
+        <ion-checkbox *ngIf="(questionType === 'Awaiting Questions' || voteChanging) && optionType?.multiple"
           [(ngModel)]="checkedOptions[option.id]"
           (ionChange)="onOptionChange()">
         </ion-checkbox>
       </ion-item>
 
-      <ion-item *ngIf="questionType == 'Voice Given Questions' && !voteChanging">
+      <ion-item *ngIf="questionType === 'Voice Given Questions' && !voteChanging">
         <div class="voted-option-wrap"
           *ngIf="(answeredOptions$ | async).length === 1">
           <div>Thank you for giving your voice!</div>
@@ -44,7 +44,7 @@
   </div>
   <div class="btn-wrapper">
     <button ion-button color="danger" type="button"
-      *ngIf="questionType == 'My Questions'"
+      *ngIf="questionType === 'My Questions'"
       (click)="showDeleteAlert(question)">
       Delete this question
     </button>
@@ -54,18 +54,18 @@
       Change my vote
     </button>
     <button ion-button color="secondary" type="button"
-      *ngIf="questionType == 'Voice Given Questions' && voteChanging"
+      *ngIf="questionType === 'Voice Given Questions' && voteChanging"
       [disabled]="!selectedOptionId && !checkedOptionsIds.length"
       (click)="confirmVoteChange()">
       Confirm changing
     </button>
     <button ion-button type="button"
-      *ngIf="questionType == 'Voice Given Questions' && voteChanging"
+      *ngIf="questionType === 'Voice Given Questions' && voteChanging"
       (click)="cancelVoteChange()">
       Cancel
     </button>
     <button ion-button color="dark" type="button"
-      *ngIf="questionType == 'Awaiting Questions'"
+      *ngIf="questionType === 'Awaiting Questions'"
       [disabled]="!selectedOptionId && !checkedOptionsIds.length"
       (click)="vote()">
       Vote
