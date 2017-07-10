@@ -5,12 +5,12 @@ import { Observable } from 'rxjs';
 
 import { AnswersService } from '../../../../../core/services/answers.service';
 import { RoutingService } from '../../../../../core/services/routing.service';
-import { AlertService } from '../../../../../core/services/alert.service';
 
 //actions
 import * as multipleAnswersPost from '../actions/multiple-answers-post.actions';
 import { MultipleAnswersPostFailAction, MultipleAnswersPostSuccessAction } from '../actions/multiple-answers-post.actions';
 import { SpinnerLoadingEndAction, SpinnerLoadingStartAction } from '../../../../spinner/actions/spinner.actions';
+import { AlertService } from '../../../../../core/services/alert.service';
 
 
 @Injectable()
