@@ -95,6 +95,14 @@ export class QuestionsService {
     return this.restangular.all('clients').one('get-voice-given-questions').get();
   }
   
+  getCompletedQuestions() {
+    this.store.dispatch(new questionsRequest.CompletedQuestionsGetAction());
+  }
+  
+  getCompletedQuestionsRequest() {
+    return this.restangular.all('clients').one('get-completed-questions').get();
+  }
+  
   deleteQuestion(questionId) {
     this.store.dispatch(new questionsRequest.QuestionDeleteAction(questionId));
   }
