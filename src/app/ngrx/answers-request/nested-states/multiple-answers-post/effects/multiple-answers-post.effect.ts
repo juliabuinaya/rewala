@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import { AnswersService } from '../../../../../core/services/answers.service';
 import { RoutingService } from '../../../../../core/services/routing.service';
+import { AlertService } from '../../../../../core/services/alert.service';
 
 //actions
 import * as multipleAnswersPost from '../actions/multiple-answers-post.actions';
@@ -17,7 +18,8 @@ export class MultipleAnswersPostEffects {
   
   constructor(private actions$: Actions,
               public answersService: AnswersService,
-              public routingService: RoutingService) {
+              public routingService: RoutingService,
+              public alertService: AlertService) {
   }
   
   @Effect()
@@ -44,15 +46,18 @@ export class MultipleAnswersPostEffects {
 
   @Effect()
   spinnerEnd$: Observable<Action> = this.actions$
-  .ofType(multipleAnswersPost.ActionTypes.REQUEST_FAIL)
+  .ofType(
+    multipleAnswersPost.ActionTypes.REQUEST_FAIL,
+    multipleAnswersPost.ActionTypes.REQUEST_SUCCESS
+  )
   .map((action: any) => new SpinnerLoadingEndAction());
 
-  @Effect()
+  @Effect({dispatch: false})
   successRedirect$: Observable<Action> = this.actions$
   .ofType(multipleAnswersPost.ActionTypes.REQUEST_SUCCESS)
-  .map((action: any) => {
+  .do((action: any) => {
+    this.alertService.showSuccessAlert('Vote has been accepted', 1500);
     this.routingService.popPage();
-    return new SpinnerLoadingEndAction();
   });
   
 }
