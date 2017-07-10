@@ -4,13 +4,11 @@ import { Effect, Actions, toPayload } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 
 import { AnswersService } from '../../../../../core/services/answers.service';
-import { DashboardPage } from '../../../../../pages/dashboard/dashboard';
 
 import * as userRequest from '../../../../user-request/actions/user-request.actions';
 import * as myAnswersGet from '../../my-answers-get/actions/my-answers-get.actions';
 import { MyAnswersGetAction, MyAnswersGetSuccessAction, MyAnswersGetFailAction } from '../actions/my-answers-get.actions';
 import { RoutingService } from '../../../../../core/services/routing.service';
-import { SpinnerLoadingEndAction } from '../../../../spinner/actions/spinner.actions';
 
 
 @Injectable()
@@ -36,14 +34,5 @@ export class MyAnswersGetEffects {
     return this.answersService.getMyAnswersRequest(payload)
     .map((res: any) => new MyAnswersGetSuccessAction(res))
     .catch(error => Observable.of(new MyAnswersGetFailAction(error)));
-  });
-  
-  
-  @Effect()
-  redirectToDashboardPage$: Observable<Action> = this.actions$
-  .ofType(myAnswersGet.ActionTypes.REQUEST_SUCCESS)
-  .map((action: any) => {
-    this.routingService.pushRootPage(DashboardPage);
-    return new SpinnerLoadingEndAction();
   });
 }
