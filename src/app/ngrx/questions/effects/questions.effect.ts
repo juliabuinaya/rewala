@@ -12,7 +12,6 @@ import * as awaitingQuestionsGet from '../../questions-request/nested-states/awa
 import * as voiceGivenQuestionsGet from '../../questions-request/nested-states/voice-given-questions-get/actions/voice-given-questions-get.actions';
 import * as questionPost from '../../questions-request/nested-states/question-post/actions/question-post.actions';
 import * as questionDelete from '../../questions-request/nested-states/question-delete/actions/question-delete.actions';
-import { SpinnerLoadingEndAction } from '../../spinner/actions/spinner.actions';
 import {
   DeleteQuestionAction,
   SetAwaitingQuestionsAction,
