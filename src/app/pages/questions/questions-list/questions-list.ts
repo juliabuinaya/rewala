@@ -8,6 +8,7 @@ import { QuestionsService } from '../../../core/services/questions.service';
 import { LoadingService } from '../../../core/services/loading.service';
 
 import { QuestionPage } from '../question/question';
+import { QuestionResultsPage } from '../question-results/question-results';
 
 
 @IonicPage({
@@ -65,6 +66,8 @@ export class QuestionsListPage {
   
   toQuestionPage(question, questionType, action) {
     this.loadingService.showSpinner();
+    questionType === 'Results Questions' ?
+    this.routingService.pushPage(QuestionResultsPage, {question}) :
     this.routingService.pushPage(QuestionPage, {question, questionType, action});
   }
   

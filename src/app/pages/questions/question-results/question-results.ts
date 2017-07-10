@@ -1,8 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavParams } from 'ionic-angular';
+
+import { LoadingService } from '../../../core/services/loading.service';
 
 import { Chart } from 'chart.js';
 import * as _ from 'lodash';
+
 
 @IonicPage()
 @Component({
@@ -13,6 +16,7 @@ export class QuestionResultsPage {
   
   @ViewChild('barCanvas') barCanvas;
   @ViewChild('doughnutCanvas') doughnutCanvas;
+  public question;
   public results;
   public maxQuantity;
   public optimalResults;
@@ -25,10 +29,13 @@ export class QuestionResultsPage {
   public barChartActive = true;
   public pieChartActive = false;
   
-  constructor() {
+  constructor(public loadingService: LoadingService,
+              public navParams: NavParams) {
+    this.question = navParams.get('question');
   }
   
   ngOnInit() {
+    this.loadingService.hideSpinner();
     this.results =
       [
         {

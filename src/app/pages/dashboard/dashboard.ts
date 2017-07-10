@@ -38,7 +38,7 @@ export class DashboardPage {
     this.myQuestions$ = this.questionsService.myQuestions$;
     this.awaitingQuestions$ = this.questionsService.awaitingQuestions$;
     this.voiceGivenQuestions$ = this.questionsService.voiceGivenQuestions$;
-    this.completedQuestions$ = this.questionsService.voiceGivenQuestions$;
+    this.completedQuestions$ = this.questionsService.completedQuestions$;
   }
   
   toQuestionsList(questionType) {
