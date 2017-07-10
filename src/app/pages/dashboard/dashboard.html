@@ -19,7 +19,7 @@
     </ion-item>
     <ion-item>
       <div>Results</div>
-      <div class="quantity">1</div>
+      <div class="quantity">{{(completedQuestions$ | async)?.length}}</div>
     </ion-item>
   </ion-list>
 
@@ -36,7 +36,7 @@
       <ion-icon name="arrow-forward"></ion-icon>
       Awaiting your answer questions
     </button>
-    <button ion-item detail-none (click)="toQuestionsList(QUESTIONS_RESULTS)">
+    <button ion-item detail-none (click)="toQuestionsList(RESULTS_QUESTIONS)">
       <ion-icon name="arrow-forward"></ion-icon>
       Questions results
     </button>

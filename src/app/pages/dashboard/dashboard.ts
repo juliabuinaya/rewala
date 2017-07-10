@@ -4,11 +4,8 @@ import { IonicPage } from 'ionic-angular';
 import { RoutingService } from '../../core/services/routing.service';
 import { QuestionsService } from '../../core/services/questions.service';
 
-import { CreateQuestionSettingsPage } from '../create-question/create-question-settings/create-question-settings';
 import { QuestionsListPage } from '../questions/questions-list/questions-list';
 import { QuestionResultsPage } from '../questions/question-results/question-results';
-import { SettingsPage } from '../settings/settings';
-import { CreateQuestionGroupsPage } from '../create-question/create-question-groups/create-question-groups';
 
 @IonicPage({
   name: 'dashboard'
@@ -22,10 +19,11 @@ export class DashboardPage {
   public myQuestions$;
   public awaitingQuestions$;
   public voiceGivenQuestions$;
+  public completedQuestions$;
   public MY_QUESTIONS = 'My Questions';
   public VOICE_GIVEN_QUESTIONS = 'Voice Given Questions';
   public AWAITING_QUESTIONS = 'Awaiting Questions';
-  public QUESTIONS_RESULTS = 'Questions Results';
+  public RESULTS_QUESTIONS = 'Results Questions';
   public currentPageName;
   
   constructor(public routingService: RoutingService,
@@ -40,10 +38,7 @@ export class DashboardPage {
     this.myQuestions$ = this.questionsService.myQuestions$;
     this.awaitingQuestions$ = this.questionsService.awaitingQuestions$;
     this.voiceGivenQuestions$ = this.questionsService.voiceGivenQuestions$;
-  }
-
-  toCreateQuestion() {
-    this.routingService.pushPage(CreateQuestionSettingsPage);
+    this.completedQuestions$ = this.questionsService.voiceGivenQuestions$;
   }
   
   toQuestionsList(questionType) {
@@ -54,15 +49,4 @@ export class DashboardPage {
     this.routingService.pushPage(QuestionResultsPage);
   }
   
-  toDashboardPage() {
-    this.routingService.pushRootPage(DashboardPage);
-  }
-  
-  toSettingsPage() {
-    this.routingService.pushPage(SettingsPage);
-  }
-  
-  toGroupsPage() {
-    this.routingService.pushPage(CreateQuestionGroupsPage);
-  }
 }

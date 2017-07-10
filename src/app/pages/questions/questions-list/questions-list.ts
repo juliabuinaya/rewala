@@ -53,6 +53,10 @@ export class QuestionsListPage {
         this.questionList$ = this.questionsService.awaitingQuestions$;
         break;
         
+      case 'Results Questions':
+        this.questionList$ = this.questionsService.completedQuestions$;
+        break;
+        
       default:
         this.questionList$ = Observable.of([]);
         break;
