@@ -20,6 +20,10 @@ export const ActionTypes = {
   CLEAR_VOICE_GIVEN_QUESTIONS: type(`[${QUESTIONS}] Clear Voice Given Questions`),
   UPDATE_VOICE_GIVEN_QUESTIONS: type(`[${QUESTIONS}] Update Voice Given Questions`),
   
+  SET_COMPLETED_QUESTIONS: type(`[${QUESTIONS}] Set Completed Questions`),
+  CLEAR_COMPLETED_QUESTIONS: type(`[${QUESTIONS}] Clear Completed Questions`),
+  UPDATE_COMPLETED_QUESTIONS: type(`[${QUESTIONS}] Update Completed Questions`),
+  
   DELETE_QUESTION: type(`[${QUESTIONS}] Delete Question`),
 };
 
@@ -107,6 +111,27 @@ export class UpdateVoiceGivenQuestionsAction implements Action {
   }
 }
 
+export class SetCompletedQuestionsAction implements Action {
+  type = ActionTypes.SET_COMPLETED_QUESTIONS;
+  
+  constructor(public payload?: any) {
+  }
+}
+
+export class ClearCompletedQuestionsAction implements Action {
+  type = ActionTypes.CLEAR_COMPLETED_QUESTIONS;
+  
+  constructor(public payload?: any) {
+  }
+}
+
+export class UpdateCompletedQuestionsAction implements Action {
+  type = ActionTypes.UPDATE_COMPLETED_QUESTIONS;
+  
+  constructor(public payload?: any) {
+  }
+}
+
 export class DeleteQuestionAction implements Action {
   type = ActionTypes.DELETE_QUESTION;
   
@@ -119,4 +144,5 @@ export type Actions
   = SetQuestionsAction | ClearQuestionsAction | UpdateQuestionsAction |
   SetMyQuestionsAction | ClearMyQuestionsAction | UpdateMyQuestionsAction |
   SetAwaitingQuestionsAction | ClearAwaitingQuestionsAction | UpdateAwaitingQuestionsAction |
+  SetCompletedQuestionsAction | ClearCompletedQuestionsAction | UpdateCompletedQuestionsAction |
   DeleteQuestionAction;

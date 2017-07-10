@@ -26,3 +26,9 @@ export const getQuestionsVoiceGivenEntitiesState = createSelector(getQuestionsSt
     return state.entities[key];
   });
 });
+
+export const getQuestionsCompletedEntitiesState = createSelector(getQuestionsState, state => {
+  return state.completedEntitiesIds.map(key => {
+    return state.entities[key];
+  });
+});

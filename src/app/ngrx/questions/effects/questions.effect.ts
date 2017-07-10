@@ -10,11 +10,13 @@ import { AlertService } from '../../../core/services/alert.service';
 import * as myQuestionsGet from '../../questions-request/nested-states/my-questions-get/actions/my-questions-get.actions';
 import * as awaitingQuestionsGet from '../../questions-request/nested-states/awaiting-questions-get/actions/awaiting-questions-get.actions';
 import * as voiceGivenQuestionsGet from '../../questions-request/nested-states/voice-given-questions-get/actions/voice-given-questions-get.actions';
+import * as completedQuestionsGet from '../../questions-request/nested-states/completed-questions-get/actions/completed-questions-get.actions';
 import * as questionPost from '../../questions-request/nested-states/question-post/actions/question-post.actions';
 import * as questionDelete from '../../questions-request/nested-states/question-delete/actions/question-delete.actions';
 import {
   DeleteQuestionAction,
   SetAwaitingQuestionsAction,
+  SetCompletedQuestionsAction,
   SetMyQuestionsAction,
   SetVoiceGivenQuestionsAction,
   UpdateMyQuestionsAction
@@ -48,6 +50,11 @@ export class QuestionsEffects {
   setVoiceGivenQuestions$: Observable<Action> = this.actions$
   .ofType(voiceGivenQuestionsGet.ActionTypes.REQUEST_SUCCESS)
   .map(action => new SetVoiceGivenQuestionsAction(toPayload(action)));
+  
+  @Effect()
+  setCompletedQuestions$: Observable<Action> = this.actions$
+  .ofType(completedQuestionsGet.ActionTypes.REQUEST_SUCCESS)
+  .map(action => new SetCompletedQuestionsAction(toPayload(action)));
   
   @Effect()
   deleteQuestion: Observable<Action> = this.actions$

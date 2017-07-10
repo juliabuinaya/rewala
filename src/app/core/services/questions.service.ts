@@ -20,6 +20,7 @@ export class QuestionsService {
   public myQuestions$: Observable<any>;
   public awaitingQuestions$: Observable<any>;
   public voiceGivenQuestions$: Observable<any>;
+  public completedQuestions$: Observable<any>;
   public options;
   public questionTypes = [
     {
@@ -39,6 +40,7 @@ export class QuestionsService {
     this.myQuestions$ = this.store.select(questionsStateGetter.getQuestionsMyEntitiesState);
     this.awaitingQuestions$ = this.store.select(questionsStateGetter.getQuestionsAwaitingEntitiesState);
     this.voiceGivenQuestions$ = this.store.select(questionsStateGetter.getQuestionsVoiceGivenEntitiesState);
+    this.completedQuestions$ = this.store.select(questionsStateGetter.getQuestionsCompletedEntitiesState);
   
   }
   

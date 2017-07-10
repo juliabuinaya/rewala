@@ -65,6 +65,17 @@ export function reducer(
       };
     }
   
+    case ActionTypes.SET_COMPLETED_QUESTIONS:
+    case ActionTypes.UPDATE_COMPLETED_QUESTIONS: {
+      let updatedQuestions = updateEntities(action.payload, QuestionModel);
+      return {
+        ...state,
+        ids: _.union(state.ids, updatedQuestions.entitiesIds),
+        entities: Object.assign({}, state.entities, updatedQuestions.entities),
+        completedEntitiesIds: updatedQuestions.entitiesIds
+      };
+    }
+  
     case ActionTypes.DELETE_QUESTION: {
       let questionId = action.payload;
       return {
