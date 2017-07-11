@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 
 import { OptionsService } from '../../../../../core/services/options.service';
 import { RoutingService } from '../../../../../core/services/routing.service';
+import { AlertService } from '../../../../../core/services/alert.service';
+
 import { DashboardPage } from '../../../../../pages/dashboard/dashboard';
 
 import * as optionsPost from '../actions/options-post.actions';
@@ -17,7 +19,8 @@ export class OptionsPostEffects {
   
   constructor(private actions$: Actions,
               public optionsService: OptionsService,
-              public routingService: RoutingService) {
+              public routingService: RoutingService,
+              public alertService: AlertService) {
   }
   
   @Effect()
@@ -30,17 +33,20 @@ export class OptionsPostEffects {
     .catch(error => Observable.of(new OptionsPostFailAction(error)));
   });
   
-  @Effect()
+  @Effect({dispatch: false})
   postSuccessRedirect$: Observable<Action> = this.actions$
   .ofType(optionsPost.ActionTypes.REQUEST_SUCCESS)
-  .map((action: any) => {
+  .do((action: any) => {
+    this.alertService.showSuccessAlert('Question has been created', 1500);
     this.routingService.pushRootPage(DashboardPage);
-    return new SpinnerLoadingEndAction();
   });
   
   @Effect()
   spinnerEnd$: Observable<Action> = this.actions$
-  .ofType(optionsPost.ActionTypes.REQUEST_FAIL)
+  .ofType(
+    optionsPost.ActionTypes.REQUEST_SUCCESS,
+    optionsPost.ActionTypes.REQUEST_FAIL
+  )
   .map((action: any) => new SpinnerLoadingEndAction());
   
 }
