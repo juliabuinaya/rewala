@@ -17,7 +17,7 @@ export class FooterComponent {
   
   @Input() currentPageName: string;
   @Input() questionType: string;
-  public QUESTIONS_RESULTS = 'Questions Results';
+  public RESULTS_QUESTIONS = 'Results Questions';
   
   constructor(public routingService: RoutingService,
               public navCtrl: NavController) {

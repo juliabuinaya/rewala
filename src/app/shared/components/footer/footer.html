@@ -3,8 +3,8 @@
     [disabled]="currentPageName === 'DashboardPage'">
     <ion-icon name="home"></ion-icon>
   </button>
-  <button ion-fab mini (click)="toQuestionsList(QUESTIONS_RESULTS)"
-    [disabled]="currentPageName === 'QuestionsListPage' && questionType === 'Questions Results'">
+  <button ion-fab mini (click)="toQuestionsList(RESULTS_QUESTIONS)"
+    [disabled]="currentPageName === 'QuestionsListPage' && questionType === 'Results Questions'">
     <ion-icon name="podium"></ion-icon>
   </button>
   <button class="create-question" ion-button icon-only clear (click)="toCreateQuestion()"
