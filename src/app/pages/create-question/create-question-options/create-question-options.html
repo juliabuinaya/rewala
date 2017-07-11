@@ -39,16 +39,15 @@
       </ion-row>
     </ion-grid>
   </form>
-
-  <ion-fab right bottom>
-    <button ion-fab color="dark" type="button"
-      [disabled]="minOptionsQuantity > options.length"
-      (click)="toNextStep()">
-      <ion-icon name="arrow-round-forward"></ion-icon>
-    </button>
-  </ion-fab>
-
 </ion-content>
+
+<ion-fab right bottom>
+  <button ion-fab color="dark" type="button"
+    [disabled]="minOptionsQuantity > options.length"
+    (click)="toNextStep()">
+    <ion-icon name="arrow-round-forward"></ion-icon>
+  </button>
+</ion-fab>
 
 <ion-footer>
   <app-footer></app-footer>

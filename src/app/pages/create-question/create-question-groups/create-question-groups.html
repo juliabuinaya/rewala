@@ -39,17 +39,16 @@
       </ion-item>
     </ion-list>
   </form>
-
-  <ion-fab right bottom *ngIf="questionSettings">
-    <button ion-fab color="dark"
-      type="button"
-      [disabled]="!selectedGroupId"
-      (click)="onComplete()">
-      <ion-icon name="checkmark"></ion-icon>
-    </button>
-  </ion-fab>
-
 </ion-content>
+
+<ion-fab right bottom *ngIf="questionSettings">
+  <button ion-fab color="dark"
+    type="button"
+    [disabled]="!selectedGroupId"
+    (click)="onComplete()">
+    <ion-icon name="checkmark"></ion-icon>
+  </button>
+</ion-fab>
 
 <ion-footer>
   <app-footer [currentPageName]="currentPageName"></app-footer>

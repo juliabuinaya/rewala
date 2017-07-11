@@ -68,16 +68,15 @@
       </ion-checkbox>
     </ion-item>
   </ion-list>
-
-  <ion-fab right bottom *ngIf="pageType == 'GROUP_CREATE'">
-    <button ion-fab color="dark" type="button"
-      [disabled]="!checkedContactsIds.length"
-      (click)="toCreateGroupCompletePage()">
-      <ion-icon name="arrow-round-forward"></ion-icon>
-    </button>
-  </ion-fab>
-
 </ion-content>
+
+<ion-fab right bottom *ngIf="pageType == 'GROUP_CREATE'">
+  <button ion-fab color="dark" type="button"
+    [disabled]="!checkedContactsIds.length"
+    (click)="toCreateGroupCompletePage()">
+    <ion-icon name="arrow-round-forward"></ion-icon>
+  </button>
+</ion-fab>
 
 <ion-footer>
   <app-footer></app-footer>

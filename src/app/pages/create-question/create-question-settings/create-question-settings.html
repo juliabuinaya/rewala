@@ -32,16 +32,15 @@
       <ion-item></ion-item>
     </ion-list>
   </form>
-
-  <ion-fab right bottom>
-    <button ion-fab color="dark"
-      (click)="submit(settingsForm)"
-      [disabled]="!settingsForm.valid">
-    <ion-icon name="arrow-round-forward"></ion-icon>
-    </button>
-  </ion-fab>
-
 </ion-content>
+
+<ion-fab right bottom>
+  <button ion-fab color="dark"
+    (click)="submit(settingsForm)"
+    [disabled]="!settingsForm.valid">
+  <ion-icon name="arrow-round-forward"></ion-icon>
+  </button>
+</ion-fab>
 
 <ion-footer>
   <app-footer [currentPageName]="currentPageName"></app-footer>

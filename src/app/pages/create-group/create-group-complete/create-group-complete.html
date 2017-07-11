@@ -33,16 +33,15 @@
       </ion-label>
     </ion-item>
   </ion-list>
-
-  <ion-fab right bottom>
-    <button ion-fab color="dark" type="button"
-      [disabled]="!createGroupForm.valid"
-      (click)="createGroup(createGroupForm)">
-      <ion-icon name="checkmark"></ion-icon>
-    </button>
-  </ion-fab>
-
 </ion-content>
+
+<ion-fab right bottom>
+  <button ion-fab color="dark" type="button"
+    [disabled]="!createGroupForm.valid"
+    (click)="createGroup(createGroupForm)">
+    <ion-icon name="checkmark"></ion-icon>
+  </button>
+</ion-fab>
 
 <ion-footer>
   <app-footer></app-footer>

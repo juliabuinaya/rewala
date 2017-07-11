@@ -40,13 +40,12 @@ ion-content {
       white-space: normal!important;
     }
   }
-  ion-fab {
-    right: 20px!important;
-    bottom: 20px!important;
-    .fab {
-      ion-icon {
-        font-size: 55px;
-      }
+}
+ion-fab {
+  bottom: 70px!important;
+  .fab {
+    ion-icon {
+      font-size: 55px;
     }
   }
 }
