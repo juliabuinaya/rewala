@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
 import { IAppState } from '../../ngrx/state/app.state';
 
 //actions
-import * as optionsRequest from '../../ngrx/options-request/actions/index';
+import * as resultsRequest from '../../ngrx/results-request/actions/index';
 
 //getters
-import * as optionsStateGetter from '../../ngrx/options/states/options-getter.state';
-import * as optionsGetStateGetter from '../../ngrx/options-request/nested-states/options-get/states/options-get-getter.state';
+//import * as resultsStateGetter from '../../ngrx/options/states/options-getter.state';
+//import * as optionsGetStateGetter from '../../ngrx/options-request/nested-states/options-get/states/options-get-getter.state';
 
 
 @Injectable()
@@ -26,11 +26,11 @@ export class ResultsService {
   }
   
   getQuestionResults(questionId) {
-    this.store.dispatch(new optionsRequest.OptionsGetAction(questionId));
+    this.store.dispatch(new resultsRequest.ResultsGetAction(questionId));
   }
   
   getQuestionResultsRequest(questionId) {
-    return this.restangular.one('questions', questionId).all('questionOptions').getList();
+    return this.restangular.one('questions', questionId).one('get-results').get();
   }
   
 }

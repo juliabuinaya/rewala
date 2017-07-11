@@ -24,7 +24,7 @@ export class ResultsRequestEffects {
   .map(toPayload)
   .switchMap((payload: any) => {
     return this.resultsService.getQuestionResultsRequest(payload)
-    .map((res: any) => new ResultsGetSuccessAction(res))
+    .map((res: any) => new ResultsGetSuccessAction(res.data))
     .catch(error => Observable.of(new ResultsGetFailAction(error)));
   });
 

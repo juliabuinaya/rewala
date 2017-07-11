@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 
 import { LoadingService } from '../../../core/services/loading.service';
+import { ResultsService } from '../../../core/services/results.service';
 
 import { Chart } from 'chart.js';
 import * as _ from 'lodash';
@@ -30,8 +31,10 @@ export class QuestionResultsPage {
   public pieChartActive = false;
   
   constructor(public loadingService: LoadingService,
-              public navParams: NavParams) {
+              public navParams: NavParams,
+              public resultsService: ResultsService) {
     this.question = navParams.get('question');
+    this.resultsService.getQuestionResults(this.question.id);
   }
   
   ngOnInit() {

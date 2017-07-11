@@ -46,6 +46,7 @@ import { MultipleAnswersPostEffects } from '../ngrx/answers-request/nested-state
 import { AnswersChangeEffects } from '../ngrx/answers-request/nested-states/answers-change/effects/answers-change.effect';
 import { AnswerDeleteEffects } from '../ngrx/answers-request/nested-states/answer-delete/effects/answer-delete.effect';
 import { CompletedQuestionsGetEffects } from '../ngrx/questions-request/nested-states/completed-questions-get/effects/completed-questions-get.effect';
+import { ResultsRequestEffects } from '../ngrx/results-request/effects/results-request.effect';
 
 export function provideStorage() {
   return new Storage({});
@@ -98,6 +99,7 @@ const cloudSettings: CloudSettings = {
      EffectsModule.run(AnswersChangeEffects),
      EffectsModule.run(AnswerDeleteEffects),
      EffectsModule.run(CompletedQuestionsGetEffects),
+     EffectsModule.run(ResultsRequestEffects),
   
     RestangularModule.forRoot(
       [
