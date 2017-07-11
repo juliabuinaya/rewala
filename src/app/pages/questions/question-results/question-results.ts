@@ -19,6 +19,10 @@ export class QuestionResultsPage {
   @ViewChild('doughnutCanvas') doughnutCanvas;
   public question;
   public results$;
+  public resultsRequestGetLoadedState$;
+  public resultsResolver;
+  public resultsSubscriber;
+  
   public results;
   public maxQuantity;
   public optimalResults;
@@ -36,35 +40,22 @@ export class QuestionResultsPage {
               public resultsService: ResultsService) {
     this.question = navParams.get('question');
     this.resultsService.getQuestionResults(this.question.id);
+    this.resultsRequestGetLoadedState$ = this.resultsService.resultsRequestGetLoadedState$;
+    this.resultsResolver = this.resultsRequestGetLoadedState$
+    .skipWhile(loaded => !loaded)
+    .take(1)
+    .toPromise();
+  }
+  
+  ionViewCanEnter() {
+    return this.resultsResolver.then(loaded => loaded);
   }
   
   ngOnInit() {
-    this.loadingService.hideSpinner();
     this.results$ = this.resultsService.results$;
-    this.results$.subscribe(q => console.log(q));
-    this.results =
-      [
-        {
-          text: 'Tequila',
-          quantity: 7
-        },
-        {
-          text: 'Vodka',
-          quantity: 2
-        },
-        {
-          text: 'Jin',
-          quantity: 4
-        },
-        {
-          text: 'Whisky',
-          quantity: 6
-        },
-        {
-          text: 'Rum',
-          quantity: 3
-        }
-      ];
+    this.resultsSubscriber = this.results$
+    .subscribe(results => this.results = results);
+    this.loadingService.hideSpinner();
     
     this.maxQuantity = _.get(_.maxBy(this.results, 'quantity'), 'quantity');
     this.optimalResults = _.filter(this.results, ['quantity', this.maxQuantity]);
@@ -132,6 +123,10 @@ export class QuestionResultsPage {
   showBarChart() {
     this.pieChartActive = false;
     this.barChartActive = true;
+  }
+  
+  ngOnDestroy() {
+    this.resultsSubscriber.unsubscribe();
   }
   
 }

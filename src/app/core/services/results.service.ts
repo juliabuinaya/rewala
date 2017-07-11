@@ -10,7 +10,7 @@ import * as resultsRequest from '../../ngrx/results-request/actions/index';
 
 //getters
 import * as resultsStateGetter from '../../ngrx/results/states/results-getter.state';
-//import * as optionsGetStateGetter from '../../ngrx/options-request/nested-states/options-get/states/options-get-getter.state';
+import * as resultsGetStateGetter from '../../ngrx/results-request/states/results-request-getter.state';
 
 
 @Injectable()
@@ -22,7 +22,7 @@ export class ResultsService {
   constructor(public store: Store<IAppState>, public restangular: Restangular) {
     
     this.results$ = this.store.select(resultsStateGetter.getResultsEntitiesState);
-    //this.optionsRequestGetLoadedState$ = this.store.select(optionsGetStateGetter.getOptionsGetLoadedState);
+    this.resultsRequestGetLoadedState$ = this.store.select(resultsGetStateGetter.getResultsGetLoadedState);
   }
   
   getQuestionResults(questionId) {

@@ -5,7 +5,7 @@
 <ion-content>
   <div class="question-wrap">
     <h4>Question</h4>
-    <h2 class="question-text">What we gonna drink tonight?</h2>
+    <h2 class="question-text">{{question?.text}}</h2>
   </div>
   <div class="charts-wrap">
     <div class="bar-chart" [hidden]="!barChartActive">
@@ -15,25 +15,29 @@
       <canvas #doughnutCanvas></canvas>
     </div>
   </div>
-  <div class="optimal-choice-wrap">
+  <div class="optimal-choice-wrap" *ngIf="maxQuantity > 0">
     <h5 class="title">Optimal
       <span *ngIf="optimalResults.length === 1">choice</span>
       <span *ngIf="optimalResults.length > 1">choices</span>
     </h5>
-    <h2 class="choice" *ngFor="let result of optimalResults">{{result.text}}</h2>
+    <h2 class="choice" *ngFor="let result of optimalResults">{{result?.text}}</h2>
+  </div>
+  <div class="no-choice-wrap" *ngIf="maxQuantity === 0">
+    <h5>No optimal choice, nobody voted</h5>
   </div>
 
-  <ion-fab class="pie-chart-fab" right [hidden]="!barChartActive">
-    <button ion-fab type="button" color="light" (click)="showPieChart()">
-      <img src="/assets/icon/pie-chart.svg" alt="">
-    </button>
-  </ion-fab>
-
-  <ion-fab class="bar-chart-fab" right  [hidden]="!pieChartActive">
-    <button ion-fab type="button" color="light" (click)="showBarChart()">
-      <img src="/assets/icon/bar-chart.svg" alt="">
-    </button>
-  </ion-fab>
+  <div class="fabs-wrap" *ngIf="maxQuantity > 0">
+    <ion-fab class="pie-chart-fab" right [hidden]="!barChartActive">
+      <button ion-fab type="button" color="light" (click)="showPieChart()">
+        <img src="assets/icon/pie-chart.svg" alt="">
+      </button>
+    </ion-fab>
+    <ion-fab class="bar-chart-fab" right  [hidden]="!pieChartActive">
+      <button ion-fab type="button" color="light" (click)="showBarChart()">
+        <img src="assets/icon/bar-chart.svg" alt="">
+      </button>
+    </ion-fab>
+  </div>
 
 
 
