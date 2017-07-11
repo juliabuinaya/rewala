@@ -25,11 +25,11 @@ export class ResultsService {
     //this.optionsRequestGetLoadedState$ = this.store.select(optionsGetStateGetter.getOptionsGetLoadedState);
   }
   
-  getQuestionOptions(questionId) {
+  getQuestionResults(questionId) {
     this.store.dispatch(new optionsRequest.OptionsGetAction(questionId));
   }
   
-  getQuestionOptionsRequest(questionId) {
+  getQuestionResultsRequest(questionId) {
     return this.restangular.one('questions', questionId).all('questionOptions').getList();
   }
   

@@ -66,7 +66,8 @@ import * as fromOptions from '../options/index';
 import * as fromContacts from '../contacts/index';
 import * as fromContactsRequest from '../contacts-request/index';
 import * as fromAnswers from '../answers/index';
- 
+import * as fromResultsRequest from '../results-request/index';
+
  
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -89,6 +90,7 @@ export interface IAppState {
   contactsRequest: fromContactsRequest.IContactsRequestState;
   answers: fromAnswers.IAnswersState;
   answersRequest: fromAnswersRequestState.IAnswersRequestState;
+  resultsRequest: fromResultsRequest.IResultsRequestState;
 }
 
 /**
@@ -114,7 +116,8 @@ const reducers = {
   contacts: fromContacts.reducer,
   contactsRequest: fromContactsRequest.reducer,
   answers: fromAnswers.reducer,
-  answersRequest: fromAnswersRequestReducers.answersRequestReducer
+  answersRequest: fromAnswersRequestReducers.answersRequestReducer,
+  resultsRequest: fromResultsRequest.reducer,
 };
 
 const developmentReducer: ActionReducer<IAppState> = compose(storeFreeze, combineReducers)(reducers);
