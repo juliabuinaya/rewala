@@ -4,7 +4,6 @@ import { HttpModule } from '@angular/http';
 import { StoreModule, Store } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { Storage } from '@ionic/storage';
-import { ToastController } from 'ionic-angular';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
 import { AppReducer } from '../ngrx/state/app.state';
@@ -47,6 +46,7 @@ import { AnswersChangeEffects } from '../ngrx/answers-request/nested-states/answ
 import { AnswerDeleteEffects } from '../ngrx/answers-request/nested-states/answer-delete/effects/answer-delete.effect';
 import { CompletedQuestionsGetEffects } from '../ngrx/questions-request/nested-states/completed-questions-get/effects/completed-questions-get.effect';
 import { ResultsRequestEffects } from '../ngrx/results-request/effects/results-request.effect';
+import { ResultsEffects } from '../ngrx/results/effects/results.effect';
 
 export function provideStorage() {
   return new Storage({});
@@ -100,6 +100,7 @@ const cloudSettings: CloudSettings = {
      EffectsModule.run(AnswerDeleteEffects),
      EffectsModule.run(CompletedQuestionsGetEffects),
      EffectsModule.run(ResultsRequestEffects),
+     EffectsModule.run(ResultsEffects),
   
     RestangularModule.forRoot(
       [

@@ -18,6 +18,7 @@ export class QuestionResultsPage {
   @ViewChild('barCanvas') barCanvas;
   @ViewChild('doughnutCanvas') doughnutCanvas;
   public question;
+  public results$;
   public results;
   public maxQuantity;
   public optimalResults;
@@ -39,6 +40,8 @@ export class QuestionResultsPage {
   
   ngOnInit() {
     this.loadingService.hideSpinner();
+    this.results$ = this.resultsService.results$;
+    this.results$.subscribe(q => console.log(q));
     this.results =
       [
         {

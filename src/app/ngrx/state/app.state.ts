@@ -66,6 +66,7 @@ import * as fromOptions from '../options/index';
 import * as fromContacts from '../contacts/index';
 import * as fromContactsRequest from '../contacts-request/index';
 import * as fromAnswers from '../answers/index';
+import * as fromResults from '../results/index';
 import * as fromResultsRequest from '../results-request/index';
 
  
@@ -91,6 +92,7 @@ export interface IAppState {
   answers: fromAnswers.IAnswersState;
   answersRequest: fromAnswersRequestState.IAnswersRequestState;
   resultsRequest: fromResultsRequest.IResultsRequestState;
+  results: fromResults.IResultsState;
 }
 
 /**
@@ -118,6 +120,7 @@ const reducers = {
   answers: fromAnswers.reducer,
   answersRequest: fromAnswersRequestReducers.answersRequestReducer,
   resultsRequest: fromResultsRequest.reducer,
+  results: fromResults.reducer,
 };
 
 const developmentReducer: ActionReducer<IAppState> = compose(storeFreeze, combineReducers)(reducers);

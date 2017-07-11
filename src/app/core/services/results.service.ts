@@ -9,19 +9,19 @@ import { IAppState } from '../../ngrx/state/app.state';
 import * as resultsRequest from '../../ngrx/results-request/actions/index';
 
 //getters
-//import * as resultsStateGetter from '../../ngrx/options/states/options-getter.state';
+import * as resultsStateGetter from '../../ngrx/results/states/results-getter.state';
 //import * as optionsGetStateGetter from '../../ngrx/options-request/nested-states/options-get/states/options-get-getter.state';
 
 
 @Injectable()
 export class ResultsService {
   
-  public currentResults$: Observable<any>;
+  public results$: Observable<any>;
   public resultsRequestGetLoadedState$: Observable<any>;
   
   constructor(public store: Store<IAppState>, public restangular: Restangular) {
     
-    //this.currentOptions$ = this.store.select(optionsStateGetter.getOptionsCurrentEntitiesState);
+    this.results$ = this.store.select(resultsStateGetter.getResultsEntitiesState);
     //this.optionsRequestGetLoadedState$ = this.store.select(optionsGetStateGetter.getOptionsGetLoadedState);
   }
   
