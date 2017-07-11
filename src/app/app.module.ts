@@ -35,9 +35,7 @@ export function instrumentOptions() {
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp, {
-      menuType: 'overlay'
-    }),
+    IonicModule.forRoot(MyApp),
     CoreModule,
     AppSharedModule,
     
