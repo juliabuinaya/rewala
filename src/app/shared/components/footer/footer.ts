@@ -28,11 +28,11 @@ export class FooterComponent {
   }
   
   toCreateQuestion() {
-    this.routingService.pushPage(CreateQuestionSettingsPage);
+    this.routingService.pushRootPage(CreateQuestionSettingsPage);
   }
   
   toQuestionsList(questionType) {
-    this.routingService.pushPage(QuestionsListPage, {questionType});
+    this.routingService.pushRootPage(QuestionsListPage, {questionType});
   }
   
   toDashboardPage() {
@@ -40,11 +40,11 @@ export class FooterComponent {
   }
   
   toSettingsPage() {
-    this.routingService.pushPage(SettingsPage);
+    this.routingService.pushRootPage(SettingsPage);
   }
   
   toGroupsPage() {
-    this.routingService.pushPage(CreateQuestionGroupsPage);
+    this.routingService.pushRootPage(CreateQuestionGroupsPage);
   }
 
 }
