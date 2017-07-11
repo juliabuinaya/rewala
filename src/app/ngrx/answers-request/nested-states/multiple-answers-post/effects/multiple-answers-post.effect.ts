@@ -36,7 +36,7 @@ export class MultipleAnswersPostEffects {
     });
     return Observable.zip(...multipleReq$)
     .map((res: any) => new MultipleAnswersPostSuccessAction(res))
-    .catch(error => Observable.of(new MultipleAnswersPostFailAction(error))); // <--- server do not return any data if error, can't catch
+    .catch(error => Observable.of(new MultipleAnswersPostFailAction(error)));
   });
 
   @Effect()

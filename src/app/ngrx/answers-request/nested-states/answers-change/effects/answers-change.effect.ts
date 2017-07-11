@@ -40,10 +40,6 @@ export class AnswersChangeEffects {
         questionOptionId: optionId
       };
       return this.answersService.createAnswerRequest(reqData)
-      //.catch(error => {                       <--- server do not return any data if error, can't catch
-      //  debugger;
-      //  return Observable.of({error: true, response : error}})
-      //});
     });
     return Observable.zip(...multipleReq$)
     .map((res: any) => {
