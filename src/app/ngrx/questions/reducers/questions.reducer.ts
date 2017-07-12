@@ -65,6 +65,12 @@ export function reducer(
       };
     }
   
+    case ActionTypes.CLEAR_VOICE_GIVEN_QUESTIONS:
+      return {
+        ...state,
+        voiceGivenEntitiesIds: []
+      };
+  
     case ActionTypes.SET_COMPLETED_QUESTIONS:
     case ActionTypes.UPDATE_COMPLETED_QUESTIONS: {
       let updatedQuestions = updateEntities(action.payload, QuestionModel);
@@ -76,6 +82,29 @@ export function reducer(
       };
     }
   
+    case ActionTypes.CLEAR_COMPLETED_QUESTIONS:
+      return {
+        ...state,
+        completedEntitiesIds: []
+      };
+  
+    case ActionTypes.SET_PAST_QUESTIONS:
+    case ActionTypes.UPDATE_PAST_QUESTIONS: {
+      let updatedQuestions = updateEntities(action.payload, QuestionModel);
+      return {
+        ...state,
+        ids: _.union(state.ids, updatedQuestions.entitiesIds),
+        entities: Object.assign({}, state.entities, updatedQuestions.entities),
+        pastEntitiesIds: updatedQuestions.entitiesIds
+      };
+    }
+  
+    case ActionTypes.CLEAR_PAST_QUESTIONS:
+      return {
+        ...state,
+        pastEntitiesIds: []
+      };
+  
     case ActionTypes.DELETE_QUESTION: {
       let questionId = action.payload;
       return {
@@ -86,12 +115,6 @@ export function reducer(
         voiceGivenEntitiesIds: _.difference(state.voiceGivenEntitiesIds, [questionId]),
       };
     }
-  
-    case ActionTypes.CLEAR_VOICE_GIVEN_QUESTIONS:
-      return {
-        ...state,
-        voiceGivenEntitiesIds: []
-      };
     
     case ActionTypes.CLEAR_QUESTIONS:
       return Object.assign({}, state, initialState);

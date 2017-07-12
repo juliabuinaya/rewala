@@ -24,6 +24,7 @@ export class DashboardPage {
   public VOICE_GIVEN_QUESTIONS = 'Voice Given Questions';
   public AWAITING_QUESTIONS = 'Awaiting Questions';
   public RESULTS_QUESTIONS = 'Results Questions';
+  public PAST_QUESTIONS = 'Past Questions';
   public currentPageName;
   
   constructor(public routingService: RoutingService,

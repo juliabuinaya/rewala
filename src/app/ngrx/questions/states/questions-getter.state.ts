@@ -32,3 +32,9 @@ export const getQuestionsCompletedEntitiesState = createSelector(getQuestionsSta
     return state.entities[key];
   });
 });
+
+export const getQuestionsPastEntitiesState = createSelector(getQuestionsState, state => {
+  return state.pastEntitiesIds.map(key => {
+    return state.entities[key];
+  });
+});

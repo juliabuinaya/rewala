@@ -57,6 +57,10 @@ export class QuestionsListPage {
       case 'Results Questions':
         this.questionList$ = this.questionsService.completedQuestions$;
         break;
+  
+      //case 'Past Questions':
+      //  this.questionList$ = this.questionsService.completedQuestions$;
+      //  break;
         
       default:
         this.questionList$ = Observable.of([]);

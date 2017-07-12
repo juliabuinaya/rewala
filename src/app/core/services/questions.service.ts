@@ -21,6 +21,8 @@ export class QuestionsService {
   public awaitingQuestions$: Observable<any>;
   public voiceGivenQuestions$: Observable<any>;
   public completedQuestions$: Observable<any>;
+  public pastQuestions$: Observable<any>;
+  
   public options;
   public questionTypes = [
     {
