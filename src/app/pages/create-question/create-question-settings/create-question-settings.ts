@@ -35,7 +35,7 @@ export class CreateQuestionSettingsPage {
     .subscribe(id => this.clientId = id);
   
     this.defaultDate = new Date();
-    this.defaultDate.setDate(this.defaultDate.getDate() + 2);
+    this.defaultDate.setDate(this.defaultDate.getDate() + 1);
     this.defaultDate = this.defaultDate.toISOString();
     this.deadlineDate = this.defaultDate;
   }
