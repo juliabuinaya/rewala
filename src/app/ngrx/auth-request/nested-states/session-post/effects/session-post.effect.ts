@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Effect, Actions, toPayload } from '@ngrx/effects';
 
-import { AuthService } from '../../../../../core/services/index';
+import { AuthService, SocketService } from '../../../../../core/services/index';
 import { Observable } from 'rxjs';
 
 //actions
@@ -17,7 +17,8 @@ import { SessionPostAction } from '../actions/session-post.actions';
 export class SessionPostEffects {
   
   constructor(public actions$: Actions,
-              public authService: AuthService) {
+              public authService: AuthService,
+              public socketService: SocketService) {
   }
 
   @Effect()
@@ -46,4 +47,10 @@ export class SessionPostEffects {
   .ofType(sessionPost.ActionTypes.REQUEST_FAIL)
   .map((action: any) => new SpinnerLoadingEndAction());
   
+  @Effect({dispatch: false})
+  bla$: Observable<Action> = this.actions$
+  .ofType(sessionPost.ActionTypes.REQUEST_SUCCESS)
+  .do(() => {
+    this.socketService.setOpen()
+  })
 }

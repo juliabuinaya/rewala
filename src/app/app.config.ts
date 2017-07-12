@@ -6,11 +6,13 @@ import { CustomConfig } from 'ng2-ui-auth';
 export let APP_CONFIG = new InjectionToken<string>('app.config');
 
 export interface AppConfig {
-  apiEndpoint: string;
+  apiEndpoint: string,
+  socketUrl: string;
 }
 
 export const APP_DI_CONFIG: AppConfig = {
-  apiEndpoint: "http://api.rewala.2muchcoffee.com/api"
+  apiEndpoint: "http://localhost:33001/api", //"http://api.rewala.2muchcoffee.com/api",
+  socketUrl: "//localhost:33001"
 };
 
 export const GOOGLE_CLIENT_ID = '945919728141-s8e4e961ie6jgi5hbuuvedv7vo1u40n5.apps.googleusercontent.com';
