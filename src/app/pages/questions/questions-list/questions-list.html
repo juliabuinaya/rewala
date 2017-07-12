@@ -3,7 +3,7 @@
 </ion-header>
 
 <ion-content>
-  <h4 *ngIf="!(questionList$ | async).length">List is empty</h4>
+  <h4 class="empty-list-title" *ngIf="!(questionList$ | async).length">Current questions category is empty now</h4>
   <div *ngIf="(questionList$ | async).length">
     <h4>{{ questionType }}</h4>
     <ion-card *ngFor="let question of (questionList$ | async)">

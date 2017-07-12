@@ -19,7 +19,9 @@
 
 <ion-content padding>
 
-  <h4 *ngIf="!(groups$ | async)?.length">You have no created groups yet</h4>
+  <h4 *ngIf="!(groups$ | async)?.length">You have no created groups yet,
+    <a (click)="toGroupCreate()">create a group</a>
+  </h4>
 
   <ion-list *ngIf="(groups$ | async)?.length">
     <ion-item class="search">
