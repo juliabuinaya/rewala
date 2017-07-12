@@ -3,7 +3,6 @@ import { Action } from '@ngrx/store';
 import { Effect, Actions, toPayload } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 
-import { RoutingService } from '../../../core/services/routing.service';
 import { ResultsService } from '../../../core/services/results.service';
 
 //actions

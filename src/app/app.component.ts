@@ -6,7 +6,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ToastService } from './core/services/toast.service';
 
 import { RootPage } from './pages/root/root';
-import { DashboardPage } from './pages/dashboard/dashboard';
 
 
 @Component({

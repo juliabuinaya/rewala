@@ -1,6 +1,5 @@
 import { IResultsState, initialState } from '../states/results.state';
 import { Actions, ActionTypes } from '../actions/results.actions';
-import { ResultModel } from '../../../shared/models/result.model';
 
 export function reducer(
   state = initialState,
