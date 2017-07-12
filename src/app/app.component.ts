@@ -38,7 +38,11 @@ export class MyApp {
       this.platform.registerBackButtonAction(() => {
         // get current active page
         let view = this.nav.getActive();
-        if (view.component.name == "DashboardPage") {
+        if (view.component.name == "DashboardPage" ||
+            view.component.name == "QuestionResultsPage" ||
+            view.component.name == "CreateQuestionSettingsPage" ||
+            view.component.name == "CreateGroupMembersPage" ||
+            view.component.name == "SettingsPage") {
           //Double check to exit app
           if (new Date().getTime() - lastTimeBackPress < timePeriodToExit) {
             this.platform.exitApp(); //Exit from app

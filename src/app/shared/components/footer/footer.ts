@@ -17,6 +17,7 @@ export class FooterComponent {
   
   @Input() currentPageName: string;
   @Input() questionType: string;
+  @Input() questionSettings: string;
   public RESULTS_QUESTIONS = 'Results Questions';
   
   constructor(public routingService: RoutingService,

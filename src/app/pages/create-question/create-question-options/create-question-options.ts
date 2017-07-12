@@ -16,17 +16,22 @@ import { CreateQuestionGroupsPage } from '../create-question-groups/create-quest
 export class CreateQuestionOptionsPage {
   
   public optionsForm: FormGroup;
-  questionSettings;
-  optionText = '';
-  options = [];
-  minOptionsQuantity = 2;
-  showForm = true;
+  public questionSettings;
+  public optionText = '';
+  public options = [];
+  public minOptionsQuantity = 2;
+  public showForm = true;
+  public currentPageName;
   
   constructor(public routingService: RoutingService,
               public navParams: NavParams,
               private fb: FormBuilder) {
   
     this.questionSettings = navParams.get('questionSettings');
+  }
+  
+  ionViewWillEnter() {
+    this.currentPageName = this.constructor.name;
   }
   
   ngOnInit() {
