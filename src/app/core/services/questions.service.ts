@@ -81,8 +81,8 @@ export class QuestionsService {
     this.store.dispatch(new questionsRequest.MyQuestionsGetAction());
   }
   
-  getMyQuestionsRequest(clientId) {
-    return this.restangular.one('clients', clientId).all('questions').getList();
+  getMyQuestionsRequest() {
+    return this.restangular.all('clients').one('get-questions').get();
   }
   
   getAwaitingQuestions() {

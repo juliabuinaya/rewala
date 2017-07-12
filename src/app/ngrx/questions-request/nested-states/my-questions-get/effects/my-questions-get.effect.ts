@@ -19,15 +19,15 @@ export class MyQuestionsGetEffects {
   @Effect()
   getQuestions$: Observable<Action> = this.actions$
   .ofType(userRequest.ActionTypes.GET_REQUEST_SUCCESS)
-  .map((action: any) => new MyQuestionsGetAction(action.payload.id));
+  .map((action: any) => new MyQuestionsGetAction());
   
   @Effect()
   getMyQuestionsRequest$: Observable<Action> = this.actions$
   .ofType(myQuestionsGet.ActionTypes.REQUEST)
   .map(toPayload)
   .switchMap((payload: any) => {
-    return this.questionsService.getMyQuestionsRequest(payload)
-    .map((res: any) => new MyQuestionsGetSuccessAction(res))
+    return this.questionsService.getMyQuestionsRequest()
+    .map((res: any) => new MyQuestionsGetSuccessAction(res.data))
     .catch(error => Observable.of(new MyQuestionsGetFailAction(error)));
   });
   
