@@ -57,18 +57,29 @@ export class QuestionPage {
     this.question = navParams.get('question');
     this.questionType = navParams.get('questionType');
     this.action = navParams.get('action');
+    this.deadline = new Date(new Date(this.question.createdAt).getTime() + this.question.ttl*1000);
+    
     this.optionsService.getQuestionOptions(this.question.id);
     this.optionsRequestGetLoadedState$ = this.optionsService.optionsRequestGetLoadedState$;
     this.optionsResolver = this.optionsRequestGetLoadedState$
     .skipWhile(loaded => !loaded)
     .take(1)
     .toPromise();
+    
     this.userId$ = this.userService.userId$;
     this.userIdSubscriber =  this.userId$
     .subscribe(id => this.userId = id);
   }
   
   ionViewCanEnter() {
+    /** Checking if deadline already fails */
+    if(this.deadline < new Date()) {
+      this.questionsService.deadlineFailUpdateQuestions(this.question.id, this.questionType);
+      this.loadingService.hideSpinner();
+      this.alertService.showDeadlineFailsAlert(`This question is already closed,
+      You can find results in the appropriate category now`, 5000);
+      return false;
+    }
     return this.optionsResolver.then(loaded => loaded);
   }
   
@@ -79,7 +90,7 @@ export class QuestionPage {
 
   ngOnInit() {
     this.loadingService.hideSpinner();
-    this.deadline = new Date(new Date(this.question.createdAt).getTime() + this.question.ttl*1000);
+    
     this.myAnswers$ = this.answersService.myAnswers$;
     this.currentOptions$ = this.optionsService.currentOptions$;
     

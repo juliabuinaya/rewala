@@ -81,6 +81,14 @@ export function reducer(
         completedEntitiesIds: updatedQuestions.entitiesIds
       };
     }
+    case ActionTypes.UPDATE_COMPLETED_QUESTIONS_IDS: {
+      let questionId = action.payload;
+      return {
+        ...state,
+        ids: _.union(state.ids, [questionId]),
+        completedEntitiesIds: _.union(state.completedEntitiesIds, [questionId]),
+      }
+    }
   
     case ActionTypes.CLEAR_COMPLETED_QUESTIONS:
       return {

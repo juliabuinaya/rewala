@@ -10,6 +10,7 @@ import * as _ from 'lodash';
 import { IAppState } from '../../ngrx/state/app.state';
 //actions
 import * as questionsRequest from '../../ngrx/questions-request/actions/index';
+import * as questions from '../../ngrx/questions/actions/index';
 //getters
 import * as questionsStateGetter from '../../ngrx/questions/states/questions-getter.state';
 
@@ -122,6 +123,11 @@ export class QuestionsService {
   
   deleteQuestionRequest(questionId) {
     return this.restangular.one('questions', questionId).remove();
+  }
+  
+  deadlineFailUpdateQuestions(questionId, questionType) {
+    this.store.dispatch(new questions.DeleteQuestionAction(questionId));
+    this.store.dispatch(new questions.UpdateCompletedQuestionsIdsAction(questionId));
   }
   
 }

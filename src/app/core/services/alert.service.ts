@@ -95,4 +95,13 @@ export class AlertService {
     return observable$.toPromise();
   }
   
+  showDeadlineFailsAlert(title, ms=2000) {
+    let alert = this.alertCtrl.create({
+      title,
+      enableBackdropDismiss: false
+    });
+    alert.present();
+    setTimeout(() => alert.dismiss(), ms);
+  }
+  
 }

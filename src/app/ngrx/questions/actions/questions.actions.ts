@@ -23,6 +23,7 @@ export const ActionTypes = {
   SET_COMPLETED_QUESTIONS: type(`[${QUESTIONS}] Set Completed Questions`),
   CLEAR_COMPLETED_QUESTIONS: type(`[${QUESTIONS}] Clear Completed Questions`),
   UPDATE_COMPLETED_QUESTIONS: type(`[${QUESTIONS}] Update Completed Questions`),
+  UPDATE_COMPLETED_QUESTIONS_IDS: type(`[${QUESTIONS}] Update Completed Questions Ids`),
   
   SET_PAST_QUESTIONS: type(`[${QUESTIONS}] Set Past Questions`),
   CLEAR_PAST_QUESTIONS: type(`[${QUESTIONS}] Clear Past Questions`),
@@ -136,6 +137,13 @@ export class UpdateCompletedQuestionsAction implements Action {
   }
 }
 
+export class UpdateCompletedQuestionsIdsAction implements Action {
+  type = ActionTypes.UPDATE_COMPLETED_QUESTIONS_IDS;
+  
+  constructor(public payload?: any) {
+  }
+}
+
 export class SetPastQuestionsAction implements Action {
   type = ActionTypes.SET_PAST_QUESTIONS;
   
@@ -170,4 +178,5 @@ export type Actions
   SetMyQuestionsAction | ClearMyQuestionsAction | UpdateMyQuestionsAction |
   SetAwaitingQuestionsAction | ClearAwaitingQuestionsAction | UpdateAwaitingQuestionsAction |
   SetCompletedQuestionsAction | ClearCompletedQuestionsAction | UpdateCompletedQuestionsAction |
-  DeleteQuestionAction | SetPastQuestionsAction | ClearPastQuestionsAction | UpdatePastQuestionsAction;
+  UpdateCompletedQuestionsIdsAction | DeleteQuestionAction | SetPastQuestionsAction | ClearPastQuestionsAction |
+  UpdatePastQuestionsAction;
