@@ -1,0 +1,1 @@
+export const PAST_QUESTIONS_GET: string = 'Past Questions Get';

@@ -7,6 +7,7 @@ import {
   questionDeleteReducer,
   awaitingQuestionsGetReducer,
   completedQuestionsGetReducer,
+  pastQuestionsGetReducer,
 } from './index';
 
 
@@ -19,6 +20,7 @@ export function questionsRequestReducer(
     myQuestionsGetState: myQuestionsGetReducer(state.myQuestionsGetState, action),
     awaitingQuestionsGetState: awaitingQuestionsGetReducer(state.awaitingQuestionsGetState, action),
     completedQuestionsGetState: completedQuestionsGetReducer(state.completedQuestionsGetState, action),
+    pastQuestionsGetState: pastQuestionsGetReducer(state.pastQuestionsGetState, action),
     questionPostState: questionPostReducer(state.questionPostState, action),
     questionDeleteState: questionDeleteReducer(state.questionDeleteState, action)
   };

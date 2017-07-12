@@ -7,5 +7,6 @@ export * from '../nested-states/question-post/states/index';
 export * from '../nested-states/question-delete/states/index';
 export * from '../nested-states/awaiting-questions-get/states/index';
 export * from '../nested-states/completed-questions-get/states/index';
+export * from '../nested-states/past-questions-get/states/index';
 export * from '../nested-states/voice-given-questions-get/states/index';
 

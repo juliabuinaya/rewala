@@ -4,6 +4,7 @@ import {
   IQuestionPostState,
   IAwaitingQuestionsGetState,
   ICompletedQuestionsGetState,
+  IPastQuestionsGetState,
   IVoiceGivenQuestionsGetState,
   IQuestionDeleteState
 } from './index';
@@ -16,6 +17,7 @@ export interface IQuestionsRequestState {
   questionDeleteState?: IQuestionDeleteState;
   awaitingQuestionsGetState?: IAwaitingQuestionsGetState;
   completedQuestionsGetState?: ICompletedQuestionsGetState;
+  pastQuestionsGetState?: IPastQuestionsGetState;
   voiceGivenQuestionsGetState?: IVoiceGivenQuestionsGetState;
 }
 
