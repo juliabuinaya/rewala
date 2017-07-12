@@ -43,6 +43,7 @@ export class QuestionsService {
     this.awaitingQuestions$ = this.store.select(questionsStateGetter.getQuestionsAwaitingEntitiesState);
     this.voiceGivenQuestions$ = this.store.select(questionsStateGetter.getQuestionsVoiceGivenEntitiesState);
     this.completedQuestions$ = this.store.select(questionsStateGetter.getQuestionsCompletedEntitiesState);
+    this.pastQuestions$ = this.store.select(questionsStateGetter.getQuestionsPastEntitiesState);
   
   }
   
@@ -105,6 +106,14 @@ export class QuestionsService {
   
   getCompletedQuestionsRequest() {
     return this.restangular.all('clients').one('get-completed-questions').get();
+  }
+  
+  getPastQuestions() {
+    this.store.dispatch(new questionsRequest.PastQuestionsGetAction());
+  }
+  
+  getPastQuestionsRequest() {
+    return this.restangular.all('clients').one('get-past-questions').get();
   }
   
   deleteQuestion(questionId) {

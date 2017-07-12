@@ -26,7 +26,7 @@ export class CompletedQuestionsGetEffects {
   }
   
   @Effect()
-  getVoiceGivenQuestions$: Observable<Action> = this.actions$
+  getCompletedQuestions$: Observable<Action> = this.actions$
   .ofType(userRequest.ActionTypes.GET_REQUEST_SUCCESS)
   .map((action: any) => new CompletedQuestionsGetAction());
   

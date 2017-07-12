@@ -58,9 +58,9 @@ export class QuestionsListPage {
         this.questionList$ = this.questionsService.completedQuestions$;
         break;
   
-      //case 'Past Questions':
-      //  this.questionList$ = this.questionsService.completedQuestions$;
-      //  break;
+      case 'Past Questions':
+        this.questionList$ = this.questionsService.pastQuestions$;
+        break;
         
       default:
         this.questionList$ = Observable.of([]);
@@ -70,7 +70,7 @@ export class QuestionsListPage {
   
   toQuestionPage(question, questionType, action) {
     this.loadingService.showSpinner();
-    questionType === 'Results Questions' ?
+    questionType === 'Results Questions' || questionType === 'Past Questions' ?
     this.routingService.pushPage(QuestionResultsPage, {question}) :
     this.routingService.pushPage(QuestionPage, {question, questionType, action});
   }
