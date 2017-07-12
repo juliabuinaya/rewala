@@ -51,6 +51,8 @@ export class SessionPostEffects {
   bla$: Observable<Action> = this.actions$
   .ofType(sessionPost.ActionTypes.REQUEST_SUCCESS)
   .do(() => {
-    this.socketService.setOpen()
+    this.socketService.subscribeTo('create').subscribe(data => {
+      console.log("effect: " + JSON.stringify(data));
+    });
   })
 }

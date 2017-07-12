@@ -21,8 +21,9 @@ export class SocketService {
     if (!this.socket) this.socket = io.connect(this.appConfig.socketUrl);
     this.socket.on('connect', () => {
       this.socket.emit('authentication', {token});
-      this.socket.on('authenticated', () => {
-        console.log('User is authenticated');
+      this.socket.on('authenticated', value => {
+        if (!value) return;
+        console.log(`User is authenticated`);
       });
     });
   }
@@ -31,7 +32,7 @@ export class SocketService {
     this.setOpen();
     return new Observable(observer => {
       this.socket.on(event, data => {
-        console.log("message from server: " + JSON.stringify(data));
+        console.log("service: " + JSON.stringify(data));
         observer.next(data);
       });
     });
