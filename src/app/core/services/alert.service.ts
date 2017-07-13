@@ -104,4 +104,26 @@ export class AlertService {
     setTimeout(() => alert.dismiss(), ms);
   }
   
+  showFinishVotingAlert(question) {
+    let confirm = this.alertCtrl.create({
+      title: 'Are you sure you want to finish voting?',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+            return;
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.questionsService.questionFinishVoting(question);
+          }
+        }
+      ],
+      enableBackdropDismiss: false
+    });
+    confirm.present();
+  }
+  
 }

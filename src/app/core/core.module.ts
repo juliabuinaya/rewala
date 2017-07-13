@@ -48,6 +48,7 @@ import { CompletedQuestionsGetEffects } from '../ngrx/questions-request/nested-s
 import { PastQuestionsGetEffects } from '../ngrx/questions-request/nested-states/past-questions-get/effects/past-questions-get.effect';
 import { ResultsRequestEffects } from '../ngrx/results-request/effects/results-request.effect';
 import { ResultsEffects } from '../ngrx/results/effects/results.effect';
+import { QuestionFinishVotingEffects } from '../ngrx/questions-request/nested-states/question-finish-voting/effects/question-finish-voting.effect';
 
 export function provideStorage() {
   return new Storage({});
@@ -103,6 +104,7 @@ const cloudSettings: CloudSettings = {
      EffectsModule.run(PastQuestionsGetEffects),
      EffectsModule.run(ResultsRequestEffects),
      EffectsModule.run(ResultsEffects),
+     EffectsModule.run(QuestionFinishVotingEffects),
   
     RestangularModule.forRoot(
       [

@@ -130,4 +130,17 @@ export class QuestionsService {
     this.store.dispatch(new questions.UpdateCompletedQuestionsIdsAction(questionId));
   }
   
+  questionFinishVoting(question) {
+    this.store.dispatch(new questionsRequest.QuestionFinishVotingAction(question));
+  }
+  
+  questionFinishVotingRequest(question) {
+    debugger;
+    let deadline = new Date(new Date(question.createdAt).getTime() + question.ttl*1000);
+    //console.log(deadline);
+    //Math.floor((deadlineDate - nowDate)/1000);
+    //console.log(deadline - new Date());
+    return this.restangular.one('questions', question.id).patch({ttl: 86555});
+  }
+  
 }

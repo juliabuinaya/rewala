@@ -40,9 +40,14 @@
       </ion-item>
 
     </ion-list>
-    <p class="deadline"> Deadline: {{deadline | date}}</p>
+    <p class="deadline">Deadline: {{deadline | date}}</p>
   </div>
   <div class="btn-wrapper">
+    <button ion-button color="secondary" type="button"
+      *ngIf="questionType === 'My Questions'"
+      (click)="showFinishVotingAlert(question)">
+      Finish voting
+    </button>
     <button ion-button color="danger" type="button"
       *ngIf="questionType === 'My Questions'"
       (click)="showDeleteAlert(question)">

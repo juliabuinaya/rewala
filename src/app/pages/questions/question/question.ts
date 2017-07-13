@@ -154,6 +154,10 @@ export class QuestionPage {
     this.alertService.showDeleteQuestionAlert(question);
   }
   
+  showFinishVotingAlert(question) {
+    this.alertService.showFinishVotingAlert(question);
+  }
+  
   showChangeVoteAlert() {
     let subscriber = this.alertService.showChangeVoteAlert()
     .subscribe(voteChanging => {

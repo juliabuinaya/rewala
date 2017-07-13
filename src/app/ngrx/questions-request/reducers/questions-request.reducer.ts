@@ -4,6 +4,7 @@ import {
   questionsGetReducer,
   myQuestionsGetReducer,
   questionPostReducer,
+  questionFinishVotingReducer,
   questionDeleteReducer,
   awaitingQuestionsGetReducer,
   completedQuestionsGetReducer,
@@ -22,6 +23,7 @@ export function questionsRequestReducer(
     completedQuestionsGetState: completedQuestionsGetReducer(state.completedQuestionsGetState, action),
     pastQuestionsGetState: pastQuestionsGetReducer(state.pastQuestionsGetState, action),
     questionPostState: questionPostReducer(state.questionPostState, action),
+    questionFinishVotingState: questionFinishVotingReducer(state.questionFinishVotingState, action),
     questionDeleteState: questionDeleteReducer(state.questionDeleteState, action)
   };
 }

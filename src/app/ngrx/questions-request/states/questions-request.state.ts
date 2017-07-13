@@ -2,6 +2,7 @@ import {
   IQuestionsGetState,
   IMyQuestionsGetState,
   IQuestionPostState,
+  IQuestionFinishVotingState,
   IAwaitingQuestionsGetState,
   ICompletedQuestionsGetState,
   IPastQuestionsGetState,
@@ -14,6 +15,7 @@ export interface IQuestionsRequestState {
   questionsGetState?: IQuestionsGetState;
   myQuestionsGetState?: IMyQuestionsGetState;
   questionPostState?: IQuestionPostState;
+  questionFinishVotingState?: IQuestionFinishVotingState;
   questionDeleteState?: IQuestionDeleteState;
   awaitingQuestionsGetState?: IAwaitingQuestionsGetState;
   completedQuestionsGetState?: ICompletedQuestionsGetState;
