@@ -29,7 +29,7 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-  
+      
       let lastTimeBackPress = 0;
       let timePeriodToExit  = 2000;
   

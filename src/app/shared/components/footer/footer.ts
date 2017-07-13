@@ -24,10 +24,6 @@ export class FooterComponent {
               public navCtrl: NavController) {
   }
   
-  getActivePage(): string {
-    return this.navCtrl.getActive().name;
-  }
-  
   toCreateQuestion() {
     this.routingService.pushRootPage(CreateQuestionSettingsPage);
   }
