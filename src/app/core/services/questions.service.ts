@@ -135,12 +135,8 @@ export class QuestionsService {
   }
   
   questionFinishVotingRequest(question) {
-    debugger;
-    let deadline = new Date(new Date(question.createdAt).getTime() + question.ttl*1000);
-    //console.log(deadline);
-    //Math.floor((deadlineDate - nowDate)/1000);
-    //console.log(deadline - new Date());
-    return this.restangular.one('questions', question.id).patch({ttl: 86555});
+    let ttl = Math.floor(question.ttl - ((new Date(question.createdAt).getTime() + question.ttl*1000) - new Date().getTime())/1000);
+    return this.restangular.one('questions', question.id).patch({ttl});
   }
   
 }

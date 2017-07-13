@@ -14,6 +14,7 @@ import * as completedQuestionsGet from '../../questions-request/nested-states/co
 import * as pastQuestionsGet from '../../questions-request/nested-states/past-questions-get/actions/past-questions-get.actions';
 import * as questionPost from '../../questions-request/nested-states/question-post/actions/question-post.actions';
 import * as questionDelete from '../../questions-request/nested-states/question-delete/actions/question-delete.actions';
+import * as questionFinishVote from '../../questions-request/nested-states/question-finish-voting/actions/question-finish-voting.actions';
 import {
   DeleteQuestionAction,
   SetAwaitingQuestionsAction,
@@ -21,7 +22,8 @@ import {
   SetPastQuestionsAction,
   SetMyQuestionsAction,
   SetVoiceGivenQuestionsAction,
-  UpdateMyQuestionsAction
+  UpdateMyQuestionsAction,
+  UpdateCompletedQuestionsIdsAction
 } from '../actions/questions.actions';
 
 
@@ -75,5 +77,25 @@ export class QuestionsEffects {
     this.alertService.showSuccessAlert('Question has been deleted', 1500);
     this.routingService.popPage();
   });
+  
+  @Effect({dispatch: false})
+  finishVoteQuestionRedirect$: Observable<Action> = this.actions$
+  .ofType(questionFinishVote.ActionTypes.REQUEST_SUCCESS)
+  .do((action: any) => {
+    this.alertService.showSuccessAlert('Vote has been finished', 1500);
+    this.routingService.popPage();
+  });
+  
+  
+  /** need to finish */
+  //@Effect()
+  //deleteQuestionAfterFinishingVote: Observable<Action> = this.actions$
+  //.ofType(questionFinishVote.ActionTypes.REQUEST_SUCCESS)
+  //.map(action => new DeleteQuestionAction(action.payload.id));
+  //
+  //@Effect()
+  //updateResultsAfterFinishingVote: Observable<Action> = this.actions$
+  //.ofType(questionFinishVote.ActionTypes.REQUEST_SUCCESS)
+  //.map(action => new UpdateCompletedQuestionsIdsAction(action.payload.id));
   
 }
