@@ -27,8 +27,6 @@ export class MyApp {
   
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
   
@@ -36,23 +34,16 @@ export class MyApp {
       let timePeriodToExit  = 2000;
   
       this.platform.registerBackButtonAction(() => {
-        // get current active page
-        let view = this.nav.getActive();
-        if (view.component.name == "DashboardPage" ||
-            view.component.name == "QuestionResultsPage" ||
-            view.component.name == "CreateQuestionSettingsPage" ||
-            view.component.name == "CreateGroupMembersPage" ||
-            view.component.name == "SettingsPage") {
-          //Double check to exit app
+        if(this.nav.canGoBack()) {
+          this.nav.pop();
+        }
+        else {
           if (new Date().getTime() - lastTimeBackPress < timePeriodToExit) {
             this.platform.exitApp(); //Exit from app
           } else {
             this.toastService.presentToast('Press back again to exit app', 2000, 'bottom', '');
             lastTimeBackPress = new Date().getTime();
           }
-        } else {
-          // go to previous page
-          this.nav.pop();
         }
       });
     });
