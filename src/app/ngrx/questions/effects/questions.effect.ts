@@ -87,15 +87,14 @@ export class QuestionsEffects {
   });
   
   
-  /** need to finish */
-  //@Effect()
-  //deleteQuestionAfterFinishingVote: Observable<Action> = this.actions$
-  //.ofType(questionFinishVote.ActionTypes.REQUEST_SUCCESS)
-  //.map(action => new DeleteQuestionAction(action.payload.id));
-  //
-  //@Effect()
-  //updateResultsAfterFinishingVote: Observable<Action> = this.actions$
-  //.ofType(questionFinishVote.ActionTypes.REQUEST_SUCCESS)
-  //.map(action => new UpdateCompletedQuestionsIdsAction(action.payload.id));
+  @Effect()
+  deleteQuestionAfterFinishingVote: Observable<Action> = this.actions$
+  .ofType(questionFinishVote.ActionTypes.REQUEST_SUCCESS)
+  .map(action => new DeleteQuestionAction(action.payload.id));
+
+  @Effect()
+  updateResultsAfterFinishingVote: Observable<Action> = this.actions$
+  .ofType(questionFinishVote.ActionTypes.REQUEST_SUCCESS)
+  .map(action => new UpdateCompletedQuestionsIdsAction(action.payload.id));
   
 }
