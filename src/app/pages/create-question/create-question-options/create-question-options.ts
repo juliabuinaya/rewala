@@ -36,7 +36,7 @@ export class CreateQuestionOptionsPage {
   
   ngOnInit() {
     this.optionsForm = this.fb.group({
-      text: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(1024)]]
+      text: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(24)]]
     });
   }
   

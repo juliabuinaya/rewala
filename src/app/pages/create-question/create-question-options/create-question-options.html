@@ -32,6 +32,9 @@
           <div *ngIf="optionsForm.get('text').hasError('minlength') && optionsForm.get('text').dirty" class="error-box">
             Minimum of 3 characters
           </div>
+          <div *ngIf="optionsForm.get('text').hasError('maxlength') && optionsForm.get('text').dirty" class="error-box">
+            Maximum of 24 characters
+          </div>
         </ion-col>
         <ion-col col-2>
           <button ion-button icon-only clear type="submit" [disabled]="!optionText.length"><ion-icon name="add"></ion-icon></button>
