@@ -73,11 +73,11 @@ export class QuestionPage {
   
   ionViewCanEnter() {
     /** Checking if deadline already fails */
-    if(this.deadline < new Date()) {
+    if(this.deadline <= new Date()) {
       this.questionsService.deadlineFailUpdateQuestions(this.question.id, this.questionType);
       this.loadingService.hideSpinner();
       this.alertService.showDeadlineFailsAlert(`This question is already closed,
-      You can find results in the appropriate category now`, 5000);
+      You can find it in the results category now`, 5000);
       return false;
     }
     return this.optionsResolver.then(loaded => loaded);
