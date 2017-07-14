@@ -15,8 +15,8 @@ import * as _ from 'lodash';
 })
 export class QuestionResultsPage {
   
-  @ViewChild('barCanvas') barCanvas;
   @ViewChild('doughnutCanvas') doughnutCanvas;
+  //@ViewChild('barCanvas') barCanvas;
   public question;
   public results$;
   public resultsRequestGetLoadedState$;
@@ -26,14 +26,14 @@ export class QuestionResultsPage {
   public results;
   public maxQuantity;
   public optimalResults;
-  public barChart;
   public doughnutChart;
+  //public barChart;
   public resultsLabels;
   public resultsQuantities;
   public chartDataset;
   public colors;
-  public barChartActive = true;
-  public pieChartActive = false;
+  //public barChartActive = true;
+  //public pieChartActive = false;
   
   constructor(public loadingService: LoadingService,
               public navParams: NavParams,
@@ -85,24 +85,7 @@ export class QuestionResultsPage {
         backgroundColor: this.colors,
       }]
     };
-    
-    this.barChart = new Chart(this.barCanvas.nativeElement, {
-      type: 'bar',
-      data: this.chartDataset,
-      options: {
-        legend: {
-          display: false
-        },
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
-    });
-    
+  
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
       type: 'doughnut',
       data: this.chartDataset,
@@ -113,17 +96,35 @@ export class QuestionResultsPage {
         }
       }
     });
+    
+    //this.barChart = new Chart(this.barCanvas.nativeElement, {
+    //  type: 'bar',
+    //  data: this.chartDataset,
+    //  options: {
+    //    legend: {
+    //      display: false
+    //    },
+    //    scales: {
+    //      yAxes: [{
+    //        ticks: {
+    //          beginAtZero: true
+    //        }
+    //      }]
+    //    }
+    //  }
+    //});
+    
   }
   
-  showPieChart() {
-    this.barChartActive = false;
-    this.pieChartActive = true;
-  }
-  
-  showBarChart() {
-    this.pieChartActive = false;
-    this.barChartActive = true;
-  }
+  //showPieChart() {
+  //  this.barChartActive = false;
+  //  this.pieChartActive = true;
+  //}
+  //
+  //showBarChart() {
+  //  this.pieChartActive = false;
+  //  this.barChartActive = true;
+  //}
   
   ngOnDestroy() {
     this.resultsSubscriber.unsubscribe();
