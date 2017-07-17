@@ -10,7 +10,7 @@ import { RoutingService } from '../../../../../core/services/routing.service';
 import * as questionFinishVoting from '../actions/question-finish-voting.actions';
 import { SpinnerLoadingStartAction, SpinnerLoadingEndAction } from '../../../../spinner/actions/spinner.actions';
 import {
-  QuestionFinishVotingAction, QuestionFinishVotingFailAction,
+  QuestionFinishVotingFailAction,
   QuestionFinishVotingSuccessAction
 } from '../actions/question-finish-voting.actions';
 
