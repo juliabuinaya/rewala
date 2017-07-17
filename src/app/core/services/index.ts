@@ -11,6 +11,7 @@ import { AnswersService } from './answers.service';
 import { ToastService } from './toast.service';
 import { AlertService } from './alert.service';
 import { ResultsService } from './results.service';
+import { SocketService } from './socket.service';;
 
 
 export {
@@ -26,7 +27,8 @@ export {
   AnswersService,
   ToastService,
   AlertService,
-  ResultsService
+  ResultsService,
+  SocketService
 };
 
 // an array of services
@@ -43,5 +45,6 @@ export const APP_SERVICE_PROVIDERS = [
   AnswersService,
   ToastService,
   AlertService,
-  ResultsService
+  ResultsService,
+  SocketService
 ];

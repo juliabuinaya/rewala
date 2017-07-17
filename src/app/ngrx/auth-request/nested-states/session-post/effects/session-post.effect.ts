@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Effect, Actions, toPayload } from '@ngrx/effects';
 
-import { AuthService } from '../../../../../core/services/index';
+import { AuthService, SocketService } from '../../../../../core/services/index';
 import { Observable } from 'rxjs';
 
 //actions
 import * as sessionPost from '../actions/session-post.actions';
 import * as registrationPost from '../../registration-post/actions/registration-post.actions';
+import * as userRequest from '../../../../user-request/actions/user-request.actions';
 import { SessionPostSuccessAction, SessionPostFailAction } from '../actions/index';
 import { SpinnerLoadingStartAction, SpinnerLoadingEndAction } from '../../../../spinner/actions/index';
 import { SessionPostAction } from '../actions/session-post.actions';
@@ -17,7 +18,8 @@ import { SessionPostAction } from '../actions/session-post.actions';
 export class SessionPostEffects {
   
   constructor(public actions$: Actions,
-              public authService: AuthService) {
+              public authService: AuthService,
+              public socketService: SocketService) {
   }
 
   @Effect()
@@ -46,4 +48,8 @@ export class SessionPostEffects {
   .ofType(sessionPost.ActionTypes.REQUEST_FAIL)
   .map((action: any) => new SpinnerLoadingEndAction());
   
+  @Effect({dispatch: false})
+  socketCreateQuestion$: Observable<Action> = this.actions$
+  .ofType(userRequest.ActionTypes.GET_REQUEST_SUCCESS)
+  .do(() => this.socketService.subscribeTo('create'));
 }
