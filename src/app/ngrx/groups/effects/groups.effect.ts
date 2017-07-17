@@ -4,6 +4,7 @@ import { Effect, Actions, toPayload } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 
 import { RoutingService } from '../../../core/services/routing.service';
+import { AlertService } from '../../../core/services/alert.service';
 
 //actions
 import * as groupsGet from '../../groups-request/nested-states/groups-get/actions/groups-get.actions';
@@ -16,7 +17,8 @@ import { UpdateUserGroupsAction } from '../actions/groups.actions';
 export class GroupsEffects {
   
   constructor(private actions$: Actions,
-              public routingService: RoutingService) {
+              public routingService: RoutingService,
+              public alertService: AlertService) {
   }
   
   @Effect()
@@ -29,5 +31,8 @@ export class GroupsEffects {
   updateGroups$: Observable<Action> = this.actions$
   .ofType(groupPost.ActionTypes.REQUEST_SUCCESS)
   .map(action => new UpdateUserGroupsAction(toPayload(action)))
-  .do(() => this.routingService.removeFromActive(2));
+  .do(() => {
+    this.alertService.showSuccessAlert('Group has been created', 2000);
+    this.routingService.removeFromActive(2)
+  });
 }
