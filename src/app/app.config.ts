@@ -11,8 +11,9 @@ export interface AppConfig {
 }
 
 export const APP_DI_CONFIG: AppConfig = {
-  apiEndpoint: "http://localhost:33001/api", //"http://api.rewala.2muchcoffee.com/api",
-  socketUrl: "//localhost:33001"
+  //apiEndpoint: "http://localhost:33001/api",
+  apiEndpoint: "http://api.rewala.2muchcoffee.com/api",
+  socketUrl: "http://api.rewala.2muchcoffee.com"
 };
 
 export const GOOGLE_CLIENT_ID = '945919728141-s8e4e961ie6jgi5hbuuvedv7vo1u40n5.apps.googleusercontent.com';

@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 //actions
 import * as sessionPost from '../actions/session-post.actions';
 import * as registrationPost from '../../registration-post/actions/registration-post.actions';
+import * as userRequest from '../../../../user-request/actions/user-request.actions';
 import { SessionPostSuccessAction, SessionPostFailAction } from '../actions/index';
 import { SpinnerLoadingStartAction, SpinnerLoadingEndAction } from '../../../../spinner/actions/index';
 import { SessionPostAction } from '../actions/session-post.actions';
@@ -48,11 +49,7 @@ export class SessionPostEffects {
   .map((action: any) => new SpinnerLoadingEndAction());
   
   @Effect({dispatch: false})
-  bla$: Observable<Action> = this.actions$
-  .ofType(sessionPost.ActionTypes.REQUEST_SUCCESS)
-  .do(() => {
-    this.socketService.subscribeTo('create').subscribe(data => {
-      console.log("effect: " + JSON.stringify(data));
-    });
-  })
+  socketCreateQuestion$: Observable<Action> = this.actions$
+  .ofType(userRequest.ActionTypes.GET_REQUEST_SUCCESS)
+  .do(() => this.socketService.subscribeTo('create'));
 }
