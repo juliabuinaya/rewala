@@ -10,6 +10,9 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { CoreModule } from './core/core.module';
 import { AppSharedModule } from './shared/shared.module';
 
+import 'intl';
+import 'intl/locale-data/jsonp/en';
+
 import {
   RootModule,
   AuthModule,
