@@ -43,16 +43,18 @@
     <p class="deadline">Deadline: {{deadline | date}}</p>
   </div>
   <div class="btn-wrapper">
-    <button ion-button color="secondary" type="button"
-      *ngIf="questionType === 'My Questions'"
-      (click)="showFinishVotingAlert(question)">
-      Finish voting
-    </button>
-    <button ion-button color="danger" type="button"
-      *ngIf="questionType === 'My Questions'"
-      (click)="showDeleteAlert(question)">
-      Delete this question
-    </button>
+    <div class="my-questions-buttons"
+      *ngIf="questionType === 'My Questions'">
+      <button ion-button color="secondary" type="button"
+        (click)="showFinishVotingAlert(question)">
+        Finish voting
+      </button>
+      <br>
+      <button ion-button color="danger" type="button"
+        (click)="showDeleteAlert(question)">
+        Delete this question
+      </button>
+    </div>
     <button ion-button color="danger" type="button"
       *ngIf="questionType == 'Voice Given Questions' && !voteChanging"
       (click)="showChangeVoteAlert()">
