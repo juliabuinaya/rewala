@@ -27,7 +27,7 @@ export class SettingsPage {
   }
   
   ionViewWillEnter() {
-    this.currentPageName = this.constructor.name;
+    this.currentPageName = 'SettingsPage';
   }
 
   saveSettigns(event) {

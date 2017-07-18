@@ -20,11 +20,11 @@ import { QuestionResultsPage } from '../question-results/question-results';
 })
 export class QuestionsListPage {
   
+  public currentPageName = 'QuestionsListPage';
   public questionType;
   public questionList$;
   public ACTION_DETAILS = 'Action Details';
   public ACTION_RECAST = 'Action Recast';
-  public currentPageName;
 
   constructor(public navParams: NavParams,
               public routingService: RoutingService,
@@ -36,8 +36,8 @@ export class QuestionsListPage {
   }
   
   ionViewWillEnter() {
+    this.currentPageName = 'QuestionsListPage';
     this.questionType = this.navParams.get('questionType');
-    this.currentPageName = this.constructor.name;
   }
 
   ngOnInit() {

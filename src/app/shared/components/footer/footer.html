@@ -1,9 +1,9 @@
 <ion-buttons class="menu-buttons-wrap">
-  <button ion-fab mini (click)="toDashboardPage()"
+  <button ion-fab mini color="dark" (click)="toDashboardPage()"
     [disabled]="currentPageName === 'DashboardPage'">
     <ion-icon name="home"></ion-icon>
   </button>
-  <button ion-fab mini (click)="toQuestionsList(RESULTS_QUESTIONS)"
+  <button ion-fab mini color="dark" (click)="toQuestionsList(RESULTS_QUESTIONS)"
     [disabled]="currentPageName === 'QuestionsListPage' && questionType === 'Results Questions'">
     <ion-icon name="podium"></ion-icon>
   </button>
@@ -13,11 +13,11 @@
                 (currentPageName === 'CreateQuestionGroupsPage' && questionSettings)">
     <ion-icon name="add"></ion-icon>
   </button>
-  <button ion-fab mini (click)="toGroupsPage()"
+  <button ion-fab mini color="dark" (click)="toGroupsPage()"
     [disabled]="currentPageName === 'CreateQuestionGroupsPage' && !questionSettings">
     <ion-icon name="people"></ion-icon>
   </button>
-  <button ion-fab mini (click)="toSettingsPage()"
+  <button ion-fab mini color="dark" (click)="toSettingsPage()"
     [disabled]="currentPageName === 'SettingsPage'">
     <ion-icon name="settings"></ion-icon>
   </button>

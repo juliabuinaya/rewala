@@ -18,6 +18,7 @@ import { GroupsService } from '../../../core/services/groups.service';
 })
 export class CreateQuestionGroupsPage {
   
+  public currentPageName = 'CreateQuestionGroupsPage';
   public search = new FormControl();
   public groups$;
   public displayedGroups$;
@@ -25,7 +26,6 @@ export class CreateQuestionGroupsPage {
   public checkedGroups = {};
   public selectedGroupId;
   public questionSettings;
-  public currentPageName;
   
   constructor(public routingService: RoutingService,
               public navParams: NavParams,
@@ -37,7 +37,7 @@ export class CreateQuestionGroupsPage {
   }
   
   ionViewWillEnter() {
-    this.currentPageName = this.constructor.name;
+    this.currentPageName = 'CreateQuestionGroupsPage';
   }
   
   ngOnInit() {

@@ -16,6 +16,7 @@ import { QuestionResultsPage } from '../questions/question-results/question-resu
 })
 export class DashboardPage {
   
+  public currentPageName = 'DashboardPage';
   public myQuestions$;
   public awaitingQuestions$;
   public voiceGivenQuestions$;
@@ -25,14 +26,13 @@ export class DashboardPage {
   public AWAITING_QUESTIONS = 'Awaiting Questions';
   public RESULTS_QUESTIONS = 'Results Questions';
   public PAST_QUESTIONS = 'Past Questions';
-  public currentPageName;
   
   constructor(public routingService: RoutingService,
               public questionsService: QuestionsService) {
   }
   
   ionViewWillEnter() {
-    this.currentPageName = this.constructor.name;
+   this.currentPageName = 'DashboardPage';
   }
   
   ngOnInit() {

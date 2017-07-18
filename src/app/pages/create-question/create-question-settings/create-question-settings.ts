@@ -16,6 +16,7 @@ import { CreateQuestionOptionsPage } from '../create-question-options/create-que
 })
 export class CreateQuestionSettingsPage {
   
+  public currentPageName = 'CreateQuestionSettingsPage';
   public settingsForm: FormGroup;
   public userId$;
   public clientId;
@@ -24,7 +25,6 @@ export class CreateQuestionSettingsPage {
   public multiple = false;
   public defaultDate;
   public deadlineDate;
-  public currentPageName;
 
   constructor(public routingService: RoutingService,
               public userService: UserService,
@@ -41,7 +41,7 @@ export class CreateQuestionSettingsPage {
   }
   
   ionViewWillEnter() {
-    this.currentPageName = this.constructor.name;
+    this.currentPageName = 'CreateQuestionSettingsPage';
   }
   
   ngOnInit() {
