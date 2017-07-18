@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { UserService } from '../../../core/services/user.service';
 import { RoutingService } from '../../../core/services/routing.service';
 import { SignInPage } from '../../../pages/auth/sign-in/sign-in';
+import { SocketService } from '../../../core/services/socket.service';
 
 //actions
 import * as userRequest from '../actions/user-request.actions';
@@ -18,7 +19,8 @@ export class UserRequestEffects {
   
   constructor(private actions$: Actions,
               public userService: UserService,
-              public routingService: RoutingService) {
+              public routingService: RoutingService,
+              public socketService: SocketService) {
   }
   
   @Effect()
@@ -38,4 +40,10 @@ export class UserRequestEffects {
     this.routingService.pushRootPage(SignInPage);
     return new SpinnerLoadingEndAction();
   });
+  
+  @Effect({dispatch: false})
+  socketCreateQuestion$: Observable<Action> = this.actions$
+  .ofType(userRequest.ActionTypes.GET_REQUEST_SUCCESS)
+  .do(() => this.socketService.subscribeTo('create'));
+  
 }

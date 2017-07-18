@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
 //actions
 import * as sessionPost from '../actions/session-post.actions';
 import * as registrationPost from '../../registration-post/actions/registration-post.actions';
-import * as userRequest from '../../../../user-request/actions/user-request.actions';
 import { SessionPostSuccessAction, SessionPostFailAction } from '../actions/index';
 import { SpinnerLoadingStartAction, SpinnerLoadingEndAction } from '../../../../spinner/actions/index';
 import { SessionPostAction } from '../actions/session-post.actions';
@@ -48,8 +47,4 @@ export class SessionPostEffects {
   .ofType(sessionPost.ActionTypes.REQUEST_FAIL)
   .map((action: any) => new SpinnerLoadingEndAction());
   
-  @Effect({dispatch: false})
-  socketCreateQuestion$: Observable<Action> = this.actions$
-  .ofType(userRequest.ActionTypes.GET_REQUEST_SUCCESS)
-  .do(() => this.socketService.subscribeTo('create'));
 }
