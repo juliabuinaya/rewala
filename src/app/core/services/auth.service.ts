@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Restangular } from 'ngx-restangular';
 import { Store } from '@ngrx/store';
 
+import { SocketService } from './socket.service';
 
 // app state
 import * as appState from '../../ngrx/state/app.state';
@@ -20,7 +21,8 @@ import * as answers from '../../ngrx/answers/actions/index';
 export class AuthService {
   
   constructor(public restangular: Restangular,
-              public store: Store<appState.IAppState>) {
+              public store: Store<appState.IAppState>,
+              public socketService: SocketService) {
   }
   
   signUp(data) {
@@ -46,5 +48,6 @@ export class AuthService {
     this.store.dispatch(new questions.ClearQuestionsAction());
     this.store.dispatch(new contacts.ClearContactsAction());
     this.store.dispatch(new answers.ClearAnswersAction());
+    this.socketService.setClose();
   }
 }

@@ -23,7 +23,7 @@ export class SocketService {
 
   setOpen() {
     const token = this.sessionService.getCurrentToken();
-    if (!this.socket) this.socket = io.connect(this.appConfig.socketUrl);
+    if (!this.socket) this.socket = io.connect(this.appConfig.socketUrl, {forceNew: true});
     this.socket.on('connect', () => {
       this.socket.emit('authentication', {token});
       this.socket.on('authenticated', value => {
@@ -41,6 +41,7 @@ export class SocketService {
   }
   
   setClose() {
-    this.socket.emit('out');
+    this.socket.emit('close');
+    this.socket = null;
   }
 }
