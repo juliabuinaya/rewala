@@ -23,7 +23,16 @@ export class SocketService {
 
   setOpen() {
     const token = this.sessionService.getCurrentToken();
-    if (!this.socket) this.socket = io.connect(this.appConfig.socketUrl, {forceNew: true});
+    if (!this.socket) {
+      this.socket = io(
+        this.appConfig.socketUrl,
+        {
+          transports: ['websocket'],
+          upgrade: false,
+          forceNew: true
+        }
+      ).connect();
+    }
     this.socket.on('connect', () => {
       this.socket.emit('authentication', {token});
       this.socket.on('authenticated', value => {
