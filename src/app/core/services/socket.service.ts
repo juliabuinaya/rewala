@@ -32,20 +32,42 @@ export class SocketService {
           forceNew: true
         }
       ).connect();
-    }
-    this.socket.on('connect', () => {
-      this.socket.emit('authentication', {token});
-      this.socket.on('authenticated', value => {
-        if (!value) return;
+      this.socket.on('connect', () => {
+        this.socket.emit('authentication', {token});
+        this.socket.on('authenticated', value => {
+          if (!value) return;
+        });
       });
-    });
+    }
   }
   
   subscribeTo(event) {
     this.setOpen();
     return this.socket.on(event, data => {
-      this.alertService.showSuccessAlert('New question created and awaiting your vote', 3000);
-      this.store.dispatch(new questions.UpdateAwaitingQuestionsAction(data));
+      
+      switch(event) {
+        
+        case 'create': {
+          this.alertService.showSuccessAlert('New question created and awaiting your vote', 3000);
+          this.store.dispatch(new questions.UpdateAwaitingQuestionsAction(data));
+          break;
+        }
+  
+        case 'delete': {
+          this.alertService.showSuccessDeleteAlert(
+            'Question was deleted:',
+            data.text,
+            5000
+          );
+          this.store.dispatch(new questions.DeleteQuestionAction(data.id));
+          break;
+        }
+        
+        default: {
+          break;
+        }
+      }
+      
     });
   }
   

@@ -44,6 +44,9 @@ export class UserRequestEffects {
   @Effect({dispatch: false})
   socketCreateQuestion$: Observable<Action> = this.actions$
   .ofType(userRequest.ActionTypes.GET_REQUEST_SUCCESS)
-  .do(() => this.socketService.subscribeTo('create'));
+  .do(() => {
+    this.socketService.subscribeTo('create');
+    this.socketService.subscribeTo('delete');
+  });
   
 }

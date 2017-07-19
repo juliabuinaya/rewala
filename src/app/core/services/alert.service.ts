@@ -68,6 +68,16 @@ export class AlertService {
     setTimeout(() => alert.dismiss(), ms);
   }
   
+  showSuccessDeleteAlert(title, subTitle, ms=2000) {
+    let alert = this.alertCtrl.create({
+      title,
+      subTitle,
+      enableBackdropDismiss: false
+    });
+    alert.present();
+    setTimeout(() => alert.dismiss(), ms);
+  }
+  
   showLeaveConfirmAlert() {
     let observable$ = Observable.create(observer => {
       let confirm = this.alertCtrl.create({
