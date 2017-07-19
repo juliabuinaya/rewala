@@ -7,6 +7,7 @@ import { ResultsService } from '../../../core/services/results.service';
 import { Chart } from 'chart.js';
 import * as _ from 'lodash';
 
+import * as Highcharts from 'highcharts';
 
 @IonicPage()
 @Component({
@@ -15,8 +16,6 @@ import * as _ from 'lodash';
 })
 export class QuestionResultsPage {
   
-  @ViewChild('doughnutCanvas') doughnutCanvas;
-  //@ViewChild('barCanvas') barCanvas;
   public question;
   public results$;
   public resultsRequestGetLoadedState$;
@@ -26,14 +25,9 @@ export class QuestionResultsPage {
   public results;
   public maxQuantity;
   public optimalResults;
-  public doughnutChart;
-  //public barChart;
-  public resultsLabels;
-  public resultsQuantities;
+  public highChartData;
   public chartDataset;
   public colors;
-  //public barChartActive = true;
-  //public pieChartActive = false;
   
   constructor(public loadingService: LoadingService,
               public navParams: NavParams,
@@ -51,80 +45,73 @@ export class QuestionResultsPage {
     return this.resultsResolver.then(loaded => loaded);
   }
   
-  ngOnInit() {
+  ionViewDidLoad() {
     this.results$ = this.resultsService.results$;
     this.resultsSubscriber = this.results$
     .subscribe(results => this.results = results);
     this.loadingService.hideSpinner();
-    
+  
     this.maxQuantity = _.get(_.maxBy(this.results, 'quantity'), 'quantity');
     this.optimalResults = _.filter(this.results, ['quantity', this.maxQuantity]);
-    
-    this.resultsLabels = this.results.map(result => result.text);
-    this.resultsQuantities = this.results.map(result => result.quantity);
-    this.colors = [
-      'rgba(56,142,60, 0.7)',
-      'rgba(54,162,235, 0.7)',
-      'rgba(245,124,0, 0.7)',
-      'rgba(255,206,86, 0.7)',
-      'rgba(211,47,47, 0.7)',
-      'rgba(153,102,255, 0.7)',
-      'rgba(75,192,192, 0.7)',
-      'rgba(81,45,168, 0.7)',
-      'rgba(255,99,132, 0.7)',
-      'rgba(93,64,55, 0.7)',
-      'rgba(69,90,100, 0.7)',
-      'rgba(255,159,64, 0.7)',
-      'rgba(175,180,43, 0.7)',
-    ];
-    this.chartDataset = {
-      labels: this.resultsLabels,
-      datasets: [{
-        labels: this.resultsLabels,
-        data: this.resultsQuantities,
-        backgroundColor: this.colors,
-      }]
-    };
   
-    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-      type: 'doughnut',
-      data: this.chartDataset,
-      options: {
-        legend: {
-          onClick: false,
-          position: 'bottom'
-        }
+    this.highChartData = this.results.map(result => {
+      return {
+        name: result.text,
+        y: result.quantity
       }
     });
     
-    //this.barChart = new Chart(this.barCanvas.nativeElement, {
-    //  type: 'bar',
-    //  data: this.chartDataset,
-    //  options: {
-    //    legend: {
-    //      display: false
-    //    },
-    //    scales: {
-    //      yAxes: [{
-    //        ticks: {
-    //          beginAtZero: true
-    //        }
-    //      }]
-    //    }
-    //  }
-    //});
+    Highcharts.chart('highchart', {
+      chart: {
+        type: 'column'
+      },
+      credits: {
+        enabled : false
+      },
+      title: {
+        text: this.question.text,
+        style: {
+          fontSize: '22px',
+          fontWeight: 'bold'
+        }
+      },
+      xAxis: {
+        type: 'category',
+        labels: {
+          rotation: -75,
+          style: {
+            fontSize: '15px'
+          }
+        }
+      },
+      yAxis: {
+        min: 0,
+        allowDecimals: false,
+        title: {
+          text: null
+        }
+      },
+      legend: {
+        enabled: false
+      },
+      tooltip: {
+        pointFormat: 'Votes: <b>{point.y}</b>',
+        style: {
+          fontSize: '10px'
+        }
+      },
+      series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: this.highChartData
+      }]
+    });
     
   }
   
-  //showPieChart() {
-  //  this.barChartActive = false;
-  //  this.pieChartActive = true;
-  //}
-  //
-  //showBarChart() {
-  //  this.pieChartActive = false;
-  //  this.barChartActive = true;
-  //}
+  
+  ngOnInit() {
+  }
   
   ngOnDestroy() {
     this.resultsSubscriber.unsubscribe();
