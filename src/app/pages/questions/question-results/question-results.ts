@@ -16,7 +16,7 @@ import * as _ from 'lodash';
 export class QuestionResultsPage {
   
   @ViewChild('doughnutCanvas') doughnutCanvas;
-  //@ViewChild('barCanvas') barCanvas;
+  @ViewChild('barCanvas') barCanvas;
   public question;
   public results$;
   public resultsRequestGetLoadedState$;
@@ -27,13 +27,13 @@ export class QuestionResultsPage {
   public maxQuantity;
   public optimalResults;
   public doughnutChart;
-  //public barChart;
+  public barChart;
   public resultsLabels;
   public resultsQuantities;
   public chartDataset;
   public colors;
-  //public barChartActive = true;
-  //public pieChartActive = false;
+  public barChartActive = true;
+  public pieChartActive = false;
   
   constructor(public loadingService: LoadingService,
               public navParams: NavParams,
@@ -62,6 +62,7 @@ export class QuestionResultsPage {
     
     this.resultsLabels = this.results.map(result => result.text);
     this.resultsQuantities = this.results.map(result => result.quantity);
+    
     this.colors = [
       'rgba(56,142,60, 0.7)',
       'rgba(54,162,235, 0.7)',
@@ -97,34 +98,48 @@ export class QuestionResultsPage {
       }
     });
     
-    //this.barChart = new Chart(this.barCanvas.nativeElement, {
-    //  type: 'bar',
-    //  data: this.chartDataset,
-    //  options: {
-    //    legend: {
-    //      display: false
-    //    },
-    //    scales: {
-    //      yAxes: [{
-    //        ticks: {
-    //          beginAtZero: true
-    //        }
-    //      }]
-    //    }
-    //  }
-    //});
+    this.barChart = new Chart(this.barCanvas.nativeElement, {
+      type: 'bar',
+      data: this.chartDataset,
+      options: {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            ticks: {
+              autoSkip: false,
+              maxRotation: 90,
+              minRotation: 90
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              maxTicksLimit: 10,
+              callback: function (tick, index, ticks) {
+                if (tick.toString().indexOf('.') !== -1) {
+                  return null;
+                }
+                return tick.toLocaleString();
+              }
+            }
+          }],
+        }
+      }
+    });
     
   }
   
-  //showPieChart() {
-  //  this.barChartActive = false;
-  //  this.pieChartActive = true;
-  //}
-  //
-  //showBarChart() {
-  //  this.pieChartActive = false;
-  //  this.barChartActive = true;
-  //}
+  showPieChart() {
+    this.barChartActive = false;
+    this.pieChartActive = true;
+  }
+
+  showBarChart() {
+    this.pieChartActive = false;
+    this.barChartActive = true;
+  }
   
   ngOnDestroy() {
     this.resultsSubscriber.unsubscribe();
