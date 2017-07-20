@@ -48,19 +48,19 @@ export class SocketService {
       switch(event) {
         
         case 'create': {
-          this.alertService.showSuccessAlert('New question created and awaiting your vote', 3000);
+          this.alertService.showSuccessAlert('New question created and awaiting your vote', null, null, 3000);
           this.store.dispatch(new questions.UpdateAwaitingQuestionsAction(data));
           break;
         }
   
         case 'delete': {
-          this.alertService.showSuccessDeleteAlert(
-            'Question was deleted:',
-            data.text,
-            5000
-          );
+          this.alertService.showSuccessAlert('Question was deleted:', data.text, null, 5000);
           this.store.dispatch(new questions.DeleteQuestionAction(data.id));
           break;
+        }
+        
+        case 'deadline': {
+          console.log('deadline', data);
         }
         
         default: {
