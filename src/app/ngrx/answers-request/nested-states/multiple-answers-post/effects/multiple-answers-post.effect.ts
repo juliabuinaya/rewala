@@ -56,7 +56,7 @@ export class MultipleAnswersPostEffects {
   successRedirect$: Observable<Action> = this.actions$
   .ofType(multipleAnswersPost.ActionTypes.REQUEST_SUCCESS)
   .do((action: any) => {
-    this.alertService.showSuccessAlert('Vote has been accepted', 2000);
+    this.alertService.showSuccessAlert('Vote has been accepted');
     this.routingService.popPage();
   });
   

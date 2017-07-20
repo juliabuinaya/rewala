@@ -32,7 +32,7 @@ export class GroupsEffects {
   .ofType(groupPost.ActionTypes.REQUEST_SUCCESS)
   .map(action => new UpdateUserGroupsAction(toPayload(action)))
   .do(() => {
-    this.alertService.showSuccessAlert('Group has been created', 2000);
+    this.alertService.showSuccessAlert('Group has been created');
     this.routingService.removeFromActive(2)
   });
 }

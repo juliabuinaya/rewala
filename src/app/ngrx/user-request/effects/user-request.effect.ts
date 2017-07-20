@@ -47,6 +47,7 @@ export class UserRequestEffects {
   .do(() => {
     this.socketService.subscribeTo('create');
     this.socketService.subscribeTo('delete');
+    this.socketService.subscribeTo('deadline');
   });
   
 }

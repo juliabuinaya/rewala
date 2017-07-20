@@ -74,7 +74,7 @@ export class QuestionsEffects {
   deleteQuestionRedirect$: Observable<Action> = this.actions$
   .ofType(questionDelete.ActionTypes.REQUEST_SUCCESS)
   .do((action: any) => {
-    this.alertService.showSuccessAlert('Question has been deleted', 2000);
+    this.alertService.showSuccessAlert('Question has been deleted');
     this.routingService.popPage();
   });
   
@@ -82,7 +82,7 @@ export class QuestionsEffects {
   finishVoteQuestionRedirect$: Observable<Action> = this.actions$
   .ofType(questionFinishVote.ActionTypes.REQUEST_SUCCESS)
   .do((action: any) => {
-    this.alertService.showSuccessAlert('Voting has been finished', 2000);
+    this.alertService.showSuccessAlert('Voting has been finished');
     this.routingService.popPage();
   });
   

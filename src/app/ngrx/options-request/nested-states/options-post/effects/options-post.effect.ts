@@ -37,7 +37,7 @@ export class OptionsPostEffects {
   postSuccessRedirect$: Observable<Action> = this.actions$
   .ofType(optionsPost.ActionTypes.REQUEST_SUCCESS)
   .do((action: any) => {
-    this.alertService.showSuccessAlert('Question has been created', 2000);
+    this.alertService.showSuccessAlert('Question has been created');
     this.routingService.pushRootPage(DashboardPage);
   });
   

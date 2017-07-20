@@ -59,19 +59,11 @@ export class AlertService {
     return observable$;
   }
   
-  showSuccessAlert(title, ms=2000) {
-    let alert = this.alertCtrl.create({
-      title,
-      enableBackdropDismiss: false
-    });
-    alert.present();
-    setTimeout(() => alert.dismiss(), ms);
-  }
-  
-  showSuccessDeleteAlert(title, subTitle, ms=2000) {
+  showSuccessAlert(title, subTitle=null, message=null, ms=2000) {
     let alert = this.alertCtrl.create({
       title,
       subTitle,
+      message,
       enableBackdropDismiss: false
     });
     alert.present();

@@ -70,7 +70,7 @@ export class AnswersChangeEffects {
   changeSuccessRedirect$: Observable<Action> = this.actions$
   .ofType(answersChange.ActionTypes.REQUEST_SUCCESS)
   .do((action: any) => {
-    this.alertService.showSuccessAlert('Vote has been changed', 2000);
+    this.alertService.showSuccessAlert('Vote has been changed');
     this.routingService.popPage();
   });
 }
