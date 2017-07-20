@@ -60,7 +60,9 @@ export class SocketService {
         }
         
         case 'deadline': {
-          console.log('deadline', data);
+          this.alertService.showSuccessAlert('Voting is completed:', data.text, null, 5000);
+          this.store.dispatch(new questions.DeleteQuestionAction(data.id));
+          this.store.dispatch(new questions.UpdateCompletedQuestionsIdsAction(data.id));
         }
         
         default: {
